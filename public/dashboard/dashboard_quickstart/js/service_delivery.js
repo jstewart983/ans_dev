@@ -91,6 +91,7 @@ db2.addComponent(solution_delivery3);
 getTotalHours();
 function getTotalHours(){
 $.get("../ajax/getTotalProjectHours.php", function(data) {
+    solution_delivery3.lock();
     var labels = [], project_data3 = [];
     for(var i = 0; i < data.length; i++) {
         
@@ -120,6 +121,7 @@ db3.addComponent(service_delivery);
 getOpenTickets()
 function getOpenTickets(){
 $.get("../ajax/getOpenTickets.php", function(data) {
+    service_delivery.lock();
     var labels = [], service_data = [];
     for(var i = 0; i < data.length; i++) {
         

@@ -1,63 +1,52 @@
-rf.StandaloneDashboard(function(tdb){
+rf.StandaloneDashboard(function(db){
+db.setTabbedDashboardTitle("ANS Reporting");
+     var tab1 = new Dashboard ();
+     tab1.setDashboardTitle('Active Client List');
+    
+    var table = new TableComponent ('test');
+    table.setCaption ("Regional Sales");
+    table.setDimensions(8, 4);
+    table.addColumn ('type', "Type");
+    table.addColumn ('status', "Status");
+    table.addColumn ('Company_Name', "Company");
+    table.addColumn ('Address_Line1', "Address 1");
+    table.addColumn ('Address_Line2', "Address 2");
+    table.addColumn ('City', "City");
+    table.addColumn ('State_ID', "State");
+    table.addColumn ('Zip', "Zip");
 
-tdb.setTabbedDashboardTitle("ANS Reporting");
-
-var db1 = new Dashboard();
-db1.setDashboardTitle('Summary');
-
-var solution_delivery= new ChartComponent();
-solution_delivery.setDimensions (6,3);
-solution_delivery.setCaption ("Project Hours Completed this week by Engineer");
-solution_delivery.lock();
-db1.addComponent(solution_delivery);
-
-
-$.get("../ajax/getProjectHours.php", function(data) {
-    var labels = [], project_data = [];
+   
+    $.get("../ajax/getClientList.php", function(data) {
+    var clients = [];
     for(var i = 0; i < data.length; i++) {
-        labels.push (data[i]["lName"]);
-        project_data.push (parseInt(data[i]["Project_Hours"]));
+        
+        
+        clients = data[i];
+        console.log(clients);
+        table.addMultipleRows (clients);
+
     }
-    solution_delivery.setLabels (labels);
     
-    solution_delivery.addSeries ("hours", "Hours", project_data, {
-        seriesDisplayType: "area"
-    });
-    solution_delivery.addSeries ("hours", "Hours", project_data, {
-        seriesDisplayType: "line"
     });
     
-    solution_delivery.unlock();
-});
-var solution = new ChartComponent();
-solution.setDimensions(5,3);
-solution.setCaption("Hours by Engineer");
-solution.lock();
-db1.addComponent(solution);
-
-$.get("../ajax/getProjectHours.php", function(data) {
-    var labels = [], project = [];
-    for(var i = 0; i < data.length; i++) {
-        labels.push (data[i]["lName"]);
-        project.push (parseInt(data[i]["Project_Hours"]));
-    }
-    solution.setLabels (labels);
-    solution.setPieValues (project, {
-       dataType:"number",
-       numberSuffix:"hrs"
-    });
     
-    solution.unlock();
-});
+    
 
+    
+    
+   
+    
+    
+    
+    
+    
 
-tdb.addDashboardTab(db1, {
-        title: 'Active Client List',
-        active: true
-    });
+    tab1.addComponent(table);
+  // Now actually add the dashboards to the main dashboard.
+  db.addDashboardTab (tab1, {
+    title: "Active Client List",
+    active: true // this tab should be active by default.
+  });
   
-  
-
-
-}, {tabbed: true});
+}, {tabbed:true});
 
