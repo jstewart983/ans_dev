@@ -56,9 +56,22 @@
         </script>
     </head>
     <style type="text/css">
+
     .navmenu .navmenu-default{
+
         background-color: #fff;
+
         }
+
+    input {
+
+            border: none;
+            outline: none;
+            background-color: transparent;
+            font-family: inherit;
+            font-size: inherit;
+        }
+
         </style>  
     <body class="canvas">
 <div style="background-color:#fff;" class="navmenu navmenu-default navmenu-fixed-left offcanvas">
@@ -86,15 +99,21 @@
       </button>
       <h2 style="margin-top:12px;text-align:center;"id="title"></h2>
     </div>
-        <div style="margin-top:60px;" id="clientTable"></div>
         
-        <form class="col-md-4"id="companyForm" method="post">
-            <input type="submit" id="colink" href="?company=Results Physiotherapy" value="get results open project count" />
-        </form>
-        <div style="margin-top:60px;text-align:center;" class="co-md-4"id="clientData"></div>
+        
+        <div class="col-md-3" method="post">
+            
+            <div  style="width:100%;margin-top:60px;" id="clientTable"></div>
+        </div>
+        
         <div class="col-md-6" style="margin-top:60px;text-align:center;">
-            <!-- Don't delete this div. This is where RazorFlow will get rendered. -->
-        <div id="dbTarget" style="position:relative;" class="rf"></div>
+        <form class="col-md-3"id="companyForm" method="post">
+        <input type="submit" id="colink" href="?company=Results Physiotherapy" value="get results open project count" />
+        </form>
+           
+            <div style="margin-top:60px;text-align:center;" class="co-md-4"id="clientData"></div>
+             <!-- Don't delete this div. This is where RazorFlow will get rendered. -->
+            <div id="dbTarget" style="position:relative;" class="rf"></div>
         </div>
     </body>
 
