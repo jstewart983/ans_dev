@@ -13,6 +13,28 @@ rf.StandaloneDashboard(function(tdb){
 
 tdb.setDashboardTitle('Executive Summary');
 
+var company_tickets= new ChartComponent();
+company_tickets.setDimensions (6,4);
+company_tickets.setCaption ("Open Tickets by Company - Top 10 (excluding Results)");
+company_tickets.lock();
+tdb.addComponent(company_tickets);
+
+
+$.get("./ajax/getTicketsByCompany.php", function(data) {
+    var labels = [], ticket_data = [];
+    for(var i = 0; i < data.length; i++) {
+        labels.push (data[i]["Company_Name"]);
+        ticket_data.push (parseInt(data[i]["openTickets"]));
+    }
+    company_tickets.setLabels (labels);
+    
+    company_tickets.addSeries ("Tickets", "Tickets", ticket_data, {
+       
+    });
+    
+    company_tickets.unlock();
+});
+
 var solution_delivery= new ChartComponent();
 solution_delivery.setDimensions (4,4);
 solution_delivery.setCaption ("Project Hours Completed this week by Engineer");
@@ -81,7 +103,7 @@ $.get("./ajax/getTotalProjectHours.php", function(data) {
 
 var solution_delivery3 = new KPIComponent();
 solution_delivery3.setDimensions (2,2);
-solution_delivery3.setCaption ("Total Hours");
+solution_delivery3.setCaption ("Total Project Hours This Week");
 solution_delivery3.lock();
 tdb.addComponent(solution_delivery3);
 
@@ -110,7 +132,7 @@ window.setInterval(function(){
 
 var service_delivery = new KPIComponent();
 service_delivery.setDimensions (2,2);
-service_delivery.setCaption ("Open Tickets");
+service_delivery.setCaption ("Total Open Tickets");
 service_delivery.lock();
 db.addComponent(service_delivery);
 
@@ -134,6 +156,8 @@ $.get("./ajax/getOpenTickets.php", function(data) {
 db.setInterval(function(){
  getOpenTickets();
 }, 30000);
+
+
 
 
 

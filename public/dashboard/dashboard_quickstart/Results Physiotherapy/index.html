@@ -7,7 +7,7 @@
       
      
     
-        <title>Client Services</title>
+        <title>Results Physiotherapy Overview</title>
         <link rel="stylesheet" type="text/css" href="../css/razorflow.min.css">
         <link rel="stylesheet" type="text/css" href="../css/navbar.css">
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
@@ -29,31 +29,9 @@
             }
             window.onload = myFunction;
         </script>
-       
-        <!--get company list-->
-        <script type="text/javascript">$(document).ready(function(){
-            $.ajax({ url: "../ajax/getClientList.php",
-                    context: document.body,
-                    success: function(html){
-                     $("#clientTable").append(html);
-                    }});
-            });
-        </script>
 
-        <script type="text/javascript">
         
-        $('#colink').click(function(){
-                event.preventDefault();
-                var href = $(this).attr('href');
-             $.ajax({ url: "../ajax/getResultsData.php",
-                    data:href,
-                    context: document.body,
-                    success: function(html){
-                     $("#clientData").append(html);
-                    }});
-            });
-               
-        </script>
+        
     </head>
     <style type="text/css">
     .navmenu .navmenu-default{
@@ -67,7 +45,8 @@
         <li><a href="../">Overview</a></li>
         <li><a href="../solution delivery/">Solution Delivery</a></li>
         <li><a href="../service delivery/">Service Delivery</a></li>
-        <li class="active"><a href="#">Client Services</a></li>
+        <li><a href="#">Client Services</a></li>
+        <li class="active"><a href="./Results Physiotherapy/">Results Physiotherapy</a></li>
         <li><a href="../finance/">Finance</a></li>
       </ul>
       <ul class="nav navmenu-nav">
@@ -86,16 +65,9 @@
       </button>
       <h2 style="margin-top:12px;text-align:center;"id="title"></h2>
     </div>
-        <div style="margin-top:60px;" id="clientTable"></div>
-        
-        <form class="col-md-4"id="companyForm" method="post">
-            <input type="submit" id="colink" href="?company=Results Physiotherapy" value="get results open project count" />
-        </form>
-        <div style="margin-top:60px;text-align:center;" class="co-md-4"id="clientData"></div>
-        <div class="col-md-6" style="margin-top:60px;text-align:center;">
-            <!-- Don't delete this div. This is where RazorFlow will get rendered. -->
+       <!-- <div style="margin-top:60px;" id="resultsData"></div>-->
+        <!-- Don't delete this div. This is where RazorFlow will get rendered. -->
         <div id="dbTarget" style="position:relative;" class="rf"></div>
-        </div>
     </body>
 
 </html>

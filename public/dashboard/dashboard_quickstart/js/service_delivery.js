@@ -26,6 +26,7 @@ $.get("../ajax/getProjectHours.php", function(data) {
         labels.push (data[i]["lName"]);
         project_data.push (parseInt(data[i]["Project_Hours"]));
     }
+    console.log(labels);
     solution_delivery.setLabels (labels);
     
     solution_delivery.addSeries ("hours", "Hours", project_data, {

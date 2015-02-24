@@ -22,19 +22,35 @@
 <script type="text/javascript" src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 
 <script src="js/jasny-bootstrap.js"></script>
-<script type="text/javascript">
-	$("#mytextfield").on('keyup',function(){
-        var totalcost= $("#totaldays").val() * $(this).val() 
-        $(".total_cost").html(totalcost);
-})
-</script>
+
 
 </head>
  <body>
  <input type="hidden" name="total_days" id = "totaldays" value="10" />
 <input type="text" name="cost_per_day" id = "mytextfield" value="" />
-<p>Total Cost: $<span class="total_cost"></span></p>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+<input type="text" name="cost_per_day" id = "mytextfield1" value="" />
+
+<input type="text" name="cost_per_day" id = "mytextfield2" value="" />
+
+<p>Total Cost: $<span class="total_cost"></span></p>
        
-       
+       <script type="text/javascript">
+	$("#mytextfield").on('keyup',function(){
+   // alert('pressed')
+        var totalcost= $("#totaldays").val() * $(this).val() + $("#mytextfield1").val()
+    $(".total_cost").html(totalcost);
+    $("#mytextfield1").on('keyup',function(){
+   // alert('pressed')
+        var totalcost1= $("#totaldays").val() * $(this).val()+$("#mytextfield").val()
+    $(".total_cost").html(totalcost1);
+})
+    	$("#mytextfield2").on('keyup',function(){
+   // alert('pressed')
+        var totalcost2= $("#totaldays").val() * $(this).val()
+    $(".total_cost").html(totalcost2);
+})
+})
+
+</script>
     </body>
     </html>

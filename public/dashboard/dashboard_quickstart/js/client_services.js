@@ -14,20 +14,42 @@ db.setTabbedDashboardTitle("ANS Reporting");
     table.addColumn ('City', "City");
     table.addColumn ('State_ID', "State");
     table.addColumn ('Zip', "Zip");
+    
+    
 
-   
-    $.get("../ajax/getClientList.php", function(data) {
-    var clients = [];
-    for(var i = 0; i < data.length; i++) {
+/*table.addColumn ('name', 'Name');
+table.addColumn ('category', 'Category');
+table.addColumn ('price', 'Price');*/
+     var tableData = [
+{name: "Broccoli", category: "Vegetables", price: 14},
+{name: "Cheese", category: "Dairy", price: 18},
+{name: "Tomatoes", category: "Vegetables", price: 8},
+{name: "Orange Juice", category: "Beverages", price: 12},
+{name: "Root Beer", category: "Beverages", price: 13},
+];  
+console.log(tableData);
+    
+        
+        $.get("../ajax/getClientList.php", function(data) {
+    var c = { data: [] };
+
+for (var o in data) {
+    var n = o.match(/^object(\d+)$/);
+    if (n) c.data[n[1]] = data[o];
+    console.log(data);
+    
+}
+   table.addMultipleRows(data);     
         
         
-        clients = data[i];
-        console.log(clients);
-        table.addMultipleRows (clients);
+        
+        
 
-    }
+    
     
     });
+     
+   
     
     
     

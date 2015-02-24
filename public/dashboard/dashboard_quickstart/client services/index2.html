@@ -21,14 +21,14 @@
         <!-- Latest compiled and minified JavaScript -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
         <script>$('.navmenu').offcanvas()</script>
-        <script>
+        <!--<script>
             function myFunction() {
             var x = document.title;
             document.getElementById("title").innerHTML = x;
 
             }
             window.onload = myFunction;
-        </script>
+        </script>-->
        
         <!--get company list-->
         <script type="text/javascript">$(document).ready(function(){
@@ -40,20 +40,84 @@
             });
         </script>
 
-        <script type="text/javascript">
+        <!--<script type="text/javascript">
         
-        $('#colink').click(function(){
-                event.preventDefault();
+        $('#colink').submit(function(e){
+                e.preventDefault();
                 var href = $(this).attr('href');
-             $.ajax({ url: "../ajax/getResultsData.php",
+             $.ajax({ 
+                url: "../ajax/getOpenProjectCount.php",
                     data:href,
                     context: document.body,
                     success: function(html){
                      $("#clientData").append(html);
-                    }});
+                    }
+                })
             });
                
-        </script>
+        </script>-->
+        <!--<script type="text/javascript">
+$(function() {
+
+    // Get the form.
+    var form = $('#companyForm');
+
+    // Get the messages div.
+    var formMessages = $('#form-messages');
+
+    // Set up an event listener for the contact form.
+    $(form).submit(function(e) {
+        // Stop the browser from submitting the form.
+        e.preventDefault();
+         event.stopPropagation();
+        // Serialize the form data.
+        var formData = $(form).serialize();
+        var href = $('input').attr('href');
+        console.log(href);
+        $.ajax({ 
+                url: "../ajax/getOpenProjectCount.php"+href,
+                    //data:href,
+                    type:"POST",
+                    context: document.body,
+                    success: function(html){
+                        console.log(html);
+                     $("#clientData").append(html);
+                    }
+                })
+        .done(function(response) {
+            // Make sure that the formMessages div has the 'success' class.
+            $(formMessages).removeClass('error');
+            $(formMessages).addClass('alert alert-success success');
+
+            // Set the message text.
+            $(formMessages).text(response);
+
+            // Clear the form.
+            $('#firstName').val('');
+            $('#lastName').val('');
+            $('#email').val('');
+            $('#phone').val('');
+            $('#services').val('');
+            $('#textarea').val('');
+            $('#captcha').val('');
+        })
+        .fail(function(data) {
+            // Make sure that the formMessages div has the 'error' class.
+            $(formMessages).removeClass('success');
+            $(formMessages).addClass('error');
+
+            // Set the message text.
+            if (data.responseText !== '') {
+                $(formMessages).text(data.responseText);
+            } else {
+                $(formMessages).text('Oops! An error occured and your message could not be sent.');
+            }
+        });
+
+    });
+
+});
+</script>-->
     </head>
     <style type="text/css">
     .navmenu .navmenu-default{
@@ -61,31 +125,9 @@
         }
         </style>  
     <body class="canvas">
-<div style="background-color:#fff;" class="navmenu navmenu-default navmenu-fixed-left offcanvas">
-      <a class="navmenu-brand" href="#">ANS Reporting</a>
-      <ul class="nav navmenu-nav">
-        <li><a href="../">Overview</a></li>
-        <li><a href="../solution delivery/">Solution Delivery</a></li>
-        <li><a href="../service delivery/">Service Delivery</a></li>
-        <li class="active"><a href="#">Client Services</a></li>
-        <li><a href="../finance/">Finance</a></li>
-      </ul>
-      <ul class="nav navmenu-nav">
-        <li><a href="#">Admin</a></li>
-        
-        
-        
-      </ul>
-    </div>
 
-    <div class="navbar navbar-default navbar-fixed-top">
-      <button style="display: block;float: left; margin-left: 15px;" type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <h2 style="margin-top:12px;text-align:center;"id="title"></h2>
-    </div>
+
+    
         <div style="margin-top:60px;" id="clientTable"></div>
         
         <form class="col-md-4"id="companyForm" method="post">
@@ -96,6 +138,7 @@
             <!-- Don't delete this div. This is where RazorFlow will get rendered. -->
         <div id="dbTarget" style="position:relative;" class="rf"></div>
         </div>
+        
     </body>
 
 </html>

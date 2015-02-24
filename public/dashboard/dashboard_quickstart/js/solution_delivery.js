@@ -14,7 +14,7 @@ var db1 = new Dashboard();
 db1.setDashboardTitle('Summary');
 
 var solution_delivery= new ChartComponent();
-solution_delivery.setDimensions (6,6);
+solution_delivery.setDimensions (6,5);
 solution_delivery.setCaption ("Project Hours Completed this week by Engineer");
 solution_delivery.lock();
 db1.addComponent(solution_delivery);

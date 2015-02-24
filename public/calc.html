@@ -24,8 +24,9 @@
 <script src="js/jasny-bootstrap.js"></script>
 <script type="text/javascript">
 	$("#mytextfield").on('keyup',function(){
+   // alert('pressed')
         var totalcost= $("#totaldays").val() * $(this).val() 
-        $(".total_cost").html(totalcost);
+    $(".total_cost").html(totalcost);
 })
 </script>
 
@@ -33,7 +34,7 @@
  <body>
  <input type="hidden" name="total_days" id = "totaldays" value="10" />
 <input type="text" name="cost_per_day" id = "mytextfield" value="" />
-<p>Total Cost: $<span class="total_cost"></span></p>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+<p>Total Cost: $<span class="total_cost"></span></p>
        
        
     </body>
