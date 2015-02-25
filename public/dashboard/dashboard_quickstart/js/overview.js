@@ -159,6 +159,29 @@ db.setInterval(function(){
 
 
 
+var projects_2014= new ChartComponent();
+projects_2014.setDimensions (6,4);
+projects_2014.setCaption ("Internal Projects Created by Month in 2014");
+projects_2014.lock();
+tdb.addComponent(projects_2014);
+
+
+$.get("./ajax/projects2014.php", function(data) {
+    
+    var labels = [], project_count = [];
+    for(var i = 0; i < data.length; i++) {
+        labels.push (data[i]["computed"]);
+        project_count.push (parseInt(data[i]["projectsCreated"]));
+    }
+    projects_2014.setLabels (labels);
+    
+    projects_2014.addSeries ("Projects", "Projects", project_count, {
+       
+    });
+    
+    projects_2014.unlock();
+});
+
 
 
 

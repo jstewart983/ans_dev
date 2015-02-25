@@ -40,7 +40,7 @@
             });
         </script>
 
-        <script type="text/javascript">
+        <!--<script type="text/javascript">
         
         $('#colink').click(function(){
                 event.preventDefault();
@@ -53,7 +53,8 @@
                     }});
             });
                
-        </script>
+        </script>-->
+        
     </head>
     <style type="text/css">
 
@@ -101,15 +102,16 @@
     </div>
         
         
-        <div class="col-md-3" method="post">
-            
-            <div  style="width:100%;margin-top:60px;" id="clientTable"></div>
+        <div class="col-md-2" method="post">
+            <form id="companyForm" method="post">
+                <div  style="width:100%;margin-top:70px;" id="clientTable"></div>
+            </form>
         </div>
         
-        <div class="col-md-6" style="margin-top:60px;text-align:center;">
-            <form class="col-md-3"id="companyForm" method="post">
-                <input type="submit" id="colink" href="?company=Results Physiotherapy" value="get results open project count" />
-            </form>
+        <div class="col-md-8" style="text-align:center;">
+            
+                
+            
            
             <div style="margin-top:60px;text-align:center;" class="co-md-4"id="clientData"></div>
              <!-- Don't delete this div. This is where RazorFlow will get rendered. -->

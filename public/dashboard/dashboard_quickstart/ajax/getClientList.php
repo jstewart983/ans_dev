@@ -12,7 +12,7 @@ dbo.Company_Type.Description = "Client" and dbo.Company_Address.Default_Flag=1) 
 
 echo "<div style='width:100%;padding:0px;margin-left:10px; margin-top:10px;'class=' panel panel-default'>";
 echo "<div class='panel-heading'>Clients</div>";
-echo "<div style='width:100%;overflow-y: scroll !important;height:500px'class=panel-body>";
+echo "<div style='width:100%;overflow-y: scroll !important;height:495px'class=panel-body>";
 echo "<table id='clientTable' style='width:100%;' class='table table-hover'>";
 echo "<thead>";
 echo "<th></th>";
@@ -26,8 +26,8 @@ while($row = mssql_fetch_array($clientList)) {
 
 	$str = $row['Company_Name'];
 
-	if (strlen($str) > 30){
-		$str = substr($str, 0, 25) . '...';
+	if (strlen($str) > 15){
+		$str = substr($str, 0, 17) . '...';
 	}
    
 	echo "<tr>";
