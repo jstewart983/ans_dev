@@ -9,17 +9,21 @@ $(function() {
     var form = $('#companyForm');
 
     // Get the messages div.
-    var formMessages = $('#form-messages');
+    //var formMessages = $('#form-messages');
 
     // Set up an event listener for the contact form.
     $(form).submit(function(e) {
         // Stop the browser from submitting the form.
         e.preventDefault();
          event.stopPropagation();
+
         // Serialize the form data.
         var formData = $(form).serialize();
+
         var href = $('input').attr('href');
+
         console.log(href);
+
         $.ajax({ 
                 url: "../ajax/getOpenProjectCount.php"+href,
                     //data:href,
@@ -44,7 +48,7 @@ $("#title").text(title);
 
 var service_delivery = new KPIComponent();
 service_delivery.setDimensions (2,2);
-service_delivery.setCaption ("Open Tickets");
+service_delivery.setCaption ("Open Projects");
 service_delivery.lock();
 db.addComponent(service_delivery);
 
