@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Bar Chart</title>
+		<script src="../Chart.js"></script>
+		<script src="jquery.min.js"></script>
+	</head>
+	<body>
+		<div style="width: 50%">
+			<canvas id="canvas" height="450" width="600"></canvas>
+		</div>
+
+
+	<script>
+
+
+
+$(document).ready(function(){
+            $.ajax({ url: "projects2014.php",
+                    context: document.body,
+                    success: function(html){
+                     
+
+                    		var chartjsData1 = [];
+					//var chartjsData2 = [];
+					for (var i = 0; i < html.length; i++) {
+					    chartjsData.push(html[i].projectsCreated);  
+							}
+
+var barChartData = {
+      labels :["January","February","March"],datasets : [
+                {
+                    fillColor : "rgba(220,280,220,0.5)",
+                    strokeColor : "rgba(220,220,220,1)",
+                    data : chartjsData1
+
+                }
+            ]
+        };
+    var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Bar(barChartData);
+
+                    }});
+            });
+
+
+
+/*var json = [{"company_name":"project A","present_worth":"81531.946062978"},{"company_name":"project B","present_worth":"67313.916593765"},{"company_name":"project c","present_worth":"92440.723376746"}];*/
+
+
+	
+
+	</script>
+	</body>
+</html>

@@ -61,7 +61,7 @@ $("#title").text(title);
 
 
 var results1 = new KPIComponent();
-results1.setDimensions (1,1);
+//results1.setDimensions (1,1);
 results1.setCaption ("Open Tickets");
 results1.lock();
 db.addComponent(results1);
@@ -97,7 +97,7 @@ $.ajax({
 
 
 var service_delivery = new KPIComponent();
-service_delivery.setDimensions (1,1);
+//service_delivery.setDimensions (1,1);
 service_delivery.setCaption ("Open Projects");
 service_delivery.lock();
 db.addComponent(service_delivery);
@@ -134,34 +134,45 @@ $.ajax({
 
 
 var projects_2014= new ChartComponent();
-projects_2014.setDimensions (3,3);
+//projects_2014.setDimensions (3,3);
 projects_2014.setCaption ("Projects Created by Month in 2014");
 projects_2014.lock();
-db.addComponent(projects_2014);
+
 
 
 $.get("../ajax/projects2014.php"+clickedVal, function(data) {
 
     if(data.length>0){
 
-        
-        
-        var labels = [], project_count = [];
-    for(var i = 0; i < data.length; i++) {
+    db.addComponent(projects_2014);
+
+}
+if(data.length>0){
+    var labels = [], project_count = [];
+for(var i = 0; i < data.length; i++) {
+
         labels.push (data[i]["computed"]);
         project_count.push (parseInt(data[i]["projectsCreated"]));
     }
-    projects_2014.setLabels (labels);
-    
-    projects_2014.addSeries ("Projects", "Projects", project_count, {
+        projects_2014.setLabels (labels);
+        projects_2014.addSeries ("Projects", "Projects", project_count, {
        
-    });
+        });
+    
+}
+
+
+        
+        
+        
+
+    
+    
+    
+    
     
     projects_2014.unlock();
         
-    }else{
-        projects_2014.unlock();
-    }
     
     
     
