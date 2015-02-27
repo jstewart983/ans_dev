@@ -6,138 +6,10 @@
 
 
 
-$(function() {
-
-    // Get the form.
-    var form = $('#companyForm');
-
-    // Get the messages div.
-    //var formMessages = $('#form-messages');
-
-    // Set up an event listener for the contact form.
-    $(form).submit(function(e) {
-
-        
-
-
-     
-    
-        // Stop the browser from submitting the form.
-        e.preventDefault();
-         event.stopPropagation();
-
-        $('#companyForm input').on('click',function(){
-            var clickedVal = $(this).attr('href');
-             e.preventDefault();
-             event.stopPropagation();
-            //console.log(clickedVal);
-
-            
-
-
-
-
-        // Serialize the form data.
-        var formData = $(form).serialize();
-
-        //var href = $('input').attr('href');
-
-        
-
-
-
-        /*$.ajax({ 
-                url: "../ajax/getOpenProjectCount.php"+clickedVal,
-                    //data:href,
-                    type:"POST",
-                    context: document.body,
-                    success: function(html){
-                        console.log(html);
-                     $("#clientData").append(html);
-                    }
-                })*/
-
-      // rf.StandaloneDashboard(function(tdb){
-
-
-var title = clickedVal.substr(clickedVal.indexOf("=") + 1);
-
-$("#title").text(title);
-//tdb.setDashboardTitle(title);
-
-  
-
-/*var results1 = new KPIComponent();
-//results1.setDimensions (1,1);
-results1.setCaption ("Open Tickets");
-results1.lock();
-db.addComponent(results1);
-
-getOpenTickets();
-
-function getOpenTickets(){
-results1.lock();
-$.ajax({ 
-                url: "../ajax/getTicketsByCompany.php"+clickedVal,
-                    //data:href,
-                    type:"POST",
-                    context: document.body,
-                    success: function(html){
-                        
-                     var labels = [], data = [];
-                    for(var i = 0; i < html.length; i++) {
-        
-                    data.push (parseInt(html[i]["openTickets"]));
-                    }
-                    results1.setValue (data, {
-         
-                    valueTextColor: "#414141"
-                    });
-    
-                    results1.unlock();
-                    }
-                })
-
-}*/
-
-
-
-
-/*var service_delivery = new KPIComponent();
-//service_delivery.setDimensions (1,1);
-service_delivery.setCaption ("Open Projects");
-service_delivery.lock();
-db.addComponent(service_delivery);
-
-getOpenProjects1();
-
-function getOpenProjects1(){
-    service_delivery.lock();
-$.ajax({ 
-                url: "../ajax/getOpenProjectCount.php"+clickedVal,
-                    //data:href,
-                    type:"POST",
-                    context: document.body,
-                    success: function(html){
-                        
-                     var labels = [], service_data = [];
-                    for(var i = 0; i < html.length; i++) {
-        
-                    service_data.push (parseInt(html[i]["openProjects"]));
-                    }
-                    service_delivery.setValue (service_data, {
-         
-                    valueTextColor: "#F78E1E"
-                    });
-    
-                    service_delivery.unlock();
-                    }
-                })
-
-}*/
-$.ajax({
+function getClientData(value){
+    $.ajax({
     type: 'POST',
-    url: "../ajax/avgTicketsPerDay.php"+clickedVal,
+    url: "../ajax/avgTicketsPerDay.php"+value,
     success: function(json) {
         console.log(json);
                 avgTickets = [];
@@ -179,7 +51,7 @@ $.ajax({
 
 $.ajax({
     type: 'POST',
-    url: "../ajax/getOpenTicketsEcho.php"+clickedVal,
+    url: "../ajax/getOpenTicketsEcho.php"+value,
     success: function(json) {
         console.log(json);
                 avgTickets = [];
@@ -212,7 +84,7 @@ $.ajax({
 
     $.ajax({
     type: 'POST',
-    url: "../ajax/projects2014.php"+clickedVal,
+    url: "../ajax/projects2014.php"+value,
     success: function(json) {
         labels = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"];
         var xlabels = [], project_count = [],colors = [];
@@ -279,41 +151,54 @@ $('#wherethestuffis #projectsCreated').fadeOut(500, function() {
     }
 
 });
+}
 
 
 
 
+$(function() {
+
+    // Get the form.
+    var form = $('#companyForm');
+
+    // Get the messages div.
+    //var formMessages = $('#form-messages');
+
+    // Set up an event listener for the contact form.
+    $(form).submit(function(e) {
+
+        
+
+
+     
+    
+        // Stop the browser from submitting the form.
+        e.preventDefault();
+         event.stopPropagation();
+
+        $('#companyForm input').on('click',function(){
+            var clickedVal = $(this).attr('href');
+             e.preventDefault();
+             event.stopPropagation();
+            //console.log(clickedVal);
+
+            
 
 
 
 
-
-/*db.setInterval(function(){
- getOpenProjects1();
-}, 30000);*/
+        
 
 
 
+var title = clickedVal.substr(clickedVal.indexOf("=") + 1);
 
-
-/*db.setInterval(function(){
- getOpenTickets();
-}, 30000);*/
-
-
-//}); 
-
-
-
-
+$("#title").text(title);
+getClientData(clickedVal);
+            
         });
 
-        /*.done(function(response) {
-            
-        })*/
-        /*.fail(function(data) {
-           
-        });*/
+
 
     });
 
