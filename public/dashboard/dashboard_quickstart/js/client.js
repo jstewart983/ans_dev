@@ -135,7 +135,7 @@ $('#wherethestuffis #serviceType').fadeOut(200, function() {
         //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
         $("#serviceType").replaceWith($span2);
         //$("#openProjects").replaceWith($span2);
-        $span2.fadeIn(1000);
+        $span2.fadeIn(1200);
         //$span2.fadeIn(500);
 
         var rCM = document.getElementById("serviceType").getContext("2d");
@@ -171,7 +171,7 @@ $('#wherethestuffis #serviceType').fadeOut(200, function() {
             for(var i = 0; i < json.length; i++) {
 
                 label:xlabels.push (json[i]["Description"]);
-                value: type_count.push (parseInt(json[i]["typeCount"]));
+                value: type_count.push (parseInt(json[i]["total_hours"]));
                 fillColor: colors.push (getRandomColor());
                 highlight: colors.push (getRandomColor());
 
@@ -181,7 +181,7 @@ $('#wherethestuffis #serviceType').fadeOut(200, function() {
              doughnutData = [
                 {
                     value: type_count[0],
-                    color:getRandomColor(),
+                    color: getRandomColor(),
                     highlight: getRandomColor(),
                     label: xlabels[0]
                 },
@@ -223,25 +223,25 @@ $('#wherethestuffis #serviceType').fadeOut(200, function() {
                 },
                 {
                     value: type_count[7],
-                    color: getRandomColor(),
-                    highlight: getRandomColor(),
+                    color: "#FDB45C",
+                    highlight: "#FFC870",
                     label: xlabels[7]
                 },
                 {
                     value: type_count[8],
-                    color: getRandomColor(),
-                    highlight: getRandomColor(),
+                    color: "#46BFBD",
+                    highlight: "#5AD3D1",
                     label: xlabels[8]
                 },
                 {
                     value: type_count[9],
-                    color: getRandomColor(),
-                    highlight: getRandomColor(),
+                     color:"#F7464A",
+                    highlight: "#FF5A5E",
                     label: xlabels[9]
                 },
             ];
 
-console.log(doughnutData);
+
                 
 function getRandomColor() {
     var letters = '0123456789ABCDEF'.split('');
@@ -295,11 +295,11 @@ function getRandomColor() {
 
 
          
-        var $span2 = $('<canvas style="background-color:#fff;" id="serviceType2" height="300" width="400"></canvas>');
+        var $span2 = $('<canvas style="background-color:#fff;" id="serviceType2" height="300" width="300"></canvas>');
         //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
         $("#serviceType2").replaceWith($span2);
         //$("#openProjects").replaceWith($span2);
-        $span2.fadeIn(1000);
+        $span2.fadeIn(900);
         //$span2.fadeIn(500);
 
         var rCM = document.getElementById("serviceType2").getContext("2d");
@@ -388,7 +388,7 @@ $('#wherethestuffis #projectsCreated').fadeOut(500, function() {
         //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
         $("#projectsCreated").replaceWith($span2);
         //$("#openProjects").replaceWith($span2);
-        $span2.fadeIn(1200);
+        $span2.fadeIn(900);
         //$span2.fadeIn(500);
 
         var rCM = document.getElementById("projectsCreated").getContext("2d");
