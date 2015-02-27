@@ -29,6 +29,8 @@ while($row = mssql_fetch_assoc($openTickets)) {
     $all_rows []= $row;
 }
 
+
+
 header("Content-Type: application/json");
 echo json_encode($all_rows);
 //echo$company;
