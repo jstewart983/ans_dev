@@ -21,6 +21,7 @@
         <script src="Chart.js"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+        <!--<script src="../js/oneUp.js"></script>-->
         <script>$('.navmenu').offcanvas()</script>
         <script>
             function myFunction() {
@@ -35,16 +36,21 @@
         <script type="text/javascript">
 
         $(document).ready(function(){
+
+
             $.ajax({ url: "../ajax/getClientList.php",
                     context: document.body,
                     success: function(html){
                      $("#clientTable").append(html);
                     }});
+
+              getClientData('');
+
             });
         
         
 
-      
+                
 
   
 
@@ -54,6 +60,7 @@
 
     
         </script>
+       
         
     </head>
     <style type="text/css">
@@ -109,35 +116,52 @@
         </div>
         
         <div class="col-md-10" style="margin-top:100px;text-align:center;">
-           <div class="col-md-8"><h4 style="text-align:center;">Projects Initiated Last Year</h4></div>
+           
+           <div  id="wherethestuffis" class="col-md-3">
+                <div style="width:100%;"><p style="text-align:center;">Projects Initiated Last Year</p></div>
+               <canvas style="background-color:#fff;"  id="projectsCreated" height="300" width="200"></canvas>
+               
+           </div>
+
+           <div id="wherethestuffis" class="col-md-5">
+                <div style="width:100%;"><p style="text-align:center;">Service Breakdown</p></div>
+               <canvas style=" margin-left:10px;background-color:#fff;" id="serviceType" height="200" width="400"></canvas>
+           </div>
+           
            <div id="ticketTitle" class="col-md-2">
-                   <p style="text-align:center;">Open Tickets </p>
-                   <h1 style="text-align:center;"id="openTickets"></h1>
+                   <div style="width:100%;">
+                       <p style="text-align:center;">Open Tickets </p>
+                       <h1 style="text-align:center;"id="openTickets"></h1>
+                   </div>
+                   
                </div>
                <div id="title" class="col-md-2">
-                   <p style="text-align:center;">Average Tickets/Day</p>
-                   <h1 style="text-align:center;"id="avgTickets"></h1>
+                   <div style="width:100%;">
+                        <p style="text-align:center;">Average Tickets/Day</p>
+                        <h1 style="text-align:center;"id="avgTickets"></h1>
+                   </div>
                </div>
+               
 
                <!--<div style="margin-top:60px;text-align:center;" class="co-md-4"id="clientData"></div>-->
              <!-- Don't delete this div. This is where RazorFlow will get rendered. -->
             <!--<div id="dbTarget" style="position:relative;" class="rf"></div> -->
-           <div  id="wherethestuffis" class="col-md-8">
-                
-               <canvas style="background-color:#fff;"  id="projectsCreated" height="300" width="700"></canvas>
-               
-           </div>
            
-           <div id="wherethestuffis" class="col-md-2">
+           
+           <!--<div id="wherethestuffis" class="col-md-2">
                 
                <canvas style=" margin-left:10px;background-color:#fff;" id="openTickets" height="600" width="200"></canvas>
-           </div>
-           
+           </div>-->
+            
     
            
         
-        
+         <!--<script type="text/javascript">
+         var numAnim = new countUp("#avgTickets", 24.02, 99.99);
+            numAnim.start();
+        </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+       <!-- <script src="../js/oneUp.js"></script>-->
         <script type="text/javascript">
 
         </script>

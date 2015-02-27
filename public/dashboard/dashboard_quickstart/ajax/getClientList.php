@@ -14,11 +14,12 @@ echo "<div style='width:100%;padding:0px;margin-left:10px; margin-top:10px;'clas
 echo "<div class='panel-heading'>Clients</div>";
 echo "<div style='width:100%;overflow-y: scroll !important;height:495px'class=panel-body>";
 echo "<table id='clientTable' style='width:100%;' class='table table-hover'>";
-echo "<thead>";
-echo "<th></th>";
-echo "</thead>";
-
 echo "<tbody  class='rowlink'>";
+echo "<tr>";
+echo "<td><a href='../client services/'><b>All Clients</b></a></td>";
+echo "</tr>";
+
+
 // fetch all rows from the query
 //$all_rows = array();
 $id=0;

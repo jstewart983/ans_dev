@@ -13,12 +13,10 @@ order by company.Company_Name');
 
 }
 else{
-$avgTickets = mssql_query('select company.Company_Name, COUNT(*)/180 as Avg_Daily_Total_Tickets   
+$avgTickets = mssql_query('select COUNT(*)/180 as Avg_Daily_Total_Tickets   
 from SR_Service left outer join dbo.SR_Board on sr_service.SR_Board_RecID = sr_board.SR_Board_RecID
 left outer join Company on sr_service.Company_RecID = company.Company_RecID
-where sr_service.Date_Entered >= DATEADD(MONTH,DATEDIFF(month,0,dateadd(m,-6,current_timestamp)),0)
-group by company.Company_Name
-order by company.Company_Name');
+where sr_service.Date_Entered >= DATEADD(MONTH,DATEDIFF(month,0,dateadd(m,-6,current_timestamp)),0)');
 }
 
 if(!$avgTickets){
