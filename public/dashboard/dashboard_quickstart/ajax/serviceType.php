@@ -11,7 +11,7 @@ SR_Board.SR_Board_RecID = SR_Type.SR_Board_RecID AND
 SR_Type.Description != "Break-fix" AND
 Company.Company_Name = "'.$company.'"
 group by Description
-order by typeCount desc
+order by typeCount
 ');
 }else{
 $openTickets = mssql_query('SELECT top 10   SR_Type.Description,count(*) as typeCount
@@ -22,7 +22,7 @@ SR_Board.SR_Board_RecID = SR_Service.SR_Board_RecID AND
 SR_Board.SR_Board_RecID = SR_Type.SR_Board_RecID AND 
 SR_Type.Description != "Break-fix"
 group by Description
-order by typeCount desc');
+order by typeCount');
 }
 if(!$openTickets){
   die("Error: ".mssql_get_last_message());
