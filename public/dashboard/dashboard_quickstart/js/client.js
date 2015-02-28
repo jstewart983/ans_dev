@@ -89,11 +89,12 @@ $.ajax({
     url: "../ajax/serviceType.php"+value,
     success: function(json) {
         //labels = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"];
-        var xlabels = [], type_count = [],colors = [];
+        var xlabels = [], type_count = [],total_count=[],colors = [];
             for(var i = 0; i < json.length; i++) {
 
                 label:xlabels.push (json[i]["Description"]);
-                value: type_count.push (parseInt(json[i]["typeCount"]));
+                value: type_count.push (parseInt(json[i]["total_hours"]));
+                value: total_count.push (parseInt(json[i]["typeCount"]));
                 //fillColor: colors.push (getRandomColor());
 
                 }
@@ -117,12 +118,101 @@ function getRandomColor() {
                 strokeColor : "rgba(220,220,220,0.8)",
                 highlightFill: "rgba(220,220,220,0.75)",
                 highlightStroke: "rgba(220,220,220,1)",
-                data : type_count
+                data : total_count
             },
             
         ]
 
     }
+
+
+
+
+doughnutData = [
+                {
+                    value: type_count[0],
+                    color: getRandomColor(),
+                    highlight: getRandomColor(),
+                    label: xlabels[0]
+                },
+                {
+                    value: type_count[1],
+                    color: getRandomColor(),
+                    highlight: getRandomColor(),
+                    label: xlabels[1]
+                },
+                {
+                    value: type_count[2],
+                    color: getRandomColor(),
+                    highlight: getRandomColor(),
+                    label: xlabels[2]
+                },
+                {
+                    value: type_count[3],
+                    color: getRandomColor(),
+                    highlight: getRandomColor(),
+                    label: xlabels[3]
+                },
+                {
+                    value: type_count[4],
+                    color: getRandomColor(),
+                    highlight: getRandomColor(),
+                    label: xlabels[4]
+                },
+                {
+                    value: type_count[5],
+                    color: getRandomColor(),
+                    highlight: getRandomColor(),
+                    label: xlabels[5]
+                },
+                {
+                    value: type_count[6],
+                    color: getRandomColor(),
+                    highlight: getRandomColor(),
+                    label: xlabels[6]
+                },
+                {
+                    value: type_count[7],
+                    color: "#FDB45C",
+                    highlight: "#FFC870",
+                    label: xlabels[7]
+                },
+                {
+                    value: type_count[8],
+                    color: "#46BFBD",
+                    highlight: "#5AD3D1",
+                    label: xlabels[8]
+                },
+                {
+                    value: type_count[9],
+                     color:"#F7464A",
+                    highlight: "#FF5A5E",
+                    label: xlabels[9]
+                },
+            ];
+
+
+
+        $('#wherethestuffis #serviceType2').fadeOut(200, function() {
+
+
+
+
+         
+        var $span2 = $('<canvas style="background-color:#fff;" id="serviceType2" height="300" width="300"></canvas>');
+        //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
+        $("#serviceType2").replaceWith($span2);
+        //$("#openProjects").replaceWith($span2);
+        $span2.fadeIn(900);
+        //$span2.fadeIn(500);
+
+        var rCM = document.getElementById("serviceType2").getContext("2d");
+
+        var projectChart = new Chart(rCM).Doughnut(doughnutData);
+
+    });
+
+
     
 
 $('#wherethestuffis #serviceType').fadeOut(200, function() {
@@ -161,7 +251,7 @@ $('#wherethestuffis #serviceType').fadeOut(200, function() {
 
 
 
-    $.ajax({
+    /*$.ajax({
     type: 'POST',
     url: "../ajax/serviceType.php"+value,
     success: function(json) {
@@ -251,43 +341,7 @@ function getRandomColor() {
     }
     return color;
 }
-        /*var radarChartData = {
-        
-        labels : xlabels,
-        datasets : [
-            {
-                fillColor : "rgba(220,220,220,0.5)",
-                strokeColor : "rgba(220,220,220,0.8)",
-                highlightFill: "rgba(220,220,220,0.75)",
-                highlightStroke: "rgba(220,220,220,1)",
-                data : type_count
-            },
-            
-        ]
 
-    }*/
-    
-
-    /*var doughnutChartdata = [
-    {
-        value: 300,
-        color:"#F7464A",
-        highlight: "#FF5A5E",
-        label: "Red"
-    },
-    {
-        value: 50,
-        color: "#46BFBD",
-        highlight: "#5AD3D1",
-        label: "Green"
-    },
-    {
-        value: 100,
-        color: "#FDB45C",
-        highlight: "#FFC870",
-        label: "Yellow"
-    }
-]*/
 
         $('#wherethestuffis #serviceType2').fadeOut(200, function() {
 
@@ -316,7 +370,7 @@ function getRandomColor() {
 
     }
 
-});
+});*/
 
 
 

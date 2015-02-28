@@ -10,7 +10,6 @@ Company.Company_RecID = SR_Service.Company_RecID AND
 SR_Type.SR_Type_RecID = SR_Service.SR_Type_RecID AND
 SR_Board.SR_Board_RecID = SR_Service.SR_Board_RecID AND
 SR_Board.SR_Board_RecID = SR_Type.SR_Board_RecID AND 
-SR_Type.Description != "Break-fix" AND
 Company.Company_Name = "'.$company.'"
 group by Description
 order by typeCount
@@ -23,8 +22,8 @@ SR_Service.SR_Service_RecID = Time_Entry.SR_Service_RecID AND
 Company.Company_RecID = SR_Service.Company_RecID AND
 SR_Type.SR_Type_RecID = SR_Service.SR_Type_RecID AND
 SR_Board.SR_Board_RecID = SR_Service.SR_Board_RecID AND
-SR_Board.SR_Board_RecID = SR_Type.SR_Board_RecID AND 
-SR_Type.Description != "Break-fix"
+SR_Board.SR_Board_RecID = SR_Type.SR_Board_RecID 
+
 group by Description
 order by typeCount');
 }
