@@ -1,0 +1,183 @@
+<!doctype html >
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+     
+    
+        <title>Client Services</title>
+        <link rel="stylesheet" type="text/css" href="../css/razorflow.min.css">
+        <link rel="stylesheet" type="text/css" href="../css/navbar.css">
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <script type="text/javascript" src="../js/jquery.min.js"></script>
+        <!--<script type="text/javascript" src="../js/razorflow.min.js"></script>
+        <script type="text/javascript" src="../js/razorflow.devtools.min.js"></script>-->
+        <script type="text/javascript" src="../js/client.js"></script>
+        <script src="Chart.js"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+        <!--<script src="../js/oneUp.js"></script>-->
+        <script>$('.navmenu').offcanvas()</script>
+        <script>
+            function myFunction() {
+            var x = document.title;
+            document.getElementById("title").innerHTML = x;
+
+            }
+            window.onload = myFunction;
+        </script>
+       
+        <!--get company list-->
+        <script type="text/javascript">
+
+        $(document).ready(function(){
+
+
+            $.ajax({ url: "../ajax/getClientList.php",
+                    context: document.body,
+                    success: function(html){
+                     $("#clientTable").append(html);
+                    }});
+
+              getClientData('');
+
+            });
+        
+        
+
+                
+
+  
+
+
+
+        
+
+    
+        </script>
+       
+        
+    </head>
+    <style type="text/css">
+
+    .navmenu .navmenu-default{
+
+        background-color: #fff;
+
+        }
+
+    input {
+
+            border: none;
+            outline: none;
+            background-color: transparent;
+            font-family: inherit;
+            font-size: inherit;
+        }
+
+        </style>  
+    <body class="canvas">
+<div style="background-color:#fff;" class="navmenu navmenu-default navmenu-fixed-left offcanvas">
+      <a class="navmenu-brand" href="#">ANS Reporting</a>
+      <ul class="nav navmenu-nav">
+        <li><a href="../">Overview</a></li>
+        <li><a href="../solution delivery/">Solution Delivery</a></li>
+        <li><a href="../service delivery/">Service Delivery</a></li>
+        <li class="active"><a href="#">Client Services</a></li>
+        <li><a href="../finance/">Finance</a></li>
+      </ul>
+      <ul class="nav navmenu-nav">
+        <li><a href="#">Admin</a></li>
+        
+        
+        
+      </ul>
+    </div>
+
+    <div class="navbar navbar-default navbar-fixed-top">
+      <button style="display: block;float: left; margin-left: 15px;" type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <h2 style="margin-top:12px;text-align:center;"id="title"></h2>
+    </div>
+        
+        
+        <div class="col-md-2" method="post">
+            <form id="companyForm" method="post">
+                <div  style="width:100%;margin-top:70px;" id="clientTable"></div>
+            </form>
+        </div>
+        
+        <div class="col-md-10" style="margin-top:100px;text-align:center;">
+           
+           <div  id="wherethestuffis" class="col-md-3">
+                <div style="width:100%;"><p style="text-align:center;">Projects Initiated Last Year</p></div>
+               <canvas style="background-color:#fff;"  id="projectsCreated" height="300" width="200"></canvas>
+               
+           </div>
+
+           <div id="wherethestuffis" class="col-md-5">
+                <div style="width:100%;"><p style="text-align:center;">Service Type - by Ticket Count</p><p>(top 10)</p></div>
+               <canvas style=" margin-left:10px;background-color:#fff;" id="serviceType" height="200" width="400"></canvas>
+           </div>
+           <div class="col-md-4">
+               <div id="ticketTitle" class="col-md-4">
+                   <div style="width:100%;">
+                       <p style="text-align:center;">Open Tickets </p>
+                       <h1 style="text-align:center;color:#FF7F50;"id="openTickets"></h1>
+                   </div>
+                   
+               </div>
+               <div id="title" class="col-md-4">
+                   <div style="width:100%;">
+                        <p style="text-align:center;">Average Tickets/Day</p>
+                        <h1 style="text-align:center;color:#FF7F50;"id="avgTickets"></h1>
+                   </div>
+               </div>
+               <div class="row">
+                   <div id="wherethestuffis" class="col-md-12">
+                        <div style="width:100%;"><p style="text-align:center;">Hours - by Service Type</p><p>(top 10)</p></div>
+                       <canvas style="background-color:#fff;" id="serviceType2" height="300" width="300"></canvas>
+                   </div>
+               </div>
+           </div>
+           
+               
+                
+              
+           </div>
+               
+               
+
+               <!--<div style="margin-top:60px;text-align:center;" class="co-md-4"id="clientData"></div>-->
+             <!-- Don't delete this div. This is where RazorFlow will get rendered. -->
+            <!--<div id="dbTarget" style="position:relative;" class="rf"></div> -->
+           
+           
+           <!--<div id="wherethestuffis" class="col-md-2">
+                
+               <canvas style=" margin-left:10px;background-color:#fff;" id="openTickets" height="600" width="200"></canvas>
+           </div>-->
+            
+    
+           
+        
+         <!--<script type="text/javascript">
+         var numAnim = new countUp("#avgTickets", 24.02, 99.99);
+            numAnim.start();
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+       <script src="../js/oneUp.js"></script>-->
+        <script type="text/javascript">
+
+        </script>
+    </body>
+
+</html>
