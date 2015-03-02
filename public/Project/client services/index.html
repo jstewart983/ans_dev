@@ -22,12 +22,6 @@
     <!-- MetisMenu CSS -->
     <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
 
-    <!-- Timeline CSS -->
-    <link href="../dist/css/timeline.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
-
     <!-- Morris Charts CSS -->
     <link href="../bower_components/morrisjs/morris.css" rel="stylesheet">
 
@@ -115,7 +109,7 @@
         <li><a href="../">Overview</a></li>
         <li><a href="../solution delivery/">Solution Delivery</a></li>
         <li><a href="../service delivery/">Service Delivery</a></li>
-        <li class="active"><a href="#">Client Services</a></li>
+        <li class="active"><a href="#">Client Analysis</a></li>
         <li><a href="../finance/">Finance</a></li>
       </ul>
       <ul class="nav navmenu-nav">
@@ -135,53 +129,101 @@
       <h2 style="margin-top:12px;text-align:center;"id="title"></h2>
     </div>
         
-        
+         <div class="col-md-12">
         <div class="col-md-2" method="post">
             <form id="companyForm" method="post">
                 <div  style="width:100%;margin-top:70px;" id="clientTable"></div>
             </form>
         </div>
-        
-        <div class="col-md-10" style="margin-top:100px;text-align:center;">
-           
-           <div  id="wherethestuffis" class="col-md-3">
-                <div style="width:100%;"><p style="text-align:center;">Projects Initiated Last Year</p></div>
-               <canvas   id="projectsCreated" height="300" width="200"></canvas>
-               
-           </div>
-
-           <div id="wherethestuffis" class="col-md-5">
-                <div style="width:100%;"><p style="text-align:center;">Service Type - by Ticket Count</p><p>(top 10)</p></div>
-               <canvas style=" margin-left:10px;" id="serviceType" height="200" width="400"></canvas>
-           </div>
-           <div class="col-md-4">
-               <div id="ticketTitle" class="col-md-4">
-                   <div style="width:100%;">
+       
+            
+                <div style="margin-top:80px;"class="col-md-8">
+                <div class="panel panel-default col-md-2">
+                  
+                    <div class="panel-body">
+                   <div id="ticketTitle">
+                   <h1 style="text-align:center;color:#FF7F50;"id="openTickets"></h1>
                        <p style="text-align:center;">Open Tickets </p>
-                       <h1 style="text-align:center;color:#FF7F50;"id="openTickets"></h1>
-                   </div>
+                       
                    
+                   </div>
+                   </div>
                </div>
-               <div id="title" class="col-md-4">
-                   <div style="width:100%;">
+               
+               <div class="col-xs-1"></div>
+                <div class="panel panel-default col-md-2">
+                  
+                    <div class="panel-body">
+                   <div id="title">
+                   <h1 style="text-align:center;color:#FF7F50;"id="avgTickets"></h1>
                         <p style="text-align:center;">Average Tickets/Day</p>
-                        <h1 style="text-align:center;color:#FF7F50;"id="avgTickets"></h1>
+                        
                    </div>
                </div>
-               <div class="row">
-                   <div id="wherethestuffis" class="col-md-12">
-                        <div style="width:100%;"><p style="text-align:center;">Hours - by Service Type</p><p>(top 10)</p></div>
-                       <canvas id="serviceType2" height="300" width="300"></canvas>
-                   </div>
-               </div>
-           </div>
+            </div>
+            </div>
+            <div class="row">
+              
+                
+
+
+              <div id="wherethestuffis" class="col-lg-5">
+               <div class="panel panel-default">
+                <div style="text-align:center;"class="panel-heading">
+                  <p>Service Type - by Ticket Count</p><p>(top 10)</p>
+                </div>
+                  <div class="panel-body">
+                    <canvas id="serviceType" height="200" width="400"></canvas>
+                 </div>
+                </div>
+              </div>
+
+                 <div id="wherethestuffis" class="col-lg-4">
+                         <div class="panel panel-default">
+                      <div style="text-align:center;"class="panel-heading">
+                       <p>Hours - by Service Type</p><p>(top 10)</p>
+                      </div>
+                      <div class="panel-body">
+                              
+                             <canvas id="serviceType2" height="300" width="300"></canvas>
+                         </div>
+                    </div>
+                </div>
+                
+           
            
                
                 
               
-           </div>
+           
+
+
+        
+            </div>
+              <div class="row">
+              <div class="col-md-2"></div>
+                <div  id="wherethestuffis" class="col-lg-3">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <p style="text-align:center;">Projects Initiated Last Year</p>
+                  </div>
+                  <div class="panel-body">
+                    <canvas   id="projectsCreated" height="300" width="200"></canvas>
+                  </div>
+                  
+                  </div>
+                </div>
+              </div>
+            
+            <!--End Projects Initiated Last Year-->  
+            </div>
+           
                
+                   
+           
+        
                
+             
 
                <!--<div style="margin-top:60px;text-align:center;" class="co-md-4"id="clientData"></div>-->
              <!-- Don't delete this div. This is where RazorFlow will get rendered. -->
