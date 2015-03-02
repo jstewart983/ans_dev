@@ -199,7 +199,7 @@ doughnutData = [
 
 
          
-        var $span2 = $('<canvas style="background-color:#fff;" id="serviceType2" height="300" width="300"></canvas>');
+        var $span2 = $('<canvas id="serviceType2" height="300" width="300"></canvas>');
         //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
         $("#serviceType2").replaceWith($span2);
         //$("#openProjects").replaceWith($span2);
@@ -221,7 +221,7 @@ $('#wherethestuffis #serviceType').fadeOut(200, function() {
 
 
          
-        var $span2 = $('<canvas style="background-color:#fff;" id="serviceType" height="300" width="400"></canvas>');
+        var $span2 = $('<canvas id="serviceType" height="300" width="400"></canvas>');
         //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
         $("#serviceType").replaceWith($span2);
         //$("#openProjects").replaceWith($span2);
@@ -438,7 +438,7 @@ $('#wherethestuffis #projectsCreated').fadeOut(500, function() {
 
 
          
-        var $span2 = $('<canvas style="padding:10px;background-color:#fff;" id="projectsCreated" height="300" width="200"></canvas>');
+        var $span2 = $('<canvas style="padding:10px;" id="projectsCreated" height="300" width="200"></canvas>');
         //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
         $("#projectsCreated").replaceWith($span2);
         //$("#openProjects").replaceWith($span2);
