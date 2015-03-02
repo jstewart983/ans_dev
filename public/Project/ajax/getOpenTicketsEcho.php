@@ -15,7 +15,7 @@ $openTickets = mssql_query('select Count(*) as openTickets
 from dbo.SR_Service
 LEFT OUTER JOIN dbo.SR_Board on dbo.SR_Service.SR_Board_RecID = dbo.SR_Board.SR_Board_RecID
 left outer join dbo.company on dbo.company.company_recid = dbo.sr_service.company_recid
-where (dbo.SR_Board.Board_Name = "My Company/Service"
+where  Company.Company_name != "Advanced Network Solutions" and Company.Company_name != "Catchall (from email connector)" and (dbo.SR_Board.Board_Name = "My Company/Service"
 or dbo.SR_Board.Board_Name = "Results Physiotherapy"
 or dbo.SR_Board.Board_Name = "Alerts - Service Delivery")
 and dbo.SR_Service.Date_Closed is null ');
