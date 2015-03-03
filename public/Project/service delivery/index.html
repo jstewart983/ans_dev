@@ -22,6 +22,7 @@
         <script>$('.navmenu').offcanvas()</script>
         <script>
             function myFunction() {
+
             var x = document.title;
             document.getElementById("title").innerHTML = x;
 
@@ -57,19 +58,110 @@
       </button>
       <h2 style="margin-top:12px;text-align:center;"id="title"></h2>
     </div>
-    <div style="margin-top:70px;"class="container">
+    <div style="margin-top:54px;"class="container">
+        <!--nav pill row -->
         <div class="row">
-            <div class="col-md-12">
-                <ul class="nav nav-pills">
-                  <li role="presentation" class="active"><a style="background-color:#F78E1E;"href="#">Overview</a></li>
-                  <li role="presentation"><a style="color:#414141;"href="serice desk/">Service Desk</a></li>
-                  <li role="presentation"><a style="color:#414141;"href="CIMs/">Client IT Managers</a></li>
-                  <li role="presentation"><a style="color:#414141;"href="leaderboard/">Help Desk Leaderboard</a></li>
-                </ul>
+            <div style="border-left:1px solid #ddd;border-right:1px solid #ddd;border-bottom:1px solid #ddd;border-radius: 4px;background-color:#fff;"class="col-md-6">
+                <div style="padding:5px;">
+                    <ul class="nav nav-pills">
+                        <li role="presentation" class="active"><a style="background-color:#F78E1E;"href="#">Overview</a></li>
+                        <li role="presentation"><a style="color:#414141;"href="serice desk/">Service Desk</a></li>
+                        <li role="presentation"><a style="color:#414141;"href="CIMs/">Client IT Managers</a></li>
+                        <li role="presentation"><a style="color:#414141;"href="leaderboard/">Help Desk Leaderboard</a></li>
+                    </ul>
+                </div>
             </div>
-            
         </div>
+        <!--KPIs-->
+        <div style="margin-top:10px;" class="row">
+            <div class="col-md-2">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                        <p style="text-align:center;">Tickets Closed - This Week</p>
+                  </div>
+                  <div class="panel-body"></div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                        <p style="text-align:center;">Open Tickets</p>
+                  </div>
+                  <div class="panel-body"></div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                        <p style="text-align:center;">Utilization %</p>
+                  </div>
+                  <div class="panel-body"></div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                        <p style="text-align:center;">Billable Hrs - This Week</p>
+                  </div>
+                  <div class="panel-body"></div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                        <p style="text-align:center;">Time on Phone</p>
+                  </div>
+                  <div class="panel-body"></div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                        <p style="text-align:center;">Inbound Calls</p>
+                  </div>
+                  <div class="panel-body"></div>
+                </div>
+            </div>
+        </div>
+        <!--Billable hours and new tickets vs closed tickets this week charts-->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                        <p style="text-align:center;">Billable Hrs/day - This Week</p>
+                  </div>
+                  <div class="panel-body"></div>
+                </div>
+            </div>
         
+        <div class="col-md-6">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                        <p style="text-align:center;">New Tickets vs Tickets Closed - This Week</p>
+                  </div>
+                  <div class="panel-body"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                        <p style="text-align:center;">Orphaned Tickets</p>
+                  </div>
+                  <div class="panel-body"></div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                        <p style="text-align:center;">Billable Hours by Member</p>
+                  </div>
+                  <div class="panel-body"></div>
+                </div>
+            </div>
+        </div>
+        </div>
     </div>
         <!-- Don't delete this div. This is where RazorFlow will get rendered. -->
         
