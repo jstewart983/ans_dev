@@ -9,7 +9,7 @@
 function getClientData(value){
     $.ajax({
     type: 'POST',
-    url: "../ajax/avgTicketsPerDay.php"+value,
+    url: "../../ajax/avgTicketsPerDay.php"+value,
     success: function(json) {
         
                 avgTickets = [];
@@ -51,7 +51,7 @@ function getClientData(value){
 
 $.ajax({
     type: 'POST',
-    url: "../ajax/getOpenTicketsEcho.php"+value,
+    url: "../../ajax/getOpenTicketsEcho.php"+value,
     success: function(json) {
         
                 avgTickets = [];
@@ -86,7 +86,7 @@ $.ajax({
 
     $.ajax({
     type: 'POST',
-    url: "../ajax/serviceType.php"+value,
+    url: "../../ajax/serviceType.php"+value,
     success: function(json) {
         //labels = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"];
         var xlabels = [], type_count = [],total_count=[],colors = [];
@@ -393,7 +393,7 @@ function getRandomColor() {
 
     $.ajax({
     type: 'POST',
-    url: "../ajax/projects2014.php"+value,
+    url: "../../ajax/projects2014.php"+value,
     success: function(json) {
         labels = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"];
         var xlabels = [], project_count = [],colors = [];
