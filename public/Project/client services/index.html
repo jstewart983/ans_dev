@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>ANS Intelligence</title>
+    <title>Client Services</title>
 
     <link rel="stylesheet" type="text/css" href="../css/razorflow.min.css">
     <link rel="stylesheet" type="text/css" href="../css/navbar.css">
@@ -129,123 +129,18 @@
       <h2 style="margin-top:12px;text-align:center;"id="title"></h2>
     </div>
         
-         <div class="row">
-        <div class="col-md-2" method="post">
-            <form id="companyForm" method="post">
-                <div  style="width:100%;margin-top:70px;" id="clientTable"></div>
-            </form>
+         <div style="margin-top:54px;"class="container">
+        <div class="row">
+            <div style="border-left:1px solid #ddd;border-right:1px solid #ddd;border-bottom:1px solid #ddd;border-radius: 4px;background-color:#fff;"class="col-md-4">
+                <div style="padding:5px;">
+                    <ul class="nav nav-pills">
+                        <li role="presentation" class="active"><a style="background-color:#F78E1E;"href="#">Sales Dashboard</a></li>
+                        <li role="presentation"><a style="color:#414141;"href="serice desk/">Pipeline</a></li>
+                        <li role="presentation"><a style="color:#414141;"href="leaderboard/">Client Analysis</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-       
-            
-                <div style="margin-top:80px;"class="col-md-8">
-                <div class="panel panel-default col-md-2">
-                  
-                    <div class="panel-body">
-                   <div id="ticketTitle">
-                   <h1 style="text-align:center;color:#FF7F50;"id="openTickets"></h1>
-                       <p style="text-align:center;">Open Tickets </p>
-                       
-                   
-                   </div>
-                   </div>
-               </div>
-               
-               <div class="col-xs-1"></div>
-                <div class="panel panel-default col-md-2">
-                  
-                    <div class="panel-body">
-                   <div id="title">
-                   <h1 style="text-align:center;color:#FF7F50;"id="avgTickets"></h1>
-                        <p style="text-align:center;">Average Tickets/Day</p>
-                        
-                   </div>
-               </div>
-            </div>
-            </div>
-            
-            <div class="row">
-
-
-              <div id="wherethestuffis" class="col-lg-5">
-               <div class="panel panel-default">
-                <div style="text-align:center;"class="panel-heading">
-                  <p>Service Type - by Ticket Count</p><p>(top 10)</p>
-                </div>
-                  <div class="panel-body">
-                    <canvas id="serviceType" height="200" width="400"></canvas>
-                 </div>
-                </div>
-              </div>
-
-                 <div id="wherethestuffis" class="col-lg-4">
-                         <div class="panel panel-default">
-                      <div style="text-align:center;"class="panel-heading">
-                       <p>Hours - by Service Type</p><p>(top 10)</p>
-                      </div>
-                      <div class="panel-body">
-                              
-                             <canvas id="serviceType2" height="300" width="300"></canvas>
-                         </div>
-                    </div>
-                </div>
-                
-           
-           
-               
-                
-              
-           
-
-
-        
-            </div>
-              <div class="row">
-              <div class="col-md-2"></div>
-                <div  id="wherethestuffis" class="col-lg-3">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <p style="text-align:center;">Projects Initiated Last Year</p>
-                  </div>
-                  <div class="panel-body">
-                    <canvas   id="projectsCreated" height="300" width="200"></canvas>
-                  </div>
-                  
-                  </div>
-                </div>
-              </div>
-            
-            <!--End Projects Initiated Last Year-->  
-            </div>
-           
-               
-                   
-           
-        
-               
-             
-
-               <!--<div style="margin-top:60px;text-align:center;" class="co-md-4"id="clientData"></div>-->
-             <!-- Don't delete this div. This is where RazorFlow will get rendered. -->
-            <!--<div id="dbTarget" style="position:relative;" class="rf"></div> -->
-           
-           
-           <!--<div id="wherethestuffis" class="col-md-2">
-                
-               <canvas style=" margin-left:10px;background-color:#fff;" id="openTickets" height="600" width="200"></canvas>
-           </div>-->
-            
-    
-           
-        
-         <!--<script type="text/javascript">
-         var numAnim = new countUp("#avgTickets", 24.02, 99.99);
-            numAnim.start();
-        </script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-       <script src="../js/oneUp.js"></script>-->
-        <script type="text/javascript">
-
-        </script>
     </body>
 
 </html>
