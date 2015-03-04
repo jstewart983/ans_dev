@@ -9,8 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>ANS Intelligence</title>
-
+    <title>Client Analysis</title>
+    <link rel="stylesheet" type="text/css" href="../../css/demo.css">
     <link rel="stylesheet" type="text/css" href="../../css/navbar.css">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     <!-- Latest compiled and minified CSS -->
@@ -33,6 +33,7 @@
         <script type="text/javascript" src="../js/razorflow.devtools.min.js"></script>-->
         <script type="text/javascript" src="../../js/client.js"></script>
         <script src="../../js/Chart.js"></script>
+        <script src="../../js/legend.js"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -105,11 +106,11 @@
 <div style="background-color:#fff;" class="navmenu navmenu-default navmenu-fixed-left offcanvas">
       <a class="navmenu-brand" href="#">ANS Reporting</a>
       <ul class="nav navmenu-nav">
-        <li><a href="../">Overview</a></li>
-        <li><a href="../solution delivery/">Solution Delivery</a></li>
-        <li><a href="../service delivery/">Service Delivery</a></li>
-        <li class="active"><a href="#">Client Analysis</a></li>
-        <li><a href="../finance/">Finance</a></li>
+        <li><a href="../../">Overview</a></li>
+        <li><a href="/../solution delivery/">Solution Delivery</a></li>
+        <li><a href="../../service delivery/">Service Delivery</a></li>
+        <li class="active"><a href="../../client services/">Client Services</a></li>
+        <li><a href="../../finance/">Finance</a></li>
       </ul>
       <ul class="nav navmenu-nav">
         <li><a href="#">Admin</a></li>
@@ -127,42 +128,26 @@
       </button>
       <h2 style="margin-top:12px;text-align:center;"id="title"></h2>
     </div>
-        
+    <div style="margin-top:54px;"class="container">
+        <div class="row">
+            <div style="border-left:1px solid #ddd;border-right:1px solid #ddd;border-bottom:1px solid #ddd;border-radius: 4px;background-color:#fff;"class="col-md-4">
+                <div style="padding:5px;">
+                    <ul class="nav nav-pills">
+                        <li role="presentation"><a style="color:#414141;"href="../">Sales Dashboard</a></li>
+                        <li role="presentation"><a style="color:#414141;"href="serice desk/">Pipeline</a></li>
+                        <li role="presentation" class="active"><a style="color:#fff;background-color:#F78E1E;"href="#">Client Analysis</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
          <div class="row">
-        <div class="col-md-2" method="post">
+        <div class="col-md-3" method="post">
             <form id="companyForm" method="post">
-                <div  style="width:100%;margin-top:70px;" id="clientTable"></div>
+                <div  style="width:100%;" id="clientTable"></div>
             </form>
         </div>
        
-            
-                <div style="margin-top:80px;"class="col-md-8">
-                <div class="panel panel-default col-md-2">
-                  
-                    <div class="panel-body">
-                   <div id="ticketTitle">
-                   <h1 style="text-align:center;color:#FF7F50;"id="openTickets"></h1>
-                       <p style="text-align:center;">Open Tickets </p>
-                       
-                   
-                   </div>
-                   </div>
-               </div>
-               
-               <div class="col-xs-1"></div>
-                <div class="panel panel-default col-md-2">
-                  
-                    <div class="panel-body">
-                   <div id="title">
-                   <h1 style="text-align:center;color:#FF7F50;"id="avgTickets"></h1>
-                        <p style="text-align:center;">Average Tickets/Day</p>
-                        
-                   </div>
-               </div>
-            </div>
-            </div>
-            
-            <div class="row">
+                <div style="margin-top:11px;" class="row">
 
 
               <div id="wherethestuffis" class="col-lg-5">
@@ -187,17 +172,38 @@
                          </div>
                     </div>
                 </div>
-                
-           
-           
+              <div class="panel panel-default col-md-2">
+                  
+                    <div class="panel-body">
+                   <div id="ticketTitle">
+                   <h3 style="text-align:center;color:#FF7F50;"id="openTickets"></h3>
+                       <p style="text-align:center;">Open Tickets </p>
+                       
+                   
+                   </div>
+                   </div>
+
+                   
+               </div>
                
-                
-              
-           
-
-
+               
+                <div class="panel panel-default col-md-2">
+                  
+                    <div class="panel-body">
+                   <div id="title">
+                   <h3 style="text-align:center;color:#FF7F50;"id="avgTickets"></h3>
+                        <p style="text-align:center;">Average Tickets/Day</p>
+                        
+                   </div>
+               </div>
+            </div>
+            
         
             </div>
+                
+
+            
+            
               <div class="row">
               <div class="col-md-2"></div>
                 <div  id="wherethestuffis" class="col-lg-3">
@@ -215,7 +221,7 @@
             
             <!--End Projects Initiated Last Year-->  
             </div>
-           
+           </div>
                
                    
            

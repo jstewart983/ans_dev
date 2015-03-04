@@ -4,146 +4,167 @@
 // However, once you're ready to go into deployment consult our documentation on tips for how to 
 // maintain the most stable and secure 
 
+$(document).ready(function(){
+
+var data = {
+    labels: ["Mon", "Tues","Weds","Thurs","Fri"],
+    datasets: [
+        {
+            
+            fillColor: "rgba(220,220,220,0.5)",
+            strokeColor: "rgba(220,220,220,0.8)",
+            highlightFill: "rgba(220,220,220,0.75)",
+            highlightStroke: "rgba(220,220,220,1)",
+            data: [26, 30,60,45,33],
+            label: "Hours"
+        }
+    ]
+};
 
 
-rf.StandaloneDashboard(function(tdb){
 
-tdb.setTabbedDashboardTitle("ANS Reporting");
-
-var db1 = new Dashboard();
-db1.setDashboardTitle('Summary');
-
-var solution_delivery= new ChartComponent();
-solution_delivery.setDimensions (6,5);
-solution_delivery.setCaption ("Project Hours Completed this week by Engineer");
-solution_delivery.lock();
-db1.addComponent(solution_delivery);
+var ctx = document.getElementById("hrsDay").getContext("2d");
+var myNewChart = new Chart(ctx).Bar(data);
 
 
-$.get("../ajax/getProjectHours.php", function(data) {
-    var labels = [], project_data = [];
-    for(var i = 0; i < data.length; i++) {
-        labels.push (data[i]["lName"]);
-        project_data.push (parseInt(data[i]["Project_Hours"]));
+
+
+
+
+
+/*var data = {
+    labels: ["Mon", "Tues","Weds","Thurs","Fri"],
+    datasets: [
+        {
+            
+            fillColor: "rgba(220,220,220,0.5)",
+            strokeColor: "rgba(220,220,220,0.8)",
+            highlightFill: "rgba(220,220,220,0.75)",
+            highlightStroke: "rgba(220,220,220,1)",
+            data: [54, 30,111,98,33],
+            label: "New Tickets"
+        },
+        {
+            
+            fillColor: "rgba(120,220,220,0.5)",
+            strokeColor: "rgba(120,220,220,0.8)",
+            highlightFill: "rgba(120,220,220,0.75)",
+            highlightStroke: "rgba(120,220,220,1)",
+            data: [120, 60,78,45,25],
+            label: "Tickets Closed"
+        }
+    ]
+};
+
+
+
+var ctx = document.getElementById("newOld").getContext("2d");
+var myNewChart = new Chart(ctx).Bar(data);
+legend(document.getElementById("newOldLegend"), data);*/
+
+
+var data2 = [
+    {
+        value: 30,
+        color:"#F7464A",
+        highlight: "#FF5A5E",
+        label: "Lane"
+    },
+    {
+        value: 60,
+        color: "#46BFBD",
+        highlight: "#5AD3D1",
+        label: "Hogg"
+    },
+    {
+        value: 75,
+        color: "#FDB45C",
+        highlight: "#FFC870",
+        label: "Carnes"
+    },
+    {
+        value: 24,
+        color: "#4682B4",
+        highlight: "#4682B1",
+        label: "Collier"
+    },
+    {
+        value: 24,
+        color: "#E7ff89",
+        highlight: "#E7ff80",
+        label: "Sirovy"
     }
-    solution_delivery.setLabels (labels);
-    
-    solution_delivery.addSeries ("hours", "Hours", project_data, {
-       
-    });
-    
-    solution_delivery.unlock();
-});
-var solution = new ChartComponent();
-solution.setDimensions(5,3);
-solution.setCaption("Hours by Engineer");
-solution.lock();
-db1.addComponent(solution);
+]
 
-$.get("../ajax/getProjectHours.php", function(data) {
-    var labels = [], project = [];
-    for(var i = 0; i < data.length; i++) {
-        labels.push (data[i]["lName"]);
-        project.push (parseInt(data[i]["Project_Hours"]));
+
+
+var ctx1 = document.getElementById("hrsMember").getContext("2d");
+var myNewChart1 = new Chart(ctx1).Pie(data2);
+legend(document.getElementById("hrsMemberLegend"), data2);
+
+
+
+var data2 = [
+    {
+        value: 100,
+        color:"#F7464A",
+        highlight: "#FF5A5E",
+        label: "Firewall Config"
+    },
+    {
+        value: 60,
+        color: "#46BFBD",
+        highlight: "#5AD3D1",
+        label: "Email Migration"
+    },
+    {
+        value: 75,
+        color: "#FDB45C",
+        highlight: "#FFC870",
+        label: "Virtualization"
+    },
+    {
+        value: 24,
+        color: "#4682B4",
+        highlight: "#4682B1",
+        label: "Network Assessment"
+    },
+    {
+        value: 30,
+        color: "#E7ff89",
+        highlight: "#E7ff80",
+        label: "Cloud Migration"
     }
-    solution.setLabels (labels);
-    solution.setPieValues (project, {
-       dataType:"number",
-       numberSuffix:"hrs"
-    });
-    
-    solution.unlock();
+]
+
+
+
+var ctx1 = document.getElementById("hrsType").getContext("2d");
+var myNewChart1 = new Chart(ctx1).Doughnut(data2);
+legend(document.getElementById("hrsTypeLegend"), data2);
+
+
+
+var data = {
+    labels: ["March", "April","May","June","July","Aug","Sept","Oct","Nov","Dec"],
+    datasets: [
+        {
+            
+            fillColor: "rgba(220,220,220,0.5)",
+            strokeColor: "rgba(220,220,220,0.8)",
+            highlightFill: "rgba(220,220,220,0.75)",
+            highlightStroke: "rgba(220,220,220,1)",
+            data: [400, 200,70,30,12],
+            label: "Hours"
+        }
+    ]
+};
+
+
+
+var ctx = document.getElementById("queue").getContext("2d");
+var myNewChart = new Chart(ctx).Line(data);
+  
+            
 });
 
-var db2 = new Dashboard('db2');
-db2.setDashboardTitle("Project Services");
-
-var solution_delivery2 = new GaugeComponent();
-solution_delivery2.setDimensions (6,6);
-solution_delivery2.setCaption ("Hours vs Goal");
-solution_delivery2.setLimits(0,60)
-solution_delivery2.lock();
-db2.addComponent(solution_delivery2);
-
-$.get("../ajax/getTotalProjectHours.php", function(data) {
-    var labels = [], project_data2 = [];
-    for(var i = 0; i < data.length; i++) {
-        
-        project_data2.push (parseInt(data[i]["Project_Hours"]));
-    }
-    solution_delivery2.setValue (project_data2, {
-         
-        valueTextColor: "#ff000d"
-    });
-    
-    solution_delivery2.unlock();
-});
-
-var solution_delivery3 = new KPIComponent();
-solution_delivery3.setDimensions (3,3);
-solution_delivery3.setCaption ("Total Hours");
-solution_delivery3.lock();
-db2.addComponent(solution_delivery3);
-
-getTotalHours();
-function getTotalHours(){
-$.get("../ajax/getTotalProjectHours.php", function(data) {
-    var labels = [], project_data3 = [];
-    for(var i = 0; i < data.length; i++) {
-        
-        project_data3.push (parseInt(data[i]["Project_Hours"]));
-    }
-    solution_delivery3.setValue (project_data3, {
-         
-        valueTextColor: "#ff000d"
-    });
-    
-    solution_delivery3.unlock();
-});
-}
-window.setInterval(function(){
- getTotalHours();
-}, 1200000);
-
-var db3 = new Dashboard('db3');
-db3.setDashboardTitle("Managed Services");
-
-var service_delivery = new KPIComponent();
-service_delivery.setDimensions (4,4);
-service_delivery.setCaption ("Open Tickets");
-service_delivery.lock();
-db3.addComponent(service_delivery);
-
-getOpenTickets()
-function getOpenTickets(){
-$.get("../ajax/getOpenTickets.php", function(data) {
-    var labels = [], service_data = [];
-    for(var i = 0; i < data.length; i++) {
-        
-        service_data.push (parseInt(data[i]["computed"]));
-    }
-    service_delivery.setValue (service_data, {
-         
-        valueTextColor: "#ff000d"
-    });
-    
-    service_delivery.unlock();
-});
-}
-window.setInterval(function(){
- getOpenTickets();
-}, 8000);
-
-tdb.addDashboardTab(db1, {
-        title: 'Summary',
-        active: true
-    });
-  tdb.addDashboardTab(db2, {
-        active: true
-    });
-  tdb.addDashboardTab(db3, {
-        active: true
-    });
-
-
-}, {tabbed: true});

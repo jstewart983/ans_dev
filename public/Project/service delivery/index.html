@@ -8,6 +8,7 @@
      
     
         <title>Service Delivery</title>
+        <link rel="stylesheet" type="text/css" href="../css/demo.css">
         <link rel="stylesheet" type="text/css" href="../css/razorflow.min.css">
         <link rel="stylesheet" type="text/css" href="../css/navbar.css">
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
@@ -17,6 +18,7 @@
         <script type="text/javascript" src="../js/jquery.min.js"></script>
         <script type="text/javascript" src="../js/service_delivery.js"></script>
         <script type="text/javascript" src="../js/Chart.js"></script>
+        <script type="text/javascript" src="../js/legend.js"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
         <script>$('.navmenu').offcanvas()</script>
@@ -72,6 +74,7 @@
                 </div>
             </div>
         </div>
+        <p style="text-align:center;">*Data is not real</p>
         <!--KPIs-->
         <div style="margin-top:10px;" class="row">
             <div class="col-md-2">
@@ -79,7 +82,9 @@
                   <div class="panel-heading">
                         <p style="text-align:center;">Tickets Closed - This Week</p>
                   </div>
-                  <div class="panel-body"></div>
+                  <div class="panel-body">
+                    <h1 style="text-align:center;">120</h1>
+                  </div>
                 </div>
             </div>
             <div class="col-md-2">
@@ -87,15 +92,19 @@
                   <div class="panel-heading">
                         <p style="text-align:center;">Open Tickets</p>
                   </div>
-                  <div class="panel-body"></div>
+                  <div class="panel-body">
+                    <h1 style="text-align:center;">2070</h1>
+                  </div>
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                        <p style="text-align:center;">Utilization %</p>
+                        <p style="text-align:center;">Utilization % - This Week</p>
                   </div>
-                  <div class="panel-body"></div>
+                  <div class="panel-body">
+                    <h1 style="text-align:center;">67%</h1>
+                  </div>
                 </div>
             </div>
             <div class="col-md-2">
@@ -103,23 +112,29 @@
                   <div class="panel-heading">
                         <p style="text-align:center;">Billable Hrs - This Week</p>
                   </div>
-                  <div class="panel-body"></div>
+                  <div class="panel-body">
+                    <h1 style="text-align:center;">60 hrs</h1>
+                  </div>
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                        <p style="text-align:center;">Time on Phone</p>
+                        <p style="text-align:center;">Time on Phone - This Week</p>
                   </div>
-                  <div class="panel-body"></div>
+                  <div class="panel-body">
+                    <h1 style="text-align:center;">8.3 hrs</h1>
+                  </div>
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                        <p style="text-align:center;">Inbound Calls</p>
+                        <p style="text-align:center;">Inbound Calls - This Week</p>
                   </div>
-                  <div class="panel-body"></div>
+                  <div class="panel-body">
+                    <h1 style="text-align:center;">400</h1>
+                  </div>
                 </div>
             </div>
         </div>
@@ -130,7 +145,13 @@
                   <div class="panel-heading">
                         <p style="text-align:center;">Billable Hrs/day - This Week</p>
                   </div>
-                  <div class="panel-body"></div>
+                  <div class="panel-body">
+                    <div style="text-align:center"class="col-md-2">
+                          <div style="padding:5px;" id="billableDayLegend">
+                          </div>
+                        </div>
+                    <canvas id ="billableDay"height="auto"width="auto"></canvas>
+                  </div>
                 </div>
             </div>
         
@@ -139,7 +160,13 @@
                   <div class="panel-heading">
                         <p style="text-align:center;">New Tickets vs Tickets Closed - This Week</p>
                   </div>
-                  <div class="panel-body"></div>
+                  <div class="panel-body">
+                    <div style="text-align:center"class="col-md-2">
+                          <div style="padding:5px;" id="newOldLegend">
+                          </div>
+                        </div>
+                    <canvas id ="newOld"height="auto"width="auto"></canvas>
+                  </div>
                 </div>
             </div>
         </div>
@@ -149,15 +176,59 @@
                   <div class="panel-heading">
                         <p style="text-align:center;">Orphaned Tickets</p>
                   </div>
-                  <div class="panel-body"></div>
+                  <div class="panel-body">
+                    <table style='width:100%;' class='table table-hover'>
+                            
+                              <tr>
+                              <th>Ticket #</th>
+                              <th>Subject</th>
+                              <th>Client Name</th>
+                              <th>Time Open</th>
+                              </tr>
+                              <tbody  class='rowlink'>
+                              <tr>
+                                <td>20098</td>
+                                <td>Email Issue</td>
+                                <td>Bank of Lincoln County</td>
+                                <td>3 days</td>
+                              </tr>
+                              <tr>
+                                <td>34076</td>
+                                <td>Cannot Log in</td>
+                                <td>Legal Aid</td>
+                                <td>1 day</td>
+                              </tr>
+                              <tr>
+                                <td>21244</td>
+                                <td>Backup Failed</td>
+                                <td>Breathe America</td>
+                                <td>9 days</td>
+                              </tr>
+                              <tr>
+                                <td>311267</td>
+                                <td>iPhone App Won't Open</td>
+                                <td>Nashville Opera</td>
+                                <td>2 days</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                       
+                  </div>
+                  </div>
                 </div>
-            </div>
+            
             <div class="col-md-6">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                        <p style="text-align:center;">Billable Hours by Member</p>
+                        <p style="text-align:center;">Tickets by Service Type (top 10) - This Week</p>
                   </div>
-                  <div class="panel-body"></div>
+                  <div class="panel-body">
+                    <div style="text-align:center"class="col-md-2">
+                          <div style="padding:5px;" id="ticketsByTypeLegend">
+                          </div>
+                        </div>
+                    <canvas id ="ticketsByType"height="auto"width="auto"></canvas>
+                  </div>
                 </div>
             </div>
         </div>

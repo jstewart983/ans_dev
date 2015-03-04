@@ -53,7 +53,7 @@ var data = {
 var ctx = document.getElementById("salesByVcio").getContext("2d");
 var myNewChart = new Chart(ctx).Bar(data);
 legend(document.getElementById("salesByVcioLegend"), data);
-console.log(legend(document.getElementById("salesByVcioLegend"), data));
+
 
 
 var data2 = [
