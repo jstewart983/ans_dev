@@ -6,6 +6,261 @@
 
 $(document).ready(function(){
 
+
+
+
+$.ajax({
+    type: 'GET',
+    url: "../ajax/getProjectRev.php",
+    success: function(json) {
+        
+               /* avgTickets = [];
+        for(var i = 0; i < json.length; i++) {
+        
+        avgTickets.push (json[i]["tot_NonMRR_Revenue"]);
+        
+    }*/
+    
+        function kFormatter(num) {
+    return num > 999 ? (num/1000).toFixed(1) + 'k' : num
+}
+
+
+         $('#projectRev1').fadeOut(200, function() {
+         
+        var $span1 = $('<h1 style="text-align:center;" id="projectRev1">$'+kFormatter(json)+'</h1>');
+        
+        $("#projectRev1").replaceWith($span1);
+        
+        $span1.fadeIn(800);
+     
+    });
+        
+
+    }
+
+});
+
+
+
+
+
+
+$.ajax({
+    type: 'GET',
+    url: "../ajax/getProjectRevMonth.php",
+    success: function(json) {
+        
+               /* avgTickets = [];
+        for(var i = 0; i < json.length; i++) {
+        
+        avgTickets.push (json[i]["tot_NonMRR_Revenue"]);
+        
+    }*/
+    
+        function kFormatter(num) {
+    return num > 999 ? (num/1000).toFixed(1) + 'k' : num
+}
+
+
+         $('#projectRev2').fadeOut(200, function() {
+         
+        var $span1 = $('<h1 style="text-align:center;" id="projectRev2">$'+kFormatter(json)+'</h1>');
+        
+        $("#projectRev2").replaceWith($span1);
+        
+        $span1.fadeIn(800);
+     
+    });
+        
+
+    }
+
+});
+
+
+
+
+
+
+
+$.ajax({
+    type: 'GET',
+    url: "../ajax/getMrrRev.php",
+    success: function(json) {
+        
+               /* avgTickets = [];
+        for(var i = 0; i < json.length; i++) {
+        
+        avgTickets.push (json[i]["tot_NonMRR_Revenue"]);
+        
+    }*/
+    
+        function kFormatter(num) {
+    return num > 999 ? (num/1000).toFixed(1) + 'k' : num
+}
+console.log(json);
+
+         $('#mrrRev1').fadeOut(200, function() {
+
+
+            if(json = 0){
+            json = "0";
+            var $span1 = $('<h1 style="text-align:center;" id="mrrRev1">$'+json+'</h1>');
+        }else{
+            var $span1 = $('<h1 style="text-align:center;" id="mrrRev1">$'+kFormatter(json)+'</h1>');
+        }
+
+
+
+         
+        
+        
+        $("#mrrRev1").replaceWith($span1);
+        
+        $span1.fadeIn(800);
+     
+    });
+        
+
+    }
+
+});
+
+
+
+
+
+
+
+
+$.ajax({
+    type: 'GET',
+    url: "../ajax/getMrrRevMonth.php",
+    success: function(json) {
+        
+               /* avgTickets = [];
+        for(var i = 0; i < json.length; i++) {
+        
+        avgTickets.push (json[i]["tot_NonMRR_Revenue"]);
+        
+    }*/
+    
+        function kFormatter(num) {
+    return num > 999 ? (num/1000).toFixed(1) + 'k' : num
+}
+console.log(kFormatter(json));
+
+         $('#mrrRev2').fadeOut(200, function() {
+
+
+            if(json = 0){
+            json = "0";
+            var $span1 = $('<h1 style="text-align:center;" id="mrrRev2">$'+json+'</h1>');
+        }else{
+            var $span1 = $('<h1 style="text-align:center;" id="mrrRev2">$'+kFormatter(json)+'</h1>');
+        }
+
+
+
+         
+        
+        
+        $("#mrrRev2").replaceWith($span1);
+        
+        $span1.fadeIn(800);
+     
+    });
+        
+
+    }
+
+});
+
+
+
+
+
+
+
+
+
+
+$.ajax({
+    type: 'GET',
+    url: "../ajax/getProductRev.php",
+    success: function(json) {
+        
+               /* avgTickets = [];
+        for(var i = 0; i < json.length; i++) {
+        
+        avgTickets.push (json[i]["tot_NonMRR_Revenue"]);
+        
+    }*/
+    
+        function kFormatter(num) {
+    return num > 999 ? (num/1000).toFixed(1) + 'k' : num
+}
+
+
+
+         $('#productRev1').fadeOut(500, function() {
+         
+        var $span1 = $('<h1 style="text-align:center;" id="productRev1">$'+kFormatter(json)+'</h1>');
+        //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
+        $("#productRev1").replaceWith($span1);
+        //$("#openProjects").replaceWith($span2);
+        $span1.fadeIn(800);
+     
+    });
+        
+
+    }
+
+});
+
+
+
+
+
+$.ajax({
+    type: 'GET',
+    url: "../ajax/getProductRevMonth.php",
+    success: function(json) {
+        
+               /* avgTickets = [];
+        for(var i = 0; i < json.length; i++) {
+        
+        avgTickets.push (json[i]["tot_NonMRR_Revenue"]);
+        
+    }*/
+    
+        function kFormatter(num) {
+    return num > 999 ? (num/1000).toFixed(1) + 'k' : num
+}
+
+
+
+         $('#productRev2').fadeOut(500, function() {
+         
+        var $span1 = $('<h1 style="text-align:center;" id="productRev2">$'+kFormatter(json)+'</h1>');
+        //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
+        $("#productRev2").replaceWith($span1);
+        //$("#openProjects").replaceWith($span2);
+        $span1.fadeIn(800);
+     
+    });
+        
+
+    }
+
+});
+
+
+
+
+
+
 var data = {
     labels: ["January", "February"],
     datasets: [
