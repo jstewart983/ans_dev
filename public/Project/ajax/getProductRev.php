@@ -24,7 +24,10 @@ group by dbo.so_type.Description');
 $all_rows = array();
 while($row = mssql_fetch_assoc($projectHours)) {
     //$all_rows []= $row;
-  echo $row["Tot_NonMRR_Revenue"];
+ 
+    echo $row["Tot_NonMRR_Revenue"];
+  
+  
 }
 
 //header("Content-Type: application/json");

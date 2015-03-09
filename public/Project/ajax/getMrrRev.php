@@ -21,15 +21,21 @@ group by dbo.so_type.Description');
 
 
 // fetch all rows from the query
-$all_rows = array();
+//$all_rows = array();
+$i = 0;
+$total = 0;
 while($row = mssql_fetch_assoc($projectHours)) {
-    //$all_rows []= $row;
-  if(intval($row["Tot_NonMRR_Revenue"])>0){
-    echo $row["Tot_NonMRR_Revenue"];
-  }else{
-    echo 0;
-  }
-  
+    
+   if($i>0){
+    $total+=$row["Recurring_Revenue"];
+    echo $total;
+   }else {
+     $total = $row["Recurring_Revenue"];
+     
+   }
+   
+    $i++;
+  //echo $row["Tot_NonMRR_Revenue"];
 }
 
 //header("Content-Type: application/json");

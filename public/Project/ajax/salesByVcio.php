@@ -1,8 +1,10 @@
+
 <?php
  require('../config.php');
 //project hours completed last week
-$projectHours = mssql_query('SELECT 
-       (SELECT ISNULL(SUM(ISNULL((dbo.SO_Forecast_Dtl.Recurring_Revenue),0)),0)from dbo.SO_Forecast_Dtl where Opportunity_RecID = dbo.SO_Opportunity.Opportunity_RecID) as Recurring_Revenue
+$projectHours = mssql_query('SELECT
+        SUM(dbo.so_forecast_dtl.Revenue)
+        as Tot_NonMRR_Revenue,member.first_name
     FROM         dbo.SO_Forecast_Dtl,dbo.SO_Opportunity INNER JOIN
                       dbo.SO_Team ON dbo.SO_Opportunity.Opportunity_RecID = dbo.SO_Team.Opportunity_RecID LEFT OUTER JOIN
                       dbo.SO_Forecast_Dtl AS SO_Forecast_Dtl_10 ON dbo.SO_Opportunity.Opportunity_RecID = SO_Forecast_Dtl_10.Opportunity_RecID LEFT OUTER JOIN
@@ -13,30 +15,20 @@ $projectHours = mssql_query('SELECT
                       dbo.Member ON dbo.SO_Team.member_id = dbo.Member.Member_ID LEFT OUTER JOIN
                       dbo.Company ON dbo.SO_Opportunity.Company_RecID = dbo.Company.Company_RecID LEFT OUTER JOIN
                       dbo.Order_Header on dbo.SO_Opportunity.Company_RecID = dbo.Order_Header.Order_Header_RecID
-WHERE     dbo.SO_Type.Description = "Recurring - Upsell" AND (dbo.SO_Team.Team_Flag = 0) AND (dbo.SO_Team.Owner_Flag = 1) and dbo.SO_Opp_Status.Description = "Won" and datediff(m,dbo.SO_Opportunity.Date_Close_Expected,getdate())=1  and (dbo.so_forecast_dtl.Opportunity_RecID = dbo.SO_Opportunity.Opportunity_RecID) AND (dbo.so_forecast_dtl.Include_Flag = 1)
+WHERE (dbo.SO_Team.Team_Flag = 0) AND (dbo.SO_Team.Owner_Flag = 1) and dbo.SO_Opp_Status.Description = "Won" and year(dbo.SO_Opportunity.Date_Close_Expected)="2015" and DATEPART(m,dbo.SO_Opportunity.Date_Close_Expected)=DATEPART(m,dateadd(m,-1,getdate())) and (dbo.so_forecast_dtl.Opportunity_RecID = dbo.SO_Opportunity.Opportunity_RecID) AND ((dbo.so_forecast_dtl.SO_Forecast_Type_ID = "P") or (dbo.so_forecast_dtl.SO_Forecast_Type_ID = "S")) AND (dbo.so_forecast_dtl.Include_Flag = 1) AND month(dbo.SO_Opportunity.Date_Close_Expected)<=month(getdate())
  
 
-group by dbo.SO_Opportunity.Opportunity_RecID,dbo.Order_Header.Order_Header_RecID');
+group by dbo.member.first_name
+');
 
 
 // fetch all rows from the query
-//$all_rows = array();
-$i = 0;
-$total = 0;
+$all_rows = array();
 while($row = mssql_fetch_assoc($projectHours)) {
-    echo $row["Recurring_Revenue"]."<br />";
-   /*if($i>0){
-    $total+=$row["Recurring_Revenue"];
-    echo $total;
-   }else {
-     $total = $row["Recurring_Revenue"];
-     
-   }
-   
-    $i++;*/
-  //echo $row["Tot_NonMRR_Revenue"];
+    $all_rows []= $row;
+  //$row["Tot_NonMRR_Revenue"];
 }
 
-//header("Content-Type: application/json");
-//echo json_encode($all_rows);
+header("Content-Type: application/json");
+echo json_encode($all_rows);
 ?>
