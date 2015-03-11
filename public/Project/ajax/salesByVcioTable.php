@@ -12,13 +12,33 @@ where datediff(m,dbo.SO_Opportunity.Date_Close_Expected,getdate())=0 and
 group by member.Last_Name');
 
 
-// fetch all rows from the query
-$all_rows = array();
-while($row = mssql_fetch_assoc($projectHours)) {
-    $all_rows []= $row;
-  //$row["Tot_NonMRR_Revenue"];
-}
+echo "<div style='width:100%;padding:0px;'class=' panel panel-default'>";
 
-header("Content-Type: application/json");
-echo json_encode($all_rows);
+echo "<div style='width:100%;'class=panel-body>";
+echo "<table id='clientTable' style='width:100%;' class='table table-hover'>";
+echo "<thead>";
+echo "<th>vCIO</th>";
+echo "<th>Total Sales</th>";
+echo "</thead>";
+
+echo "<tbody  class='rowlink'>";
+// fetch all rows from the query
+//$all_rows = array();
+
+while($row = mssql_fetch_array($projectHours)) {
+
+	
+
+	
+	echo "<tr>";
+    echo "<td>".$row['last_name']."</td>";
+     echo "<td>$".number_format($row['total_sales'])."</td>";
+    echo "</tr>";
+    
+}
+echo "</tbody>";
+echo "</table>";
+//header("Content-Type: application/json");
+
+echo "</div>";
 ?>

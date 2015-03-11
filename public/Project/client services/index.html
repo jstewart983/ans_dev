@@ -113,9 +113,10 @@
                 </div>
             </div>
         </div>
-        <p style="text-align:center;">*Data is not real</p>
+        
         <!--KPIs-->
         <div style="margin-top:10px;" class="row">
+        <div class="col-md-2"></div>
             <div class="col-md-2">
                 <div class="panel panel-default">
                   <div class="panel-heading">
@@ -136,16 +137,16 @@
                   </div>
                 </div>
             </div>
-            <div class="col-md-2">
+            <!--<div class="col-md-2">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                         <p style="text-align:center;">MRR - This Week</p>
                   </div>
                   <div class="panel-body">
-                    <h1 style="text-align:center;" id="mrrRev1">$0</h1>
+                    <h1 style="text-align:center;" id="mrrRev1">$450</h1>
                   </div>
                 </div>
-            </div>
+            </div>-->
             <div class="col-md-2">
                 <div class="panel panel-default">
                   <div class="panel-heading">
@@ -166,17 +167,18 @@
                   </div>
                 </div>
             </div>
-            <div class="col-md-2">
+            <!--<div class="col-md-2">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                         <p style="text-align:center;">MRR - This Month</p>
                   </div>
                   <div class="panel-body">
-                    <h1 style="text-align:center;"id="mrrRev2">$0</h1>
+                    <h1 style="text-align:center;"id="mrrRev2">$450</h1>
                   </div>
                 </div>
             </div>
-        </div>
+        </div>-->
+        <div class="col-md-2"></div>
         <!--End KPI Row-->
 
         <!--Sales by Month-->
@@ -184,7 +186,7 @@
             <div class="col-md-6">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                        <p style="text-align:center;">Sales by vCIO - Last Month</p>
+                        <p style="text-align:center;">Sales by vCIO - This Month</p>
                   </div>
                   <div class="panel-body">
                     <div class="row">
@@ -194,8 +196,10 @@
                       </div>
                       <div class="col-md-8">
                         <canvas id ="salesByVcio"height="auto"width="auto"></canvas>
+
                       </div>
                     </div>
+                    <div class="row"><div class="col-md-12" id="salesByVcioTable"><div style="width:100%;padding:0px;" class=" panel panel-default"><div style="width:100%;" class="panel-body"><table id="clientTable" style="width:100%;" class="table table-hover"><thead><tr><th>vCIO</th><th>Total Sales</th></tr></thead><tbody class="rowlink"><tr><td></td><td></td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr></tbody></table></div></div></div></div>
                   </div>
                 </div>
             </div>
@@ -203,22 +207,30 @@
         <div class="col-md-6">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                        <p style="text-align:center;">Sales by Client - This Year</p>
+                        <p style="text-align:center;">Total Sales by Client - This Year</p>
+                        <p style="text-align:center;">(top 10)</p>
                   </div>
                   <div class="panel-body">
                     <div class="row">
-                        <div style="text-align:center"class="col-md-2">
-                          <div style="padding:5px;" id="salesByClientLegend">
-                          </div>
-                        </div>
+                        <div class="col-md-2"></div>
                         <div class="col-md-8">
                         <canvas id ="salesByClient"height="auto"width="auto"></canvas>
+                        
                         </div>
                       </div>
+                      <div class="row">
+                          
+                            <div class="col-md-12"id ="salesByClientTable"><div style="width:100%;padding:0px;" class=" panel panel-default"><div style="width:100%;" class="panel-body"><table id="clientTable" style="width:100%;" class="table table-hover"><thead><tr><th>Client</th><th>Total Sales</th></tr></thead><tbody class="rowlink"><tr><td></td><td></td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr></tbody></table></div></div></div></div>
+                          
+                      </div>
+                      <!--<div style="text-align:center"class="col-md-2">
+                          <div style="padding:5px;" id="salesByClientLegend">
+                          </div>
+                        </div>-->
                   </div>
                 </div>
             </div>
-        </div>
+        
         <div class="row">
             <div class="col-md-6">
                 <div class="panel panel-default">

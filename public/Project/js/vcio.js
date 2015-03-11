@@ -386,8 +386,8 @@ $.ajax({
         for(var i = 0; i < json.length; i++) {
         
         
-        labels.push (json[i]["first_name"]);
-        sales.push (json[i]["Tot_NonMRR_Revenue"]);
+        labels.push (json[i]["last_name"]);
+        sales.push (json[i]["total_sales"]);
     }
     
 
@@ -400,7 +400,7 @@ function getRandomColor() {
     return color;
 }
         var barChartData = {
-        title: "Sale by vCIO",
+        title: "Sales by vCIO",
         labels : labels,
         datasets : [
             {
@@ -421,7 +421,7 @@ function getRandomColor() {
             
             
     
-var $span1 = $('<canvas id ="salesByVcio"height="auto"width="auto"></canvas>');
+var $span1 = $('<canvas id ="salesByVcio"height="200"width="auto"></canvas>');
             
         
             
@@ -449,11 +449,131 @@ var $span1 = $('<canvas id ="salesByVcio"height="auto"width="auto"></canvas>');
 
 
 
+$.ajax({ url: "../ajax/salesByVcioTable.php",
+                    context: document.body,
+                    success: function(html){
 
 
 
+                           $('#salesByVcioTable').fadeOut(600, function() {
 
 
+            
+            
+    
+var $span1 = $('<div class="col-md-12"id ="salesByVcioTable">'+html+'</div>');
+            
+        
+            
+        
+
+
+
+         
+        
+        
+        $("#salesByVcioTable").replaceWith($span1);
+        
+        $span1.fadeIn(800);
+
+        
+     
+    });    
+                     //$("#salesByVcioTable").append(html);
+                    }
+                });
+
+              //getClientData('');
+
+            
+
+ $.ajax({
+    type: 'POST',
+    url: "../ajax/salesByClient.php",
+    success: function(json) {
+        //labels = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"];
+        var xlabels = [], type_count = [];
+            for(var i = 0; i < json.length; i++) {
+
+                label:xlabels.push (json[i]["company_name"]);
+                value: type_count.push (json[i]["total_sales"]);
+                //value: total_count.push (parseInt(json[i]["typeCount"]));
+                //fillColor: colors.push (getRandomColor());
+
+                }
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+
+doughnutData = [
+                {
+                    value: type_count[0],
+                    color: getRandomColor(),
+                    highlight: getRandomColor(),
+                    label: xlabels[0]
+                },
+                {
+                    value: type_count[1],
+                    color: getRandomColor(),
+                    highlight: getRandomColor(),
+                    label: xlabels[1]
+                },
+                {
+                    value: type_count[2],
+                    color: getRandomColor(),
+                    highlight: getRandomColor(),
+                    label: xlabels[2]
+                },
+                {
+                    value: type_count[3],
+                    color: getRandomColor(),
+                    highlight: getRandomColor(),
+                    label: xlabels[3]
+                },
+                {
+                    value: type_count[4],
+                    color: getRandomColor(),
+                    highlight: getRandomColor(),
+                    label: xlabels[4]
+                },
+                {
+                    value: type_count[5],
+                    color: getRandomColor(),
+                    highlight: getRandomColor(),
+                    label: xlabels[5]
+                },
+                {
+                    value: type_count[6],
+                    color: getRandomColor(),
+                    highlight: getRandomColor(),
+                    label: xlabels[6]
+                },
+                {
+                    value: type_count[7],
+                    color: "#FDB45C",
+                    highlight: "#FFC870",
+                    label: xlabels[7]
+                },
+                {
+                    value: type_count[8],
+                    color: "#46BFBD",
+                    highlight: "#5AD3D1",
+                    label: xlabels[8]
+                },
+                {
+                    value: type_count[9],
+                     color:"#F7464A",
+                    highlight: "#FF5A5E",
+                    label: xlabels[9]
+                },
+            ];
 
 
 
@@ -481,11 +601,46 @@ var data2 = [
 
 
 var ctx1 = document.getElementById("salesByClient").getContext("2d");
-var myNewChart1 = new Chart(ctx1).Doughnut(data2);
-legend(document.getElementById("salesByClientLegend"), data2);
+var myNewChart1 = new Chart(ctx1).Pie(doughnutData);
+//legend(document.getElementById("salesByClientLegend"), doughnutData);
+
+}
+ 
+ }); 
+
+$.ajax({ url: "../ajax/salesByClientTable.php",
+                    context: document.body,
+                    success: function(html){
 
 
-  
+
+                           $('#salesByClientTable').fadeOut(600, function() {
+
+
+            
+            
+    
+var $span1 = $('<div class="col-md-12"id ="salesByClientTable">'+html+'</div>');
+            
+        
+            
+        
+
+
+
+         
+        
+        
+        $("#salesByClientTable").replaceWith($span1);
+        
+        $span1.fadeIn(800);
+
+        
+     
+    });    
+                     //$("#salesByVcioTable").append(html);
+                    }
+                });
             
 });
 
