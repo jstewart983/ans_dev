@@ -114,7 +114,7 @@ $('#projectRev2').fadeOut(200, function() {
 
 
 
-$.ajax({
+/*$.ajax({
     type: 'GET',
     url: "../ajax/getMrrRev.php",
     success: function(json) {
@@ -124,7 +124,7 @@ $.ajax({
         
         avgTickets.push (json[i]["tot_NonMRR_Revenue"]);
         
-    }*/
+    }
     
         function kFormatter(num) {
     return num > 999 ? (num/1000).toFixed(1) + 'k' : num
@@ -159,7 +159,7 @@ $.ajax({
 
     }
 
-});
+});*/
 
 
 
@@ -168,7 +168,7 @@ $.ajax({
 
 
 
-$.ajax({
+/*$.ajax({
     type: 'GET',
     url: "../ajax/getMrrRevMonth.php",
     success: function(json) {
@@ -178,7 +178,7 @@ $.ajax({
         
         avgTickets.push (json[i]["tot_NonMRR_Revenue"]);
         
-    }*/
+    }
     
         function kFormatter(num) {
     return num > 999 ? (num/1000).toFixed(1) + 'k' : num
@@ -213,7 +213,7 @@ $.ajax({
 
     }
 
-});
+});*/
 
 
 
@@ -404,10 +404,10 @@ function getRandomColor() {
         labels : labels,
         datasets : [
             {
-                fillColor : "rgba(120,420,220,0.5)",
-                strokeColor : "rgba(120,420,220,0.8)",
-                highlightFill: "rgba(120,420,220,0.75)",
-                highlightStroke: "rgba(120,420,220,1)",
+                fillColor : "rgba(247, 142, 30, .5)",
+                strokeColor : "rgba(247, 142, 30, .8)",
+                highlightFill: "rgba(247, 142, 30, .75)",
+                highlightStroke: "rgba(247, 142, 30, 1)",
                 data : sales
             },
             
@@ -421,7 +421,7 @@ function getRandomColor() {
             
             
     
-var $span1 = $('<canvas id ="salesByVcio"height="200"width="auto"></canvas>');
+var $span1 = $('<canvas id ="salesByVcio"height="300"width="auto"></canvas>');
             
         
             
@@ -632,6 +632,45 @@ var $span1 = $('<div class="col-md-12"id ="salesByClientTable">'+html+'</div>');
         
         
         $("#salesByClientTable").replaceWith($span1);
+        
+        $span1.fadeIn(800);
+
+        
+     
+    });    
+                     //$("#salesByVcioTable").append(html);
+                    }
+                });
+
+
+
+
+
+
+$.ajax({ url: "../ajax/pastDueOpps.php",
+                    context: document.body,
+                    success: function(html){
+
+
+
+                           $('#pastDueOpps').fadeOut(600, function() {
+
+
+            
+            
+    
+var $span1 = $('<div class="col-md-12"id ="pastDueOpps">'+html+'</div>');
+            
+        
+            
+        
+
+
+
+         
+        
+        
+        $("#pastDueOpps").replaceWith($span1);
         
         $span1.fadeIn(800);
 
