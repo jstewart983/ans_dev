@@ -7,6 +7,67 @@
 
 
 function getClientData(value){
+
+////////////////**************LABTECH DATA************/////////////////////////
+
+$.ajax({
+    type: 'POST',
+    url: "../../ajax/getServersWorkstations.php"+value,
+    success: function(json) {
+        
+                workstations = []; servers = [];
+        for(var i = 0; i < json.length; i++) {
+        
+       workstations.push (json[i]["workStations"]);
+       servers.push (json[i]["servers"])
+        
+    }
+    
+        function kFormatter(num) {
+    return num > 999 ? (num/1000).toFixed(1) + 'k' : num
+}
+
+
+$('#compServ').fadeOut(200, function() {
+
+
+            
+            
+                
+               var $span1 = $('<div id="compServ" class="panel-body"><div class="row"><h1 class="col-xs-6"style="text-align:center;" id="comp">'+workstations+'</h1><h1 class="col-xs-6" style="text-align:center;" id="serv">'+servers+'</h1></div></div>'); 
+               
+                            
+            
+        
+            
+        
+
+
+
+         
+        
+        
+        $("#compServ").replaceWith($span1);
+        
+        $span1.fadeIn(800);
+        
+    });
+        
+
+    }
+
+});
+////////////////**************END LABTECH DATA************/////////////////////////
+
+
+
+
+
+
+
+
+
+//////////////**************CW DATA*******************////////////////////////////
     $.ajax({
     type: 'POST',
     url: "../../ajax/avgTicketsPerDay.php"+value,
@@ -63,7 +124,7 @@ $.ajax({
     
         
 
-         $('#ticketTitle #openTickets').fadeOut(500, function() {
+         $('#title #openTickets').fadeOut(500, function() {
          
         var $span1 = $('<h1 style="text-align:center;" id="openTickets">'+json+'</h1>');
         //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
@@ -243,7 +304,7 @@ $('#wherethestuffis #serviceType').fadeOut(200, function() {
     }
 
 });
-
+//////////////**************CW DATA*******************////////////////////////////
 
 
 
@@ -391,7 +452,7 @@ function getRandomColor() {
 
 
 
-    $.ajax({
+   /* $.ajax({
     type: 'POST',
     url: "../../ajax/projects2014.php"+value,
     success: function(json) {
@@ -459,7 +520,7 @@ $('#wherethestuffis #projectsCreated').fadeOut(500, function() {
 
     }
 
-});
+});*/
 }
 
 
@@ -489,7 +550,7 @@ $(function() {
             var clickedVal = $(this).attr('href');
              e.preventDefault();
              event.stopPropagation();
-            //console.log(clickedVal);
+            console.log(clickedVal);
 
             
 

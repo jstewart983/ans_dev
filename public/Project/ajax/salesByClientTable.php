@@ -10,7 +10,7 @@ left outer join company on dbo.company.company_recid = dbo.order_header.company_
 where datediff(year,dbo.SO_Opportunity.Date_Close_Expected,getdate())=0 and
 ((dbo.so_forecast_dtl.Opportunity_RecID = dbo.SO_Opportunity.Opportunity_RecID) AND (SO_Forecast_Type_ID = "P" or SO_Forecast_Type_ID = "S" ) AND (ISNULL(Include_Flag, 0) = 1))
 group by company.company_name
-order by sum(dbo.SO_Forecast_Dtl.revenue) desc');
+order by  total_sales desc');
 
 
 echo "<div style='width:100%;padding:0px;'class=' panel panel-default'>";
