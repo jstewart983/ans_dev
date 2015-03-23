@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Client Services</title>
+    <title>vCIO Performance</title>
     <link rel="stylesheet" type="text/css" href="../css/demo.css">
     <link rel="stylesheet" type="text/css" href="../css/razorflow.min.css">
     <link rel="stylesheet" type="text/css" href="../css/navbar.css">
@@ -27,12 +27,12 @@
 
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    
-        
+
+
         <script type="text/javascript" src="../js/jquery.min.js"></script>
         <!--<script type="text/javascript" src="../js/razorflow.min.js"></script>
         <script type="text/javascript" src="../js/razorflow.devtools.min.js"></script>-->
-        
+
         <script src="Chart.js"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
@@ -52,9 +52,9 @@
             }
             window.onload = myFunction;
         </script>
-       
-       
-        
+
+
+
     </head>
     <style type="text/css">
 
@@ -73,7 +73,7 @@
             font-size: inherit;
         }
 
-        </style>  
+        </style>
     <body class="canvas">
 <div style="background-color:#fff;" class="navmenu navmenu-default navmenu-fixed-left offcanvas">
       <a class="navmenu-brand" href="#">ANS Reporting</a>
@@ -86,9 +86,9 @@
       </ul>
       <ul class="nav navmenu-nav">
         <li><a href="#">Admin</a></li>
-        
-        
-        
+
+
+
       </ul>
     </div>
 
@@ -100,24 +100,34 @@
       </button>
       <h2 style="margin-top:12px;text-align:center;"id="title"></h2>
     </div>
-        
+
          <div style="margin-top:54px;"class="container">
         <div class="row">
             <div style="border-left:1px solid #ddd;border-right:1px solid #ddd;border-bottom:1px solid #ddd;border-radius: 4px;background-color:#fff;"class="col-md-4">
-                <div style="padding:5px;">
+                <div style="margin-left:35px;padding:5px;">
                     <ul class="nav nav-pills">
                         <li role="presentation" class="active"><a style="background-color:#F78E1E;"href="#">Sales Dashboard</a></li>
-                        <li role="presentation"><a style="color:#414141;"href="serice desk/">Pipeline</a></li>
+                        <!--<li role="presentation"><a style="color:#414141;"href="serice desk/">Pipeline</a></li>-->
                         <li role="presentation"><a style="color:#414141;"href="client analysis/">Client Analysis</a></li>
                     </ul>
                 </div>
             </div>
+            <div class="col-md-5"></div>
+            <div class="col-md-2">
+              <div class="dropdown">
+                <button style="background-colorclass="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">13 past due Opps
+                </button>
+
+
+
+              </div>
+            </div>
         </div>
-        
+
         <!--KPIs-->
         <div style="margin-top:10px;" class="row">
-        <div class="col-md-2"></div>
-            <div class="col-md-2">
+        <!--<div class="col-md-2"></div>-->
+            <div class="col-md-3">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                         <p style="text-align:center;">Projects<br />This Week</p>
@@ -127,7 +137,7 @@
                   </div>
                 </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                         <p style="text-align:center;">Products<br />This Week</p>
@@ -147,7 +157,7 @@
                   </div>
                 </div>
             </div>-->
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                         <p style="text-align:center;">Projects<br />This Month</p>
@@ -157,7 +167,7 @@
                   </div>
                 </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                         <p style="text-align:center;">Products<br />This Month</p>
@@ -179,6 +189,7 @@
             </div>
         </div>-->
         <div class="col-md-2"></div>
+      </div>
         <!--End KPI Row-->
 
         <!--Sales by Month-->
@@ -195,7 +206,7 @@
                         </div>
                       </div>
                       <div class="col-md-8">
-                        <canvas id ="salesByVcio"height="auto"width="auto"></canvas>
+                        <canvas id ="salesByVcio"style="width:100%;height:100%;"></canvas>
 
                       </div>
                     </div>
@@ -203,25 +214,25 @@
                   </div>
                 </div>
             </div>
-        
+
         <div class="col-md-6">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                         <p style="text-align:center;">Total Sales by Client<br />This Year (top 10)</p>
-                       
+
                   </div>
                   <div class="panel-body">
                     <div class="row">
                         <div class="col-md-2"></div>
                         <div class="col-md-8">
                         <canvas id ="salesByClient"height="auto"width="auto"></canvas>
-                        
+
                         </div>
                       </div>
                       <div class="row">
-                          
+
                             <div class="col-md-12"id ="salesByClientTable"><div style="width:100%;padding:0px;" class=" panel panel-default"><div style="width:100%;" class="panel-body"><table id="clientTable" style="width:100%;" class="table table-hover"><thead><tr><th>Client</th><th>Total Sales</th></tr></thead><tbody class="rowlink"><tr><td></td><td></td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr></tbody></table></div></div></div></div>
-                          
+
                       </div>
                       <!--<div style="text-align:center"class="col-md-2">
                           <div style="padding:5px;" id="salesByClientLegend">
@@ -230,25 +241,25 @@
                   </div>
                 </div>
             </div>
-        
+
         <div class="row">
           <div class="panel panel-default">
                   <div class="panel-heading">
                         <p style="text-align:center;">Past Due Opps</p>
-                        
+
                   </div>
                   <div class="panel-body">
                     <div id="pastDueOpps"class="col-md-8">
-                
+
                   </div>
-                
-            
-        
-       
+
+
+
+
         </div>
         </div>
         </div>
-        </div>
+
         <script src="../js/legend.js"></script>
       <script src="../js/vcio.js"></script>
     </body>
