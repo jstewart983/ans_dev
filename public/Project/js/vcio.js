@@ -1,8 +1,8 @@
 // Welcome to the RazorFlow Dashbord Quickstart. Simply copy this "dashboard_quickstart"
 // to somewhere in your computer/web-server to have a dashboard ready to use.
 // This is a great way to get started with RazorFlow with minimal time in setup.
-// However, once you're ready to go into deployment consult our documentation on tips for how to 
-// maintain the most stable and secure 
+// However, once you're ready to go into deployment consult our documentation on tips for how to
+// maintain the most stable and secure
 
 $(document).ready(function(){
 
@@ -13,14 +13,14 @@ $.ajax({
     type: 'GET',
     url: "../ajax/getProjectRev.php",
     success: function(json) {
-        
+
                /* avgTickets = [];
         for(var i = 0; i < json.length; i++) {
-        
+
         avgTickets.push (json[i]["tot_NonMRR_Revenue"]);
-        
+
     }*/
-    
+
         function kFormatter(num) {
     return num > 999 ? (num/1000).toFixed(1) + 'k' : num
 }
@@ -29,28 +29,28 @@ $.ajax({
 $('#projectRev1').fadeOut(200, function() {
 
 
-            
+
             if(json==''){
-                
-               var $span1 = $('<h1 style="text-align:center;" id="projectRev1">$0</h1>'); 
+
+               var $span1 = $('<h1 style="text-align:center;" id="projectRev1">$0</h1>');
             }else{
                 var $span1 = $('<h1 style="text-align:center;" id="projectRev1">$'+kFormatter(json)+'</h1>');
             }
-        
-            
-        
 
 
 
-         
-        
-        
+
+
+
+
+
+
         $("#projectRev1").replaceWith($span1);
-        
+
         $span1.fadeIn(800);
-     
+
     });
-        
+
 
     }
 
@@ -65,14 +65,14 @@ $.ajax({
     type: 'GET',
     url: "../ajax/getProjectRevMonth.php",
     success: function(json) {
-        
+
                /* avgTickets = [];
         for(var i = 0; i < json.length; i++) {
-        
+
         avgTickets.push (json[i]["tot_NonMRR_Revenue"]);
-        
+
     }*/
-    
+
         function kFormatter(num) {
     return num > 999 ? (num/1000).toFixed(1) + 'k' : num
 }
@@ -81,28 +81,28 @@ $.ajax({
 $('#projectRev2').fadeOut(200, function() {
 
 
-            
+
             if(json==''){
-                
-               var $span1 = $('<h1 style="text-align:center;" id="projectRev2">$0</h1>'); 
+
+               var $span1 = $('<h1 style="text-align:center;" id="projectRev2">$0</h1>');
             }else{
                 var $span1 = $('<h1 style="text-align:center;" id="projectRev2">$'+kFormatter(json)+'</h1>');
             }
-        
-            
-        
 
 
 
-         
-        
-        
+
+
+
+
+
+
         $("#projectRev2").replaceWith($span1);
-        
+
         $span1.fadeIn(800);
-     
+
     });
-        
+
 
     }
 
@@ -118,14 +118,14 @@ $('#projectRev2').fadeOut(200, function() {
     type: 'GET',
     url: "../ajax/getMrrRev.php",
     success: function(json) {
-        
+
                /* avgTickets = [];
         for(var i = 0; i < json.length; i++) {
-        
+
         avgTickets.push (json[i]["tot_NonMRR_Revenue"]);
-        
+
     }
-    
+
         function kFormatter(num) {
     return num > 999 ? (num/1000).toFixed(1) + 'k' : num
 }
@@ -134,28 +134,28 @@ $('#projectRev2').fadeOut(200, function() {
  $('#mrrRev1').fadeOut(200, function() {
 
 
-            
+
             if(!json==''){
-                
-               var $span1 = $('<h1 style="text-align:center;" id="mrrRev1">$0</h1>'); 
+
+               var $span1 = $('<h1 style="text-align:center;" id="mrrRev1">$0</h1>');
             }else{
                 var $span1 = $('<h1 style="text-align:center;" id="mrrRev1">$'+kFormatter(json)+'</h1>');
             }
-        
-            
-        
 
 
 
-         
-        
-        
+
+
+
+
+
+
         $("#mrrRev1").replaceWith($span1);
-        
+
         $span1.fadeIn(800);
-     
+
     });
-        
+
 
     }
 
@@ -172,14 +172,14 @@ $('#projectRev2').fadeOut(200, function() {
     type: 'GET',
     url: "../ajax/getMrrRevMonth.php",
     success: function(json) {
-        
+
                /* avgTickets = [];
         for(var i = 0; i < json.length; i++) {
-        
+
         avgTickets.push (json[i]["tot_NonMRR_Revenue"]);
-        
+
     }
-    
+
         function kFormatter(num) {
     return num > 999 ? (num/1000).toFixed(1) + 'k' : num
 }
@@ -188,28 +188,28 @@ $('#projectRev2').fadeOut(200, function() {
          $('#mrrRev2').fadeOut(200, function() {
 
 
-            
+
             if(!json==''){
-                
-               var $span1 = $('<h1 style="text-align:center;" id="mrrRev2">$0</h1>'); 
+
+               var $span1 = $('<h1 style="text-align:center;" id="mrrRev2">$0</h1>');
             }else{
                 var $span1 = $('<h1 style="text-align:center;" id="mrrRev2">$'+kFormatter(json)+'</h1>');
             }
-        
-            
-        
 
 
 
-         
-        
-        
+
+
+
+
+
+
         $("#mrrRev2").replaceWith($span1);
-        
+
         $span1.fadeIn(800);
-     
+
     });
-        
+
 
     }
 
@@ -228,14 +228,14 @@ $.ajax({
     type: 'GET',
     url: "../ajax/getProductRev.php",
     success: function(json) {
-        
+
                /* avgTickets = [];
         for(var i = 0; i < json.length; i++) {
-        
+
         avgTickets.push (json[i]["tot_NonMRR_Revenue"]);
-        
+
     }*/
-    
+
         function kFormatter(num) {
     return num > 999 ? (num/1000).toFixed(1) + 'k' : num
 }
@@ -245,28 +245,28 @@ $.ajax({
 $('#productRev1').fadeOut(200, function() {
 
 
-            
+
             if(json==''){
-                
-               var $span1 = $('<h1 style="text-align:center;" id="productRev1">$0</h1>'); 
+
+               var $span1 = $('<h1 style="text-align:center;" id="productRev1">$0</h1>');
             }else{
                 var $span1 = $('<h1 style="text-align:center;" id="productRev1">$'+kFormatter(json)+'</h1>');
             }
-        
-            
-        
 
 
 
-         
-        
-        
+
+
+
+
+
+
         $("#productRev1").replaceWith($span1);
-        
+
         $span1.fadeIn(800);
-     
+
     });
-        
+
 
     }
 
@@ -280,14 +280,14 @@ $.ajax({
     type: 'GET',
     url: "../ajax/getProductRevMonth.php",
     success: function(json) {
-        
+
                /* avgTickets = [];
         for(var i = 0; i < json.length; i++) {
-        
+
         avgTickets.push (json[i]["tot_NonMRR_Revenue"]);
-        
+
     }*/
-    
+
         function kFormatter(num) {
     return num > 999 ? (num/1000).toFixed(1) + 'k' : num
 }
@@ -297,28 +297,28 @@ $.ajax({
 $('#productRev2').fadeOut(200, function() {
 
 
-            
+
             if(json==''){
-                
-               var $span1 = $('<h1 style="text-align:center;" id="productRev2">$0</h1>'); 
+
+               var $span1 = $('<h1 style="text-align:center;" id="productRev2">$0</h1>');
             }else{
                 var $span1 = $('<h1 style="text-align:center;" id="productRev2">$'+kFormatter(json)+'</h1>');
             }
-        
-            
-        
 
 
 
-         
-        
-        
+
+
+
+
+
+
         $("#productRev2").replaceWith($span1);
-        
+
         $span1.fadeIn(800);
-     
+
     });
-        
+
 
     }
 
@@ -336,7 +336,7 @@ var data = {
     labels: ["January", "February"],
     datasets: [
         {
-            
+
             fillColor: "rgba(220,220,220,0.5)",
             strokeColor: "rgba(220,220,220,0.8)",
             highlightFill: "rgba(220,220,220,0.75)",
@@ -345,7 +345,7 @@ var data = {
             label: "Aaron"
         },
         {
-            
+
             fillColor: "rgba(151,187,205,0.5)",
             strokeColor: "rgba(151,187,205,0.8)",
             highlightFill: "rgba(151,187,205,0.75)",
@@ -354,7 +354,7 @@ var data = {
             label: "Chris"
         },
         {
-            
+
             fillColor: "rgba(151,110,205,0.5)",
             strokeColor: "rgba(151,110,205,0.8)",
             highlightFill: "rgba(151,110,205,0.75)",
@@ -363,7 +363,7 @@ var data = {
             label: "Jeff"
         },
         {
-            
+
             fillColor: "rgba(670,198,105,0.5)",
             strokeColor: "rgba(670,198,105,0.8)",
             highlightFill: "rgba(670,198,105,0.75)",
@@ -381,15 +381,15 @@ $.ajax({
     type: 'GET',
     url: "../ajax/salesByVcio.php",
     success: function(json) {
-        
+
               labels=[], sales = [];
         for(var i = 0; i < json.length; i++) {
-        
-        
+
+
         labels.push (json[i]["last_name"]);
         sales.push (json[i]["total_sales"]);
     }
-    
+
 
 function getRandomColor() {
     var letters = '0123456789ABCDEF'.split('');
@@ -410,7 +410,7 @@ function getRandomColor() {
                 highlightStroke: "rgba(247, 142, 30, 1)",
                 data : sales
             },
-            
+
         ]
 
     }
@@ -418,30 +418,30 @@ function getRandomColor() {
          $('#salesByVcio').fadeOut(200, function() {
 
 
-            
-            
-    
+
+
+
 var $span1 = $('<canvas id ="salesByVcio"height="300"width="auto"></canvas>');
-            
-        
-            
-        
 
 
 
-         
-        
-        
+
+
+
+
+
+
+
         $("#salesByVcio").replaceWith($span1);
-        
+
         $span1.fadeIn(800);
 
         var ctx = document.getElementById("salesByVcio").getContext("2d");
         var myNewChart = new Chart(ctx).Bar(barChartData);
         //legend(document.getElementById("salesByVcioLegend"), data);
-     
+
     });
-        
+
 
     }
 
@@ -458,34 +458,34 @@ $.ajax({ url: "../ajax/salesByVcioTable.php",
                            $('#salesByVcioTable').fadeOut(600, function() {
 
 
-            
-            
-    
+
+
+
 var $span1 = $('<div class="col-md-12"id ="salesByVcioTable">'+html+'</div>');
-            
-        
-            
-        
 
 
 
-         
-        
-        
+
+
+
+
+
+
+
         $("#salesByVcioTable").replaceWith($span1);
-        
+
         $span1.fadeIn(800);
 
-        
-     
-    });    
+
+
+    });
                      //$("#salesByVcioTable").append(html);
                     }
                 });
 
               //getClientData('');
 
-            
+
 
  $.ajax({
     type: 'POST',
@@ -605,8 +605,8 @@ var myNewChart1 = new Chart(ctx1).Pie(doughnutData);
 //legend(document.getElementById("salesByClientLegend"), doughnutData);
 
 }
- 
- }); 
+
+ });
 
 $.ajax({ url: "../ajax/salesByClientTable.php",
                     context: document.body,
@@ -617,27 +617,27 @@ $.ajax({ url: "../ajax/salesByClientTable.php",
                            $('#salesByClientTable').fadeOut(600, function() {
 
 
-            
-            
-    
+
+
+
 var $span1 = $('<div class="col-md-12"id ="salesByClientTable">'+html+'</div>');
-            
-        
-            
-        
 
 
 
-         
-        
-        
+
+
+
+
+
+
+
         $("#salesByClientTable").replaceWith($span1);
-        
+
         $span1.fadeIn(800);
 
-        
-     
-    });    
+
+
+    });
                      //$("#salesByVcioTable").append(html);
                     }
                 });
@@ -656,33 +656,29 @@ $.ajax({ url: "../ajax/pastDueOpps.php",
                            $('#pastDueOpps').fadeOut(600, function() {
 
 
-            
-            
-    
+
+
+
 var $span1 = $('<div class="col-md-12"id ="pastDueOpps">'+html+'</div>');
-            
-        
-            
-        
 
 
 
-         
-        
-        
+
+
+
+
+
+
+
         $("#pastDueOpps").replaceWith($span1);
-        
+
         $span1.fadeIn(800);
 
-        
-     
-    });    
+
+
+    });
                      //$("#salesByVcioTable").append(html);
                     }
                 });
-            
+
 });
-
-
-
-

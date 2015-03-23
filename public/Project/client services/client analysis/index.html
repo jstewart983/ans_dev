@@ -53,34 +53,8 @@
             window.onload = myFunction;
         </script>
        
-        <!--get company list-->
-        <script type="text/javascript">
-
-        $(document).ready(function(){
-
-
-            $.ajax({ url: "../../ajax/getClientList.php",
-                    context: document.body,
-                    success: function(html){
-                     $("#clientTable").append(html);
-                    }});
-
-              getClientData('');
-
-            });
         
         
-
-                
-
-  
-
-
-
-        
-
-    
-        </script>
        
         
     </head>

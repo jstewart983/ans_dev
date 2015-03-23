@@ -1,8 +1,8 @@
 // Welcome to the RazorFlow Dashbord Quickstart. Simply copy this "dashboard_quickstart"
 // to somewhere in your computer/web-server to have a dashboard ready to use.
 // This is a great way to get started with RazorFlow with minimal time in setup.
-// However, once you're ready to go into deployment consult our documentation on tips for how to 
-// maintain the most stable and secure 
+// However, once you're ready to go into deployment consult our documentation on tips for how to
+// maintain the most stable and secure
 
 
 
@@ -14,15 +14,15 @@ $.ajax({
     type: 'POST',
     url: "../../ajax/getServersWorkstations.php"+value,
     success: function(json) {
-        
+
                 workstations = []; servers = [];
         for(var i = 0; i < json.length; i++) {
-        
+
        workstations.push (json[i]["workStations"]);
        servers.push (json[i]["servers"])
-        
+
     }
-    
+
         function kFormatter(num) {
     return num > 999 ? (num/1000).toFixed(1) + 'k' : num
 }
@@ -31,28 +31,28 @@ $.ajax({
 $('#compServ').fadeOut(200, function() {
 
 
-            
-            
-                
-               var $span1 = $('<div id="compServ" class="panel-body"><div class="row"><h1 class="col-xs-6"style="text-align:center;" id="comp">'+workstations+'</h1><h1 class="col-xs-6" style="text-align:center;" id="serv">'+servers+'</h1></div></div>'); 
-               
-                            
-            
-        
-            
-        
 
 
 
-         
-        
-        
+               var $span1 = $('<div id="compServ" class="panel-body"><div class="row"><h1 class="col-xs-6"style="text-align:center;" id="comp">'+workstations+'</h1><h1 class="col-xs-6" style="text-align:center;" id="serv">'+servers+'</h1></div></div>');
+
+
+
+
+
+
+
+
+
+
+
+
         $("#compServ").replaceWith($span1);
-        
+
         $span1.fadeIn(800);
-        
+
     });
-        
+
 
     }
 
@@ -72,26 +72,26 @@ $('#compServ').fadeOut(200, function() {
     type: 'POST',
     url: "../../ajax/avgTicketsPerDay.php"+value,
     success: function(json) {
-        
+
                 avgTickets = [];
         for(var i = 0; i < json.length; i++) {
-        
+
         avgTickets.push (json[i]["Avg_Daily_Total_Tickets"]);
-        
+
     }
-    
-        
+
+
 
          $('#title #avgTickets').fadeOut(500, function() {
-         
+
         var $span1 = $('<h1 style="text-align:center;" id="avgTickets">'+json+'</h1>');
         //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
         $("#avgTickets").replaceWith($span1);
         //$("#openProjects").replaceWith($span2);
         $span1.fadeIn(1200);
-     
+
     });
-        
+
 
     }
 
@@ -114,26 +114,26 @@ $.ajax({
     type: 'POST',
     url: "../../ajax/getOpenTicketsEcho.php"+value,
     success: function(json) {
-        
+
                 avgTickets = [];
         for(var i = 0; i < json.length; i++) {
-        
+
         avgTickets.push (json[i]["Avg_Daily_Total_Tickets"]);
-        
+
     }
-    
-        
+
+
 
          $('#title #openTickets').fadeOut(500, function() {
-         
+
         var $span1 = $('<h1 style="text-align:center;" id="openTickets">'+json+'</h1>');
         //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
         $("#openTickets").replaceWith($span1);
         //$("#openProjects").replaceWith($span2);
         $span1.fadeIn(1200);
-     
+
     });
-        
+
 
     }
 
@@ -161,7 +161,7 @@ $.ajax({
                 }
 
 
-                
+
 function getRandomColor() {
     var letters = '0123456789ABCDEF'.split('');
     var color = '#';
@@ -171,7 +171,7 @@ function getRandomColor() {
     return color;
 }
         var radarChartData = {
-        
+
         labels : xlabels,
         datasets : [
             {
@@ -181,7 +181,7 @@ function getRandomColor() {
                 highlightStroke: "rgba(220,220,220,1)",
                 data : total_count
             },
-            
+
         ]
 
     }
@@ -259,7 +259,7 @@ doughnutData = [
 
 
 
-         
+
         var $span2 = $('<canvas id="serviceType2" height="auto" width="auto"></canvas>');
         //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
         $("#serviceType2").replaceWith($span2);
@@ -274,14 +274,14 @@ doughnutData = [
     });
 
 
-    
+
 
 $('#wherethestuffis #serviceType').fadeOut(200, function() {
 
 
 
 
-         
+
         var $span2 = $('<canvas id="serviceType" height="auto" width="auto"></canvas>');
         //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
         $("#serviceType").replaceWith($span2);
@@ -296,14 +296,15 @@ $('#wherethestuffis #serviceType').fadeOut(200, function() {
     });
 
 
-    
-        
-   
-        
+
+
+
+
 
     }
 
 });
+}
 //////////////**************CW DATA*******************////////////////////////////
 
 
@@ -327,8 +328,8 @@ $('#wherethestuffis #serviceType').fadeOut(200, function() {
                 highlight: colors.push (getRandomColor());
 
                 }
-            
-                
+
+
              doughnutData = [
                 {
                     value: type_count[0],
@@ -393,7 +394,7 @@ $('#wherethestuffis #serviceType').fadeOut(200, function() {
             ];
 
 
-                
+
 function getRandomColor() {
     var letters = '0123456789ABCDEF'.split('');
     var color = '#';
@@ -409,7 +410,7 @@ function getRandomColor() {
 
 
 
-         
+
         var $span2 = $('<canvas style="background-color:#fff;" id="serviceType2" height="300" width="300"></canvas>');
         //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
         $("#serviceType2").replaceWith($span2);
@@ -424,10 +425,10 @@ function getRandomColor() {
     });
 
 
-    
-        
-   
-        
+
+
+
+
 
     }
 
@@ -467,7 +468,7 @@ function getRandomColor() {
                 }
 
 
-                
+
 function getRandomColor() {
     var letters = '0123456789ABCDEF'.split('');
     var color = '#';
@@ -487,18 +488,18 @@ function getRandomColor() {
                 highlightStroke: "rgba(220,220,220,1)",
                 data : project_count
             },
-            
+
         ]
 
     }
-    
+
 
 $('#wherethestuffis #projectsCreated').fadeOut(500, function() {
 
 
 
 
-         
+
         var $span2 = $('<canvas style="padding:10px;" id="projectsCreated" height="auto" width="auto"></canvas>');
         //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
         $("#projectsCreated").replaceWith($span2);
@@ -513,20 +514,43 @@ $('#wherethestuffis #projectsCreated').fadeOut(500, function() {
     });
 
 
-    
-        
-   
-        
+
+
+
+
 
     }
 
 });*/
-}
 
 
+$(document).ready(function(){
+
+    $.ajax({ url: "../../ajax/getClientList.php",
+                    context: document.body,
+                    success: function(html){
+                     $("#clientTable").append(html);
+                    }});
+
+              getClientData('');
+
+    $('#client').on('click',function(){
+
+        var clickedVal = $(this).attr('href');
+        console.log(clickedVal);
+        var title = clickedVal.substr(clickedVal.indexOf("=") + 1);
+        $("#title").text(title);
+        //getClientData(clickedVal);
+        $('#client').off('click');
+
+    });
 
 
-$(function() {
+});
+
+
+/*$(function() {
+
 
     // Get the form.
     var form = $('#companyForm');
@@ -537,11 +561,11 @@ $(function() {
     // Set up an event listener for the contact form.
     $(form).submit(function(e) {
 
-        
 
 
-     
-    
+
+
+
         // Stop the browser from submitting the form.
         e.preventDefault();
          event.stopPropagation();
@@ -552,12 +576,12 @@ $(function() {
              event.stopPropagation();
             console.log(clickedVal);
 
-            
 
 
 
 
-        
+
+
 
 
 
@@ -566,13 +590,11 @@ var title = clickedVal.substr(clickedVal.indexOf("=") + 1);
 $("#title").text(title);
 getClientData(clickedVal);
 $('input').off('click');
-            
+
         });
 
 
 
     });
 
-});
-
-
+});*/
