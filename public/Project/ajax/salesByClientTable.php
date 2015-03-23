@@ -28,14 +28,14 @@ echo "<tbody  class='rowlink'>";
 
 while($row = mssql_fetch_array($projectHours)) {
 
-	
 
-	
+
+
 	echo "<tr>";
     echo "<td>".$row['company_name']."</td>";
      echo "<td>$".number_format($row['total_sales'])."</td>";
     echo "</tr>";
-    
+
 }
 echo "</tbody>";
 echo "</table>";

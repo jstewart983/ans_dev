@@ -15,7 +15,7 @@ $.ajax({
     url: "../../ajax/getServersWorkstations.php"+value,
     success: function(json) {
 
-                workstations = []; servers = [];
+        workstations = []; servers = [];
         for(var i = 0; i < json.length; i++) {
 
        workstations.push (json[i]["workStations"]);
@@ -30,24 +30,99 @@ $.ajax({
 
 $('#compServ').fadeOut(200, function() {
 
-
-
-
-
-               var $span1 = $('<div id="compServ" class="panel-body"><div class="row"><h1 class="col-xs-6"style="text-align:center;" id="comp">'+workstations+'</h1><h1 class="col-xs-6" style="text-align:center;" id="serv">'+servers+'</h1></div></div>');
-
-
-
-
-
-
-
-
-
-
-
+               var $span1 = $('<div id="compServ" class="panel-body"><div class="row"><h1 class="col-xs-6"style="text-align:center;" id="comp">'+workstations+'\n<span><img src="../../css/assets/icons/computer.svg"/></span></h1><h1 class="col-xs-6" style="text-align:center;" id="serv">'+servers+'\n<span><img style="color:#3CB371;" src="../../css/assets/icons/server.svg"  /></span></h1></div></div>');
 
         $("#compServ").replaceWith($span1);
+
+        $span1.fadeIn(800);
+
+    });
+
+
+    }
+
+});
+
+
+//Get OS Type by client
+$.ajax({
+  type:"POST",
+  url:"../../ajax/getOSType.php"+value,
+  success:function(json){
+
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF'.split('');
+        var color = '#';
+        for (var i = 0; i < 6; i++ ) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
+
+
+
+
+
+
+          $('#wherethestuffis #osType').fadeOut(200, function() {
+
+
+          var $span2 = $('<canvas id="osType" style="width:100%;height:100%;"></canvas>');
+          //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
+          $("#osType").replaceWith($span2);
+          //$("#openProjects").replaceWith($span2);
+          $span2.fadeIn(900);
+          //$span2.fadeIn(500);
+
+          var RCM = document.getElementById("osType").getContext("2d");
+          pieData = [];
+          var myPieChart = new Chart(RCM).PolarArea(pieData);
+
+          for($i=0;$i<json.length;$i++){
+
+            myPieChart.addData({
+                value: json[$i]["osCount"],
+                color: getRandomColor(),
+                highlight: getRandomColor(),
+                label: json[$i]["OS"]
+            });
+
+            myPieChart.update();
+          }
+
+      });
+
+
+  }
+});
+
+
+
+
+
+
+$.ajax({
+    type: 'POST',
+    url: "../../ajax/getLocationCount.php"+value,
+    success: function(json) {
+
+      locations = [];
+        for(var i = 0; i < json.length; i++) {
+
+       locations.push (json[i]["locationCount"]);
+
+
+    }
+
+
+
+
+$('#locations').fadeOut(200, function() {
+
+               var $span1 = $('<div id="locations" class="panel-body"><h1 style="text-align:center;">'+locations+'\n\n<span><img style="height:70px;width:auto;" src="../../css/assets/building.svg"/></span></h1></div>');
+
+        $("#locations").replaceWith($span1);
 
         $span1.fadeIn(800);
 
@@ -68,6 +143,42 @@ $('#compServ').fadeOut(200, function() {
 
 
 //////////////**************CW DATA*******************////////////////////////////
+/*var data = {
+    labels: ["Mon", "Tues","Weds","Thurs","Fri"],
+    datasets: [
+        {
+
+            fillColor: "rgba(220,220,220,0.5)",
+            strokeColor: "rgba(220,220,220,0.8)",
+            highlightFill: "rgba(220,220,220,0.75)",
+            highlightStroke: "rgba(220,220,220,1)",
+            data: [54, 30,111,98,33],
+            label: "New Tickets"
+        },
+        {
+
+            fillColor: "rgba(120,220,220,0.5)",
+            strokeColor: "rgba(120,220,220,0.8)",
+            highlightFill: "rgba(120,220,220,0.75)",
+            highlightStroke: "rgba(120,220,220,1)",
+            data: [120, 60,78,45,25],
+            label: "Tickets Closed"
+        }
+    ]
+};
+
+
+
+var ctx = document.getElementById("newOld").getContext("2d");
+var myNewChart = new Chart(ctx).Bar(data);
+legend(document.getElementById("newOldLegend"), data);*/
+
+
+
+
+
+
+
     $.ajax({
     type: 'POST',
     url: "../../ajax/avgTicketsPerDay.php"+value,
@@ -246,7 +357,7 @@ doughnutData = [
                 },
                 {
                     value: type_count[9],
-                     color:"#F7464A",
+                    color:"#F7464A",
                     highlight: "#FF5A5E",
                     label: xlabels[9]
                 },
@@ -260,7 +371,7 @@ doughnutData = [
 
 
 
-        var $span2 = $('<canvas id="serviceType2" height="auto" width="auto"></canvas>');
+        var $span2 = $('<canvas id="serviceType2" style="width:100%;height:100%;"></canvas>');
         //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
         $("#serviceType2").replaceWith($span2);
         //$("#openProjects").replaceWith($span2);
@@ -282,7 +393,7 @@ $('#wherethestuffis #serviceType').fadeOut(200, function() {
 
 
 
-        var $span2 = $('<canvas id="serviceType" height="auto" width="auto"></canvas>');
+        var $span2 = $('<canvas id="serviceType" style="width:100%;height:100%;"></canvas>');
         //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
         $("#serviceType").replaceWith($span2);
         //$("#openProjects").replaceWith($span2);
@@ -534,20 +645,20 @@ $(document).ready(function(){
 
               getClientData('');
 
-    $('#client').on('click',function(){
+    $('#clientTable').on('click','input.client',function(){
 
         var clickedVal = $(this).attr('href');
         console.log(clickedVal);
         var title = clickedVal.substr(clickedVal.indexOf("=") + 1);
         $("#title").text(title);
-        //getClientData(clickedVal);
-        $('#client').off('click');
+        getClientData(clickedVal);
+        //$('#client').off('click');
 
     });
 
 
 });
-
+///////////***************END CW DATA**************///////////////////
 
 /*$(function() {
 

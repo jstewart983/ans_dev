@@ -421,7 +421,7 @@ function getRandomColor() {
 
 
 
-var $span1 = $('<canvas id ="salesByVcio"height="300"width="auto"></canvas>');
+var $span1 = $('<canvas id ="salesByVcio"style="height:100%;width:100%;"></canvas>');
 
 
 

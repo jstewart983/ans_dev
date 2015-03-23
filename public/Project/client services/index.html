@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title id="title">Client Services</title>
+    <title>vCIO Performance</title>
     <link rel="stylesheet" type="text/css" href="../css/demo.css">
     <link rel="stylesheet" type="text/css" href="../css/razorflow.min.css">
     <link rel="stylesheet" type="text/css" href="../css/navbar.css">
@@ -104,13 +104,23 @@
          <div style="margin-top:54px;"class="container">
         <div class="row">
             <div style="border-left:1px solid #ddd;border-right:1px solid #ddd;border-bottom:1px solid #ddd;border-radius: 4px;background-color:#fff;"class="col-md-4">
-                <div style="padding:5px;">
+                <div style="margin-left:35px;padding:5px;">
                     <ul class="nav nav-pills">
                         <li role="presentation" class="active"><a style="background-color:#F78E1E;"href="#">Sales Dashboard</a></li>
-                        <li role="presentation"><a style="color:#414141;"href="serice desk/">Pipeline</a></li>
+                        <!--<li role="presentation"><a style="color:#414141;"href="serice desk/">Pipeline</a></li>-->
                         <li role="presentation"><a style="color:#414141;"href="client analysis/">Client Analysis</a></li>
                     </ul>
                 </div>
+            </div>
+            <div class="col-md-5"></div>
+            <div class="col-md-2">
+              <div class="dropdown">
+                <button style="background-colorclass="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">13 past due Opps
+                </button>
+
+
+
+              </div>
             </div>
         </div>
 
@@ -196,7 +206,7 @@
                         </div>
                       </div>
                       <div class="col-md-8">
-                        <canvas id ="salesByVcio"height="auto"width="auto"></canvas>
+                        <canvas id ="salesByVcio"style="width:100%;height:100%;"></canvas>
 
                       </div>
                     </div>

@@ -26,12 +26,12 @@
 
     <!-- Custom Fonts -->
     <link href="../../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    
-        
+
+
         <script type="text/javascript" src="../../js/jquery.min.js"></script>
         <!--<script type="text/javascript" src="../js/razorflow.min.js"></script>
         <script type="text/javascript" src="../js/razorflow.devtools.min.js"></script>-->
-        
+
         <script src="../../js/Chart.js"></script>
         <script src="../../js/legend.js"></script>
         <!-- Latest compiled and minified JavaScript -->
@@ -52,11 +52,11 @@
             }
             window.onload = myFunction;
         </script>
-       
-        
-        
-       
-        
+
+
+
+
+
     </head>
     <style type="text/css">
 
@@ -75,7 +75,7 @@
             font-size: inherit;
         }
 
-        </style>  
+        </style>
     <body class="canvas">
 <div style="background-color:#fff;" class="navmenu navmenu-default navmenu-fixed-left offcanvas">
       <a class="navmenu-brand" href="#">ANS Reporting</a>
@@ -88,9 +88,9 @@
       </ul>
       <ul class="nav navmenu-nav">
         <li><a href="#">Admin</a></li>
-        
-        
-        
+
+
+
       </ul>
     </div>
 
@@ -105,10 +105,10 @@
     <div style="margin-top:54px;"class="container">
         <div class="row">
             <div style="border-left:1px solid #ddd;border-right:1px solid #ddd;border-bottom:1px solid #ddd;border-radius: 4px;background-color:#fff;"class="col-md-4">
-                <div style="padding:5px;">
+                <div style="margin-left:35px;padding:5px;">
                     <ul class="nav nav-pills">
                         <li role="presentation"><a style="color:#414141;"href="../">Sales Dashboard</a></li>
-                        <li role="presentation"><a style="color:#414141;"href="serice desk/">Pipeline</a></li>
+                        <!--<li role="presentation"><a style="color:#414141;"href="serice desk/">Pipeline</a></li>-->
                         <li role="presentation" class="active"><a style="color:#fff;background-color:#F78E1E;"href="#">Client Analysis</a></li>
                     </ul>
                 </div>
@@ -118,31 +118,31 @@
               <div class="dropdown">
                 <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">View by Client <span class="caret"></span>
                 </button>
-                
+
                 <ul style='width:100%;overflow-y: scroll !important;height:495px'class="dropdown-menu" role="menu" id="clientTable" aria-labelledby="menu1">
-                  
+
                 </ul>
-                
+
               </div>
             </div>
-            
+
             <div class="col-md-2">
               <div class="dropdown">
                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">View by Industry <span class="caret"></span>
                 </button>
                 <form method="post" id="companyForm">
                   <ul style='width:100%;overflow-y: scroll !important;height:295px'class="dropdown-menu" role="menu" id="clientTable">
-                  
+
                 </ul>
                 </form>
-                
-                
+
+
               </div>
             </div>
         </div>
 
          <div style="margin-top:11px;"class="row">
-           
+
                   <div class="col-md-2">
                 <div class="panel panel-default">
                   <div class="panel-heading">
@@ -153,8 +153,8 @@
                   </div>
                 </div>
             </div>
-                   
-              
+
+
                <div class="col-md-2">
                 <div class="panel panel-default">
                   <div class="panel-heading">
@@ -165,7 +165,7 @@
                   </div>
                 </div>
             </div>
-            
+
             <div class="col-md-4">
                 <div class="panel panel-default">
                   <div class="panel-heading">
@@ -178,20 +178,39 @@
                       <h1 id="serv" style="text-align:center;"class="col-xs-6">0</h1>
                     <h1 id="comp" style="text-align:center;"class="col-xs-6">0</h1>
                     </div>
-                    
+
                   </div>
                   </div>
-                  
+
                 </div>
             </div>
-             
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                        <p id="avgTickets"style="text-align:center;">Locations Managed</p>
+
+                  </div>
+                  <div style="color:#3CB371;">
+                    <div  class="panel-body">
+                    <div class="row">
+                      <h1 id="locations"style="text-align:center;">0</h1>
+
+                    </div>
+
+                  </div>
+                  </div>
+
+                </div>
+            </div>
+
+
         </div>
-        
-            
-                
-            
-        
-       
+
+
+
+
+
+
                 <div style="margin-top:11px;" class="row">
 
 
@@ -206,60 +225,64 @@
                 </div>
               </div>
 
-                 <div id="wherethestuffis" class="col-lg-4">
+                 <div id="wherethestuffis" class="col-lg-3">
                          <div class="panel panel-default">
                       <div style="text-align:center;"class="panel-heading">
                        <p>Hours - by Service Type</p><p>(top 10)</p>
                       </div>
                       <div class="panel-body">
-                              
-                             <canvas id="serviceType2" height="auto" width="auto"></canvas>
-                         </div>
-                    </div>
-                </div>
-                <div id="wherethestuffis" class="col-lg-4">
-                         <div class="panel panel-default">
-                      <div style="text-align:center;"class="panel-heading">
-                       <p>Hours - by Service Type</p><p>(top 10)</p>
-                      </div>
-                      <div class="panel-body">
-                              
-                             <canvas id="serviceType2" height="auto" width="auto"></canvas>
-                         </div>
-                    </div>
-                </div>
-            
-        
-            </div>
-                
 
-            
-            
-              
-            
-            <!--End Projects Initiated Last Year-->  
-            
-           
-               
-                   
-           
-        
-               
-             
+                             <canvas id="serviceType2" height="auto" width="auto"></canvas>
+                         </div>
+                    </div>
+                </div>
+                <div id="wherethestuffis" class="col-lg-5">
+                         <div class="panel panel-default">
+                      <div style="text-align:center;"class="panel-heading">
+                       <p>OS Breakdown</p>(top 10)<p>
+                       </p>
+                      </div>
+                      <div class="panel-body">
+
+                             <canvas id="osType" height="auto" width="auto"></canvas>
+                         </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div style="margin-top:11px;"class="row">
+
+            </div>
+
+
+
+
+
+
+            <!--End Projects Initiated Last Year-->
+
+
+
+
+
+
+
+
 
                <!--<div style="margin-top:60px;text-align:center;" class="co-md-4"id="clientData"></div>-->
              <!-- Don't delete this div. This is where RazorFlow will get rendered. -->
             <!--<div id="dbTarget" style="position:relative;" class="rf"></div> -->
-           
-           
+
+
            <!--<div id="wherethestuffis" class="col-md-2">
-                
+
                <canvas style=" margin-left:10px;background-color:#fff;" id="openTickets" height="600" width="200"></canvas>
            </div>-->
-            
-    
-           
-        
+
+
+
+
          <!--<script type="text/javascript">
          var numAnim = new countUp("#avgTickets", 24.02, 99.99);
             numAnim.start();

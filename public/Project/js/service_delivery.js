@@ -1,8 +1,8 @@
 // Welcome to the RazorFlow Dashbord Quickstart. Simply copy this "dashboard_quickstart"
 // to somewhere in your computer/web-server to have a dashboard ready to use.
 // This is a great way to get started with RazorFlow with minimal time in setup.
-// However, once you're ready to go into deployment consult our documentation on tips for how to 
-// maintain the most stable and secure 
+// However, once you're ready to go into deployment consult our documentation on tips for how to
+// maintain the most stable and secure
 
 $(document).ready(function(){
 
@@ -10,7 +10,7 @@ var data = {
     labels: ["Mon", "Tues","Weds","Thurs","Fri"],
     datasets: [
         {
-            
+
             fillColor: "rgba(220,220,220,0.5)",
             strokeColor: "rgba(220,220,220,0.8)",
             highlightFill: "rgba(220,220,220,0.75)",
@@ -36,7 +36,7 @@ var data = {
     labels: ["Mon", "Tues","Weds","Thurs","Fri"],
     datasets: [
         {
-            
+
             fillColor: "rgba(220,220,220,0.5)",
             strokeColor: "rgba(220,220,220,0.8)",
             highlightFill: "rgba(220,220,220,0.75)",
@@ -45,7 +45,7 @@ var data = {
             label: "New Tickets"
         },
         {
-            
+
             fillColor: "rgba(120,220,220,0.5)",
             strokeColor: "rgba(120,220,220,0.8)",
             highlightFill: "rgba(120,220,220,0.75)",
@@ -103,11 +103,6 @@ var myNewChart1 = new Chart(ctx1).Pie(data2);
 legend(document.getElementById("ticketsByTypeLegend"), data2);
 
 
-  
-            
+
+
 });
-
-
-
-
-
