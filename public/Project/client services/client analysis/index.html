@@ -27,11 +27,13 @@
     <!-- Custom Fonts -->
     <link href="../../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <!--timeline css-->
+    <link rel="stylesheet" href="../../timeline-2.9.1/timeline.css" media="screen" title="no title" charset="utf-8">
 
         <script type="text/javascript" src="../../js/jquery.min.js"></script>
         <!--<script type="text/javascript" src="../js/razorflow.min.js"></script>
         <script type="text/javascript" src="../js/razorflow.devtools.min.js"></script>-->
-
+        <script src="../../timeline-2.9.1/timeline.js"></script>
         <script src="../../js/Chart.js"></script>
         <script src="../../js/legend.js"></script>
         <!-- Latest compiled and minified JavaScript -->
@@ -175,8 +177,8 @@
                   <div style="color:#3CB371;">
                     <div id="compServ" class="panel-body">
                     <div class="row">
-                      <h1 id="serv" style="text-align:center;"class="col-xs-6">0</h1>
-                    <h1 id="comp" style="text-align:center;"class="col-xs-6">0</h1>
+                      <h1 id="serv" style="text-align:center;"class="col-xs-6">0<span><img src="../../css/assets/icons/computer.svg"/></span></h1>
+                    <h1 id="comp" style="text-align:center;"class="col-xs-6">0<span><img src="../../css/assets/icons/server.svg"/></span></h1>
                     </div>
 
                   </div>
@@ -193,7 +195,7 @@
                   <div style="color:#3CB371;">
                     <div  class="panel-body">
                     <div class="row">
-                      <h1 id="locations"style="text-align:center;">0</h1>
+                      <h1 id="locations"style="text-align:center;">0<span><img src="../../css/assets/building.svg"/></span></h1>
 
                     </div>
 
@@ -207,7 +209,20 @@
         </div>
 
 
+        <div style="margin-top:11px;"class="row">
 
+            <div class="panel panel-default">
+              <div  class="panel-body">
+                <div  id="timeline" class="col-md-12">
+
+                </div>
+
+              </div>
+            </div>
+
+
+
+        </div>
 
 
 
@@ -251,9 +266,7 @@
 
 
             </div>
-            <div style="margin-top:11px;"class="row">
 
-            </div>
 
 
 

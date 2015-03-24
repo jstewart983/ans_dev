@@ -4,6 +4,54 @@
 // However, once you're ready to go into deployment consult our documentation on tips for how to
 // maintain the most stable and secure
 
+function drawTimeline(value) {
+
+  $.ajax({
+    type:"POST",
+    url:"../../ajax/getServiceHistory.php"+value,
+    success: function(json){
+
+      var data = [];
+
+      for($i=0;$i<json.length;$i++){
+        var date = parseInt(json[$i]["yearNum"])+","+parseInt(json[$i]["monthNum"])+","+parseInt(json[$i]["dayNum"]);
+        data.push({
+          'start': new Date(parseInt(json[$i]["yearNum"])+","+parseInt(json[$i]["monthNum"])+","+parseInt(json[$i]["dayNum"])),
+          //'end':  new Date(parseInt(json[$i]["yearRes"])+","+parseInt(json[$i]["monthRes"])+","+parseInt(json[$i]["dayRes"])),  // end is optional
+          'content': json[$i]["ServiceType"]+"<br />"+json[$i]["Urgency"]
+          // Optional: a field 'group'
+           //Optional: a field 'className'
+          // Optional: a field 'editable'
+        });
+      }
+
+      var options = {
+        "width":  "100%",
+        "height": "200px",
+        "style": "box",
+        "editable": false,
+        "cluster":true
+      };
+      timeline = new links.Timeline(document.getElementById('timeline'),options);
+
+
+      timeline.draw(data);
+
+    }
+  });
+
+
+
+  /*$('#timeline').fadeOut(500, function() {
+
+ var $span1 = $('<div id="timeline" class="col-md-12"></div>');
+ //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
+ $("#timeline").replaceWith($span1);
+ //$("#openProjects").replaceWith($span2);
+ $span1.fadeIn(1200);
+
+});*/
+}
 
 
 function getClientData(value){
@@ -172,6 +220,24 @@ $('#locations').fadeOut(200, function() {
 var ctx = document.getElementById("newOld").getContext("2d");
 var myNewChart = new Chart(ctx).Bar(data);
 legend(document.getElementById("newOldLegend"), data);*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -644,6 +710,7 @@ $(document).ready(function(){
                     }});
 
               getClientData('');
+              //drawTimeline('');
 
     $('#clientTable').on('click','input.client',function(){
 
@@ -651,7 +718,9 @@ $(document).ready(function(){
         console.log(clickedVal);
         var title = clickedVal.substr(clickedVal.indexOf("=") + 1);
         $("#title").text(title);
+        drawTimeline(clickedVal);
         getClientData(clickedVal);
+
         //$('#client').off('click');
 
     });
