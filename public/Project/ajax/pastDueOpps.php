@@ -6,9 +6,9 @@ $projectHours = mssql_query('
 SELECT dbo.Member.First_Name, dbo.Member.Last_Name, dbo.Company.Company_Name, dbo.SO_Opportunity.Opportunity_RecID, dbo.SO_Opportunity.Opportunity_Name,
                       dbo.SO_Type.Description AS Type, dbo.SO_Opp_Status.Description AS Status, dbo.SO_Pipeline.Description AS Stage, dbo.SO_Interest.Description AS Rating,
                       dbo.SO_Opportunity.Probability_to_Close AS Probability, dbo.SO_Opportunity.Date_Close_Expected
- 
 
- 
+
+
 
 FROM         dbo.SO_Opportunity INNER JOIN
                       dbo.SO_Team ON dbo.SO_Opportunity.Opportunity_RecID = dbo.SO_Team.Opportunity_RecID LEFT OUTER JOIN
@@ -46,9 +46,9 @@ echo "<tbody  class='rowlink'>";
 
 while($row = mssql_fetch_array($projectHours)) {
 
-	
 
-	
+
+
 	echo "<tr>";
     echo "<td>".$row['First_Name']." ".$row['Last_Name']."</td>";
     echo "<td>".$row['Company_Name']."</td>";
@@ -58,7 +58,7 @@ while($row = mssql_fetch_array($projectHours)) {
 	echo "<td>".$row['Probability']."%</td>";
 	echo "<td>".$row['Date_Close_Expected']."</td>";
     echo "</tr>";
-    
+
 }
 echo "</tbody>";
 echo "</table>";
@@ -66,21 +66,3 @@ echo "</table>";
 
 echo "</div>";
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

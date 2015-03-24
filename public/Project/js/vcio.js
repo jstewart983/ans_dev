@@ -7,6 +7,60 @@
 $(document).ready(function(){
 
 
+  $.ajax({
+      type: 'GET',
+      url: "../ajax/pastDueCount.php",
+      success: function(json) {
+
+                 /* avgTickets = [];
+          for(var i = 0; i < json.length; i++) {
+
+          avgTickets.push (json[i]["tot_NonMRR_Revenue"]);
+
+      }*/
+
+          function kFormatter(num) {
+      return num > 999 ? (num/1000).toFixed(1) + 'k' : num
+  }
+
+
+  $( "#pastDueCounter" ).slideDown( "slow", function() {
+    // Animation complete.
+  
+
+
+
+              if(json==''){
+
+                 var $span1 = $('<a id="pastDueCounter" href="#pastDueOpps"style="background-color:#00FF7F;"class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">'+json+' past due Opps</a>');
+              }else{
+                  var $span1 = $('<a id="pastDueCounter" href="#pastDueOpps"style="background-color:#F08080;"class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">'+json+' past due Opps</a>');
+              }
+
+
+
+
+
+
+
+
+
+          $("#pastDueCounter").replaceWith($span1);
+
+          $span1.fadeIn(800);
+
+      });
+
+
+      }
+
+  });
+
+
+
+
+
+
 
 
 $.ajax({
