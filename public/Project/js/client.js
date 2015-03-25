@@ -4,22 +4,25 @@
 // However, once you're ready to go into deployment consult our documentation on tips for how to
 // maintain the most stable and secure
 
-function drawTimeline(value) {
+
+var clickedVal='';
+
+/*function getServiceTimeline(value){
 
   $.ajax({
     type:"POST",
     url:"../../ajax/getServiceHistory.php"+value,
     success: function(json){
 
-      var data = [];
+      data = [];
 
       for($i=0;$i<json.length;$i++){
-        var date = parseInt(json[$i]["yearNum"])+","+parseInt(json[$i]["monthNum"])+","+parseInt(json[$i]["dayNum"]);
+        //var date = parseInt(json[$i]["yearNum"])+","+parseInt(json[$i]["monthNum"])+","+parseInt(json[$i]["dayNum"]);
         data.push({
           'start': new Date(parseInt(json[$i]["yearNum"])+","+parseInt(json[$i]["monthNum"])+","+parseInt(json[$i]["dayNum"])),
-          //'end':  new Date(parseInt(json[$i]["yearRes"])+","+parseInt(json[$i]["monthRes"])+","+parseInt(json[$i]["dayRes"])),  // end is optional
+          'end':  new Date(json[$i]["yearRes"],json[$i]["monthRes"],json[$i]["dayRes"]),  // end is optional
           'content': json[$i]["ServiceType"]+"<br />"+json[$i]["Urgency"]
-          // Optional: a field 'group'
+          //'className': 'event'
            //Optional: a field 'className'
           // Optional: a field 'editable'
         });
@@ -34,8 +37,102 @@ function drawTimeline(value) {
       };
       timeline = new links.Timeline(document.getElementById('timeline'),options);
 
-
       timeline.draw(data);
+      console.log(data);
+      $('#timeline').fadeOut(200, function() {
+
+                     var $span1 = $('<div  id="timeline" class="col-md-12"></div>');
+
+              $("#timeline").replaceWith($span1);
+
+              $span1.fadeIn(800);
+
+          });
+          timeline = new links.Timeline(document.getElementById('timeline'),options);
+
+          timeline.draw(data);
+    }
+  });
+
+}
+
+function getOppTimeline(value){
+
+  $.ajax({
+    type:"POST",
+    url:"../../ajax/getOppHistory.php"+value,
+    success: function(json){
+
+      data = [];
+
+      for($i=0;$i<json.length;$i++){
+        //var date = parseInt(json[$i]["yearNum"])+","+parseInt(json[$i]["monthNum"])+","+parseInt(json[$i]["dayNum"]);
+        data.push({
+          'start': new Date(parseInt(json[$i]["yearNum"])+","+parseInt(json[$i]["monthNum"])+","+parseInt(json[$i]["dayNum"])),
+          'end':  new Date(json[$i]["yearRes"],json[$i]["monthRes"],json[$i]["dayRes"]),  // end is optional
+          'content': json[$i]["ServiceType"]+"<br />"+json[$i]["Urgency"]
+          //'className': 'event'
+           //Optional: a field 'className'
+          // Optional: a field 'editable'
+        });
+      }
+
+      var options = {
+        "width":  "100%",
+        "height": "200px",
+        "style": "box",
+        "editable": false,
+        "cluster":true
+      };
+      timeline = new links.Timeline(document.getElementById('timeline'),options);
+
+      //timeline.draw(data);
+      console.log(data);
+
+
+          timeline.draw(data);
+          $("#service").removeClass("active");
+          $("#opps").addClass("active");
+    }
+  });
+
+}*/
+
+
+function drawTimeline1(value){
+
+
+
+  $.ajax({
+    type:"POST",
+    url:"../../ajax/getServiceHistory.php"+value,
+    success: function(json){
+      data = [];
+
+      for($i=0;$i<json.length;$i++){
+        //var date = parseInt(json[$i]["yearNum"])+","+parseInt(json[$i]["monthNum"])+","+parseInt(json[$i]["dayNum"]);
+        data.push({
+          'start': new Date(parseInt(json[$i]["yearNum"])+","+parseInt(json[$i]["monthNum"])+","+parseInt(json[$i]["dayNum"])),
+          //'end':  new Date(json[$i]["yearRes"],json[$i]["monthRes"],json[$i]["dayRes"]),  // end is optional
+          'content': "#"+json[$i]["TicketNbr"]+"<br />"+json[$i]["ServiceType"]+"<br />"+json[$i]["Urgency"]
+          'className': 'event'
+           //Optional: a field 'className'
+          // Optional: a field 'editable'
+        });
+      }
+
+      var options = {
+        "width":  "100%",
+        "height": "200px",
+        "style": "box",
+        "editable": false,
+        "cluster":true
+      };
+      timeline1 = new links.Timeline(document.getElementById('timeline1'),options);
+
+      timeline1.draw(data);
+      //console.log(data);
+
 
     }
   });
@@ -54,133 +151,52 @@ function drawTimeline(value) {
 }
 
 
-function getClientData(value){
 
-////////////////**************LABTECH DATA************/////////////////////////
 
-$.ajax({
-    type: 'POST',
-    url: "../../ajax/getServersWorkstations.php"+value,
-    success: function(json) {
+function drawTimeline2(value) {
 
-        workstations = []; servers = [];
-        for(var i = 0; i < json.length; i++) {
 
-       workstations.push (json[i]["workStations"]);
-       servers.push (json[i]["servers"])
+  $.ajax({
+    type:"POST",
+    url:"../../ajax/getOppHistory.php"+value,
+    success: function(json){
 
+
+      data1 = [];
+
+      for($i=0;$i<json.length;$i++){
+        var date = parseInt(json[$i]["yearNum"])+","+parseInt(json[$i]["monthNum"])+","+parseInt(json[$i]["dayNum"]);
+        data1.push({
+          'start': new Date(parseInt(json[$i]["yearNum"])+","+parseInt(json[$i]["monthNum"])+","+parseInt(json[$i]["dayNum"])),
+          'end':  new Date(json[$i]["yearRes"],json[$i]["monthRes"],json[$i]["dayRes"]),  // end is optional
+          'content': json[$i]["oppName"],
+          'className': 'opp'
+           //Optional: a field 'className'
+          // Optional: a field 'editable'
+        });
+      }
+
+      var options = {
+        "width":  "100%",
+        "height": "200px",
+        "style": "box",
+        "editable": false,
+        "cluster":true
+      };
+      timeline2 = new links.Timeline(document.getElementById('timeline2'),options);
+
+      timeline2.draw(data1);
     }
+  });
 
-        function kFormatter(num) {
-    return num > 999 ? (num/1000).toFixed(1) + 'k' : num
+
 }
 
 
-$('#compServ').fadeOut(200, function() {
 
-               var $span1 = $('<div id="compServ" class="panel-body"><div class="row"><h1 class="col-xs-6"style="text-align:center;" id="comp">'+workstations+'\n<span><img src="../../css/assets/icons/computer.svg"/></span></h1><h1 class="col-xs-6" style="text-align:center;" id="serv">'+servers+'\n<span><img style="color:#3CB371;" src="../../css/assets/icons/server.svg"  /></span></h1></div></div>');
-
-        $("#compServ").replaceWith($span1);
-
-        $span1.fadeIn(800);
-
-    });
+function getClientData(value){
 
 
-    }
-
-});
-
-
-//Get OS Type by client
-$.ajax({
-  type:"POST",
-  url:"../../ajax/getOSType.php"+value,
-  success:function(json){
-
-    function getRandomColor() {
-        var letters = '0123456789ABCDEF'.split('');
-        var color = '#';
-        for (var i = 0; i < 6; i++ ) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-    }
-
-
-
-
-
-
-
-          $('#wherethestuffis #osType').fadeOut(200, function() {
-
-
-          var $span2 = $('<canvas id="osType" style="width:100%;height:100%;"></canvas>');
-          //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
-          $("#osType").replaceWith($span2);
-          //$("#openProjects").replaceWith($span2);
-          $span2.fadeIn(900);
-          //$span2.fadeIn(500);
-
-          var RCM = document.getElementById("osType").getContext("2d");
-          pieData = [];
-          var myPieChart = new Chart(RCM).PolarArea(pieData);
-
-          for($i=0;$i<json.length;$i++){
-
-            myPieChart.addData({
-                value: json[$i]["osCount"],
-                color: getRandomColor(),
-                highlight: getRandomColor(),
-                label: json[$i]["OS"]
-            });
-
-            myPieChart.update();
-          }
-
-      });
-
-
-  }
-});
-
-
-
-
-
-
-$.ajax({
-    type: 'POST',
-    url: "../../ajax/getLocationCount.php"+value,
-    success: function(json) {
-
-      locations = [];
-        for(var i = 0; i < json.length; i++) {
-
-       locations.push (json[i]["locationCount"]);
-
-
-    }
-
-
-
-
-$('#locations').fadeOut(200, function() {
-
-               var $span1 = $('<div id="locations" class="panel-body"><h1 style="text-align:center;">'+locations+'\n\n<span><img style="height:70px;width:auto;" src="../../css/assets/building.svg"/></span></h1></div>');
-
-        $("#locations").replaceWith($span1);
-
-        $span1.fadeIn(800);
-
-    });
-
-
-    }
-
-});
-////////////////**************END LABTECH DATA************/////////////////////////
 
 
 
@@ -481,6 +497,134 @@ $('#wherethestuffis #serviceType').fadeOut(200, function() {
     }
 
 });
+
+
+
+////////////////**************LABTECH DATA************/////////////////////////
+
+$.ajax({
+    type: 'POST',
+    url: "../../ajax/getServersWorkstations.php"+value,
+    success: function(json) {
+
+        workstations = []; servers = [];
+        for(var i = 0; i < json.length; i++) {
+
+       workstations.push (json[i]["workStations"]);
+       servers.push (json[i]["servers"])
+
+    }
+
+        function kFormatter(num) {
+    return num > 999 ? (num/1000).toFixed(1) + 'k' : num
+}
+
+
+$('#compServ').fadeOut(200, function() {
+
+               var $span1 = $('<div id="compServ" class="panel-body"><div class="row"><h1 class="col-xs-6"style="text-align:center;" id="comp">'+workstations+'\n<span><img src="../../css/assets/icons/computer.svg"/></span></h1><h1 class="col-xs-6" style="text-align:center;" id="serv">'+servers+'\n<span><img style="color:#3CB371;" src="../../css/assets/icons/server.svg"  /></span></h1></div></div>');
+
+        $("#compServ").replaceWith($span1);
+
+        $span1.fadeIn(800);
+
+    });
+
+
+    }
+
+});
+
+
+//Get OS Type by client
+$.ajax({
+  type:"POST",
+  url:"../../ajax/getOSType.php"+value,
+  success:function(json){
+
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF'.split('');
+        var color = '#';
+        for (var i = 0; i < 6; i++ ) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
+
+
+
+
+
+
+          $('#wherethestuffis #osType').fadeOut(200, function() {
+
+
+          var $span2 = $('<canvas id="osType" style="width:100%;height:100%;"></canvas>');
+          //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
+          $("#osType").replaceWith($span2);
+          //$("#openProjects").replaceWith($span2);
+          $span2.fadeIn(900);
+          //$span2.fadeIn(500);
+
+          var RCM = document.getElementById("osType").getContext("2d");
+          pieData = [];
+          var myPieChart = new Chart(RCM).PolarArea(pieData);
+
+          for($i=0;$i<json.length;$i++){
+
+            myPieChart.addData({
+                value: json[$i]["osCount"],
+                color: getRandomColor(),
+                highlight: getRandomColor(),
+                label: json[$i]["OS"]
+            });
+
+            myPieChart.update();
+          }
+
+      });
+
+
+  }
+});
+
+
+
+
+
+
+$.ajax({
+    type: 'POST',
+    url: "../../ajax/getLocationCount.php"+value,
+    success: function(json) {
+
+      locations = [];
+        for(var i = 0; i < json.length; i++) {
+
+       locations.push (json[i]["locationCount"]);
+
+
+    }
+
+
+//<span><img style="height:70px;width:auto;" src="../../css/assets/building.svg"/></span>
+
+$('#locations').fadeOut(200, function() {
+
+               var $span1 = $('<div id="locations" class="panel-body"><h1 style="text-align:center;">'+locations+'</h1></div>');
+
+        $("#locations").replaceWith($span1);
+
+        $span1.fadeIn(800);
+
+    });
+
+
+    }
+
+});
+////////////////**************END LABTECH DATA************/////////////////////////
 }
 //////////////**************CW DATA*******************////////////////////////////
 
@@ -712,16 +856,51 @@ $(document).ready(function(){
               getClientData('');
               //drawTimeline('');
 
-    $('#clientTable').on('click','input.client',function(){
+    $('#clientTable').on('click','a.client',function(e){
+       e.preventDefault();
+       e.stopPropagation();
+       $("#dropdown").removeClass("open");
 
+
+       $("#timelineSection").removeClass("hidden");
+        //var queryString = window.location.substring( window.location.indexOf('?') + 1 );
+        //console.log(queryString);
         var clickedVal = $(this).attr('href');
         console.log(clickedVal);
+        //console.log(data);
         var title = clickedVal.substr(clickedVal.indexOf("=") + 1);
         $("#title").text(title);
-        drawTimeline(clickedVal);
         getClientData(clickedVal);
+        drawTimeline2(clickedVal);
+        drawTimeline1(clickedVal);
 
-        //$('#client').off('click');
+        $("#timelineSection1").removeClass("hidden");
+        $("#timelineSection2").removeClass("hidden");
+
+        /*$('#toggleHistory').on('click','button.service',function(e){
+
+            $("#timelineSection2").addClass("hidden");
+            $("#timelineSection1").removeClass("hidden");
+            $("#service").addClass("active");
+            $("#opps").removeClass("active");
+
+        });
+        $('#toggleHistory').on('click','button.opps',function(e){
+          //console.log(clickedVal);
+
+          console.log(clickedVal);
+          drawTimeline2();
+          $("#timelineSection2").removeClass("hidden");
+          $("#timelineSection1").addClass("hidden");
+
+          $("#opps").addClass("active");
+          $("#service").removeClass("active");
+
+
+        });*/
+
+
+
 
     });
 

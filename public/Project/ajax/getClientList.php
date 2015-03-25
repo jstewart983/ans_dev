@@ -29,7 +29,7 @@ $str = $row['Company_Name'];
 	if (strlen($str) > 15){
 		$str = substr($str, 0, 17) . '...';
 	}
-echo "<li  role='presentation'><input type='submit' class='client' role='menuitem' tabindex='-1' href='?company=".$row['Company_Name']."'value='".$str."'/></li>";
+echo "<li  role='presentation'><a style='text:decoration:none;' class='client' role='menuitem' tabindex='-1' href='?company=".$row['Company_Name']."'>".$str."</a></li>";
 	/*$str = $row['Company_Name'];
 
 	if (strlen($str) > 15){
