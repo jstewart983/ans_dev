@@ -98,14 +98,27 @@ function getOppTimeline(value){
 
 }*/
 
+function escapeHtml(text) {
+  var map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+
+  return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+}
 
 function drawTimeline1(value){
 
+  var company = value.substr(value.indexOf("=")+1);
+  var parameter = value.substr(0, value.indexOf('=')+1);
 
 
   $.ajax({
     type:"POST",
-    url:"../../ajax/getServiceHistory.php"+value,
+    url:"../../ajax/getServiceHistory.php"+parameter+encodeURIComponent(company),
     success: function(json){
       data = [];
 
@@ -115,7 +128,7 @@ function drawTimeline1(value){
           'start': new Date(parseInt(json[$i]["yearNum"])+","+parseInt(json[$i]["monthNum"])+","+parseInt(json[$i]["dayNum"])),
           //'end':  new Date(json[$i]["yearRes"],json[$i]["monthRes"],json[$i]["dayRes"]),  // end is optional
           'content': "#"+json[$i]["TicketNbr"]+"<br />"+json[$i]["ServiceType"]+"<br />"+json[$i]["Urgency"]
-          'className': 'event'
+          //'className': 'event'
            //Optional: a field 'className'
           // Optional: a field 'editable'
         });
@@ -154,11 +167,12 @@ function drawTimeline1(value){
 
 
 function drawTimeline2(value) {
-
+  var company = value.substr(value.indexOf("=")+1);
+  var parameter = value.substr(0, value.indexOf('=')+1);
 
   $.ajax({
     type:"POST",
-    url:"../../ajax/getOppHistory.php"+value,
+    url:"../../ajax/getOppHistory.php"+parameter+encodeURIComponent(company),
     success: function(json){
 
 
@@ -169,8 +183,8 @@ function drawTimeline2(value) {
         data1.push({
           'start': new Date(parseInt(json[$i]["yearNum"])+","+parseInt(json[$i]["monthNum"])+","+parseInt(json[$i]["dayNum"])),
           'end':  new Date(json[$i]["yearRes"],json[$i]["monthRes"],json[$i]["dayRes"]),  // end is optional
-          'content': json[$i]["oppName"],
-          'className': 'opp'
+          'content': json[$i]["oppName"]
+          //'className': 'opp'
            //Optional: a field 'className'
           // Optional: a field 'editable'
         });
@@ -197,7 +211,8 @@ function drawTimeline2(value) {
 function getClientData(value){
 
 
-
+  var company = value.substr(value.indexOf("=")+1);
+  var parameter = value.substr(0, value.indexOf('=')+1);
 
 
 
@@ -237,7 +252,40 @@ var ctx = document.getElementById("newOld").getContext("2d");
 var myNewChart = new Chart(ctx).Bar(data);
 legend(document.getElementById("newOldLegend"), data);*/
 
+$.ajax({
+type: 'POST',
+url: "../../ajax/lastMonthMrr.php"+parameter+encodeURIComponent(company),
+success: function(json) {
 
+            mrr = [];
+    for(var i = 0; i < json.length; i++) {
+
+    mrr.push (json[i]["AGR_Revenue"]);
+
+}
+
+//console.log(mrr);
+
+     $('#title #mrr').fadeOut(500, function() {
+
+    if(mrr==0){
+      var $span1 = $('<h1 style="text-align:center;" id="mrr">$0</h1>');
+    }else{
+      var $span1 = $('<h1 style="text-align:center;" id="mrr">$'+mrr.toLocaleString()+'</h1>');
+    }
+
+
+    //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
+    $("#mrr").replaceWith($span1);
+    //$("#openProjects").replaceWith($span2);
+    $span1.fadeIn(1200);
+
+});
+
+
+}
+
+});
 
 
 
@@ -263,7 +311,7 @@ legend(document.getElementById("newOldLegend"), data);*/
 
     $.ajax({
     type: 'POST',
-    url: "../../ajax/avgTicketsPerDay.php"+value,
+    url: "../../ajax/avgTicketsPerDay.php"+parameter+encodeURIComponent(company),
     success: function(json) {
 
                 avgTickets = [];
@@ -305,7 +353,7 @@ legend(document.getElementById("newOldLegend"), data);*/
 
 $.ajax({
     type: 'POST',
-    url: "../../ajax/getOpenTicketsEcho.php"+value,
+    url: "../../ajax/getOpenTicketsEcho.php"+parameter+encodeURIComponent(company),
     success: function(json) {
 
                 avgTickets = [];
@@ -340,7 +388,7 @@ $.ajax({
 
     $.ajax({
     type: 'POST',
-    url: "../../ajax/serviceType.php"+value,
+    url: "../../ajax/serviceType.php"+parameter+encodeURIComponent(company),
     success: function(json) {
         //labels = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"];
         var xlabels = [], type_count = [],total_count=[],colors = [];
@@ -504,7 +552,7 @@ $('#wherethestuffis #serviceType').fadeOut(200, function() {
 
 $.ajax({
     type: 'POST',
-    url: "../../ajax/getServersWorkstations.php"+value,
+    url: "../../ajax/getServersWorkstations.php"+parameter+encodeURIComponent(company),
     success: function(json) {
 
         workstations = []; servers = [];
@@ -522,7 +570,7 @@ $.ajax({
 
 $('#compServ').fadeOut(200, function() {
 
-               var $span1 = $('<div id="compServ" class="panel-body"><div class="row"><h1 class="col-xs-6"style="text-align:center;" id="comp">'+workstations+'\n<span><img src="../../css/assets/icons/computer.svg"/></span></h1><h1 class="col-xs-6" style="text-align:center;" id="serv">'+servers+'\n<span><img style="color:#3CB371;" src="../../css/assets/icons/server.svg"  /></span></h1></div></div>');
+               var $span1 = $('<div id="compServ" class="panel-body"><div class="row"><h1 class="col-xs-6"style="text-align:center;" id="comp">'+workstations+'\n<span><img src="../../css/assets/icons/Computer.svg"/></span></h1><h1 class="col-xs-6" style="text-align:center;" id="serv">'+servers+'\n<span><img style="color:#3CB371;" src="../../css/assets/icons/Server.svg"  /></span></h1></div></div>');
 
         $("#compServ").replaceWith($span1);
 
@@ -539,7 +587,7 @@ $('#compServ').fadeOut(200, function() {
 //Get OS Type by client
 $.ajax({
   type:"POST",
-  url:"../../ajax/getOSType.php"+value,
+  url:"../../ajax/getOSType.php"+parameter+encodeURIComponent(company),
   success:function(json){
 
     function getRandomColor() {
@@ -596,7 +644,7 @@ $.ajax({
 
 $.ajax({
     type: 'POST',
-    url: "../../ajax/getLocationCount.php"+value,
+    url: "../../ajax/getLocationCount.php"+parameter+encodeURIComponent(company),
     success: function(json) {
 
       locations = [];
@@ -854,6 +902,9 @@ $(document).ready(function(){
                     }});
 
               getClientData('');
+              //drawTimeline1('');
+              //drawTimeline2('');
+
               //drawTimeline('');
 
     $('#clientTable').on('click','a.client',function(e){
@@ -871,8 +922,9 @@ $(document).ready(function(){
         var title = clickedVal.substr(clickedVal.indexOf("=") + 1);
         $("#title").text(title);
         getClientData(clickedVal);
-        drawTimeline2(clickedVal);
         drawTimeline1(clickedVal);
+        drawTimeline2(clickedVal);
+
 
         $("#timelineSection1").removeClass("hidden");
         $("#timelineSection2").removeClass("hidden");

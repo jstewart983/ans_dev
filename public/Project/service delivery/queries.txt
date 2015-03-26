@@ -1,0 +1,84 @@
+
+
+*******************AVG INITIAL RESPONSE TIME********************************
+
+select avg (x.IRT) as Average_IRT
+from
+(select case when dbo.udf_worktime(dbo.sr_service.Date_Entered, min(dbo.time_entry.Date_Start + dbo.time_entry.Time_Start)) > 0 then
+dbo.udf_worktime(dbo.sr_service.Date_Entered, min(dbo.time_entry.Date_Start + dbo.time_entry.Time_Start)) else 0 end
+as IRT
+from
+
+
+(select (min(dbo.time_entry.Date_Start + dbo.time_entry.Time_Start)) as FTE,
+min(dbo.time_entry.Time_RecID) as Time_RecID, SR_Service_RecID from dbo.Time_Entry
+left outer join
+dbo.Member on dbo.time_entry.Member_RecID = dbo.member.Member_RecID
+where dbo.member.title like '%IT Support%'
+group by SR_Service_RecID) e left outer join
+dbo.Time_Entry on e.Time_RecID = dbo.time_entry.Time_RecID
+
+
+left outer join
+dbo.SR_Service on dbo.Time_Entry.SR_Service_RecID = dbo.sr_service.SR_Service_RecID
+left outer join
+dbo.SR_Board on dbo.SR_Service.SR_Board_RecID = dbo.SR_Board.SR_Board_RecID left outer join
+dbo.Company on dbo.sr_service.Company_RecID = dbo.company.Company_RecID left outer join
+dbo.Member on dbo.time_entry.Member_RecID = dbo.member.Member_RecID
+where dbo.sr_service.Date_Entered >= (GETDATE()-7) and Board_Name = N'My Company/Service' AND (Company_Name <> N'Advanced Network Solutions')
+group by dbo.sr_service.Date_Entered, dbo.sr_service.SR_Service_RecID) x
+
+********************END AVG INITIAL RESPONSE TIME********************************
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+*********************OPEN/CLOSED TICKETS LAST 7 BUSINESS DAYS******************
+
+OPEN:
+select
+datename(DW,CONVERT(date,dbo.sr_service.date_entered)) as Week_Day, COUNT(distinct(dbo.sr_service.date_entered))as Opened_Tickets
+from dbo.SR_Service
+where convert(date,dbo.sr_service.Date_Entered) >= convert(date,GETDATE()-7)
+and CONVERT(date,dbo.sr_service.Date_Entered) <> CONVERT(date,getdate())
+and datename(dw,convert(date,dbo.sr_service.date_entered)) <> 'Saturday'
+and datename(dw,convert(date,dbo.sr_service.date_entered)) <> 'Sunday'
+group by convert(date,dbo.sr_service.Date_Entered)
+
+
+CLOSED:
+select
+datename(DW,CONVERT(date,dbo.sr_service.Date_Closed)) as Week_Day, COUNT(distinct(sr_service.Date_Closed)) as Closed_Tickets
+from dbo.SR_Service
+where convert(date,dbo.sr_service.Date_Closed) >= convert(date,GETDATE()-7)
+and CONVERT(date,dbo.sr_service.Date_Closed) <> CONVERT(date,getdate())
+and datename(dw,convert(date,dbo.sr_service.Date_Closed)) <> 'Saturday'
+and datename(dw,convert(date,dbo.sr_service.Date_Closed)) <> 'Sunday'
+group by convert(date,dbo.sr_service.Date_Closed)
+
+*********************END OPEN/CLOSED TICKETS LAST 7 BUSINESS DAYS**************
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+***********************CLOSED FIRST CALL % - THIS YEAR*************************
+
+select
+(cast((select count(*)
+from dbo.SR_Service left outer join
+dbo.sr_status on dbo.sr_service.sr_status_recid = dbo.sr_status.sr_status_recid
+where convert(date,dbo.sr_service.date_closed) >= '1/1/15' and dbo.sr_status.description = 'Closed - First Call')as float)/
+(select count(*)
+from dbo.sr_service left outer join
+dbo.sr_status on dbo.sr_service.sr_status_recid = dbo.sr_status.sr_status_recid
+where convert(date,dbo.sr_service.Date_Closed) >= '1/1/15' and (dbo.SR_Service.SR_Board_RecID = 1 or dbo.SR_Service.SR_Board_RecID = 30 or
+dbo.SR_Service.SR_Board_RecID = 35 or dbo.SR_Service.SR_Board_RecID = 36 or dbo.SR_Service.SR_Board_RecID = 41)))
+as CFC
+
+***********************END CLOSED FIRST CALL % - THIS YEAR*************************

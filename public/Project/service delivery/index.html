@@ -74,7 +74,7 @@
                 </div>
             </div>
         </div>
-        <p style="text-align:center;">*Data is not real</p>
+
         <!--KPIs-->
         <div style="margin-top:10px;" class="row">
             <div class="col-md-2">
@@ -83,7 +83,7 @@
                         <p style="text-align:center;">Tickets Closed - This Week</p>
                   </div>
                   <div class="panel-body">
-                    <h1 style="text-align:center;">120</h1>
+                    <h1 id="ticketsClosed"style="text-align:center;">0</h1>
                   </div>
                 </div>
             </div>
@@ -93,17 +93,17 @@
                         <p style="text-align:center;">Open Tickets</p>
                   </div>
                   <div class="panel-body">
-                    <h1 style="text-align:center;">2070</h1>
+                    <h1 id="openTickets" style="text-align:center;">0</h1>
                   </div>
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                        <p style="text-align:center;">Utilization % - This Week</p>
+                        <p style="text-align:center;">Closed First Call % - This Year</p>
                   </div>
                   <div class="panel-body">
-                    <h1 style="text-align:center;">67%</h1>
+                    <h1 id="firstCall"style="text-align:center;">0%</h1>
                   </div>
                 </div>
             </div>
@@ -113,7 +113,7 @@
                         <p style="text-align:center;">Billable Hrs - This Week</p>
                   </div>
                   <div class="panel-body">
-                    <h1 style="text-align:center;">60 hrs</h1>
+                    <h1 id="billableHours"style="text-align:center;">0 hrs</h1>
                   </div>
                 </div>
             </div>
@@ -130,10 +130,10 @@
             <div class="col-md-2">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                        <p style="text-align:center;">Inbound Calls - This Week</p>
+                        <p style="text-align:center;">Avg Initial Response Time</p>
                   </div>
                   <div class="panel-body">
-                    <h1 style="text-align:center;">400</h1>
+                    <h1 style="text-align:center;">0%</h1>
                   </div>
                 </div>
             </div>
@@ -143,7 +143,7 @@
             <div class="col-md-6">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                        <p style="text-align:center;">Billable Hrs/day - This Week</p>
+                        <p style="text-align:center;">Billable Hrs/Member - Last 7 days</p>
                   </div>
                   <div class="panel-body">
                     <div style="text-align:center"class="col-md-2">
@@ -158,7 +158,7 @@
         <div class="col-md-6">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                        <p style="text-align:center;">New Tickets vs Tickets Closed - This Week</p>
+                        <p style="text-align:center;">New Tickets vs Tickets Closed - Last 7 days</p>
                   </div>
                   <div class="panel-body">
                     <div style="text-align:center"class="col-md-2">
@@ -174,7 +174,7 @@
             <div class="col-md-6">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                        <p style="text-align:center;">Orphaned Tickets</p>
+                        <p style="text-align:center;">Open Urgent Tickets</p>
                   </div>
                   <div class="panel-body">
                     <table style='width:100%;' class='table table-hover'>

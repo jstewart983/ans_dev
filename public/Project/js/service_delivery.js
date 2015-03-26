@@ -1,10 +1,53 @@
-// Welcome to the RazorFlow Dashbord Quickstart. Simply copy this "dashboard_quickstart"
-// to somewhere in your computer/web-server to have a dashboard ready to use.
-// This is a great way to get started with RazorFlow with minimal time in setup.
-// However, once you're ready to go into deployment consult our documentation on tips for how to
-// maintain the most stable and secure
+function ticketsClosedThisWeek(){}
+
+function ticketsOpen(){
+$.ajax({
+  type:"GET",
+  url:"../../ajax/getServiceHistory.php"
+
+})
+}
+
+function closedFirstCall(){}
+
 
 $(document).ready(function(){
+
+//closed by service deskk and client IT managers
+ticketsClosedThisWeek();
+
+//tickets that service delivery is responsible for
+ticketsOpen();
+setInterval(function(){ ticketsOpen(); }, 5000);
+
+//closed first call % this year
+closedFirstCall();
+
+//billable hours this week
+billableHours();
+setInterval(function(){ billableHours; }, 5000);
+
+//
+
+//last 7 business days
+avgInitialResponse();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 var data = {
     labels: ["Mon", "Tues","Weds","Thurs","Fri"],
