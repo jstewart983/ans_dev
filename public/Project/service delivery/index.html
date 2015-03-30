@@ -82,7 +82,7 @@
                   <div class="panel-heading">
                         <p style="text-align:center;">Tickets Closed - This Week</p>
                   </div>
-                  <div class="panel-body">
+                  <div id="title" class="panel-body">
                     <h1 id="ticketsClosed"style="text-align:center;">0</h1>
                   </div>
                 </div>
@@ -92,7 +92,7 @@
                   <div class="panel-heading">
                         <p style="text-align:center;">Open Tickets</p>
                   </div>
-                  <div class="panel-body">
+                  <div id="title"class="panel-body">
                     <h1 id="openTickets" style="text-align:center;">0</h1>
                   </div>
                 </div>
@@ -100,10 +100,10 @@
             <div class="col-md-2">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                        <p style="text-align:center;">Closed First Call % - This Year</p>
+                        <p style="text-align:center;">Closed First Call % - Last 5 Days</p>
                   </div>
-                  <div class="panel-body">
-                    <h1 id="firstCall"style="text-align:center;">0%</h1>
+                  <div id="title"class="panel-body">
+                    <h1 id="closedFirst"style="text-align:center;">0%</h1>
                   </div>
                 </div>
             </div>
@@ -112,45 +112,45 @@
                   <div class="panel-heading">
                         <p style="text-align:center;">Billable Hrs - This Week</p>
                   </div>
-                  <div class="panel-body">
-                    <h1 id="billableHours"style="text-align:center;">0 hrs</h1>
+                  <div id="title"class="panel-body">
+                    <h1 id="totalBillable"style="text-align:center;">0 hrs</h1>
                   </div>
                 </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-4">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                        <p style="text-align:center;">Time on Phone - This Week</p>
+                        <p style="text-align:center;">Avg Initial Response Time - Last 5 days</p>
                   </div>
-                  <div class="panel-body">
-                    <h1 style="text-align:center;">8.3 hrs</h1>
+                  <div id="title"class="panel-body">
+                    <h1 id="avgResponse"style="text-align:center;">0 minutes</h1>
                   </div>
                 </div>
             </div>
-            <div class="col-md-2">
+            <!--<div class="col-md-2">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                         <p style="text-align:center;">Avg Initial Response Time</p>
                   </div>
-                  <div class="panel-body">
+                  <div id="title"class="panel-body">
                     <h1 style="text-align:center;">0%</h1>
                   </div>
                 </div>
             </div>
-        </div>
+        </div>-->
         <!--Billable hours and new tickets vs closed tickets this week charts-->
         <div class="row">
             <div class="col-md-6">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                        <p style="text-align:center;">Billable Hrs/Member - Last 7 days</p>
+                        <p style="text-align:center;">Billable Hrs/Day - Last 5 days</p>
                   </div>
-                  <div class="panel-body">
+                  <div id="title"class="panel-body">
                     <div style="text-align:center"class="col-md-2">
                           <div style="padding:5px;" id="billableDayLegend">
                           </div>
                         </div>
-                    <canvas id ="billableDay"height="auto"width="auto"></canvas>
+                    <canvas id ="billableDay"height="200"width="500"></canvas>
                   </div>
                 </div>
             </div>
@@ -158,14 +158,14 @@
         <div class="col-md-6">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                        <p style="text-align:center;">New Tickets vs Tickets Closed - Last 7 days</p>
+                        <p style="text-align:center;">New Tickets vs Tickets Closed - Last 5 days</p>
                   </div>
-                  <div class="panel-body">
+                  <div id="title"class="panel-body">
                     <div style="text-align:center"class="col-md-2">
                           <div style="padding:5px;" id="newOldLegend">
                           </div>
                         </div>
-                    <canvas id ="newOld"height="auto"width="auto"></canvas>
+                    <canvas id ="newOld"height="200"width="500"></canvas>
                   </div>
                 </div>
             </div>
@@ -185,7 +185,7 @@
                               <th>Client Name</th>
                               <th>Time Open</th>
                               </tr>
-                              <tbody  class='rowlink'>
+                              <!--<tbody  class='rowlink'>
                               <tr>
                                 <td>20098</td>
                                 <td>Email Issue</td>
@@ -210,7 +210,7 @@
                                 <td>Nashville Opera</td>
                                 <td>2 days</td>
                               </tr>
-                            </tbody>
+                            </tbody>-->
                           </table>
 
                   </div>

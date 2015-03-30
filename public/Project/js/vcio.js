@@ -7,7 +7,7 @@
 $(document).ready(function(){
 
 
-  $.ajax({
+  /*$.ajax({
       type: 'GET',
       url: "../ajax/pastDueCount.php",
       success: function(json) {
@@ -24,9 +24,9 @@ $(document).ready(function(){
   }
 
 
-  $( "#pastDueCounter" ).slideDown( "slow", function() {
+  /*$( "#pastDueCounter" ).slideDown( "slow", function() {
     // Animation complete.
-  
+
 
 
 
@@ -54,7 +54,7 @@ $(document).ready(function(){
 
       }
 
-  });
+  });*/
 
 
 
