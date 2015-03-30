@@ -202,7 +202,7 @@
               var myNewChart = new Chart(ctx).Bar(data,{scaleShowGridLines:false,scaleShowVerticalLines: false,scaleShowHorizontalLines:false});
               console.log(myNewChart.datasets[0].bars.length);
               console.log(myNewChart.datasets[1].bars.length);
-              setInterval(function(){
+              setInterval(function() {
 
                 // Get a random index point
                 var indexToUpdate = Math.round(Math.random() * data.labels.length-1);
@@ -210,7 +210,7 @@
 
                 myNewChart.datasets[1].bars[indexToUpdate].value = Math.floor(Math.random()*80)+1;
                 myNewChart.datasets[0].bars[indexToUpdate].value = Math.floor(Math.random()*80)+1;
-                
+
 
                 myNewChart.update();
                 //myNewChart.addData(Math.floor(Math.random()*100)+1,Math.floor(Math.random()*100)+1,labels[Math.floor(Math.random()*14)+2]);

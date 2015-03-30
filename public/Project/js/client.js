@@ -260,9 +260,11 @@ success: function(json) {
             mrr = [];
     for(var i = 0; i < json.length; i++) {
 
-    mrr.push (json[i]["AGR_Revenue"]);
+    mrr.push (json[i]["MRR"]);
 
 }
+
+
 
 //console.log(mrr);
 
@@ -271,7 +273,10 @@ success: function(json) {
     if(mrr==0){
       var $span1 = $('<h1 style="text-align:center;" id="mrr">$0</h1>');
     }else{
-      var $span1 = $('<h1 style="text-align:center;" id="mrr">$'+mrr.toLocaleString()+'</h1>');
+      var total = mrr.reduce(function(a, b) {
+        return a + b;
+      });
+      var $span1 = $('<h1 style="text-align:center;" id="mrr">$'+total.toLocaleString()+'</h1>');
     }
 
 
@@ -390,6 +395,19 @@ $.ajax({
     type: 'POST',
     url: "../../ajax/serviceType.php"+parameter+encodeURIComponent(company),
     success: function(json) {
+      console.log(json);
+      json = json.sort();
+      json.sort(function (a, b) {
+  if (a.Description > b.Description) {
+    return 1;
+  }
+  if (a.Description < b.Description) {
+    return -1;
+  }
+  // a must be equal to b
+  return 0;
+});
+      console.log(json);
         //labels = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"];
         var xlabels = [], type_count = [],total_count=[],colors = [];
             for(var i = 0; i < json.length; i++) {
@@ -411,6 +429,10 @@ function getRandomColor() {
     }
     return color;
 }
+
+
+
+
         var radarChartData = {
 
         labels : xlabels,
@@ -501,7 +523,7 @@ doughnutData = [
 
 
 
-        var $span2 = $('<canvas id="serviceType2" style="width:100%;height:100%;"></canvas>');
+        var $span2 = $('<canvas id="serviceType2" style="width:100%;height:200px;"></canvas>');
         //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
         $("#serviceType2").replaceWith($span2);
         //$("#openProjects").replaceWith($span2);
@@ -523,7 +545,7 @@ $('#wherethestuffis #serviceType').fadeOut(200, function() {
 
 
 
-        var $span2 = $('<canvas id="serviceType" style="width:100%;height:100%;"></canvas>');
+        var $span2 = $('<canvas id="serviceType" style="width:100%;height:200px;"></canvas>');
         //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
         $("#serviceType").replaceWith($span2);
         //$("#openProjects").replaceWith($span2);
@@ -598,40 +620,62 @@ $.ajax({
         }
         return color;
     }
+          var color1 = [],color2 = [],count = [],type = [];
+          for($i=0;$i<json.length;$i++){
+
+          color1.push(getRandomColor());
+          color2.push(getRandomColor());
+          count.push(json[$i]["osCount"]);
+          type.push(json[$i]["OS"]);
 
 
 
 
+          }
 
 
 
           $('#wherethestuffis #osType').fadeOut(200, function() {
 
 
-          var $span2 = $('<canvas id="osType" style="width:100%;height:100%;"></canvas>');
-          //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
-          $("#osType").replaceWith($span2);
-          //$("#openProjects").replaceWith($span2);
-          $span2.fadeIn(900);
-          //$span2.fadeIn(500);
+ var $span2 = $('<canvas id="osType" style="width:100%;height:200px"></canvas>');
+ //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
+ $("#osType").replaceWith($span2);
+ //$("#openProjects").replaceWith($span2);
+ $span2.fadeIn(900);
+ //$span2.fadeIn(500);
 
-          var RCM = document.getElementById("osType").getContext("2d");
-          pieData = [];
-          var myPieChart = new Chart(RCM).PolarArea(pieData);
+ var RCM = document.getElementById("osType").getContext("2d");
+ pieData = [];
+ var myPieChart = new Chart(RCM).PolarArea(pieData);
+ //myPieChart.clear();
 
-          for($i=0;$i<json.length;$i++){
 
-            myPieChart.addData({
-                value: json[$i]["osCount"],
-                color: getRandomColor(),
-                highlight: getRandomColor(),
-                label: json[$i]["OS"]
-            });
 
-            myPieChart.update();
-          }
+ myPieChart.removeData();
+ myPieChart.update();
 
-      });
+ for($i=0;$i<count.length;$i++){
+
+   myPieChart.addData({
+
+       value: count[$i],
+       color: color1[$i],
+       highlight: color2[$i],
+       label: type[$i]
+   });
+
+   myPieChart.update();
+ }
+
+});
+
+
+
+
+
+
+
 
 
   }
