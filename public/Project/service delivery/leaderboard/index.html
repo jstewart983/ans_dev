@@ -1,0 +1,188 @@
+<!doctype html >
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+        <title>Leaderboard</title>
+        <link rel="stylesheet" type="text/css" href="../../css/demo.css">
+
+        <link rel="stylesheet" type="text/css" href="../../css/navbar.css">
+        <link rel="stylesheet" type="text/css" href="../../css/chartist.min.css">
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <script type="text/javascript" src="../../js/jquery.min.js"></script>
+
+        <script type="text/javascript" src="../../js/Chart.js"></script>
+        <script type="text/javascript" src="../.../js/legend.js"></script>
+        <script type="text/javascript" src="../../js/chartist.js"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+        <script>$('.navmenu').offcanvas()</script>
+        <script>
+            function myFunction() {
+
+            var x = document.title;
+            document.getElementById("title").innerHTML = x;
+
+            }
+            window.onload = myFunction;
+        </script>
+    </head>
+    <style type="text/css">
+    .navmenu .navmenu-default{
+        background-color: #fff;
+        }
+
+      h2{
+        color:#fff;
+      }
+      .row{
+        padding:10px;
+      }
+      img{
+        border-radius:100%;
+        -webkit-box-shadow: 6px 10px 12px -5px rgba(0,0,0,0.75);
+        -moz-box-shadow: 6px 10px 12px -5px rgba(0,0,0,0.75);
+        box-shadow: 6px 10px 12px -5px rgba(0,0,0,0.75);
+      }
+      h3{
+        color:#00FA9A;
+      }
+        </style>
+    <body style="background-color:#282828;"class="canvas">
+      <div style="margin-top:10px;"class="container">
+        <div class="row">
+          <div class="col-md-2">
+            <h2>IT Guy</h2>
+          </div>
+          <div class="col-md-2">
+            <h2 style="text-align:center">Billable Hrs</h2>
+          </div>
+          <div class="col-md-2">
+            <h2 style="text-align:center">Tickets Resolved</h2>
+          </div>
+          <div class="col-md-2">
+            <h2 style="text-align:center">Closed First Call %</h2>
+          </div>
+          <div class="col-md-2">
+            <h2 style="text-align:center">Metric 1</h2>
+          </div>
+          <div class="col-md-2">
+            <h2 style="text-align:center">Metric 2</h2>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <img src="https://avatars3.githubusercontent.com/u/7293524?v=3&s=460" style="height:100px;width:auto;" />
+          </div>
+          <div class="col-md-2">
+            <h3 style="text-align:center">4 hrs</h3>
+          </div>
+          <div class="col-md-2">
+            <h3 style="text-align:center">12</h3>
+          </div>
+          <div class="col-md-2">
+            <h3 style="text-align:center">20%</h3>
+          </div>
+          <div class="col-md-2">
+            <h3 style="text-align:center">120</h3>
+          </div>
+          <div class="col-md-2">
+            <h3 style="text-align:center">2</h3>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <img src="https://avatars3.githubusercontent.com/u/7293524?v=3&s=460" style="height:100px;width:auto;" />
+          </div>
+          <div class="col-md-2">
+            <h3 style="text-align:center">4 hrs</h3>
+          </div>
+          <div class="col-md-2">
+            <h3 style="text-align:center">12</h3>
+          </div>
+          <div class="col-md-2">
+            <h3 style="text-align:center">20%</h3>
+          </div>
+          <div class="col-md-2">
+            <h3 style="text-align:center">120</h3>
+          </div>
+          <div class="col-md-2">
+            <h3 style="text-align:center">2</h3>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <img src="https://avatars3.githubusercontent.com/u/7293524?v=3&s=460" style="height:100px;width:auto;" />
+          </div>
+          <div class="col-md-2">
+            <h3 style="text-align:center">4 hrs</h3>
+          </div>
+          <div class="col-md-2">
+            <h3 style="text-align:center">12</h3>
+          </div>
+          <div class="col-md-2">
+            <h3 style="text-align:center">20%</h3>
+          </div>
+          <div class="col-md-2">
+            <h3 style="text-align:center">120</h3>
+          </div>
+          <div class="col-md-2">
+            <h3 style="text-align:center">2</h3>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <img src="https://avatars3.githubusercontent.com/u/7293524?v=3&s=460" style="height:100px;width:auto;" />
+          </div>
+          <div class="col-md-2">
+            <h3 style="text-align:center">4 hrs</h3>
+          </div>
+          <div class="col-md-2">
+            <h3 style="text-align:center">12</h3>
+          </div>
+          <div class="col-md-2">
+            <h3 style="text-align:center">20%</h3>
+          </div>
+          <div class="col-md-2">
+            <h3 style="text-align:center">120</h3>
+          </div>
+          <div class="col-md-2">
+            <h3 style="text-align:center">2</h3>
+          </div>
+
+        </div>
+        <div class="row">
+
+        </div>
+      </div>
+        <!-- Don't delete this div. This is where RazorFlow will get rendered. -->
+        <script charset="utf-8">
+        new Chartist.Bar('.ct-chart', {
+labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+series: [
+  [5, 4, 3, 7, 5, 10, 3],
+  [3, 2, 9, 5, 4, 6, 4]
+]
+}, {
+seriesBarDistance: 10,
+reverseData: true,
+horizontalBars: true,
+axisY: {
+  offset: 70
+}
+});
+        </script>
+    </body>
+
+</html>

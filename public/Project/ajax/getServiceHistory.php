@@ -6,10 +6,10 @@ ini_set('memory_limit', '512M');
 if(isset($_GET['company'])){
 
 $company = $_GET['company'];
-$results = mssql_query('select TicketNbr,Urgency,ServiceType,month(date_entered) as monthNum,year(date_entered) as yearNum,day(date_entered) as dayNum,CAST(date_entered AS time),month(date_resolved_utc) as monthRes,year(date_resolved_utc) as yearRes,day(date_resolved_utc) as dayRes from dbo.v_rpt_service
+$results = mssql_query('select TicketNbr,Urgency,ServiceType,month(date_entered) as monthNum,year(date_entered) as yearNum,day(date_entered) as dayNum,cast(date_entered as time) [time],month(date_resolved_utc) as monthRes,year(date_resolved_utc) as yearRes,day(date_resolved_utc) as dayRes from dbo.v_rpt_service
 where company_name = "'.$company.'" and Board_Name = "My Company/Service"');
 }else{
-  $results = mssql_query('select TicketNbr,Urgency,ServiceType,month(date_entered) as monthNum,year(date_entered) as yearNum,day(date_entered) as dayNum,CAST(date_entered AS time),month(date_resolved_utc) as monthRes,year(date_resolved_utc) as yearRes,day(date_resolved_utc) as dayRes from dbo.v_rpt_service
+  $results = mssql_query('select TicketNbr,Urgency,ServiceType,month(date_entered) as monthNum,year(date_entered) as yearNum,day(date_entered) as dayNum,cast(date_entered as time) [time],month(date_resolved_utc) as monthRes,year(date_resolved_utc) as yearRes,day(date_resolved_utc) as dayRes from dbo.v_rpt_service
   where  Board_Name = "My Company/Service"');
 }
 

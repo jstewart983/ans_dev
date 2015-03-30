@@ -160,7 +160,7 @@
 
                 </div>
               </div>
-              <div class="row">
+              <div style="opacity:.9;" class="row">
                 <div class="col-md-12">
                   <canvas id="barChart" style="margin-top:-500px;position:fixed;display:block;margin-left:-280px;margin-right:auto;opacity:.9;width:100%;margin-bottom:40px;z-index:-1;" height="300"></canvas>
                 </div>
@@ -200,12 +200,11 @@
 
               var ctx = document.getElementById("barChart").getContext("2d");
               var myNewChart = new Chart(ctx).Bar(data,{scaleShowGridLines:false,scaleShowVerticalLines: false,scaleShowHorizontalLines:false});
-              console.log(myNewChart.datasets[0].bars.length);
-              console.log(myNewChart.datasets[1].bars.length);
+              console.log(data.labels.length);
               setInterval(function() {
 
                 // Get a random index point
-                var indexToUpdate = Math.round(Math.random() * data.labels.length-1);
+                var indexToUpdate = Math.floor(Math.random() * data.labels.length-1)+1;
 
 
                 myNewChart.datasets[1].bars[indexToUpdate].value = Math.floor(Math.random()*80)+1;
@@ -214,7 +213,7 @@
 
                 myNewChart.update();
                 //myNewChart.addData(Math.floor(Math.random()*100)+1,Math.floor(Math.random()*100)+1,labels[Math.floor(Math.random()*14)+2]);
-              }, 1000);
+              }, 800);
 
             </script>
           </body>

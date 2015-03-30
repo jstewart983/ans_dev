@@ -123,9 +123,10 @@ function drawTimeline1(value){
       data = [];
 
       for($i=0;$i<json.length;$i++){
+        //console.log(json[$i]["timeNum"]);
         //var date = parseInt(json[$i]["yearNum"])+","+parseInt(json[$i]["monthNum"])+","+parseInt(json[$i]["dayNum"]);
         data.push({
-          'start': new Date(parseInt(json[$i]["yearNum"])+","+parseInt(json[$i]["monthNum"])+","+parseInt(json[$i]["dayNum"])),
+          'start': new Date(json[$i]["yearNum"],json[$i]["monthNum"],json[$i]["dayNum"]),
           //'end':  new Date(json[$i]["yearRes"],json[$i]["monthRes"],json[$i]["dayRes"]),  // end is optional
           'content': "#"+json[$i]["TicketNbr"]+"<br />"+json[$i]["ServiceType"]+"<br />"+json[$i]["Urgency"]
           //'className': 'event'
@@ -179,9 +180,9 @@ function drawTimeline2(value) {
       data1 = [];
 
       for($i=0;$i<json.length;$i++){
-        var date = parseInt(json[$i]["yearNum"])+","+parseInt(json[$i]["monthNum"])+","+parseInt(json[$i]["dayNum"]);
+        //var date = parseInt(json[$i]["yearNum"])+","+parseInt(json[$i]["monthNum"])+","+parseInt(json[$i]["dayNum"]);
         data1.push({
-          'start': new Date(parseInt(json[$i]["yearNum"])+","+parseInt(json[$i]["monthNum"])+","+parseInt(json[$i]["dayNum"])),
+          'start': new Date(json[$i]["yearNum"],json[$i]["monthNum"],json[$i]["dayNum"]),
           'end':  new Date(json[$i]["yearRes"],json[$i]["monthRes"],json[$i]["dayRes"]),  // end is optional
           'content': json[$i]["oppName"]
           //'className': 'opp'
@@ -276,7 +277,10 @@ success: function(json) {
       var total = mrr.reduce(function(a, b) {
         return a + b;
       });
-      var $span1 = $('<h1 style="text-align:center;" id="mrr">$'+total.toLocaleString()+'</h1>');
+      total = total.toFixed(2).replace(/./g, function(c, i, a) {
+        return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c;
+        });
+      var $span1 = $('<h1 style="text-align:center;" id="mrr">$'+total+'</h1>');
     }
 
 
@@ -412,9 +416,9 @@ $.ajax({
         var xlabels = [], type_count = [],total_count=[],colors = [];
             for(var i = 0; i < json.length; i++) {
 
-                label:xlabels.push (json[i]["Description"]);
-                value: type_count.push (parseInt(json[i]["total_hours"]));
-                value: total_count.push (parseInt(json[i]["typeCount"]));
+                label:xlabels.push(json[i]["Description"]);
+                value: type_count.push(json[i]["total_hours"]);
+                value: total_count.push(json[i]["typeCount"]);
                 //fillColor: colors.push (getRandomColor());
 
                 }
