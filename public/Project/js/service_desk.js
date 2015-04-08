@@ -1,0 +1,764 @@
+
+function ticketsClosedThisWeek(){
+
+  $.ajax({
+    type:"GET",
+    url:"../../ajax/servicedelivery/ticketsClosed.php",
+    success:function(json){
+
+        var closed_tickets = [];
+
+        for($i=0;$i<json.length;$i++){
+
+          closed_tickets.push(json[$i]["closedTickets"]);
+
+        }
+
+        $("#title #closedTicketsTitle").fadeOut(500,function(){
+
+          $modal = $('#modal-title').text();
+
+          $title = $('#closedTicketsTitle').text();
+
+          $modal = $title;
+
+          $p = $('<p id="closedTicketsTitle"  style="text-align:center;">Tickets Closed - This Week <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+          $("#closedTicketsTitle").replaceWith($p);
+          $p.fadeIn(1200);
+
+        });
+        $("#title #ticketsClosed").fadeOut(500,function(){
+
+          if(closed_tickets==0){
+            var $span1 = $('<h1 style="text-align:center;" id="ticketsClosed">0</h1>');
+          }else{
+            var $span1 = $('<h1 style="text-align:center;" id="ticketsClosed">'+closed_tickets+'</h1>');
+          }
+
+          //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
+          $("#ticketsClosed").replaceWith($span1);
+          //$("#openProjects").replaceWith($span2);
+          $span1.fadeIn(1200);
+
+        });
+
+    }
+
+  });
+
+
+}
+
+function ticketsOpen(){
+
+$.ajax({
+  type:"GET",
+  url:"../../ajax/servicedelivery/getOpenTicketsService.php",
+success:function(json){
+
+  var open_tickets = [];
+
+  for($i=0;$i<json.length;$i++){
+
+    open_tickets.push(json[$i]["openTickets"]);
+
+
+      }
+      $("#title #openTicketsTitle").fadeOut(500,function(){
+        $title = $('#openTicketsTitle').text();
+        $p = $('<p id="openTicketsTitle"  style="text-align:center;">Open Tickets <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+        $("#openTicketsTitle").replaceWith($p);
+        $p.fadeIn(1200);
+
+      });
+
+
+      $('#title #openTickets').fadeOut(500, function() {
+
+     if(open_tickets==0){
+       var $span1 = $('<h1 style="text-align:center;" id="openTickets">0</h1>');
+     }else{
+       var $span1 = $('<h1 style="text-align:center;" id="openTickets">'+open_tickets+'</h1>');
+     }
+
+
+     //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
+     $("#openTickets").replaceWith($span1);
+     //$("#openProjects").replaceWith($span2);
+     $span1.fadeIn(1200);
+
+      });
+
+    }
+  });
+}
+
+function closedFirstCall(){
+
+  $.ajax({
+    type:"GET",
+    url:"../../ajax/servicedelivery/closedFirstCall.php",
+    success: function(json){
+
+      var first_call = [];
+
+      for($i=0;$i<json.length;$i++){
+
+        first_call.push(json[$i]["CFC"]);
+
+
+      }
+
+      $("#title #closedFirstTitle").fadeOut(500,function(){
+        $title = $('#closedFirstTitle').text();
+        $p = $('<p id="closedFirstTitle"  style="text-align:center;">Closed First Call % <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+        $("#closedFirstTitle").replaceWith($p);
+        $p.fadeIn(1200);
+
+      });
+
+      $("#title #closedFirst").fadeOut(500,function(){
+
+        if(first_call==0){
+          var $span1 = $('<h1 style="text-align:center;" id="closedFirst">0%</h1>');
+        }else{
+          var $span1 = $('<h1 style="text-align:center;" id="closedFirst">'+Math.round((first_call*100))+'%</h1>');
+        }
+
+
+        //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
+        $("#closedFirst").replaceWith($span1);
+        //$("#openProjects").replaceWith($span2);
+        $span1.fadeIn(1200);
+
+      });
+
+    }
+
+
+  });
+
+
+}
+
+function getBillableHoursTotal(){
+
+  $.ajax({
+    type:"GET",
+    url:"../../ajax/servicedelivery/getServiceBillableHours.php",
+    success:function(json){
+
+      var total_hours = [];
+
+      for($i=0;$i<json.length;$i++){
+
+        total_hours.push(json[$i]["computed"]);
+
+      }
+
+      $("#title #totalBillableTitle").fadeOut(500,function(){
+        $title = $('#totalBillableTitle').text();
+        $p = $('<p id="totalBillableTitle"  style="text-align:center;">Billable Hrs - This Week <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+        $("#totalBillableTitle").replaceWith($p);
+        $p.fadeIn(1200);
+
+      });
+
+
+      $("#title #totalBillable").fadeOut(500,function(){
+
+        if(total_hours==0){
+          var $span1 = $('<h1 style="text-align:center;" id="closedFirst">0 hrs</h1>');
+        }else{
+          var $span1 = $('<h1 style="text-align:center;" id="closedFirst">'+Math.round(total_hours)+' hrs</h1>');
+        }
+
+
+        //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
+        $("#totalBillable").replaceWith($span1);
+        //$("#openProjects").replaceWith($span2);
+        $span1.fadeIn(1200);
+
+      });
+
+    }
+
+  });
+
+}
+
+function avgInitialResponse(){
+
+    $.ajax({
+
+      type:"GET",
+      url:"../../ajax/servicedelivery/avgInitialResponse.php",
+      success:function(json){
+
+        var avg_response = [];
+
+        for($i=0;$i<json.length;$i++){
+
+          avg_response.push(json[$i]["Average_IRT"]);
+
+        }
+
+        $("#title #avgResponseTitle").fadeOut(500,function(){
+          $title = $('#avgResponseTitle').text();
+          $p = $('<p id="avgResponseTitle"  style="text-align:center;">Avg Initial Response Time - Last 7 days <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+          $("#avgResponseTitle").replaceWith($p);
+          $p.fadeIn(1200);
+
+        });
+
+        $("#title #avgResponse").fadeOut(500,function(){
+
+          if(avg_response==0){
+            var $span1 = $('<h1 style="text-align:center;" id="avgResponse">0 minutes</h1>');
+          }else{
+            var $span1 = $('<h1 style="text-align:center;" id="avgResponse">'+Math.round(avg_response)+' minutes</h1>');
+          }
+
+
+          //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
+          $("#avgResponse").replaceWith($span1);
+          //$("#openProjects").replaceWith($span2);
+          $span1.fadeIn(1200);
+
+        });
+
+      }
+    });
+
+
+
+}
+
+
+function billableByDay(){
+  $.ajax({
+
+    type:"GET",
+    url:"../../ajax/servicedelivery/billableByMember.php",
+    success:function(json){
+
+      function getRandomColor() {
+          var letters = '0123456789ABCDEF'.split('');
+          var color = '#';
+          for (var i = 0; i < 6; i++ ) {
+              color += letters[Math.floor(Math.random() * 16)];
+          }
+          return color;
+      }
+
+      var day_labels = ["Mon","Tues","Weds","Thurs","Fri"];
+      var members = [];
+      var fillColor = [];
+      var hours = [];
+      var highlightFill = [];
+      var highlightStroke = [];
+
+
+
+      for($i=0;$i<json.length;$i++){
+
+
+        members.push(json[$i]["member_id"]);
+        hours.push(json[$i]["billable_hours"]);
+        fillColor.push("rgba(227, 75, 0, .5)");
+        highlightFill.push("rgba(227, 75, 0, .8)");
+        highlightStroke.push("rgba(227, 75, 0, .7)");
+
+    }
+
+console.log(fillColor);
+
+
+var data = {
+    labels: members,
+    datasets: [
+        {
+
+            fillColor: "rgba(227, 75, 0, .5)",
+            strokeColor: "rgba(227, 75, 0, .8)",
+            highlightFill: "rgba(227, 75, 0, .75)",
+            highlightStroke: "rgba(227, 75, 0, .1)",
+            data:hours,
+            label: "Billable hrs"
+        }
+    ]
+};
+
+      /*$("#title #billableDay").fadeOut(500,function(){
+
+
+        $span1 = $('<canvas id ="billableDay"height="auto"width="auto"></canvas>');
+
+        //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
+        $("#billableDay").replaceWith($span1);
+        //$("#openProjects").replaceWith($span2);
+        $span1.fadeIn(1200);
+
+      });*/
+
+      var ctx = document.getElementById("billableDay").getContext("2d");
+      var myNewChart = new Chart(ctx).Bar(data);
+
+    }
+
+  });
+
+}
+
+
+function newVsOld(){
+
+  $.ajax({
+
+    type:"GET",
+    url:"../../ajax/servicedelivery/closedTicketsTrailingSeven.php",
+    success:function(json1){
+      var tickets_created = [];
+      var tickets_closed = [];
+      var day_labels = [];
+
+      $.ajax({
+
+        type:"GET",
+        url:"../../ajax/servicedelivery/openTicketsTrailingSeven.php",
+        success:function(json2){
+
+          for($i=0;$i<json2.length;$i++){
+
+            //day_labels.push(json2[$i]["Week_Day"]);
+            tickets_created.push(json2[$i]["Opened_Tickets"]);
+
+          }
+
+          for($i=0;$i<json1.length;$i++){
+
+            day_labels.push(json1[$i]["Week_Day"]);
+            tickets_closed.push(json1[$i]["Closed_Tickets"]);
+
+          }
+
+
+          var data = {
+              labels: day_labels,
+              datasets: [
+                  {
+
+                      fillColor: "rgba(220,220,220,0.5)",
+                      strokeColor: "rgba(220,220,220,0.8)",
+                      highlightFill: "rgba(220,220,220,0.75)",
+                      highlightStroke: "rgba(220,220,220,1)",
+                      data:tickets_created,
+                      label: "New Tickets"
+                  },
+                  {
+
+                      fillColor: "rgba(120,220,220,0.5)",
+                      strokeColor: "rgba(120,220,220,0.8)",
+                      highlightFill: "rgba(120,220,220,0.75)",
+                      highlightStroke: "rgba(120,220,220,1)",
+                      data:tickets_closed,
+                      label: "Tickets Closed"
+                  }
+              ]
+          };
+          var ctx = document.getElementById("newOld").getContext("2d");
+          var myNewChart = new Chart(ctx).Bar(data);
+          legend(document.getElementById("newOldLegend"), data);
+
+          //console.log(tickets_created);
+        }
+
+      });
+
+
+
+
+      /*for($i=0;$i<json.length;$i++){
+
+        day_labels.push(json[$i]["Week_Day"]);
+        tickets_closed.push(json[$i]["Closed_Tickets"]);
+
+      }*/
+      //console.log(tickets_created);
+
+
+      /*$("#title #billableDay").fadeOut(500,function(){
+
+
+        $span1 = $('<canvas id ="billableDay"height="auto"width="auto"></canvas>');
+
+        //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
+        $("#billableDay").replaceWith($span1);
+        //$("#openProjects").replaceWith($span2);
+        $span1.fadeIn(1200);
+
+      });*/
+
+
+
+    }
+
+  });
+
+}
+
+function getTicketHistory(){
+
+  $.ajax({
+
+    type:"GET",
+    url:"../../ajax/servicedelivery/ticketCountHistory.php",
+    success:function(json){
+
+      var day_labels = [];
+      var hours = [];
+      var hours2 = [];
+      var workHours = [];
+
+      $.ajax({
+        type:"GET",
+        url:"../../ajax/servicedelivery/hoursByMonthResults.php",
+        success:function(json1){
+
+          for($i=0;$i<json.length;$i++){
+
+            day_labels.push(json[$i]["month"]+"-"+json[$i]["year"]);
+            hours.push(json[$i]["Tickets"]);
+            hours2.push(json[$i]["Closed"]);
+
+          }
+
+          for($i=0;$i<json1.length;$i++){
+
+
+
+            workHours.push(json1[$i]["Billable_Hours"]);
+
+          }
+
+          var data = {
+              labels: day_labels,
+              datasets: [
+
+                  {
+
+                      fillColor: "rgba(220,220,220,0.5)",
+                      strokeColor: "rgba(220,220,220,0.8)",
+                      pointColor: "rgba(220,220,220,1)",
+                      pointStrokeColor: "#fff",
+                      pointHighlightFill: "#fff",
+                      pointHighlightStroke: "rgba(220,220,220,1)",
+                      data: hours,
+                      label: "Tickets Created"
+                  },
+                  {
+                label: "Tickets Closed",
+                fillColor: "rgba(151,187,205,0.2)",
+                strokeColor: "rgba(151,187,205,1)",
+                pointColor: "rgba(151,187,205,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                data:hours2
+            },
+            {
+          label: "Hours Worked",
+          fillColor: "rgba(130,450,205,0.2)",
+          strokeColor: "rgba(130,450,205,1)",
+          pointColor: "rgba(130,450,205,1)",
+          pointStrokeColor: "#fff",
+          pointHighlightFill: "#fff",
+          pointHighlightStroke: "rgba(151,187,205,1)",
+          data:workHours
+      }
+
+              ]
+          };
+
+          /*$("#title #billableDay").fadeOut(500,function(){
+
+
+            $span1 = $('<canvas id ="billableDay"height="auto"width="auto"></canvas>');
+
+            //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
+            $("#billableDay").replaceWith($span1);
+            //$("#openProjects").replaceWith($span2);
+            $span1.fadeIn(1200);
+
+          });*/
+
+          var ctx = document.getElementById("ticketChart").getContext("2d");
+          var myNewChart = new Chart(ctx).Line(data);
+          legend(document.getElementById("ticketChartLegend"), data);
+
+
+        }
+
+      });
+
+
+    }
+
+  });
+
+
+}
+
+function urgentTickets(){
+
+  $.ajax({
+    type:"GET",
+    url:"../../ajax/servicedelivery/openUrgentTickets.php",
+    success:function(table){
+
+      $('#urgentTicketsTable').fadeOut(600, function() {
+
+            var $span1 = $('<div id ="urgentTicketsTable">'+table+'</div>');
+
+
+
+             $("#urgentTicketsTable").replaceWith($span1);
+
+           $span1.fadeIn(800);
+
+
+
+          });
+
+
+    }
+  });
+
+}
+
+function topTypes(){
+
+  $.ajax({
+
+    type:"GET",
+    url:"../../ajax/servicedelivery/topTypes.php",
+    success:function(json){
+
+      console.log(json);
+      json = json.sort();
+      json.sort(function (a, b) {
+  if (a.Description > b.Description) {
+    return 1;
+  }
+  if (a.Description < b.Description) {
+    return -1;
+  }
+  // a must be equal to b
+  return 0;
+});
+      console.log(json);
+        //labels = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"];
+        var xlabels = [], type_count = [],colors = [];
+            for(var i = 0; i < json.length; i++) {
+
+                label:xlabels.push(json[i]["Description"]);
+                //value: type_count.push(json[i]["total_hours"]);
+                value: type_count.push(json[i]["typeCount"]);
+                //fillColor: colors.push (getRandomColor());
+
+                }
+
+
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+
+
+
+
+
+
+
+
+doughnutData = [
+                {
+                    value: type_count[0],
+                    color: getRandomColor(),
+                    highlight: getRandomColor(),
+                    label: xlabels[0]
+                },
+                {
+                    value: type_count[1],
+                    color: getRandomColor(),
+                    highlight: getRandomColor(),
+                    label: xlabels[1]
+                },
+                {
+                    value: type_count[2],
+                    color: getRandomColor(),
+                    highlight: getRandomColor(),
+                    label: xlabels[2]
+                },
+                {
+                    value: type_count[3],
+                    color: getRandomColor(),
+                    highlight: getRandomColor(),
+                    label: xlabels[3]
+                },
+                {
+                    value: type_count[4],
+                    color: getRandomColor(),
+                    highlight: getRandomColor(),
+                    label: xlabels[4]
+                },
+                {
+                    value: type_count[5],
+                    color: getRandomColor(),
+                    highlight: getRandomColor(),
+                    label: xlabels[5]
+                },
+                {
+                    value: type_count[6],
+                    color: getRandomColor(),
+                    highlight: getRandomColor(),
+                    label: xlabels[6]
+                },
+                {
+                    value: type_count[7],
+                    color: "#FDB45C",
+                    highlight: "#FFC870",
+                    label: xlabels[7]
+                },
+                {
+                    value: type_count[8],
+                    color: "#46BFBD",
+                    highlight: "#5AD3D1",
+                    label: xlabels[8]
+                },
+                {
+                    value: type_count[9],
+                    color:"#F7464A",
+                    highlight: "#FF5A5E",
+                    label: xlabels[9]
+                },
+            ];
+
+
+
+        $('#title #ticketsByType').fadeOut(200, function() {
+
+
+
+
+
+        var $span2 = $('<canvas id="ticketsByType" style="width:300px;height:278px;"></canvas>');
+        //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
+        $("#ticketsByType").replaceWith($span2);
+        //$("#openProjects").replaceWith($span2);
+        $span2.fadeIn(900);
+        //$span2.fadeIn(500);
+
+        var rCM = document.getElementById("ticketsByType").getContext("2d");
+
+        var projectChart = new Chart(rCM).Doughnut(doughnutData);
+        legend(document.getElementById("ticketsByTypeLegend"), doughnutData);
+
+    });
+
+
+
+
+
+
+
+    }
+
+  });
+
+}
+
+
+
+
+$(document).ready(function(){
+
+
+//closed by service desk and client IT managers
+ticketsClosedThisWeek();
+//setInterval(function(){ ticketsClosedThisWeek(); }, 10000);
+//tickets that service delivery is responsible for
+ticketsOpen();
+//setInterval(function(){ ticketsOpen(); }, 10000);
+
+//closed first call % this year
+closedFirstCall();
+
+//billable hours this week
+getBillableHoursTotal();
+//setInterval(function(){ getBillableHoursTotal(); }, 60000);
+
+
+//last 7 business days
+avgInitialResponse()
+
+
+//billable by day - last 7 days
+billableByDay();
+
+
+//new tickets vs tickets closed by day - last 7 days
+newVsOld();
+
+
+//urgent tickets that are open
+urgentTickets();
+
+//top tickets by service type this week
+topTypes();
+
+
+//Ticket count since the beginning of time(for ANS)
+getTicketHistory();
+
+// Fill modal with content from link href
+$("#basicModal").on("show.bs.modal", function(e) {
+
+    var link = $(e.relatedTarget);
+    $(this).find(".modal-title").text(link.attr("data-title"));
+    $(this).find("#query").text(link.attr("data-query"));
+    $(this).find("#datasource").text(link.attr("data-datasource"));
+    $(this).find("#description").text(link.attr("data-description"));
+});
+
+/*$(function () {
+$('#title #info').click(function(e){
+
+ console.log("registered");
+ $title = $(this).data('data-title');
+ $datasource = $(this).data('data-datasource');
+ $query = $(this).data('data-query');
+ $description = $(this).data('data-description');
+
+ $('modal-title').text($title);
+ $('#datasource').text($datasource);
+ $('#query').text($query);
+ $('#description').text($description);
+  });
+
+
+
+});*/
+
+
+
+
+
+
+});

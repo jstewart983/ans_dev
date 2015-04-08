@@ -1,0 +1,60 @@
+<?php
+require('../../config.php');
+$title = "Tickets by Service Type (top 10) - This Week";
+$description ="This chart represents the top 10 counts of tickets on the current week by service type";
+$datasource ="Connectwise";
+$actual_link = $_SERVER['HTTP_REFERER'];
+$path = parse_url($actual_link,PHP_URL_PATH);
+//$path = strstr($path,"/service_delivery");
+//echo $path;
+if (strpos($path,'results') !== false) {
+$query = 'SELECT top 10 SR_Type.Description,count(*) as typeCount
+FROM cwwebapp_ans.dbo.Company Company, cwwebapp_ans.dbo.SR_Board SR_Board, cwwebapp_ans.dbo.SR_Service SR_Service, cwwebapp_ans.dbo.SR_Type SR_Type,cwwebapp_ans.dbo.Time_Entry
+WHERE Company.Company_RecID = Time_Entry.Company_RecID AND
+SR_Service.SR_Service_RecID = Time_Entry.SR_Service_RecID AND
+Company.Company_RecID = SR_Service.Company_RecID AND
+SR_Type.SR_Type_RecID = SR_Service.SR_Type_RecID AND
+SR_Board.SR_Board_RecID = SR_Service.SR_Board_RecID AND
+SR_Board.SR_Board_RecID = SR_Type.SR_Board_RecID AND
+company.company_name = "Results Physiotherapy"
+and DATEDIFF( ww, dbo.Time_Entry.Date_Entered_UTC, GETDATE() ) = 0
+group by Description
+order by typeCount desc
+';
+}else{
+
+  $query = 'SELECT top 10 SR_Type.Description as type,count(*) as typeCount
+  FROM cwwebapp_ans.dbo.Company Company, cwwebapp_ans.dbo.SR_Board SR_Board, cwwebapp_ans.dbo.SR_Service SR_Service, cwwebapp_ans.dbo.SR_Type SR_Type,cwwebapp_ans.dbo.Time_Entry
+  WHERE Company.Company_RecID = Time_Entry.Company_RecID AND
+  SR_Service.SR_Service_RecID = Time_Entry.SR_Service_RecID AND
+  Company.Company_RecID = SR_Service.Company_RecID AND
+  SR_Type.SR_Type_RecID = SR_Service.SR_Type_RecID AND
+  SR_Board.SR_Board_RecID = SR_Service.SR_Board_RecID AND
+  SR_Board.SR_Board_RecID = SR_Type.SR_Board_RecID AND
+  (sr_board.board_name = "My Company/Service" or sr_board.board_name = "Alerts - Service Delivery")
+  and DATEDIFF( ww, dbo.Time_Entry.Date_Entered_UTC, GETDATE() ) = 0
+  group by Description
+  order by typeCount desc
+  ';
+
+}
+
+$openTickets = mssql_query($query);
+$query1 = str_replace('"',"",$query);
+
+
+// fetch all rows from the query
+$all_rows = array();
+while($row = mssql_fetch_assoc($openTickets)) {
+
+  $row["Title"] =$title;
+  $row["Description"] = $description;
+  $row["Query"] = $query1;
+  $row["Datasource"] = $datasource;
+    $all_rows []= $row;
+}
+
+
+header("Content-Type: application/json");
+echo json_encode($all_rows);
+?>
