@@ -65,10 +65,11 @@
 <div style="background-color:#fff;" class="navmenu navmenu-default navmenu-fixed-left offcanvas">
       <a class="navmenu-brand" href="#">ANS Reporting</a>
       <ul class="nav navmenu-nav">
-        <li><a href="../">Overview</a></li>
-        <li><a href="../solution delivery/">Solution Delivery</a></li>
+        <li><a href="../../">Overview</a></li>
+        <li><a href="../../solution delivery/">Solution Delivery</a></li>
         <li class="active"><a href="#">Service Delivery</a></li>
-        <li><a href="../client services/">Client Services</a></li>
+        <li><a href="../../client services/">Client Services</a></li>
+        <li><a href="../../resultsphysiotherapy/">Results Physiotherapy</a></li>
         <li><a href="../finance/">Finance</a></li>
       </ul>
       <ul class="nav navmenu-nav">
@@ -165,10 +166,10 @@
         </div>-->
         <!--Billable hours and new tickets vs closed tickets this week charts-->
         <div class="row">
-            <div class="col-md-6">
+            <div id="title" class="col-md-6">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                        <p style="text-align:center;">Billable Hrs/Member - This Week</p>
+                        <p id ="billableDayTitle" style="text-align:center;">Billable Hrs/Member - This Week <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
                   </div>
                   <div id="title"class="panel-body">
                     <div style="text-align:center"class="col-md-2">
@@ -180,10 +181,10 @@
                 </div>
             </div>
 
-        <div class="col-md-6">
+        <div id="title" class="col-md-6">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                        <p style="text-align:center;">New Tickets vs Tickets Closed - Last 5 days</p>
+                        <p id="newOldTitle" style="text-align:center;">New Tickets vs Tickets Closed - Last 5 days <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
                   </div>
                   <div id="title"class="panel-body">
                     <div style="text-align:center"class="col-md-2">
@@ -196,17 +197,33 @@
             </div>
         </div>
         <div class="row">
-            <div  class="col-md-6">
+            <div id="title" class="col-md-6">
               <div id="urgentTicketsTable">
+                <div style='width:100%;padding:0px;'class=' panel panel-default'>
+                <div class='panel-heading'style='text-align:center;'>
+                  <p id="urgentTicketsTitle" style="text-align:center;">Open + Urgent Tickets <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
+                </div>
+                <div style='width:100%;width:100%;overflow-y: scroll !important;height:278px;'class=panel-body>
+                  <table id='clientTable' style='width:100%;' class='table table-hover'>
+                  <thead>
+                  <th>Ticket #</th>
+                  <th>Urgency</th>
+                  <th>Status</th>
+                  <th>Summary</th>
+                  <th>Days Open</th>
+                  </thead>
+                  <tbody  class='rowlink'>
 
+                    </tbody>
+                    </table>
               </div>
             </div>
-
-
-            <div class="col-md-6">
+          </div>
+        </div>
+            <div id="title" class="col-md-6">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                        <p style="text-align:center;">Tickets by Service Type (top 10) - This Week</p>
+                        <p id="ticketsByTypeTitle" style="text-align:center;">Tickets by Service Type (top 10) - This Week <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
                   </div>
                   <div id="title"class="panel-body">
                     <div style="text-align:center"class="col-md-2">
@@ -219,9 +236,9 @@
             </div>
         </div>
         <div class="row">
-          <div class="panel panel-default">
+          <div id="title" class="panel panel-default">
             <div class="panel-heading">
-              Tickets Open vs Tickets Closed - Last yr to Current
+              <p id="ticketChartTitle" style="text-align:center;">Tickets Open vs Tickets Closed - Last Year to Last Month <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
             </div>
 
           <div style="padding:10px;" id="ticketChartLegend">
@@ -265,6 +282,7 @@
             </div>
           </div>
         </div>
+
     </div>
         <!-- Don't delete this div. This is where RazorFlow will get rendered. -->
 

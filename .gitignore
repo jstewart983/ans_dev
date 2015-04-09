@@ -2,3 +2,5 @@
 .vagrant
 config.php
 lconfig.php
+auth.php
+login.php

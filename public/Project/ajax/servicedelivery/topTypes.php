@@ -1,14 +1,14 @@
 <?php
 require('../../config.php');
 $title = "Tickets by Service Type (top 10) - This Week";
-$description ="This chart represents the top 10 counts of tickets on the current week by service type";
+$description ="This chart represents the top 10 counts of tickets on the current week by service type from the My Company/Service and Alerts - Service Delivery boards";
 $datasource ="Connectwise";
 $actual_link = $_SERVER['HTTP_REFERER'];
 $path = parse_url($actual_link,PHP_URL_PATH);
 //$path = strstr($path,"/service_delivery");
 //echo $path;
 if (strpos($path,'results') !== false) {
-$query = 'SELECT top 10 SR_Type.Description,count(*) as typeCount
+$query = 'SELECT top 10 SR_Type.Description as type,count(*) as typeCount
 FROM cwwebapp_ans.dbo.Company Company, cwwebapp_ans.dbo.SR_Board SR_Board, cwwebapp_ans.dbo.SR_Service SR_Service, cwwebapp_ans.dbo.SR_Type SR_Type,cwwebapp_ans.dbo.Time_Entry
 WHERE Company.Company_RecID = Time_Entry.Company_RecID AND
 SR_Service.SR_Service_RecID = Time_Entry.SR_Service_RecID AND

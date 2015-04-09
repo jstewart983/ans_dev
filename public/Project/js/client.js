@@ -136,7 +136,7 @@ success: function(json) {
      $('#title #mrr').fadeOut(500, function() {
 
     if(mrr==0){
-      var $span1 = $('<h1 style="text-align:center;" id="mrr">$0</h1>');
+      var $span1 = $('<h2 style="text-align:center;" id="mrr">$0</h2>');
     }else{
       var total = mrr.reduce(function(a, b) {
         return a + b;
@@ -144,7 +144,7 @@ success: function(json) {
       total = total.toFixed(2).replace(/./g, function(c, i, a) {
         return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c;
         });
-      var $span1 = $('<h1 style="text-align:center;" id="mrr">$'+total+'</h1>');
+      var $span1 = $('<h2 style="text-align:center;" id="mrr">$'+total+'</h2>');
       }
 
 
@@ -168,7 +168,7 @@ function getAvgTickets(value){
 
   $.ajax({
   type: 'POST',
-  url: "../../ajax/servicedelivery/avgTicketsPerDay.php"+parameter+encodeURIComponent(company),
+  url: "../../ajax/clientservices/avgTicketsPerDay.php"+parameter+encodeURIComponent(company),
   cache:false,
   success: function(json) {
 
@@ -183,7 +183,7 @@ function getAvgTickets(value){
 
        $('#title #avgTickets').fadeOut(500, function() {
 
-      var $span1 = $('<h1 style="text-align:center;" id="avgTickets">'+json+'</h1>');
+      var $span1 = $('<h2 style="text-align:center;" id="avgTickets">'+json+'</h2>');
       //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
       $("#avgTickets").replaceWith($span1);
       //$("#openProjects").replaceWith($span2);
@@ -219,7 +219,7 @@ function getOpenTickets(value){
 
            $('#title #openTickets').fadeOut(500, function() {
 
-          var $span1 = $('<h1 style="text-align:center;" id="openTickets">'+json+'</h1>');
+          var $span1 = $('<h2 style="text-align:center;" id="openTickets">'+json+'</h2>');
           //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
           $("#openTickets").replaceWith($span1);
           //$("#openProjects").replaceWith($span2);
@@ -246,7 +246,7 @@ function getServiceByType(value){
 
   $.ajax({
   type: 'POST',
-  url: "../../ajax/servicedelivery/serviceType.php"+parameter+company,
+  url: "../../ajax/clientservices/serviceType.php"+parameter+company,
   cache:false,
   success: function(json) {
 
@@ -472,7 +472,7 @@ function getWorkstations(value){
 
   $('#comp').fadeOut(200, function() {
 
-                 var $span1 = $('<h1 class="col-xs-6"style="text-align:center;" id="comp">'+workstations+'\n<span><img src="../../css/assets/icons/Computer.svg"/></span></h1>');
+                 var $span1 = $('<h2 class="col-xs-6"style="text-align:center;" id="comp">'+workstations+'\n<span><img src="../../css/assets/icons/Computer.svg"/></span></h2>');
 
           $("#comp").replaceWith($span1);
 
@@ -514,7 +514,7 @@ function getServers(value){
 
   $('#serv').fadeOut(200, function() {
 
-                 var $span1 = $('<h1 class="col-xs-6" style="text-align:center;" id="serv">'+servers+'\n<span><img style="color:#3CB371;" src="../../css/assets/icons/Server.svg"  /></span></h1>');
+                 var $span1 = $('<h2 class="col-xs-6" style="text-align:center;" id="serv">'+servers+'\n<span><img style="color:#3CB371;" src="../../css/assets/icons/Server.svg"  /></span></h2>');
 
           $("#serv").replaceWith($span1);
 
@@ -556,7 +556,7 @@ function getLocationCount(value){
 
   $('#locations').fadeOut(200, function() {
 
-                 var $span1 = $('<div id="locations" class="panel-body"><h1 style="text-align:center;">'+locations+'</h1></div>');
+                 var $span1 = $('<div id="locations" class="panel-body"><h2 style="text-align:center;">'+locations+'</h2></div>');
 
           $("#locations").replaceWith($span1);
 

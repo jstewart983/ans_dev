@@ -1,5 +1,5 @@
  <?php
- require('../config.php');
+ require('../../config.php');
 
 if(isset($_GET['company'])){
 $company = $_GET['company'];

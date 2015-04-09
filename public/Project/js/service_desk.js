@@ -22,7 +22,7 @@ function ticketsClosedThisWeek(){
 
           $modal = $title;
 
-          $p = $('<p id="closedTicketsTitle"  style="text-align:center;">Tickets Closed - This Week <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+          $p = $('<p id="closedTicketsTitle"  style="text-align:center;">'+json[0]["Title"]+' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
           $("#closedTicketsTitle").replaceWith($p);
           $p.fadeIn(1200);
 
@@ -66,7 +66,7 @@ success:function(json){
       }
       $("#title #openTicketsTitle").fadeOut(500,function(){
         $title = $('#openTicketsTitle').text();
-        $p = $('<p id="openTicketsTitle"  style="text-align:center;">Open Tickets <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+        $p = $('<p id="openTicketsTitle"  style="text-align:center;">'+json[0]["Title"]+' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
         $("#openTicketsTitle").replaceWith($p);
         $p.fadeIn(1200);
 
@@ -111,7 +111,7 @@ function closedFirstCall(){
 
       $("#title #closedFirstTitle").fadeOut(500,function(){
         $title = $('#closedFirstTitle').text();
-        $p = $('<p id="closedFirstTitle"  style="text-align:center;">Closed First Call % <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+        $p = $('<p id="closedFirstTitle"  style="text-align:center;">'+json[0]["Title"]+' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
         $("#closedFirstTitle").replaceWith($p);
         $p.fadeIn(1200);
 
@@ -158,7 +158,7 @@ function getBillableHoursTotal(){
 
       $("#title #totalBillableTitle").fadeOut(500,function(){
         $title = $('#totalBillableTitle').text();
-        $p = $('<p id="totalBillableTitle"  style="text-align:center;">Billable Hrs - This Week <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+        $p = $('<p id="totalBillableTitle"  style="text-align:center;">'+json[0]["Title"]+' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
         $("#totalBillableTitle").replaceWith($p);
         $p.fadeIn(1200);
 
@@ -205,7 +205,7 @@ function avgInitialResponse(){
 
         $("#title #avgResponseTitle").fadeOut(500,function(){
           $title = $('#avgResponseTitle').text();
-          $p = $('<p id="avgResponseTitle"  style="text-align:center;">Avg Initial Response Time - Last 7 days <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+          $p = $('<p id="avgResponseTitle"  style="text-align:center;">'+json[0]["Title"]+' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
           $("#avgResponseTitle").replaceWith($p);
           $p.fadeIn(1200);
 
@@ -271,7 +271,7 @@ function billableByDay(){
 
     }
 
-console.log(fillColor);
+
 
 
 var data = {
@@ -289,17 +289,13 @@ var data = {
     ]
 };
 
-      /*$("#title #billableDay").fadeOut(500,function(){
+$("#title #billableDayTitle").fadeOut(500,function(){
+  $title = $('#billableDayTitle').text();
+  $p = $('<p id="billableDayTitle"  style="text-align:center;">'+json[0]["Title"]+ ' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+  $("#billableDayTitle").replaceWith($p);
+  $p.fadeIn(1200);
 
-
-        $span1 = $('<canvas id ="billableDay"height="auto"width="auto"></canvas>');
-
-        //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
-        $("#billableDay").replaceWith($span1);
-        //$("#openProjects").replaceWith($span2);
-        $span1.fadeIn(1200);
-
-      });*/
+});
 
       var ctx = document.getElementById("billableDay").getContext("2d");
       var myNewChart = new Chart(ctx).Bar(data);
@@ -366,6 +362,15 @@ function newVsOld(){
                   }
               ]
           };
+
+          $("#title #newOldTitle").fadeOut(500,function(){
+            //$title = $('#newOldTitle').text();
+            $p = $('<p id="newOldTitle"  style="text-align:center;">'+json2[0]["Title"]+' <span><a id="info" data-description="'+json2[0]["Description"]+'"  data-datasource="'+json2[0]["Datasource"]+'" data-title="'+json2[0]["Title"]+'" data-query="'+json2[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+            $("#newOldTitle").replaceWith($p);
+            $p.fadeIn(1200);
+
+          });
+
           var ctx = document.getElementById("newOld").getContext("2d");
           var myNewChart = new Chart(ctx).Bar(data);
           legend(document.getElementById("newOldLegend"), data);
@@ -467,7 +472,7 @@ function getTicketHistory(){
                 data:hours2
             },
             {
-          label: "Hours Worked",
+          label: "Billable Hours",
           fillColor: "rgba(130,450,205,0.2)",
           strokeColor: "rgba(130,450,205,1)",
           pointColor: "rgba(130,450,205,1)",
@@ -492,6 +497,15 @@ function getTicketHistory(){
 
           });*/
 
+          $("#title #ticketChartTitle").fadeOut(500,function(){
+            //$title = $('#newOldTitle').text();
+            $p = $('<p id="ticketChartTitle"  style="text-align:center;">'+json[0]["Title"]+' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+            $("#ticketChartTitle").replaceWith($p);
+            $p.fadeIn(1200);
+
+          });
+
+
           var ctx = document.getElementById("ticketChart").getContext("2d");
           var myNewChart = new Chart(ctx).Line(data);
           legend(document.getElementById("ticketChartLegend"), data);
@@ -515,6 +529,8 @@ function urgentTickets(){
     type:"GET",
     url:"../../ajax/servicedelivery/openUrgentTickets.php",
     success:function(table){
+
+
 
       $('#urgentTicketsTable').fadeOut(600, function() {
 
@@ -561,7 +577,7 @@ function topTypes(){
         var xlabels = [], type_count = [],colors = [];
             for(var i = 0; i < json.length; i++) {
 
-                label:xlabels.push(json[i]["Description"]);
+                label:xlabels.push(json[i]["type"]);
                 //value: type_count.push(json[i]["total_hours"]);
                 value: type_count.push(json[i]["typeCount"]);
                 //fillColor: colors.push (getRandomColor());
@@ -651,6 +667,13 @@ doughnutData = [
             ];
 
 
+            $("#title #ticketsByTypeTitle").fadeOut(500,function(){
+              //$title = $('#newOldTitle').text();
+              $p = $('<p id="ticketsByTypeTitle"  style="text-align:center;">'+json[0]["Title"]+' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+              $("#ticketsByTypeTitle").replaceWith($p);
+              $p.fadeIn(1200);
+
+            });
 
         $('#title #ticketsByType').fadeOut(200, function() {
 

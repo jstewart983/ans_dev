@@ -14,7 +14,10 @@
         <link rel="stylesheet" type="text/css" href="css/navbar.css">
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
         <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="Flat-UI-master/dist/css/flat-ui.min.css">
+        <link rel="stylesheet" href="Flat-UI-master/fonts/glyphicons/flat-ui-icons-regular.svg">
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
+        <link href='http://fonts.googleapis.com/css?family=Codystar' rel='stylesheet' type='text/css'>
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <!--<script type="text/javascript" src="js/overview.js"></script>-->
@@ -32,6 +35,24 @@
           .container{
             width:
           }
+          .panel-default{
+            transition: border-color 1s ease;
+
+-webkit-transition: border-color 1s ease;
+     -moz-transition: border-color 1s ease;
+       -o-transition: border-color 1s ease;
+      -ms-transition: border-color 1s ease;
+          transition: border-color 1s ease;
+
+}
+
+
+
+          .panel-default:hover{
+
+            border-color:#f78e1e!important;
+            color:#f78e1e!important;
+          }
         </style>
     </head>
     <body>
@@ -44,138 +65,94 @@
         </div>
         <div style="position:relative;z-index:999;"class="row">
           <div class="col-md-12">
-            <h1 style="font-size:50px;text-align:center;"><span id="hello">Hello.</span> <span id="welcome">Welcome to ANS Intelligence.</span></h1>
+            <h1 style="font-size:50px;text-align:center;"><span id="hello">Hello.</span> <span id="welcome" >Welcome to </span><span id="intel" style="font-family: 'Codystar', cursive;">ANS Intelligence</span></h1>
+          </div>
+          <div class="col-md-12">
+            <p id="choose"style="text-align:center;">
+              Pick a dashboard.
+            </p>
           </div>
         </div>
-
-        <div class="row">
-          <div style="position:relative;z-index:999;"class="col-md-3">
+        <div style="position:relative;z-index:999;margin-top:5px;"class="row">
+          <div class="col-md-2">
 
           </div>
-          <div id="loginbox" style="position:relative;z-index:999;margin-top:50px;" class="mainbox col-md-6">
-          <div class="panel panel-default" >
-                  <div style="background-color:#ddd;" class="panel-heading">
-                      <div style="color:#282828;"class="panel-title">Sign In</div>
-                      <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#">Forgot password?</a></div>
-                  </div>
-
-                  <div style="padding-top:30px" class="panel-body" >
-
-                      <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-
-                      <form id="loginform" class="form-horizontal" role="form">
-
-                          <div style="margin-bottom: 25px" class="input-group">
-                                      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                      <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="username or email">
-                                  </div>
-
-                          <div style="margin-bottom: 25px" class="input-group">
-                                      <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                      <input id="login-password" type="password" class="form-control" name="password" placeholder="password">
-                                  </div>
-
-
-
-                          <div class="input-group">
-                                    <div class="checkbox">
-                                      <label>
-                                        <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
-                                      </label>
-                                    </div>
-                                  </div>
-
-
-                              <div style="margin-top:10px" class="form-group">
-                                  <!-- Button -->
-
-                                  <div class="col-sm-12 controls">
-                                    <a id="btn-login" href="#" class="btn btn-success">Login  </a>
-
-
-                                  </div>
-                              </div>
-
-
-                              <div class="form-group">
-                                  <div class="col-md-12 control">
-                                      <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
-                                          Don't have an account?
-                                      <a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">
-                                          Request One Here
-                                      </a>
-                                      </div>
-                                  </div>
-                              </div>
-                          </form>
-
-
-
-                      </div>
-                  </div>
-      </div>
-          <div id="signupbox" style="display:none; margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-                  <div class="panel panel-info">
-                      <div class="panel-heading">
-                          <div class="panel-title">Sign Up</div>
-                          <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="#" onclick="$('#signupbox').hide(); $('#loginbox').show()">Sign In</a></div>
-                      </div>
-                      <div class="panel-body" >
-                          <form id="signupform" class="form-horizontal" role="form">
-
-                              <div id="signupalert" style="display:none" class="alert alert-danger">
-                                  <p>Error:</p>
-                                  <span></span>
-                              </div>
-
-
-
-                              <div class="form-group">
-                                  <label for="email" class="col-md-3 control-label">Email</label>
-                                  <div class="col-md-9">
-                                      <input type="text" class="form-control" name="email" placeholder="Email Address">
-                                  </div>
-                              </div>
-
-                              <div class="form-group">
-                                  <label for="firstname" class="col-md-3 control-label">First Name</label>
-                                  <div class="col-md-9">
-                                      <input type="text" class="form-control" name="firstname" placeholder="First Name">
-                                  </div>
-                              </div>
-                              <div class="form-group">
-                                  <label for="lastname" class="col-md-3 control-label">Last Name</label>
-                                  <div class="col-md-9">
-                                      <input type="text" class="form-control" name="lastname" placeholder="Last Name">
-                                  </div>
-                              </div>
-
-                              <div class="form-group">
-                                  <!-- Button -->
-                                  <div class="col-md-offset-3 col-md-9">
-                                      <button id="btn-signup" type="button" class="btn btn-info"><i class="icon-hand-right"></i>Request</button>
-
-                                  </div>
-                              </div>
-
-
-                          </form>
-                       </div>
-                  </div>
-
+          <div id="choice1" class="col-md-4">
+            <a href="solution delivery/">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <h5 style="text-align:center;">Solution Delivery <span class="glyphicon glyphicon-dashboard"></span></h5>
+                  <p style="font-size:10px;text-align:center;">
+                    <b>Build Status</b> = Under Construction
+                  </p>
                 </div>
-              </div>
+            </div>
+          </a>
+          </div>
+          <div id="choice2" class="col-md-4">
+            <a href="service delivery/">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <h5 class="name" style="text-align:center;">Service Delivery <span class="glyphicon glyphicon-dashboard"></span></h5>
+                  <p class="name" style="font-size:10px;text-align:center;">
+                    <b>Build Status</b> = QA
+                  </p>
+                </div>
+            </div>
+          </a>
+          </div>
+          <div class="col-md-2">
+
+          </div>
+        </div>
+        <div style="position:relative;z-index:999;" class="row">
+          <div class="col-md-2">
+
+          </div>
+          <div id="choice3" class="col-md-4">
+            <a href="client services/">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <h5 style="text-align:center;">Client Services <span class="glyphicon glyphicon-dashboard"></span></h5>
+                  <p style="font-size:10px;text-align:center;">
+                    <b>Build Status</b> = Under Construction - almost to QA
+                  </p>
+                </div>
+            </div>
+          </a>
+          </div>
+          <div id="choice4" class="col-md-4">
+            <a href="resultsphysiotherapy/">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <h5 style="text-align:center;">Results Physiotherapy <span class="glyphicon glyphicon-dashboard"></span></h5>
+                  <p style="font-size:10px;text-align:center;">
+                    <b>Build Status</b> = QA
+                  </p>
+                </div>
+            </div>
+          </a>
+          </div>
+          <div class="col-md-2">
+
+          </div>
+        </div>
               <div style="opacity:.9;" class="row">
                 <div class="col-md-12">
-                  <canvas id="barChart" style="margin-top:-500px;position:fixed;display:block;margin-left:-280px;margin-right:auto;opacity:.9;width:100%;margin-bottom:40px;z-index:-1;" height="300"></canvas>
+                  <canvas id="barChart" style="margin-top:1%;position:fixed;display:block;margin-left:-280px;margin-right:auto;opacity:.9;width:100%;margin-bottom:40px;z-index:-1;" height="100"></canvas>
                 </div>
               </div>
             </div>
             <script charset="utf-8">
               $("#ans").hide().fadeIn(1000);
               $("#hello").hide().fadeIn(2000);
+              $("#intel").hide().fadeIn(2200);
+              $("#choose").hide().fadeIn(2100);
               $("#welcome").hide().fadeIn(2700);
-              $("#loginbox").hide().fadeIn(2000);
+              $("#choice1").hide().fadeIn(2000);
+              $("#choice2").hide().fadeIn(2200);
+              $("#choice3").hide().fadeIn(2400);
+              $("#choice4").hide().fadeIn(2600);
               //$("#barChart").hide().fadeIn(2900);
 
               var data = {
@@ -196,7 +173,7 @@
                           strokeColor: "rgba(160,120,316,0.9)",
                           highlightFill: "rgba(160,120,316,0.9)",
                           highlightStroke: "rgba(160,120,316,0.9)",
-                          data:[40,60,90,20,15,27,40,32,55,20,56,77,91,84,80,30,40,60,70,80,20,90,45,67],
+                          data:[10,20,40,30,15,67,74,32,35,25,26,57,81,14,30,30,70,20,90,100,45,30,25,76],
                           label: "That data"
                       }
                   ]
@@ -218,7 +195,7 @@
 
                 myNewChart.update();
                 //myNewChart.addData(Math.floor(Math.random()*100)+1,Math.floor(Math.random()*100)+1,labels[Math.floor(Math.random()*14)+2]);
-              }, 800);
+              }, 1200);
 
             </script>
           </body>

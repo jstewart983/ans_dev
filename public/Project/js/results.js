@@ -17,7 +17,7 @@ function drawTimeline1(value){
 
   $.ajax({
     type:"POST",
-    url:"../ajax/getServiceHistory.php"+parameter+company,
+    url:"../ajax/clientservices/getServiceHistory.php"+parameter+company,
     success: function(json){
       data = [];
 
@@ -72,7 +72,7 @@ function drawTimeline2(value) {
 
   $.ajax({
     type:"POST",
-    url:"../ajax/getOppHistory.php"+parameter+company,
+    url:"../ajax/clientservices/getOppHistory.php"+parameter+company,
     success: function(json){
 
 
@@ -118,7 +118,7 @@ function getMrr(value){
 
 $.ajax({
 type: 'POST',
-url: "../ajax/lastMonthMrr.php"+parameter+company,
+url: "../ajax/clientservices/lastMonthMrr.php"+parameter+company,
 cache:false,
 success: function(json) {
 
@@ -168,7 +168,7 @@ function getAvgTickets(value){
 
   $.ajax({
   type: 'POST',
-  url: "../ajax/avgTicketsPerDay.php"+parameter+encodeURIComponent(company),
+  url: "../ajax/clientservices/avgTicketsPerDay.php"+parameter+encodeURIComponent(company),
   cache:false,
   success: function(json) {
 
@@ -204,7 +204,7 @@ function getOpenTickets(value){
 
   $.ajax({
       type: 'POST',
-      url: "../ajax/getOpenTicketsEcho.php"+parameter+company,
+      url: "../ajax/clientservices/getOpenTicketsEcho.php"+parameter+company,
       cache:false,
       success: function(json) {
 
@@ -246,7 +246,7 @@ function getServiceByType(value){
 
   $.ajax({
   type: 'POST',
-  url: "../ajax/serviceType.php"+parameter+company,
+  url: "../ajax/clientservices/serviceType.php"+parameter+company,
   cache:false,
   success: function(json) {
 
@@ -363,7 +363,7 @@ function getOSType(value){
   $.ajax({
     type:"POST",
 
-    url:"../ajax/getOSType.php"+parameter+encodeURIComponent(company),
+    url:"../ajax/clientservices/getOSType.php"+parameter+encodeURIComponent(company),
 
 
     success:function(json){
@@ -453,7 +453,7 @@ function getWorkstations(value){
 
   $.ajax({
       type: 'POST',
-      url: "../ajax/getWorkstations.php"+parameter+company,
+      url: "../ajax/clientservices/getWorkstations.php"+parameter+company,
       cache:false,
       success: function(json) {
 
@@ -495,7 +495,7 @@ function getServers(value){
 
   $.ajax({
       type: 'POST',
-      url: "../ajax/getServers.php"+parameter+company,
+      url: "../ajax/clientservices/getServers.php"+parameter+company,
       cache:false,
       success: function(json) {
 
@@ -539,7 +539,7 @@ function getLocationCount(value){
 
   $.ajax({
       type: 'POST',
-      url: "../ajax/getLocationCount.php"+parameter+company,
+      url: "../ajax/clientservices/getLocationCount.php"+parameter+company,
       cache:false,
       success: function(json) {
 
@@ -582,7 +582,7 @@ function getLocationCount(value){
 $(document).ready(function(){
 
     /*$.ajax({
-      url: "../../ajax/getClientList.php",
+      url: "../../ajax/clientservices/getClientList.php",
                     context: document.body,
 
                     success: function(html){

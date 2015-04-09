@@ -497,6 +497,15 @@ function getTicketHistory(){
 
           });*/
 
+          $("#title #ticketChartTitle").fadeOut(500,function(){
+            //$title = $('#newOldTitle').text();
+            $p = $('<p id="ticketChartTitle"  style="text-align:center;">'+json[0]["Title"]+' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+            $("#ticketChartTitle").replaceWith($p);
+            $p.fadeIn(1200);
+
+          });
+
+
           var ctx = document.getElementById("ticketChart").getContext("2d");
           var myNewChart = new Chart(ctx).Line(data);
           legend(document.getElementById("ticketChartLegend"), data);
@@ -751,24 +760,7 @@ $("#basicModal").on("show.bs.modal", function(e) {
     $(this).find("#description").text(link.attr("data-description"));
 });
 
-/*$(function () {
-$('#title #info').click(function(e){
 
- console.log("registered");
- $title = $(this).data('data-title');
- $datasource = $(this).data('data-datasource');
- $query = $(this).data('data-query');
- $description = $(this).data('data-description');
-
- $('modal-title').text($title);
- $('#datasource').text($datasource);
- $('#query').text($query);
- $('#description').text($description);
-  });
-
-
-
-});*/
 
 
 

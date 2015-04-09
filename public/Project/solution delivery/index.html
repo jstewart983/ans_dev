@@ -1,9 +1,10 @@
+
 <!doctype html >
-<html lang="en">
+<html  lang="en">
     <head>
         <meta charset="UTF-8" />
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 
 
 
@@ -12,15 +13,22 @@
         <link rel="stylesheet" type="text/css" href="../css/razorflow.min.css">
         <link rel="stylesheet" type="text/css" href="../css/navbar.css">
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../Flat-UI-master/dist/css/flat-ui.min.css">
+        <link rel="stylesheet" href="../Flat-UI-master/fonts/glyphicons/flat-ui-icons-regular.svg">
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
-        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-        <script type="text/javascript" src="../js/jquery.min.js"></script>
+
+
+
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
+        <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+
+
         <script type="text/javascript" src="../js/solution_delivery.js"></script>
         <script type="text/javascript" src="../js/Chart.js"></script>
         <script type="text/javascript" src="../js/legend.js"></script>
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
         <script>$('.navmenu').offcanvas()</script>
         <script>
             function myFunction() {
@@ -32,21 +40,60 @@
             window.onload = myFunction;
         </script>
 
-        
+
     </head>
     <style type="text/css">
+    div{
+      font-size:15px !important;
+    }
+    th{
+      font-size:15px !important;
+    }
+    p{
+      font-size:12px !important;
+    }
+    .container{
+
+      width:95% !important;
+
+    }
     .navmenu .navmenu-default{
         background-color: #fff;
         }
         </style>
+    <style type="text/css">
+    .hidden{
+      display:none;
+    }
+    .opp{
+      background-color:#282828;
+    }
+
+    .navmenu .navmenu-default{
+
+        background-color: #fff;
+
+        }
+
+    input {
+
+            border: none;
+            outline: none;
+            background-color: transparent;
+            font-family: inherit;
+            font-size: inherit;
+        }
+
+        </style>
     <body class="canvas">
 <div style="background-color:#fff;" class="navmenu navmenu-default navmenu-fixed-left offcanvas">
-      <a class="navmenu-brand" href="#">ANS Reporting</a>
+      <a class="navmenu-brand" href="#">ANS Intelligence</a>
       <ul class="nav navmenu-nav">
         <li><a href="../">Overview</a></li>
         <li class="active"><a href="#">Solution Delivery</a></li>
         <li><a href="../service delivery/">Service Delivery</a></li>
         <li><a href="../client services/">Client Services</a></li>
+        <li><a href="../resultsphysiotherapy/">Results Physiotherapy</a></li>
         <li><a href="../finance/">Finance</a></li>
       </ul>
       <ul class="nav navmenu-nav">
@@ -66,7 +113,7 @@
       <h2 style="margin-top:12px;text-align:center;"id="title"></h2>
     </div>
 
-        <div style="margin-top:54px;"class="container">
+        <div style="margin-top:72px;"class="container">
         <div class="row">
             <div style="border-left:1px solid #ddd;border-right:1px solid #ddd;border-bottom:1px solid #ddd;border-radius: 4px;background-color:#fff;"class="col-md-6">
                 <div style="padding:5px;">
@@ -88,7 +135,7 @@
                         <p style="text-align:center;">Open B.O.B. Tickets</p>
                   </div>
                   <div class="panel-body">
-                    <h1 style="text-align:center;">17,000</h1>
+                    <h2 style="text-align:center;">17,000</h2>
                   </div>
                 </div>
             </div>
@@ -98,7 +145,7 @@
                         <p style="text-align:center;">Hrs Executed - This Week</p>
                   </div>
                   <div class="panel-body">
-                    <h1 style="text-align:center;">67 hrs</h1>
+                    <h2 style="text-align:center;">67 hrs</h2>
                   </div>
                 </div>
             </div>
@@ -108,7 +155,7 @@
                         <p style="text-align:center;">Utilization %</p>
                   </div>
                   <div class="panel-body">
-                    <h1 style="text-align:center;">78%</h1>
+                    <h2 style="text-align:center;">78%</h2>
                   </div>
                 </div>
             </div>
@@ -118,7 +165,7 @@
                         <p style="text-align:center;">Hrs Executed- This Year</p>
                   </div>
                   <div class="panel-body">
-                    <h1 style="text-align:center;">800 hrs</h1>
+                    <h2 style="text-align:center;">800 hrs</h2>
                   </div>
                 </div>
             </div>
@@ -128,7 +175,7 @@
                         <p style="text-align:center;">Alerts Today</p>
                   </div>
                   <div class="panel-body">
-                    <h1 style="text-align:center;">600</h1>
+                    <h2 style="text-align:center;">600</h2>
                   </div>
                 </div>
             </div>
@@ -138,7 +185,7 @@
                         <p style="text-align:center;">Hours in Queue</p>
                   </div>
                   <div class="panel-body">
-                    <h1 style="text-align:center;">160 hrs</h1>
+                    <h2 style="text-align:center;">160 hrs</h2>
                   </div>
                 </div>
             </div>
