@@ -20,6 +20,7 @@ $all_rows [] = $row;
 
 header("Content-Type: application/json");
 echo json_encode($all_rows);
+mysqli_close($con);
 
 
 

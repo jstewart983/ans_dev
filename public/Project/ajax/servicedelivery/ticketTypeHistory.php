@@ -14,16 +14,28 @@ $query = 'select year(sr_service.Date_Entered) as year,month(sr_service.Date_Ent
 COUNT(distinct(sr_service.Date_Closed)) as Closed
 from dbo.SR_Service
 left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
+left outer join sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
 left outer join company on company.company_recid = sr_service.company_recid
-where company.company_name = "Results Physiotherapy"  and (convert(char(6), sr_service.Date_Entered, 112) <> convert(char(6), getdate(), 112) and year(sr_service.Date_Entered) > year(getdate())-2)
+where sr_type.description = "Application" and company.company_name = "Results Physiotherapy"  and (convert(char(6), sr_service.Date_Entered, 112) <> convert(char(6), getdate(), 112) and year(sr_service.Date_Entered) > year(getdate())-2)
 group by month(sr_service.Date_Entered),year(sr_service.Date_Entered)
 order by year(sr_service.Date_Entered), month(sr_service.Date_Entered)';
 }else{
 
+if(isset($_GET['type'])){
+  
   $query = 'select year(sr_service.Date_Entered) as year,month(sr_service.Date_Entered) as month,COUNT(distinct(sr_service.Date_Entered)) as Tickets,
   COUNT(distinct(sr_service.Date_Closed)) as Closed
   from dbo.SR_Service left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
-  where  (convert(char(6), sr_service.Date_Entered, 112) <> convert(char(6), getdate(), 112) and year(sr_service.Date_Entered) > year(getdate())-2)
+  left outer join sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
+  where sr_type.description="Scheduled Maintenance" and (convert(char(6), sr_service.Date_Entered, 112) <> convert(char(6), getdate(), 112) and year(sr_service.Date_Entered) > year(getdate())-2)
+  group by month(sr_service.Date_Entered),year(sr_service.Date_Entered)
+  order by year(sr_service.Date_Entered), month(sr_service.Date_Entered)';
+}
+  $query = 'select year(sr_service.Date_Entered) as year,month(sr_service.Date_Entered) as month,COUNT(distinct(sr_service.Date_Entered)) as Tickets,
+  COUNT(distinct(sr_service.Date_Closed)) as Closed
+  from dbo.SR_Service left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
+  left outer join sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
+  where sr_type.description="Scheduled Maintenance" and (convert(char(6), sr_service.Date_Entered, 112) <> convert(char(6), getdate(), 112) and year(sr_service.Date_Entered) > year(getdate())-2)
   group by month(sr_service.Date_Entered),year(sr_service.Date_Entered)
   order by year(sr_service.Date_Entered), month(sr_service.Date_Entered)';
 }

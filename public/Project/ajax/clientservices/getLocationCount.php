@@ -9,7 +9,7 @@ $query = 'SELECT clients.company,count(locationID) as locationCount FROM locatio
 ';
 }else{
 
-  $query = 'SELECT clients.company,count(locationID) as locationCount FROM locations left outer join clients on clients.ClientID = locations.ClientID where clients.Company!="Advanced Network Solutions"';
+  $query = 'SELECT count(locationID) as locationCount FROM locations left outer join clients on clients.ClientID = locations.ClientID where clients.Company<>"Advanced Network Solutions"';
 }
 
 
@@ -24,6 +24,7 @@ $all_rows [] = $row;
 
 header("Content-Type: application/json");
 echo json_encode($all_rows);
+mysqli_close($con);
 
 
 ?>

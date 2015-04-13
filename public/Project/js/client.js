@@ -144,7 +144,7 @@ success: function(json) {
       total = total.toFixed(2).replace(/./g, function(c, i, a) {
         return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c;
         });
-      var $span1 = $('<h2 style="text-align:center;" id="mrr">$'+total+'</h2>');
+      var $span1 = $('<h3 style="text-align:center;" id="mrr">$'+total+'</h3>');
       }
 
 
@@ -363,7 +363,7 @@ function getOSType(value){
   $.ajax({
     type:"POST",
 
-    url:"../../ajax/clientservices/getOSType.php"+parameter+encodeURIComponent(company),
+    url:"../../ajax/clientservices/getOSType.php"+parameter+company,
 
 
     success:function(json){
@@ -376,11 +376,12 @@ function getOSType(value){
           }
           return color;
       }
-            var color1 = [],color2 = [],count = [],type = [];
+            var count = [];
+            var type = [];
             for($i=0;$i<json.length;$i++){
 
-            color1.push(getRandomColor());
-            color2.push(getRandomColor());
+            //color1.push(getRandomColor());
+            //color2.push(getRandomColor());
             count.push(json[$i]["osCount"]);
             type.push(json[$i]["OS"]);
 
@@ -394,7 +395,7 @@ function getOSType(value){
   $('#wherethestuffis #osType').fadeOut(200, function() {
 
 
-   var $span2 = $('<canvas id="osType" style="width:600px;height:300px;" ></canvas>');
+   var $span2 = $('<canvas id="osType" style="width:400px;height:300px;" ></canvas>');
    //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
    $("#osType").replaceWith($span2);
    //$("#openProjects").replaceWith($span2);
@@ -409,21 +410,22 @@ function getOSType(value){
 
 
 
-   myPieChart.removeData();
-   myPieChart.update();
+   //myPieChart.removeData();
+   //myPieChart.update();
 
-   for($i=0;$i<count.length;$i++){
+   for($i=0;$i<json.length;$i++){
 
      myPieChart.addData({
 
          value: count[$i],
-         color: color1[$i],
-         highlight: color2[$i],
+         color: getRandomColor(),
+         highlight: getRandomColor(),
          label: type[$i]
      });
 
-     myPieChart.update();
+
    }
+   myPieChart.update();
 
   });
 
@@ -452,7 +454,7 @@ function getWorkstations(value){
   console.log(company);
 
   $.ajax({
-      type: 'POST',
+      type: 'GET',
       url: "../../ajax/clientservices/getWorkstations.php"+parameter+company,
       cache:false,
       success: function(json) {
@@ -494,7 +496,7 @@ function getServers(value){
   var parameter = value.substr(0, value.indexOf('=')+1);
 
   $.ajax({
-      type: 'POST',
+      type: 'GET',
       url: "../../ajax/clientservices/getServers.php"+parameter+company,
       cache:false,
       success: function(json) {
@@ -538,7 +540,7 @@ function getLocationCount(value){
   var parameter = value.substr(0, value.indexOf('=')+1);
 
   $.ajax({
-      type: 'POST',
+      type: 'GET',
       url: "../../ajax/clientservices/getLocationCount.php"+parameter+company,
       cache:false,
       success: function(json) {
@@ -623,13 +625,14 @@ $(document).ready(function(){
         title = unescape(title)
 
         $("#title").text(title);
+        getOSType(clickedVal);
         getWorkstations(clickedVal);
         getServers(clickedVal);
         getMrr(clickedVal);
         getAvgTickets(clickedVal);
         getOpenTickets(clickedVal);
         getServiceByType(clickedVal);
-        getOSType(clickedVal);
+
 
         getLocationCount(clickedVal);
         drawTimeline1(clickedVal);

@@ -1,6 +1,9 @@
 
 <?php
  require('../../config.php');
+ $description = "";
+ $title = "";
+ 
 //project hours completed last week
 $projectHours = mssql_query('select sum(dbo.SO_Forecast_Dtl.revenue) as total_sales,member.last_name
 from dbo.order_header left outer join

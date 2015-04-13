@@ -54,22 +54,41 @@
             color:#f78e1e!important;
           }
         </style>
+        <style type="text/css">
+        div{
+          font-size:15px !important;
+        }
+        th{
+          font-size:15px !important;
+        }
+        p{
+          font-size:12px !important;
+        }
+        .container{
+
+          width:95% !important;
+
+        }
+        .navmenu .navmenu-default{
+            background-color: #fff;
+            }
+            </style>
     </head>
     <body>
 
       <div style="z-index:999;"class="container">
         <div style="position:relative;z-index:999;"class="row">
           <div class="col-md-12">
-            <img id="ans"style="display:block;margin-left:auto;margin-right:auto;" src="http://www.ansolutions.com/wp-content/themes/ANS/images/header-logo.jpg" alt="ans" />
+            <img id="ans"style="height:auto;width:200px;display:block;margin-left:auto;margin-right:auto;"  src="http://www.ansolutions.com/wp-content/themes/ANS/images/header-logo.jpg" alt="ans" />
           </div>
         </div>
         <div style="position:relative;z-index:999;"class="row">
           <div class="col-md-12">
-            <h1 style="font-size:50px;text-align:center;"><span id="hello">Hello.</span> <span id="welcome" >Welcome to </span><span id="intel" style="font-family: 'Codystar', cursive;">ANS Intelligence</span></h1>
+            <h1 style="font-size:50px;text-align:center;"><span id="hello">Hello.</span> <span id="welcome" >Welcome to </span><span id="intel" style="font-size:40px;font-family: 'Codystar', cursive;">ANS Intelligence</span></h1>
           </div>
           <div class="col-md-12">
             <p id="choose"style="text-align:center;">
-              Pick a dashboard.
+              Pick a dashboard
             </p>
           </div>
         </div>
@@ -83,7 +102,7 @@
                 <div class="panel-body">
                   <h5 style="text-align:center;">Solution Delivery <span class="glyphicon glyphicon-dashboard"></span></h5>
                   <p style="font-size:10px;text-align:center;">
-                    <b>Build Status</b> = Under Construction
+                    <b>Build Status</b> = under construction
                   </p>
                 </div>
             </div>
@@ -115,7 +134,7 @@
                 <div class="panel-body">
                   <h5 style="text-align:center;">Client Services <span class="glyphicon glyphicon-dashboard"></span></h5>
                   <p style="font-size:10px;text-align:center;">
-                    <b>Build Status</b> = Under Construction - almost to QA
+                    <b>Build Status</b> = under construction - almost to QA
                   </p>
                 </div>
             </div>
@@ -139,7 +158,7 @@
         </div>
               <div style="opacity:.9;" class="row">
                 <div class="col-md-12">
-                  <canvas id="barChart" style="margin-top:1%;position:fixed;display:block;margin-left:-280px;margin-right:auto;opacity:.9;width:100%;margin-bottom:40px;z-index:-1;" height="100"></canvas>
+                  <canvas id="barChart" style="width:100%;" height="100"></canvas>
                 </div>
               </div>
             </div>
@@ -156,7 +175,7 @@
               //$("#barChart").hide().fadeIn(2900);
 
               var data = {
-                  labels:["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"],
+                  labels:["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36"],
                   datasets: [
                       {
 
@@ -164,7 +183,7 @@
                           strokeColor: "rgba(220,220,220,0.9)",
                           highlightFill: "rgba(220,220,220,0.9)",
                           highlightStroke: "rgba(220,220,220,.9)",
-                          data:[20,30,10,90,45,67,20,12,85,90,50,67,32,79,90,70,80,20,20,15,27,20,56,77],
+                          data:[67,74,32,35,25,26,20,15,27,20,56,77,20,30,10,90,45,67,20,12,85,90,50,67,32,79,90,70,80,20,20,15,27,20,56,77],
                           label: "This data"
                       },
                       {
@@ -173,7 +192,7 @@
                           strokeColor: "rgba(160,120,316,0.9)",
                           highlightFill: "rgba(160,120,316,0.9)",
                           highlightStroke: "rgba(160,120,316,0.9)",
-                          data:[10,20,40,30,15,67,74,32,35,25,26,57,81,14,30,30,70,20,90,100,45,30,25,76],
+                          data:[10,20,40,30,15,67,74,32,35,25,26,57,81,14,30,30,70,20,90,100,45,30,25,76,67,74,32,35,25,26,20,15,27,20,56,77],
                           label: "That data"
                       }
                   ]
@@ -183,7 +202,7 @@
               var ctx = document.getElementById("barChart").getContext("2d");
               var myNewChart = new Chart(ctx).Bar(data,{scaleShowGridLines:false,scaleShowVerticalLines: false,scaleShowHorizontalLines:false});
               console.log(data.labels.length);
-              setInterval(function() {
+              /*setInterval(function() {
 
                 // Get a random index point
                 var indexToUpdate = Math.floor(Math.random() * data.labels.length-1)+1;
@@ -195,7 +214,7 @@
 
                 myNewChart.update();
                 //myNewChart.addData(Math.floor(Math.random()*100)+1,Math.floor(Math.random()*100)+1,labels[Math.floor(Math.random()*14)+2]);
-              }, 1200);
+              }, 1200);*/
 
             </script>
           </body>

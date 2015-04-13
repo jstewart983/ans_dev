@@ -7,16 +7,16 @@ $company = $_GET['company'];
 $company = urldecode($company);
 
 //echo $company;
-$query = 'SELECT OS, COUNT(ComputerId) as osCount  FROM computers left outer join clients on clients.ClientID = computers.ClientID where clients.Company="'.$company.'"
+$query = 'SELECT OS, COUNT(ComputerId) as osCount  FROM computers left outer join clients on computers.ClientID = clients.ClientID   where clients.Company="'.$company.'"
 GROUP BY OS
 ORDER BY COUNT(ComputerId) DESC
-limit 10';
+LIMIT 10';
 }else{
 
-  $query = 'SELECT  OS, COUNT(ComputerId) as osCount  FROM computers left outer join clients on clients.ClientID = computers.ClientID where clients.Company !="Advanced Network Solutions"
+  $query = 'SELECT  OS, COUNT(ComputerId) as osCount  FROM computers left outer join clients on computers.ClientID = clients.ClientID   where clients.Company !="Advanced Network Solutions"
   group by OS
   ORDER BY COUNT(ComputerId) DESC
-  limit 10';
+  LIMIT 10';
 }
  //echo $query;
 
@@ -26,7 +26,7 @@ $results=mysqli_query($con,$query);
 
 $all_rows = array();
 
-while($row = mysqli_fetch_array($results)){
+while($row = mysqli_fetch_assoc($results)){
   //print_r($row);
   $all_rows [] = $row;
 }
@@ -36,7 +36,7 @@ while($row = mysqli_fetch_array($results)){
 
 header("Content-Type: application/json");
 echo json_encode($all_rows);
-
+mysqli_close($con);
 
 
 ?>

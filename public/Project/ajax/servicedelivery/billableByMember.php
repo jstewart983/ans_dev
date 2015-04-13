@@ -15,18 +15,19 @@ if (strpos($path,'desk') !== false) {
 from Time_Entry left outer join dbo.member      on dbo.time_entry.Member_RecID = member.Member_RecID
 where (dbo.member.Title like "%IT Support%")
 and DATEDIFF(ww, dbo.time_entry.Date_Start, getdate())=0 and time_entry.Company_RecID <> 2
-group by member.member_id';
+group by member.member_id
+order by member.member_id desc';
 
 }elseif(strpos($path,'CIM') !== false){
 
-
   $query = '
-  select datename(dw,dbo.time_entry.Date_Start) as dayOfWeek,datepart(weekday,dbo.time_entry.Date_Start) as dayOfWeekNo,member.member_id,SUM(time_entry.Hours_Bill) as billable_hours
+  select member.member_id,SUM(time_entry.Hours_Bill) as billable_hours
   from Time_Entry left outer join dbo.member      on dbo.time_entry.Member_RecID = member.Member_RecID
-  where (dbo.member.Title like "%Client IT% or member.id ="zhoover")
+  where (dbo.member.Title like "%Client IT%" or member.member_id ="zhoover")
   and DATEDIFF(ww, dbo.time_entry.Date_Start, getdate())=0 and time_entry.Company_RecID <> 2
-  group by datename(dw,dbo.time_entry.Date_Start),datepart(weekday,dbo.time_entry.Date_Start) ,member.member_id
-  order by datepart(weekday,dbo.time_entry.date_start)';
+  group by member.member_id
+  order by member.member_id desc
+  ';
 
 }elseif(strpos($path,'results') !== false){
 
@@ -34,7 +35,8 @@ group by member.member_id';
   from Time_Entry left outer join dbo.member on dbo.time_entry.Member_RecID = member.Member_RecID
   left outer join company on company.company_recid = time_entry.company_recid
   where company_name = "Results Physiotherapy" and DATEDIFF(ww, dbo.time_entry.Date_Start, getdate())=0 and time_entry.Company_RecID <> 2
-  group by member.member_id';
+  group by member.member_id
+  order by member.member_id desc';
 
 }
 else{
@@ -42,9 +44,11 @@ else{
 from Time_Entry left outer join dbo.member      on dbo.time_entry.Member_RecID = member.Member_RecID
 where (dbo.member.Title like "%IT Support%" or dbo.member.Title like "%Client IT%" or dbo.member.member_id="zhoover")
 and DATEDIFF(ww, dbo.time_entry.Date_Start, getdate())=0 and time_entry.Company_RecID <> 2
-group by member.member_id';
+group by member.member_id
+order by member.member_id desc';
 
 }
+
 $projectHours = mssql_query($query);
 $query1 = str_replace('"',"",$query);
 

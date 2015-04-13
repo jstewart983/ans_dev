@@ -425,6 +425,7 @@ function getTicketHistory(){
       var hours2 = [];
       var workHours = [];
 
+
       $.ajax({
         type:"GET",
         url:"../ajax/servicedelivery/hoursByMonthResults.php",
@@ -597,13 +598,24 @@ function getRandomColor() {
 
 
 
+doughnutData = [];
 
 
 
+for(var i = 0; i < xlabels.length;i++){
+if(xlabels[i] != "undefined"){
+  doughnutData.push({
+    value:type_count[i],
+    color:getRandomColor(),
+    highlight:getRandomColor(),
+    label:xlabels[i]
+  });
+}
 
 
-
-doughnutData = [
+}
+console.log(doughnutData);
+/*doughnutData = [
                 {
                     value: type_count[0],
                     color: getRandomColor(),
@@ -664,7 +676,7 @@ doughnutData = [
                     highlight: "#FF5A5E",
                     label: xlabels[9]
                 },
-            ];
+            ];*/
 
 
             $("#title #ticketsByTypeTitle").fadeOut(500,function(){
@@ -681,7 +693,7 @@ doughnutData = [
 
 
 
-        var $span2 = $('<canvas id="ticketsByType" style="width:300px;height:278px;"></canvas>');
+        var $span2 = $('<canvas id="ticketsByType" style="margin-left:-2px;padding:15px;width:90%;height:200px;""></canvas>');
         //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
         $("#ticketsByType").replaceWith($span2);
         //$("#openProjects").replaceWith($span2);
@@ -720,13 +732,14 @@ ticketsClosedThisWeek();
 ticketsOpen();
 //setInterval(function(){ ticketsOpen(); }, 10000);
 
-//closed first call % this year
-closedFirstCall();
 
 //billable hours this week
 getBillableHoursTotal();
 //setInterval(function(){ getBillableHoursTotal(); }, 60000);
 
+
+//closed first call % this year
+closedFirstCall();
 
 //last 7 business days
 avgInitialResponse()
@@ -758,7 +771,9 @@ $("#basicModal").on("show.bs.modal", function(e) {
     $(this).find("#query").text(link.attr("data-query"));
     $(this).find("#datasource").text(link.attr("data-datasource"));
     $(this).find("#description").text(link.attr("data-description"));
+
 });
+
 
 
 

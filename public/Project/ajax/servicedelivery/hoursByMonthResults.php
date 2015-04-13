@@ -1,7 +1,7 @@
 <?php
 require('../../config.php');
 $title = "Tickets Open vs Tickets Closed - Last Year to Last Month";
-$description ="This chart displays the number of tickets both created and completed as well as the number of billable hours worked, from last year to last month. The purpose of this chart is to display trends in the ";
+$description ="This chart displays the number of tickets both created and completed as well as the number of billable hours worked, from last year to last month. The purpose of this chart is to display trends in work load. For example, when there is a significant gap between tickets created and tickets closed it may suggest that service delivery is overloaded.";
 $datasource = "Connectwise";
 $actual_link = $_SERVER['HTTP_REFERER'];
 $path = parse_url($actual_link,PHP_URL_PATH);
@@ -51,7 +51,7 @@ if (strpos($path,'results') !== false) {
   dbo.Member.Member_id = "breynolds" or
   dbo.Member.Member_id = "jdumouchel" or
   dbo.Member.Member_id = "jfitzwater" or
-  dbo.Member.Member_id = "pfrench") and
+  dbo.Member.Member_id = "pfenech" or dbo.Member.Member_id = "zhoover") and
   (convert(char(6), dbo.time_entry.date_entered_utc, 112) <> convert(char(6), getdate(), 112) and year(time_entry.date_entered_utc) > year(getdate())-2)
 
   group by month(dbo.time_entry.date_entered_utc),year(dbo.time_entry.date_entered_utc)
