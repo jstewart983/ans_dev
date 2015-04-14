@@ -6,7 +6,7 @@ require('../../config.php');
 if(isset($_GET['company'])){
 
 $company = $_GET['company'];
-$company = urldecode($company);
+//$company = urldecode($company);
 $results = mssql_query('select dbo.so_opportunity.opportunity_name as oppName,
 year(dbo.so_opportunity.date_became_lead) as yearNum,
 month(dbo.so_opportunity.date_became_lead) as monthNum,
