@@ -73,10 +73,12 @@
         <li class="active"><a href="#">Service Delivery</a></li>
         <li><a href="../client services/">Client Services</a></li>
         <li><a href="../resultsphysiotherapy/">Results Physiotherapy</a></li>
+        <li><a href="../sales/">Sales</a></li>
         <li><a href="../finance/">Finance</a></li>
+
       </ul>
       <ul class="nav navmenu-nav">
-        <li><a href="#">Admin</a></li>
+        <li><a href="../admin/">Admin</a></li>
       </ul>
     </div>
 
@@ -228,7 +230,7 @@
             <div id="title" class="col-md-6">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                        <p id="ticketsByTypeTitle" style="text-align:center;">Tickets by Service Type (top 10) - This Week <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
+                        <p id="ticketsByTypeTitle" style="text-align:center;">Hours by Service Type (top 10) - This Week  <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
                   </div>
                   <div id="title"class="panel-body">
                     <div style="text-align:center"class="col-md-2">

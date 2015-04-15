@@ -71,7 +71,59 @@ function serviceHistory(value){
 
 });*/
 }
+function address(value) {
+  var company = value;
+  var parameter = "?company=";
 
+
+  $.ajax({
+    type:"GET",
+
+    url:"../ajax/sales/getAddress.php"+parameter+company,
+    success: function(json){
+      $('#timelineSection2 #timeline').fadeOut(500, function() {
+
+     //var $span1 = json;
+     var $span1 = $('<div  id="timeline" class="col-md-12">'+json+'</div>');
+     $("#timeline").replaceWith($span1);
+     //$("#openProjects").replaceWith($span2);
+     $span1.fadeIn(500);
+
+ });
+      //$('#timeline1').append(json);
+
+    }
+  });
+
+
+}
+
+function activityHistory(value) {
+  var company = value;
+  var parameter = "?company=";
+
+
+  $.ajax({
+    type:"GET",
+
+    url:"../ajax/sales/getActivities.php"+parameter+company,
+    success: function(json){
+      $('#timelineSection2 #timeline2').fadeOut(500, function() {
+
+     //var $span1 = json;
+     var $span1 = $('<div  id="timeline2" class="col-md-12">'+json+'</div>');
+     $("#timeline2").replaceWith($span1);
+     //$("#openProjects").replaceWith($span2);
+     $span1.fadeIn(500);
+
+ });
+      //$('#timeline1').append(json);
+
+    }
+  });
+
+
+}
 
 
 
@@ -91,7 +143,7 @@ function oppHistory(value) {
      var $span1 = $('<div  id="timeline1" class="col-md-12">'+json+'</div>');
      $("#timeline1").replaceWith($span1);
      //$("#openProjects").replaceWith($span2);
-     $span1.fadeIn(1200);
+     $span1.fadeIn(500);
 
  });
       //$('#timeline1').append(json);
@@ -605,7 +657,9 @@ $(document).ready(function(){
               //drawTimeline2('');
 
               //drawTimeline('');
-              $("#search").keyup(function () {
+              $('input').livefilter({selector:'tbody tr'});
+
+              /*$("#search").keyup(function () {
                   var value = this.value.toLowerCase().trim();
 
                   $("table tr").each(function (index) {
@@ -617,7 +671,7 @@ $(document).ready(function(){
                           return not_found;
                       });
                   });
-              });
+              });*/
 
     $('#clientTable').on('click','tr.co',function(e){
        e.preventDefault();
@@ -649,8 +703,8 @@ $(document).ready(function(){
         //getLocationCount(clickedVal);
         //serviceHistory(clickedVal);
         oppHistory(clickedVal);
-
-
+        activityHistory(clickedVal);
+        address(clickedVal);
 
 
         //$('#basicModal').modal('toggle');

@@ -1,14 +1,14 @@
 <?php
 require('../../config.php');
-$title = "Tickets by Service Type (top 10) - This Week";
-$description ="This chart represents the top 10 counts of tickets closed by a member of the service desk or field services team (depending on the filter selected above) this week by service type.";
+$title = "Hours by Service Type (top 10) - This Week";
+$description ="This chart represents the top 10 service types by hours spent on them this week, by a member of the service desk or field services team (depending on the filter selected above)";
 $datasource ="Connectwise";
 $actual_link = $_SERVER['HTTP_REFERER'];
 $path = parse_url($actual_link,PHP_URL_PATH);
 //$path = strstr($path,"/service_delivery");
 //echo $path;
 if (strpos($path,'results') !== false) {
-$query = 'SELECT top 10 SR_Type.Description as type,count(*) as typeCount
+$query = 'SELECT top 10 SR_Type.Description as type,sum(time_entry.hours_actual) as typeCount
 FROM cwwebapp_ans.dbo.Company Company, cwwebapp_ans.dbo.SR_Board SR_Board, cwwebapp_ans.dbo.SR_Service SR_Service, cwwebapp_ans.dbo.SR_Type SR_Type,cwwebapp_ans.dbo.Time_Entry
 WHERE Company.Company_RecID = Time_Entry.Company_RecID AND
 SR_Service.SR_Service_RecID = Time_Entry.SR_Service_RecID AND
@@ -24,7 +24,7 @@ order by typeCount desc
 }
 else if(strpos($path,'desk') !== false){
 
-  $query = 'SELECT top 10 SR_Type.Description as type,count(*) as typeCount
+  $query = 'SELECT top 10 SR_Type.Description as type,sum(time_entry.hours_actual) as typeCount
   FROM cwwebapp_ans.dbo.Company Company, cwwebapp_ans.dbo.SR_Board SR_Board,dbo.member, cwwebapp_ans.dbo.SR_Service SR_Service, cwwebapp_ans.dbo.SR_Type SR_Type,cwwebapp_ans.dbo.Time_Entry
   WHERE Company.Company_RecID = Time_Entry.Company_RecID AND
   SR_Service.SR_Service_RecID = Time_Entry.SR_Service_RecID AND
@@ -43,7 +43,7 @@ else if(strpos($path,'desk') !== false){
 }
 else if(strpos($path,'CIM') !== false){
 
-  $query = 'SELECT top 10 SR_Type.Description as type,count(*) as typeCount
+  $query = 'SELECT top 10 SR_Type.Description as type,sum(time_entry.hours_actual) as typeCount
   FROM cwwebapp_ans.dbo.Company Company, cwwebapp_ans.dbo.SR_Board SR_Board,dbo.member, cwwebapp_ans.dbo.SR_Service SR_Service, cwwebapp_ans.dbo.SR_Type SR_Type,cwwebapp_ans.dbo.Time_Entry
   WHERE Company.Company_RecID = Time_Entry.Company_RecID AND
   SR_Service.SR_Service_RecID = Time_Entry.SR_Service_RecID AND
@@ -60,7 +60,7 @@ else if(strpos($path,'CIM') !== false){
 
 }else{
 
-  $query = 'SELECT top 10 SR_Type.Description as type,count(*) as typeCount
+  $query = 'SELECT top 10 SR_Type.Description as type,sum(time_entry.hours_actual) as typeCount
   FROM cwwebapp_ans.dbo.Company Company, cwwebapp_ans.dbo.SR_Board SR_Board,dbo.member, cwwebapp_ans.dbo.SR_Service SR_Service, cwwebapp_ans.dbo.SR_Type SR_Type,cwwebapp_ans.dbo.Time_Entry
 
   WHERE Company.Company_RecID = Time_Entry.Company_RecID AND

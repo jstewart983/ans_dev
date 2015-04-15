@@ -11,7 +11,7 @@ $path = parse_url($actual_link,PHP_URL_PATH);
 //echo $path;
 if (strpos($path,'desk') !== false) {
 
-  $query = 'select member.member_id,SUM(time_entry.Hours_Bill) as billable_hours
+  $query = 'select member.member_id,SUM(time_entry.Hours_Actual) as billable_hours
 from Time_Entry left outer join dbo.member      on dbo.time_entry.Member_RecID = member.Member_RecID
 where (dbo.member.Title like "%IT Support%")
 and DATEDIFF(ww, dbo.time_entry.Date_Start, getdate())=0 and time_entry.Company_RecID <> 2
@@ -21,9 +21,9 @@ order by member.member_id desc';
 }elseif(strpos($path,'CIM') !== false){
 
   $query = '
-  select member.member_id,SUM(time_entry.Hours_Bill) as billable_hours
+  select member.member_id,SUM(time_entry.Hours_Actual) as billable_hours
   from Time_Entry left outer join dbo.member      on dbo.time_entry.Member_RecID = member.Member_RecID
-  where (dbo.member.Title like "%Client IT%" or member.member_id ="zhoover")
+  where time_entry.billable_flag = 1 and (dbo.member.Title like "%Client IT%" or member.member_id ="zhoover")
   and DATEDIFF(ww, dbo.time_entry.Date_Start, getdate())=0 and time_entry.Company_RecID <> 2
   group by member.member_id
   order by member.member_id desc
@@ -31,18 +31,18 @@ order by member.member_id desc';
 
 }elseif(strpos($path,'results') !== false){
 
-  $query ='select member.member_id,SUM(time_entry.Hours_Bill) as billable_hours
+  $query ='select member.member_id,SUM(time_entry.Hours_Actual) as billable_hours
   from Time_Entry left outer join dbo.member on dbo.time_entry.Member_RecID = member.Member_RecID
   left outer join company on company.company_recid = time_entry.company_recid
-  where company_name = "Results Physiotherapy" and DATEDIFF(ww, dbo.time_entry.Date_Start, getdate())=0 and time_entry.Company_RecID <> 2
+  where time_entry.billable_flag = 1 and company_name = "Results Physiotherapy" and DATEDIFF(ww, dbo.time_entry.Date_Start, getdate())=0 and time_entry.Company_RecID <> 2
   group by member.member_id
   order by member.member_id desc';
 
 }
 else{
-  $query ='select member.member_id,SUM(time_entry.Hours_Bill) as billable_hours
+  $query ='select member.member_id,SUM(time_entry.Hours_Actual) as billable_hours
 from Time_Entry left outer join dbo.member      on dbo.time_entry.Member_RecID = member.Member_RecID
-where (dbo.member.Title like "%IT Support%" or dbo.member.Title like "%Client IT%" or dbo.member.member_id="zhoover")
+where time_entry.billable_flag = 1 and (dbo.member.Title like "%IT Support%" or dbo.member.Title like "%Client IT%" or dbo.member.member_id="zhoover")
 and DATEDIFF(ww, dbo.time_entry.Date_Start, getdate())=0 and time_entry.Company_RecID <> 2
 group by member.member_id
 order by member.member_id desc';

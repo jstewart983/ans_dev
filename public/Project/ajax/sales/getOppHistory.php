@@ -35,7 +35,7 @@ order by dbo.SO_Opportunity.Date_Close_Expected desc'
 
 echo "<div style='width:100%;padding:0px;'class=' panel panel-default'>";
 
-echo "<div style='width:100%;'class=panel-body>";
+echo "<div style='width:100%;overflow-y: scroll !important;height:178px;'class=panel-body>";
 echo "<table id='clientTable' style='width:100%;' class='table table-hover'>";
 echo "<thead>";
 echo "<th>Opp Name</th>";

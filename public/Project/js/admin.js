@@ -604,10 +604,10 @@ function getLocationCount(value){
 
 $(document).ready(function(){
 
-  $('#loading').html('<img style="display:block;margin-left:auto;margin-right:auto;" src="../css/assets/spiffygif_148x148.gif"> <h4 style="text-align:center;">Loading CW DB Structure...</h4>');
+  $('#loading').html('<img style="display:block;margin-left:auto;margin-right:auto;" src="../../css/assets/spiffygif_148x148.gif"> <h4 style="text-align:center;">Loading CW DB Structure...</h4>');
 
     $.ajax({
-      url: "../ajax/dbStructure.php",
+      url: "../../ajax/dbStructure.php",
                     context: document.body,
 
                     success: function(html){
@@ -630,7 +630,9 @@ $(document).ready(function(){
               //drawTimeline2('');
 
               //drawTimeline('');
-              $("#search").keyup(function () {
+              $('input').livefilter({selector:'tbody tr'});
+
+              /*$("#search").keyup(function () {
                   var value = this.value.toLowerCase().trim();
 
                   $("table tr").each(function (index) {
@@ -642,7 +644,7 @@ $(document).ready(function(){
                           return not_found;
                       });
                   });
-              });
+              });*/
 
     $('#clientTable').on('click','tr.co',function(e){
        e.preventDefault();
