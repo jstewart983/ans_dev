@@ -13,19 +13,19 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
 ;NREUM.info={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",licenseKey:"a5c71d8ce0",applicationID:"7511574",sa:1,agent:"js-agent.newrelic.com/nr-627.min.js"}
 </script>-->
     <title>ANS Intelligence Admin</title>
-    <link rel="stylesheet" type="text/css" href="../css/demo.css">
-    <link rel="stylesheet" type="text/css" href="../css/navbar.css">
-    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/demo.css">
+    <link rel="stylesheet" type="text/css" href="css/navbar.css">
+    <link href="libraries/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="../Flat-UI-master/dist/css/flat-ui.min.css">
-    <link rel="stylesheet" href="../Flat-UI-master/fonts/glyphicons/flat-ui-icons-regular.svg">
+    <link rel="stylesheet" href="libraries/Flat-UI-master/dist/css/flat-ui.min.css">
+    <link rel="stylesheet" href="libraries/Flat-UI-master/fonts/glyphicons/flat-ui-icons-regular.svg">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
     <!-- Bootstrap Core CSS -->
 
 
     <!--timeline css-->
-    <link rel="stylesheet" href="../timeline-2.9.1/timeline.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="libraries/timeline-2.9.1/timeline.css" media="screen" title="no title" charset="utf-8">
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -171,7 +171,7 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
 
           </div>
           <div id="choice4" class="col-md-5">
-            <a href="cwdb/">
+            <a href="routes/admin/cwdb/">
               <div class="panel panel-default">
                 <div class="panel-body">
                   <h5 style="text-align:center;">CW DB Structure tool <span class="glyphicon glyphicon-indent-left"></span></h5>
@@ -329,15 +329,15 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
         </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
        <script src="../js/oneUp.js"></script>-->
-       <script type="text/javascript" src="../js/jquery.min.js"></script>
-       <script src="../js/jquery.searchable.js"></script>
+       <script type="text/javascript" src="js/jquery.min.js"></script>
+       <script src="js/jquery.searchable.js"></script>
 
 
        <!--<script type="text/javascript" src="../js/razorflow.min.js"></script>
        <script type="text/javascript" src="../js/razorflow.devtools.min.js"></script>-->
-       <script src="../timeline-2.9.1/timeline.js"></script>
-       <script src="../js/Chart.js"></script>
-       <script src="../js/legend.js"></script>
+       <script src="libraries/timeline-2.9.1/timeline.js"></script>
+       <script src="js/Chart.js"></script>
+       <script src="js/legend.js"></script>
        <!-- Latest compiled and minified JavaScript -->
        <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>

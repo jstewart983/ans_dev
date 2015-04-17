@@ -1,34 +1,131 @@
 <?php
 require('../../config.php');
-$title = "Tickets Open vs Tickets Closed - Last Year to Last Month";
-$description ="This chart displays the number of tickets both created and completed as well as the number of billable hours worked, from last year to last month. The purpose of this chart is to display trends in work load. For example, when there is a significant gap between tickets created and tickets closed it may suggest that service delivery is overloaded.";
+$title = "Opened Tickets vs Hours Worked Analyzer";
+$description ="This tool allows you to display the number of tickets created and the number of hours worked in the date range of your choosing. You have the ability to filter by company and service type. Press the apply button in the date range selector to refresh the data. The chart will not refresh if there are no results.";
 $datasource = "Connectwise";
 $actual_link = $_SERVER['HTTP_REFERER'];
 $path = parse_url($actual_link,PHP_URL_PATH);
 //$path = strstr($path,"/service_delivery");
 //echo $path;
-if (strpos($path,'results') !== false) {
+/*if (strpos($path,'results') !== false) {*/
+
+  if(isset($_GET['range1']) && isset($_GET['range2']) && isset($_GET['company']) && isset($_GET['type'])){
+
+    $range1 = $_GET['range1'];
+    $range2 = $_GET['range2'];
+    $company = $_GET['company'];
+    $type = $_GET['type'];
+    $query = '
+    SELECT   month(dbo.time_entry.date_entered_utc) as month,year(dbo.time_entry.date_entered_utc) as year,
+
+    SUM(time_entry.Hours_Actual) AS Billable_Hours
+    FROM         dbo.Time_Entry LEFT OUTER JOIN
+                          dbo.TE_Charge_Code ON dbo.Time_Entry.TE_Charge_Code_RecID = dbo.TE_Charge_Code.TE_Charge_Code_RecID LEFT OUTER JOIN
+                          dbo.Member ON dbo.Time_Entry.Member_RecID = dbo.Member.Member_RecID
+                          left outer join company on time_entry.company_recid = company.company_recid
+                          left outer join sr_service on time_entry.sr_service_recid = sr_service.sr_service_recid
+                          left outer join  sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
+    WHERE sr_type.description = "'.$type.'" and company.company_name = "'.$company.'"  and (convert(char(10), dbo.time_entry.date_entered_utc, 120) >="'.$range1.'" and convert(char(10), dbo.time_entry.date_entered_utc, 120) <= "'.$range2.'")
+
+    group by day(time_entry.date_entered_utc),month(time_entry.date_entered_utc),year(time_entry.date_entered_utc)
+    order by month(time_entry.date_entered_utc),day(time_entry.date_entered_utc),year(time_entry.date_entered_utc) desc';
+
+  }else if(isset($_GET['range1']) && isset($_GET['range2']) && isset($_GET['type'])){
+    $range1 = $_GET['range1'];
+    $range2 = $_GET['range2'];
+    //$company = $_GET['company'];
+    $type = $_GET['type'];
+    $query = '
+    SELECT   month(dbo.time_entry.date_entered_utc) as month,year(dbo.time_entry.date_entered_utc) as year,
+
+    SUM(time_entry.Hours_Actual) AS Billable_Hours
+    FROM         dbo.Time_Entry LEFT OUTER JOIN
+                          dbo.TE_Charge_Code ON dbo.Time_Entry.TE_Charge_Code_RecID = dbo.TE_Charge_Code.TE_Charge_Code_RecID LEFT OUTER JOIN
+                          dbo.Member ON dbo.Time_Entry.Member_RecID = dbo.Member.Member_RecID
+                          left outer join company on time_entry.company_recid = company.company_recid
+                          left outer join sr_service on time_entry.sr_service_recid = sr_service.sr_service_recid
+                          left outer join  sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
+    WHERE sr_type.description = "'.$type.'" and  (convert(char(10), dbo.time_entry.date_entered_utc, 120) >="'.$range1.'" and convert(char(10), dbo.time_entry.date_entered_utc, 120) <= "'.$range2.'")
+
+    group by day(time_entry.date_entered_utc),month(time_entry.date_entered_utc),year(time_entry.date_entered_utc)
+    order by month(time_entry.date_entered_utc),day(time_entry.date_entered_utc),year(time_entry.date_entered_utc) desc';
+
+
+
+  }else if(isset($_GET['range1']) && isset($_GET['range2']) && isset($_GET['company'])){
+    $range1 = $_GET['range1'];
+    $range2 = $_GET['range2'];
+    $company = $_GET['company'];
+    //$type = $_GET['type'];
+    $query = '
+    SELECT   month(dbo.time_entry.date_entered_utc) as month,year(dbo.time_entry.date_entered_utc) as year,
+
+    SUM(time_entry.Hours_Actual) AS Billable_Hours
+    FROM         dbo.Time_Entry LEFT OUTER JOIN
+                          dbo.TE_Charge_Code ON dbo.Time_Entry.TE_Charge_Code_RecID = dbo.TE_Charge_Code.TE_Charge_Code_RecID LEFT OUTER JOIN
+                          dbo.Member ON dbo.Time_Entry.Member_RecID = dbo.Member.Member_RecID
+                          left outer join company on time_entry.company_recid = company.company_recid
+                          left outer join sr_service on time_entry.sr_service_recid = sr_service.sr_service_recid
+                          left outer join sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
+    WHERE company.company_name = "'.$company.'"  and (convert(char(10), dbo.time_entry.date_entered_utc, 120) >="'.$range1.'" and convert(char(10), dbo.time_entry.date_entered_utc, 120) <= "'.$range2.'")
+
+    group by day(time_entry.date_entered_utc),month(time_entry.date_entered_utc),year(time_entry.date_entered_utc)
+    order by month(time_entry.date_entered_utc),day(time_entry.date_entered_utc),year(time_entry.date_entered_utc) desc';
+
+
+  }else if(isset($_GET['range1']) && isset($_GET['range2'])){
+    $range1 = $_GET['range1'];
+    $range2 = $_GET['range2'];
+    //$company = $_GET['company'];
+    //$type = $_GET['type'];
+
+    $query = '
+    SELECT   month(dbo.time_entry.date_entered_utc) as month,day(time_entry.date_entered_utc) as day,year(dbo.time_entry.date_entered_utc) as year,
+
+    SUM(time_entry.Hours_Actual) AS Billable_Hours
+    FROM         dbo.Time_Entry LEFT OUTER JOIN
+                          dbo.TE_Charge_Code ON dbo.Time_Entry.TE_Charge_Code_RecID = dbo.TE_Charge_Code.TE_Charge_Code_RecID LEFT OUTER JOIN
+                          dbo.Member ON dbo.Time_Entry.Member_RecID = dbo.Member.Member_RecID
+                          left outer join company on time_entry.company_recid = company.company_recid
+                          left outer join sr_service on time_entry.sr_service_recid = sr_service.sr_service_recid
+                          left outer join sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
+    WHERE (convert(char(10), dbo.time_entry.date_entered_utc, 120) >="'.$range1.'" and convert(char(10), dbo.time_entry.date_entered_utc, 120) <= "'.$range2.'")
+
+    group by day(time_entry.date_entered_utc),month(time_entry.date_entered_utc),year(time_entry.date_entered_utc)
+    order by month(time_entry.date_entered_utc),day(time_entry.date_entered_utc),year(time_entry.date_entered_utc) desc';
+
+
+  }
+
+  else{
+
+
+    $query = '
+    SELECT   month(dbo.time_entry.date_entered_utc) as month,year(dbo.time_entry.date_entered_utc) as year,
+
+    SUM(time_entry.Hours_Actual) AS Billable_Hours
+    FROM         dbo.Time_Entry LEFT OUTER JOIN
+                          dbo.TE_Charge_Code ON dbo.Time_Entry.TE_Charge_Code_RecID = dbo.TE_Charge_Code.TE_Charge_Code_RecID LEFT OUTER JOIN
+                          dbo.Member ON dbo.Time_Entry.Member_RecID = dbo.Member.Member_RecID
+                          left outer join company on company.company_recid = time_entry.company_recid
+    WHERE  (convert(char(6), dbo.time_entry.date_entered_utc, 112) <> convert(char(6), getdate(), 112) and year(time_entry.date_entered_utc) > year(getdate())-2)
+
+    group by month(dbo.time_entry.date_entered_utc),year(dbo.time_entry.date_entered_utc)
+    order by year(dbo.time_entry.date_entered_utc),month(dbo.time_entry.date_entered_utc)';
+
+
+  }
+
+
+
+
+
+/*}else{
 
   $query = '
   SELECT   month(dbo.time_entry.date_entered_utc) as month,year(dbo.time_entry.date_entered_utc) as year,
 
-  SUM(time_entry.Hours_Bill) AS Billable_Hours
-  FROM         dbo.Time_Entry LEFT OUTER JOIN
-                        dbo.TE_Charge_Code ON dbo.Time_Entry.TE_Charge_Code_RecID = dbo.TE_Charge_Code.TE_Charge_Code_RecID LEFT OUTER JOIN
-                        dbo.Member ON dbo.Time_Entry.Member_RecID = dbo.Member.Member_RecID
-                        left outer join company on company.company_recid = time_entry.company_recid
-  WHERE  company.company_name = "Results Physiotherapy" and (convert(char(6), dbo.time_entry.date_entered_utc, 112) <> convert(char(6), getdate(), 112) and year(time_entry.date_entered_utc) > year(getdate())-2)
-
-  group by month(dbo.time_entry.date_entered_utc),year(dbo.time_entry.date_entered_utc)
-  order by year(dbo.time_entry.date_entered_utc),month(dbo.time_entry.date_entered_utc)';
-
-
-}else{
-
-  $query = '
-  SELECT   month(dbo.time_entry.date_entered_utc) as month,year(dbo.time_entry.date_entered_utc) as year,
-
-  SUM(time_entry.Hours_Bill) AS Billable_Hours
+  SUM(time_entry.Hours_Actual) AS Billable_Hours
   FROM         dbo.Time_Entry LEFT OUTER JOIN
                         dbo.Member ON dbo.Time_Entry.Member_RecID = dbo.Member.Member_RecID
                         left outer join company on company.company_recid = time_entry.company_recid
@@ -57,18 +154,22 @@ if (strpos($path,'results') !== false) {
   group by month(dbo.time_entry.date_entered_utc),year(dbo.time_entry.date_entered_utc)
   order by year(dbo.time_entry.date_entered_utc),month(dbo.time_entry.date_entered_utc)';
 
-}
+}*/
 
 $projectHours = mssql_query($query);
 $query1 = str_replace('"',"",$query);
 // fetch all rows from the query
 $all_rows = array();
+
 while($row = mssql_fetch_assoc($projectHours)) {
+
   $row["Title"] =$title;
   $row["Description"] = $description;
   $row["Query"] = $query1;
   $row["Datasource"] = $datasource;
-    $all_rows []= $row;
+  $all_rows []= $row;
+
+
 }
 
 header("Content-Type: application/json");

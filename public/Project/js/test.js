@@ -1,4 +1,31 @@
+function isset() {
+  //  discuss at: http://phpjs.org/functions/isset/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: FremyCompany
+  // improved by: Onno Marsman
+  // improved by: Rafał Kukawski
+  //   example 1: isset( undefined, true);
+  //   returns 1: false
+  //   example 2: isset( 'Kevin van Zonneveld' );
+  //   returns 2: true
 
+  var a = arguments,
+    l = a.length,
+    i = 0,
+    undef;
+
+  if (l === 0) {
+    throw new Error('Empty isset');
+  }
+
+  while (i !== l) {
+    if (a[i] === undef || a[i] === null) {
+      return false;
+    }
+    i++;
+  }
+  return true;
+}
 function ticketsClosedThisWeek(){
 
   $.ajax({
@@ -477,7 +504,7 @@ function getTicketHistory(value,value2,value3){
                   strokeColor: "rgba(255, 99, 71, .8)",
                   pointColor: "rgba(255, 99, 71, 1)",
                   pointStrokeColor: "#fff",
-                  pointHighlightFill: "#fff",
+                  pointHighlightFill: "#FF6347",
                   pointHighlightStroke: "rgba(220,220,220,1)",
                   data: workHours,
                   label: "Hours Worked"
@@ -497,17 +524,13 @@ function getTicketHistory(value,value2,value3){
 
           });*/
 
+          $("#title #ticketChartTitle").fadeOut(500,function(){
+            //$title = $('#newOldTitle').text();
+            $p = $('<p id="ticketChartTitle"  style="text-align:center;">'+json[0]["Title"]+' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+            $("#ticketChartTitle").replaceWith($p);
+            $p.fadeIn(1200);
 
-            $("#title #ticketChartTitle").fadeOut(500,function(){
-              //$title = $('#newOldTitle').text();
-              $p = $('<p id="ticketChartTitle"  style="text-align:center;">'+json[0]["Title"]+' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+"<br />******************<br />"+json1[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
-              $("#ticketChartTitle").replaceWith($p);
-              $p.fadeIn(1200);
-
-            });
-
-
-
+          });
 
           $('#chart').empty();
           $('#chart').append('<canvas style="padding:10px;width:90%;height:400px;" id="ticketChart">');
@@ -565,7 +588,7 @@ function urgentTickets(){
 
 }
 
-function topTypes(){
+function topTypes(value){
 
   $.ajax({
 
@@ -626,69 +649,7 @@ if(xlabels[i] != "undefined"){
 
 
 }
-//console.log(doughnutData);
-/*doughnutData = [
-                {
-                    value: type_count[0],
-                    color: getRandomColor(),
-                    highlight: getRandomColor(),
-                    label: xlabels[0]
-                },
-                {
-                    value: type_count[1],
-                    color: getRandomColor(),
-                    highlight: getRandomColor(),
-                    label: xlabels[1]
-                },
-                {
-                    value: type_count[2],
-                    color: getRandomColor(),
-                    highlight: getRandomColor(),
-                    label: xlabels[2]
-                },
-                {
-                    value: type_count[3],
-                    color: getRandomColor(),
-                    highlight: getRandomColor(),
-                    label: xlabels[3]
-                },
-                {
-                    value: type_count[4],
-                    color: getRandomColor(),
-                    highlight: getRandomColor(),
-                    label: xlabels[4]
-                },
-                {
-                    value: type_count[5],
-                    color: getRandomColor(),
-                    highlight: getRandomColor(),
-                    label: xlabels[5]
-                },
-                {
-                    value: type_count[6],
-                    color: getRandomColor(),
-                    highlight: getRandomColor(),
-                    label: xlabels[6]
-                },
-                {
-                    value: type_count[7],
-                    color: "#FDB45C",
-                    highlight: "#FFC870",
-                    label: xlabels[7]
-                },
-                {
-                    value: type_count[8],
-                    color: "#46BFBD",
-                    highlight: "#5AD3D1",
-                    label: xlabels[8]
-                },
-                {
-                    value: type_count[9],
-                    color:"#F7464A",
-                    highlight: "#FF5A5E",
-                    label: xlabels[9]
-                },
-            ];*/
+
 
 
             $("#title #ticketsByTypeTitle").fadeOut(500,function(){
@@ -721,10 +682,6 @@ if(xlabels[i] != "undefined"){
 
 
 
-
-
-
-
     }
 
   });
@@ -737,42 +694,39 @@ if(xlabels[i] != "undefined"){
 $(document).ready(function(){
 
 
-
-
 //closed by service desk and client IT managers
-ticketsClosedThisWeek();
+//ticketsClosedThisWeek();
 //setInterval(function(){ ticketsClosedThisWeek(); }, 10000);
 //tickets that service delivery is responsible for
-ticketsOpen();
+//ticketsOpen();
 //setInterval(function(){ ticketsOpen(); }, 10000);
 
 
 //billable hours this week
-getBillableHoursTotal();
+//getBillableHoursTotal();
 //setInterval(function(){ getBillableHoursTotal(); }, 60000);
 
 
 //closed first call % this year
-closedFirstCall();
+//closedFirstCall();
 
 //last 7 business days
-avgInitialResponse()
+//avgInitialResponse()
 
 
 //billable by day - last 7 days
-billableByDay();
+//billableByDay();
 
 
 //new tickets vs tickets closed by day - last 7 days
-newVsOld();
+//newVsOld();
 
 
 //urgent tickets that are open
-urgentTickets();
+//urgentTickets();
 
 //top tickets by service type this week
-topTypes();
-
+//topTypes();
 $.ajax({
   url: "../ajax/clientservices/getClientList2.php",
                 context: document.body,
@@ -798,9 +752,6 @@ $.ajax({
 //Ticket count since the beginning of time(for ANS)
 getTicketHistory('','','');
 
-//Ticket count since the beginning of time(for ANS)
-//getTicketHistory();
-
 // Fill modal with content from link href
 $("#basicModal").on("show.bs.modal", function(e) {
 
@@ -813,32 +764,33 @@ $("#basicModal").on("show.bs.modal", function(e) {
 });
 
 
-$('input[name="daterange"]').daterangepicker();
+    $('input[name="daterange"]').daterangepicker();
 
-$('#daterange').on('apply.daterangepicker', function(ev, picker) {
-  var start = picker.startDate.format('YYYY-MM-DD');
-  var end = picker.endDate.format('YYYY-MM-DD');
-  var company = $( "#client option:selected" ).text();
-  var type = $('#typeTable option:selected').text();
+    $('#daterange').on('apply.daterangepicker', function(ev, picker) {
+      var start = picker.startDate.format('YYYY-MM-DD');
+      var end = picker.endDate.format('YYYY-MM-DD');
+      var company = $( "#clientTable option:selected" ).text();
+      var type = $('#typeTable option:selected').text();
 
-  if(company == "Choose a Client" && type == "Choose a Service Type"){
-    getTicketHistory("?range1="+start+"&range2="+end,'','');
+      if(company == "Choose a Client" && type == "Choose a Service Type"){
+        getTicketHistory("?range1="+start+"&range2="+end,'','');
 
-  }else if(type == "Choose a Service Type" && company !="Choose a Client"){
+      }else if(type == "Choose a Service Type" && company !="Choose a Client"){
 
-    getTicketHistory("?range1="+start+"&range2="+end,"&company="+company,'');
+        getTicketHistory("?range1="+start+"&range2="+end,"&company="+company,'');
 
-  }else if(type != "Choose a Service Type" && company =="Choose a Client"){
+      }else if(type != "Choose a Service Type" && company =="Choose a Client"){
 
-    getTicketHistory("?range1="+start+"&range2="+end,'','&type='+type);
+        getTicketHistory("?range1="+start+"&range2="+end,'','&type='+type);
 
-  }else if(type != "Choose a Service Type" && company !="Choose a Client"){
+      }else if(type != "Choose a Service Type" && company !="Choose a Client"){
 
-    getTicketHistory("?range1="+start+"&range2="+end,"&company="+company,'&type='+type);
+        getTicketHistory("?range1="+start+"&range2="+end,"&company="+company,'&type='+type);
 
-  }
+      }
 
-});
+    });
+
 
 
 
