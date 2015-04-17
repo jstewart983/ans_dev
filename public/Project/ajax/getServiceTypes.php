@@ -1,5 +1,5 @@
 <?php
- require('../config.php');
+ require('../config/config.php');
 
 //project hours completed last week
 $serviceTypeList = mssql_query('SELECT distinct sr_type.description FROM sr_type');

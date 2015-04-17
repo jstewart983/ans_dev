@@ -1,5 +1,5 @@
 <?php
-require('../../config.php');
+require('../../config/config.php');
 //ini_set('memory_limit', '512M');
 //project hours completed last week
 if(isset($_GET['company'])){

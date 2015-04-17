@@ -1,6 +1,6 @@
 <?php
 
-require('../../config.php');
+require('../../config/config.php');
 $title = "Tickets Open vs Tickets Closed - Last Year to Last Month";
 $description ="This chart displays the number of tickets both created and completed as well as the number of billable hours worked, from last year to last month. The purpose of this chart is to display trends in work load. For example, when there is a significant gap between tickets created and tickets closed it may suggest that service delivery is overloaded.";
 $datasource = "Connectwise";
@@ -22,7 +22,7 @@ order by year(sr_service.Date_Entered), month(sr_service.Date_Entered)';
 }else{
 
 if(isset($_GET['type'])){
-  
+
   $query = 'select year(sr_service.Date_Entered) as year,month(sr_service.Date_Entered) as month,COUNT(distinct(sr_service.Date_Entered)) as Tickets,
   COUNT(distinct(sr_service.Date_Closed)) as Closed
   from dbo.SR_Service left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid

@@ -8,20 +8,20 @@
 
 
         <title>Welcome</title>
-        <link rel="stylesheet" type="text/css" href="css/demo.css">
+        <link rel="stylesheet" type="text/css" href="../../css/demo.css">
 
-        <link rel="stylesheet" type="text/css" href="css/navbar.css">
+        <link rel="stylesheet" type="text/css" href="../../css/navbar.css">
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
         <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="Flat-UI-master/dist/css/flat-ui.min.css">
-        <link rel="stylesheet" href="Flat-UI-master/fonts/glyphicons/flat-ui-icons-regular.svg">
+        <link rel="stylesheet" href="../../libraries/Flat-UI-master/dist/css/flat-ui.min.css">
+        <link rel="stylesheet" href="../../libraries/Flat-UI-master/fonts/glyphicons/flat-ui-icons-regular.svg">
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
         <link href='http://fonts.googleapis.com/css?family=Codystar' rel='stylesheet' type='text/css'>
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="../../js/jquery.min.js"></script>
         <!--<script type="text/javascript" src="js/overview.js"></script>-->
-        <script type="text/javascript" src="js/Chart.js"></script>
-        <script type="text/javascript" src="js/legend.js"></script>
+        <script type="text/javascript" src="../../js/Chart.js"></script>
+        <script type="text/javascript" src="../../js/legend.js"></script>
 
         <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/globalize/0.1.1/globalize.min.js"></script>
         <!-- Latest compiled and minified JavaScript -->
@@ -77,10 +77,10 @@
       <div style="background-color:#fff;" class="navmenu navmenu-default navmenu-fixed-left offcanvas">
             <a class="navmenu-brand" href="#">ANS Intelligence</a>
             <ul class="nav navmenu-nav">
-              <li class="active"><a href="../">Overview</a></li>
-              <li><a href="../solution delivery/">Solution Delivery</a></li>
-              <li><a href="#">Service Delivery</a></li>
-              <li><a href="../client services/">Client Services</a></li>
+              <li class="active"><a href="#">Overview</a></li>
+              <li><a href="../solutiondelivery/">Solution Delivery</a></li>
+              <li><a href="../servicedelivery/">Service Delivery</a></li>
+              <li><a href="../clientservices/">Client Services</a></li>
               <li><a href="../resultsphysiotherapy/">Results Physiotherapy</a></li>
               <li><a href="../sales/">Sales</a></li>
               <li><a href="../finance/">Finance</a></li>
@@ -90,7 +90,7 @@
               <li><a href="../admin/">Admin</a></li>
             </ul>
           </div>
-          <!--<div style="background-color:#fff;margin-bottom:10px;" class="navbar navbar-default navbar-fixed-top">
+          <div style="background-color:#fff;margin-bottom:10px;" class="navbar navbar-default navbar-fixed-top">
             <button style="display: block;float: left; margin-left: 15px;" type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body">
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
@@ -99,7 +99,7 @@
             <h2 style="margin-top:12px;text-align:center;font-size:20px;"id="title"></h2>
             <img id="ans"style="height:auto;width:200px;display:block;margin-left:auto;margin-right:auto;"  src="http://www.ansolutions.com/wp-content/themes/ANS/images/header-logo.jpg" alt="ans" />
 
-          </div>-->
+          </div>
       <div style="margin-top:42px;z-index:999;"class="container">
         <div style="position:relative;z-index:999;"class="row">
           <div class="col-md-12">
@@ -120,7 +120,7 @@
 
           </div>
           <div id="choice1" class="col-md-4">
-            <a href="solution delivery/">
+            <a href="../solutiondelivery/">
               <div class="panel panel-default">
                 <div class="panel-body">
                   <h5 style="text-align:center;">Solution Delivery <span class="glyphicon glyphicon-dashboard"></span></h5>
@@ -132,7 +132,7 @@
           </a>
           </div>
           <div id="choice2" class="col-md-4">
-            <a href="service delivery/">
+            <a href="../servicedelivery/">
               <div class="panel panel-default">
                 <div class="panel-body">
                   <h5 class="name" style="text-align:center;">Service Delivery <span class="glyphicon glyphicon-dashboard"></span></h5>
@@ -152,7 +152,7 @@
 
           </div>
           <div id="choice3" class="col-md-4">
-            <a href="client services/">
+            <a href="../clientservices/">
               <div class="panel panel-default">
                 <div class="panel-body">
                   <h5 style="text-align:center;">Client Services <span class="glyphicon glyphicon-dashboard"></span></h5>
@@ -164,7 +164,7 @@
           </a>
           </div>
           <div id="choice4" class="col-md-4">
-            <a href="resultsphysiotherapy/">
+            <a href="../resultsphysiotherapy/">
               <div class="panel panel-default">
                 <div class="panel-body">
                   <h5 style="text-align:center;">Results Physiotherapy <span class="glyphicon glyphicon-dashboard"></span></h5>

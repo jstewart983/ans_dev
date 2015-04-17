@@ -1,6 +1,6 @@
 
 <?php
- require('../../config.php');
+ require('../../config/config.php');
 
 //project hours completed last week
 $clientList = mssql_query('SELECT distinct dbo.Company.Company_Name,dbo.Company_Status.Description as status,dbo.Company_Type.Description as type FROM dbo.Company_Address

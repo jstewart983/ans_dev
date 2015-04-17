@@ -1,6 +1,6 @@
 <?php
 
-require('../../config.php');
+require('../../config/config.php');
 $title = "New Tickets vs Tickets Closed - Last 5 days";
 $datasource = "Connectwise";
 $description = "This represents the count of tickets created and closed by day, in the last 5 business days";

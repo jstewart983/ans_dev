@@ -83,7 +83,7 @@ function oppHistory(value) {
   $.ajax({
     type:"POST",
     async:false,
-    url:"../ajax/sales/getOppHistory.php"+parameter+company,
+    url:"../../ajax/sales/getOppHistory.php"+parameter+company,
     success: function(json){
 
 
@@ -604,10 +604,10 @@ function getLocationCount(value){
 
 $(document).ready(function(){
 
-  $('#loading').html('<img style="display:block;margin-left:auto;margin-right:auto;" src="../../css/assets/spiffygif_148x148.gif"> <h4 style="text-align:center;">Loading CW DB Structure...</h4>');
+  $('#loading').html('<img style="display:block;margin-left:auto;margin-right:auto;" src="../../../css/assets/spiffygif_148x148.gif"> <h4 style="text-align:center;">Loading CW DB Structure...</h4>');
 
     $.ajax({
-      url: "../../ajax/dbStructure.php",
+      url: "../../../ajax/dbStructure.php",
                     context: document.body,
 
                     success: function(html){

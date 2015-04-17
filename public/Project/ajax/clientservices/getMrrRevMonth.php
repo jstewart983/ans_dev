@@ -1,5 +1,5 @@
 <?php
- require('../../config.php');
+ require('../../config/config.php');
 //project hours completed last week
 $projectHours = mssql_query('SELECT
        (SELECT ISNULL(SUM(ISNULL((dbo.SO_Forecast_Dtl.Recurring_Revenue),0)),0)from dbo.SO_Forecast_Dtl where Opportunity_RecID = dbo.SO_Opportunity.Opportunity_RecID) as Recurring_Revenue

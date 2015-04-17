@@ -1,5 +1,5 @@
 <?php
- require('../../config.php');
+ require('../../config/config.php');
 
 //project hours completed last week
 $projectHours = mssql_query('DECLARE @Date_Start DATETIME

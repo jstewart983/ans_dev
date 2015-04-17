@@ -1,5 +1,5 @@
 <?php
-require('../../lconfig.php');
+require('../../config/lconfig.php');
 
 if(isset($_GET['company'])){
 

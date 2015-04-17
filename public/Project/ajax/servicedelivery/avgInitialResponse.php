@@ -1,5 +1,5 @@
 <?php
-require('../../config.php');
+require('../../config/config.php');
 $title = "Avg Initial Response Time - Last 7 days";
 $datasource = "Connectwise";
 $description = "This represents the average amount of time that passes between the date and time that a ticket is entered and the date and time of the first time entry, omitting non-business hours. This number is only looking at tickets on the My Company board that were entered in the last 7 days and where the first time entry is from a member of the service desk team, not including tickets against ANS.";

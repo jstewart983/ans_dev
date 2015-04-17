@@ -1,5 +1,5 @@
 <?php
-include('../../lconfig.php');
+include('../../config/lconfig.php');
 
 if(isset($_GET['company'])){
   //echo $_GET['company'];

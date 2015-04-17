@@ -1,5 +1,5 @@
 <?php
-require('../../config.php');
+require('../../config/config.php');
 $title = "Hours by Service Type (top 10) - This Week";
 $description ="This chart represents the top 10 service types by hours spent on them this week, by a member of the service desk or field services team (depending on the filter selected above)";
 $datasource ="Connectwise";

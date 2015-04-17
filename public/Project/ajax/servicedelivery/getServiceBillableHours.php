@@ -1,6 +1,6 @@
 <?php
 
-require('../../config.php');
+require('../../config/config.php');
 $title = "Billable Hrs - This Week";
 $description = "This represents the total billable client hours completed by the Service Delivery Team for the current week starting on Sunday.";
 $datasource = "Connectwise";

@@ -1,5 +1,5 @@
 <?php
-require('../../config.php');
+require('../../config/config.php');
 $actual_link = $_SERVER['HTTP_REFERER'];
 $path = parse_url($actual_link,PHP_URL_PATH);
 //$path = strstr($path,"/service_delivery");

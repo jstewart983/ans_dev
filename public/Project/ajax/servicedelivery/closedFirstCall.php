@@ -1,6 +1,6 @@
 <?php
 
-require('../../config.php');
+require('../../config/config.php');
 $actual_link = $_SERVER['HTTP_REFERER'];
 $title = "Closed First Call %";
 $description = "This represents the percentage of tickets that were closed on the first call in the past 7 days on all boards managed by the Service Delivery Team, excluding Saturday and Sunday. (CFC% = Count of Closed First Call/Total Closed)";

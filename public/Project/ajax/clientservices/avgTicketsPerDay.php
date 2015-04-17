@@ -2,7 +2,7 @@
  $title = "Avgerage Tickets/Day - Last 6 Months";
  $description = "This represents the average number of tickets created per day for a given company";
  $datasource = "Connectwise";
- require('../../config.php');
+ require('../../config/config.php');
 
 if(isset($_GET['company'])){
 

@@ -1,6 +1,6 @@
 
 <?php
- require('../../config.php');
+ require('../../config/config.php');
  $description="";
  $datasource = "";
  $title = "Projects This Week";

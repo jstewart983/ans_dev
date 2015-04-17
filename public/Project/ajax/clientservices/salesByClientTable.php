@@ -1,6 +1,6 @@
 
 <?php
- require('../../config.php');
+ require('../../config/config.php');
 //project hours completed last week
 $projectHours = mssql_query('select top 10 sum(dbo.SO_Forecast_Dtl.revenue) as total_sales,company.company_name
 from dbo.order_header

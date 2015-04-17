@@ -1,5 +1,5 @@
 <?php
- require('../../config.php');
+ require('../../config/config.php');
 //project hours completed last week
 $projectHours = mssql_query('select sum(dbo.SO_Forecast_Dtl.revenue) as Tot_NonMRR_Revenue
 from dbo.order_header left outer join

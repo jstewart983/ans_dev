@@ -1,5 +1,5 @@
 <?php
- require('../../config.php');
+ require('../../config/config.php');
 //project hours completed last week
 $projectHours = mssql_query('SELECT dbo.SO_Type.Description AS Type,
         SUM(dbo.so_forecast_dtl.Revenue)

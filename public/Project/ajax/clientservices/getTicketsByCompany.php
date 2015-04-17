@@ -1,5 +1,5 @@
  <?php
- require('../../config.php');
+ require('../../config/config.php');
 if(isset($_GET['company'])){
 $company = $_GET['company'];
 $openTickets = mssql_query('select  dbo.company.Company_Name, Count(*) as openTickets

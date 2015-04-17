@@ -1,6 +1,6 @@
 <?php
 
-require('../../config.php');
+require('../../config/config.php');
 $title = "Tickets Closed - This Week";
 $datasource = "Connectwise";
 $description = "This represents a count of tickets closed by all members of the Service Delivery Team for the current week starting on Sunday.";

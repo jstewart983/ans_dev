@@ -8,16 +8,16 @@
 
 
         <title>Service Delivery | Service Desk</title>
-        <link rel="stylesheet" type="text/css" href="../../css/demo.css">
-        <link rel="stylesheet" type="text/css" href="../../css/razorflow.min.css">
-        <link rel="stylesheet" type="text/css" href="../../css/navbar.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/demo.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/razorflow.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/navbar.css">
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
 
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-        <link rel="stylesheet" href="../../Flat-UI-master/dist/css/flat-ui.min.css">
-        <link rel="stylesheet" href="../../Flat-UI-master/fonts/glyphicons/flat-ui-icons-regular.svg">
+        <link rel="stylesheet" href="../../../libraries/Flat-UI-master/dist/css/flat-ui.min.css">
+        <link rel="stylesheet" href="../../../libraries/Flat-UI-master/fonts/glyphicons/flat-ui-icons-regular.svg">
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
 
@@ -26,9 +26,9 @@
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
-        <script type="text/javascript" src="../../js/service_desk.js"></script>
-        <script type="text/javascript" src="../../js/Chart.js"></script>
-        <script type="text/javascript" src="../../js/legend.js"></script>
+        <script type="text/javascript" src="../../../js/service_desk.js"></script>
+        <script type="text/javascript" src="../../../js/Chart.js"></script>
+        <script type="text/javascript" src="../../../js/legend.js"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
         <script>$('.navmenu').offcanvas()</script>
@@ -65,10 +65,10 @@
 <div style="background-color:#fff;" class="navmenu navmenu-default navmenu-fixed-left offcanvas">
       <a class="navmenu-brand" href="#">ANS Reporting</a>
       <ul class="nav navmenu-nav">
-        <li><a href="../../">Overview</a></li>
-        <li><a href="../../solution delivery/">Solution Delivery</a></li>
+        <li><a href="../../home/">Overview</a></li>
+        <li><a href="../../solutiondelivery/">Solution Delivery</a></li>
         <li class="active"><a href="#">Service Delivery</a></li>
-        <li><a href="../../client services/">Client Services</a></li>
+        <li><a href="../../clientservices/">Client Services</a></li>
         <li><a href="../../resultsphysiotherapy/">Results Physiotherapy</a></li>
         <li><a href="../../sales/">Sales</a></li>
         <li><a href="../../finance/">Finance</a></li>
@@ -94,7 +94,7 @@
                 <div style="padding:5px;">
                     <ul class="nav nav-pills">
                         <li role="presentation" ><a style="color:#414141;" href="../">Overview</a></li>
-                        <li role="presentation"class="active"><a style="background-color:#F78E1E;color:#fff;"href="service desk/">Service Desk</a></li>
+                        <li role="presentation"class="active"><a style="background-color:#F78E1E;color:#fff;"href="#">Service Desk</a></li>
                         <li role="presentation"><a style="color:#414141;"href="../CIMs">Client IT Managers</a></li>
                         <li role="presentation"><a style="color:#414141;"target="_blank"href="../leaderboard">Help Desk Leaderboard</a></li>
                     </ul>

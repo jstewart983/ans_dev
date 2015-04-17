@@ -1,6 +1,6 @@
 
 <?php
- require('../../config.php');
+ require('../../config/config.php');
 //project hours completed last week
 $projectHours = mssql_query('
 SELECT dbo.Member.First_Name, dbo.Member.Last_Name, dbo.Company.Company_Name, dbo.SO_Opportunity.Opportunity_RecID, dbo.SO_Opportunity.Opportunity_Name,

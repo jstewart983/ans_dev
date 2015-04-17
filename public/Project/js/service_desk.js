@@ -3,7 +3,7 @@ function ticketsClosedThisWeek(){
 
   $.ajax({
     type:"GET",
-    url:"../../ajax/servicedelivery/ticketsClosed.php",
+    url:"../../../ajax/servicedelivery/ticketsClosed.php",
     success:function(json){
 
         var closed_tickets = [];
@@ -53,7 +53,7 @@ function ticketsOpen(){
 
 $.ajax({
   type:"GET",
-  url:"../../ajax/servicedelivery/getOpenTicketsService.php",
+  url:"../../../ajax/servicedelivery/getOpenTicketsService.php",
 success:function(json){
 
   var open_tickets = [];
@@ -97,7 +97,7 @@ function closedFirstCall(){
 
   $.ajax({
     type:"GET",
-    url:"../../ajax/servicedelivery/closedFirstCall.php",
+    url:"../../../ajax/servicedelivery/closedFirstCall.php",
     success: function(json){
 
       var first_call = [];
@@ -145,7 +145,7 @@ function getBillableHoursTotal(){
 
   $.ajax({
     type:"GET",
-    url:"../../ajax/servicedelivery/getServiceBillableHours.php",
+    url:"../../../ajax/servicedelivery/getServiceBillableHours.php",
     success:function(json){
 
       var total_hours = [];
@@ -192,7 +192,7 @@ function avgInitialResponse(){
     $.ajax({
 
       type:"GET",
-      url:"../../ajax/servicedelivery/avgInitialResponse.php",
+      url:"../../../ajax/servicedelivery/avgInitialResponse.php",
       success:function(json){
 
         var avg_response = [];
@@ -239,7 +239,7 @@ function billableByDay(){
   $.ajax({
 
     type:"GET",
-    url:"../../ajax/servicedelivery/billableByMember.php",
+    url:"../../../ajax/servicedelivery/billableByMember.php",
     success:function(json){
 
       function getRandomColor() {
@@ -312,7 +312,7 @@ function newVsOld(){
   $.ajax({
 
     type:"GET",
-    url:"../../ajax/servicedelivery/closedTicketsTrailingSeven.php",
+    url:"../../../ajax/servicedelivery/closedTicketsTrailingSeven.php",
     success:function(json1){
       var tickets_created = [];
       var tickets_closed = [];
@@ -321,7 +321,7 @@ function newVsOld(){
       $.ajax({
 
         type:"GET",
-        url:"../../ajax/servicedelivery/openTicketsTrailingSeven.php",
+        url:"../../../ajax/servicedelivery/openTicketsTrailingSeven.php",
         success:function(json2){
 
           for($i=0;$i<json2.length;$i++){
@@ -417,7 +417,7 @@ function getTicketHistory(){
   $.ajax({
 
     type:"GET",
-    url:"../../ajax/servicedelivery/ticketCountHistory.php",
+    url:"../../../ajax/servicedelivery/ticketCountHistory.php",
     success:function(json){
 
       var day_labels = [];
@@ -427,7 +427,7 @@ function getTicketHistory(){
 
       $.ajax({
         type:"GET",
-        url:"../../ajax/servicedelivery/hoursByMonthResults.php",
+        url:"../../../ajax/servicedelivery/hoursByMonthResults.php",
         success:function(json1){
 
           for($i=0;$i<json.length;$i++){
@@ -527,7 +527,7 @@ function urgentTickets(){
 
   $.ajax({
     type:"GET",
-    url:"../../ajax/servicedelivery/openUrgentTickets.php",
+    url:"../../../ajax/servicedelivery/openUrgentTickets.php",
     success:function(table){
 
 
@@ -557,7 +557,7 @@ function topTypes(){
   $.ajax({
 
     type:"GET",
-    url:"../../ajax/servicedelivery/topTypes.php",
+    url:"../../../ajax/servicedelivery/topTypes.php",
     success:function(json){
 
       console.log(json);
@@ -758,7 +758,7 @@ topTypes();
 
 
 //Ticket count since the beginning of time(for ANS)
-getTicketHistory();
+//getTicketHistory();
 
 // Fill modal with content from link href
 $("#basicModal").on("show.bs.modal", function(e) {

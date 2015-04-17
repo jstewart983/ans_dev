@@ -1,5 +1,5 @@
  <?php
- require('../../config.php');
+ require('../../config/config.php');
 
 $openTickets = mssql_query('select top 10 dbo.company.Company_Name, Count(*) as openTickets
 from dbo.SR_Service

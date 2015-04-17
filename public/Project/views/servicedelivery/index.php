@@ -8,27 +8,27 @@
 
 
         <title>Service Delivery</title>
-        <link rel="stylesheet" type="text/css" href="../css/demo.css">
-        <link rel="stylesheet" type="text/css" href="../css/razorflow.min.css">
-        <link rel="stylesheet" type="text/css" href="../css/navbar.css">
+        <link rel="stylesheet" type="text/css" href="../../css/demo.css">
+        <link rel="stylesheet" type="text/css" href="../../css/razorflow.min.css">
+        <link rel="stylesheet" type="text/css" href="../../css/navbar.css">
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../Flat-UI-master/dist/css/flat-ui.min.css">
-        <link rel="stylesheet" href="../Flat-UI-master/fonts/glyphicons/flat-ui-icons-regular.svg">
+        <link rel="stylesheet" href="../../libraries/Flat-UI-master/dist/css/flat-ui.min.css">
+        <link rel="stylesheet" href="../../libraries/Flat-UI-master/fonts/glyphicons/flat-ui-icons-regular.svg">
         <!-- Latest compiled and minified CSS -->
 
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
-        <link rel="stylesheet" href="../timeline-2.9.1/timeline.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="../../libraries/timeline-2.9.1/timeline.css" media="screen" title="no title" charset="utf-8">
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-        <script type="text/javascript" src="../js/jquery.min.js"></script>
+        <script type="text/javascript" src="../../js/jquery.min.js"></script>
         <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/2.9.0/moment.min.js"></script>
-        <script type="text/javascript" src="../js/service_delivery.js"></script>
+        <script type="text/javascript" src="../../js/service_delivery.js"></script>
 
-        <script type="text/javascript" src="../js/Chart.js"></script>
-        <script type="text/javascript" src="../js/legend.js"></script>
-        <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../../js/Chart.js"></script>
+        <script type="text/javascript" src="../../js/legend.js"></script>
+        <script src="../../libraries/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
-        <script src="../timeline-2.9.1/timeline.js"></script>
+        <script src="../../libraries/timeline-2.9.1/timeline.js"></script>
         <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/1/daterangepicker.js"></script>
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/1/daterangepicker-bs3.css" />
         <script>$('.navmenu').offcanvas()</script>
@@ -70,10 +70,10 @@
 <div style="background-color:#fff;" class="navmenu navmenu-default navmenu-fixed-left offcanvas">
       <a class="navmenu-brand" href="#">ANS Intelligence</a>
       <ul class="nav navmenu-nav">
-        <li><a href="../">Overview</a></li>
-        <li><a href="../solution delivery/">Solution Delivery</a></li>
+        <li><a href="../home/">Overview</a></li>
+        <li><a href="../solutiondelivery/">Solution Delivery</a></li>
         <li class="active"><a href="#">Service Delivery</a></li>
-        <li><a href="../client services/">Client Services</a></li>
+        <li><a href="../clientservices/">Client Services</a></li>
         <li><a href="../resultsphysiotherapy/">Results Physiotherapy</a></li>
         <li><a href="../sales/">Sales</a></li>
         <li><a href="../finance/">Finance</a></li>
@@ -99,7 +99,7 @@
                 <div style="padding:5px;">
                     <ul class="nav nav-pills">
                         <li role="presentation" class="active"><a style="background-color:#F78E1E;"href="#">Overview</a></li>
-                        <li role="presentation"><a id="desk"style="color:#414141;"href="service desk/">Service Desk</a></li>
+                        <li role="presentation"><a id="desk"style="color:#414141;"href="servicedesk/">Service Desk</a></li>
                         <li role="presentation"><a style="color:#414141;"href="CIMs/">Client IT Managers</a></li>
                         <li role="presentation"><a style="color:#414141;"target="_blank"href="leaderboard/">Help Desk Leaderboard</a></li>
                     </ul>

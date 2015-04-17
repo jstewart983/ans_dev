@@ -1,5 +1,5 @@
 <?php
-require('../../config.php');
+require('../../config/config.php');
 $title = "Opened Tickets vs Hours Worked Analyzer";
 $description ="This tool allows you to display the number of tickets created and the number of hours worked in the date range of your choosing. You have the ability to filter by company and service type. Press the apply button in the date range selector to refresh the data. The chart will not refresh if there are no results.";
 $datasource = "Connectwise";

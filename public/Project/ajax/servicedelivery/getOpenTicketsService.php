@@ -1,6 +1,6 @@
 <?php
 
-require('../../config.php');
+require('../../config/config.php');
 $title = "Open Tickets";
 $description = "This represents a count of tickets currently open on all boards managed by the Service Delivery Team.  This includes Scheduled Maintenance tickets.";
 $datasource = "Connectwise";

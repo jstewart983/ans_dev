@@ -1,6 +1,6 @@
 <?php
 
-require('../../config.php');
+require('../../config/config.php');
 $title = "Open + Urgent Tickets";
 $datasource = "Connectwise";
 $description="This displays a table of tickets that are both open and urgent on the My Company/Service board or the Alerts - Service Delivery board";
