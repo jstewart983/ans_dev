@@ -34,14 +34,23 @@ $login = new Login();
 if ($login->isUserLoggedIn() == true) {
     // the user is logged in. you can do whatever you want here.
     // for demonstration purposes, we simply show the "you are logged in" view.
-    include("../../../views/admin/cwdb/index.php");
+    if ($_SESSION['user_name']=="jstewart" || $_SESSION['user_name']=="jstewart@ansolutions.com"){
+
+      include("../../../views/admin/cwdb/index.php");
+
+    }else{
+
+      include("../../../views/admin/access.php");
+
+    }
 
 } else {
     // the user is not logged in. you can do whatever you want here.
     // for demonstration purposes, we simply show the "you are not logged in" view.
 
 
-    include("../../login/views/not_logged_in.php");
+    include("../../../login/views/sub-home_header.php");
+    include("../../../login/views/not_logged_in.php");
 }
 
 ?>

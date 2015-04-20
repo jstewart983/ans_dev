@@ -79,7 +79,7 @@ function address(value) {
   $.ajax({
     type:"GET",
 
-    url:"../ajax/sales/getAddress.php"+parameter+company,
+    url:"../../ajax/sales/getAddress.php"+parameter+company,
     success: function(json){
       $('#timelineSection2 #timeline').fadeOut(500, function() {
 
@@ -106,7 +106,7 @@ function activityHistory(value) {
   $.ajax({
     type:"GET",
 
-    url:"../ajax/sales/getActivities.php"+parameter+company,
+    url:"../../ajax/sales/getActivities.php"+parameter+company,
     success: function(json){
       $('#timelineSection2 #timeline2').fadeOut(500, function() {
 
@@ -135,7 +135,7 @@ function oppHistory(value) {
   $.ajax({
     type:"GET",
 
-    url:"../ajax/sales/getOppHistory.php"+parameter+company,
+    url:"../../ajax/sales/getOppHistory.php"+parameter+company,
     success: function(json){
       $('#timelineSection2 #timeline1').fadeOut(500, function() {
 
@@ -631,10 +631,10 @@ function getLocationCount(value){
 
 $(document).ready(function(){
 
-  $('#loading').html('<img style="display:block;margin-left:auto;margin-right:auto;" src="../css/assets/spiffygif_148x148.gif"> <h4 style="text-align:center;">loading company list...</h4>');
+  $('#loading').html('<img style="display:block;margin-left:auto;margin-right:auto;" src="../../css/assets/spiffygif_148x148.gif"> <h4 style="text-align:center;">loading company list...</h4>');
 
     $.ajax({
-      url: "../ajax/sales/getProspectList.php",
+      url: "../../ajax/sales/getProspectList.php",
                     context: document.body,
 
                     success: function(html){

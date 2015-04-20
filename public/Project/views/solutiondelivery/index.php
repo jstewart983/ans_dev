@@ -9,12 +9,12 @@
 
 
         <title>Solution Delivery</title>
-        <link rel="stylesheet" type="text/css" href="../css/demo.css">
-        <link rel="stylesheet" type="text/css" href="../css/razorflow.min.css">
-        <link rel="stylesheet" type="text/css" href="../css/navbar.css">
+        <link rel="stylesheet" type="text/css" href="../../css/demo.css">
+        <link rel="stylesheet" type="text/css" href="../../css/razorflow.min.css">
+        <link rel="stylesheet" type="text/css" href="../../css/navbar.css">
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../Flat-UI-master/dist/css/flat-ui.min.css">
-        <link rel="stylesheet" href="../Flat-UI-master/fonts/glyphicons/flat-ui-icons-regular.svg">
+        <link rel="stylesheet" href="../../libraries/Flat-UI-master/dist/css/flat-ui.min.css">
+        <link rel="stylesheet" href="../../libraries/Flat-UI-master/fonts/glyphicons/flat-ui-icons-regular.svg">
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
 
@@ -22,13 +22,13 @@
 
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
-        <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="../../libraries/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
 
 
-        <script type="text/javascript" src="../js/solution_delivery.js"></script>
-        <script type="text/javascript" src="../js/Chart.js"></script>
-        <script type="text/javascript" src="../js/legend.js"></script>
+        <script type="text/javascript" src="../../js/solution_delivery.js"></script>
+        <script type="text/javascript" src="../../js/Chart.js"></script>
+        <script type="text/javascript" src="../../js/legend.js"></script>
         <script>$('.navmenu').offcanvas()</script>
         <script>
             function myFunction() {
@@ -89,10 +89,10 @@
       <div style="background-color:#fff;" class="navmenu navmenu-default navmenu-fixed-left offcanvas">
             <a class="navmenu-brand" href="#">ANS Intelligence</a>
             <ul class="nav navmenu-nav">
-              <li><a href="../">Overview</a></li>
+              <li><a href="../home/">Home</a></li>
               <li class="active"><a href="../solution delivery/">Solution Delivery</a></li>
-              <li><a href="../service delivery/">Service Delivery</a></li>
-              <li><a href="../client services/">Client Services</a></li>
+              <li><a href="../servicedelivery/">Service Delivery</a></li>
+              <li><a href="../clientservices/">Client Services</a></li>
               <li><a href="../resultsphysiotherapy/">Results Physiotherapy</a></li>
               <li><a href="../sales/">Sales</a></li>
               <li><a href="../finance/">Finance</a></li>
@@ -101,16 +101,28 @@
             <ul class="nav navmenu-nav">
               <li><a href="../admin/">Admin</a></li>
             </ul>
+        </div>
+
+        <div class="navbar navbar-default navbar-fixed-top">
+          <button style="display: block;float: left; margin-left: 15px;" type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="col-md-3">
+
+          </div>
+          <div class="col-md-5">
+            <h2 style="margin-top:12px;text-align:center;font-size:20px;display: block;"id="title"></h2>
+
           </div>
 
-    <div class="navbar navbar-default navbar-fixed-top">
-      <button style="display: block;float: left; margin-left: 15px;" type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <h2 style="margin-top:12px;text-align:center;font-size:20px;"id="title"></h2>
-    </div>
+
+          <div style="margin-right:15px;margin-top:10px;margin-bottom:auto;text-align:center;display: block;float: right; margin-left: 15px;height:53px;">
+            <a href="index.php?logout" class="btn btn-md btn-inverse">Logout</a>
+
+          </div>
+        </div>
 
         <div style="margin-top:52px;"class="container">
         <div class="row">
@@ -118,9 +130,9 @@
                 <div style="padding:5px;">
                     <ul class="nav nav-pills">
                         <li role="presentation" class="active"><a style="background-color:#F78E1E;"href="#">Overview</a></li>
-                        <li role="presentation"><a style="color:#414141;"href="serice desk/">Project Team</a></li>
-                        <li role="presentation"><a style="color:#414141;"href="CIMs/">Managed Services</a></li>
-                        <li role="presentation"><a style="color:#414141;"href="leaderboard/">Network Ops Dashboard</a></li>
+                        <li role="presentation"><a style="color:#414141;"href="#">Project Team</a></li>
+                        <li role="presentation"><a style="color:#414141;"href="#">Managed Services</a></li>
+                        <li role="presentation"><a style="color:#414141;"href="#">Network Ops Dashboard</a></li>
                     </ul>
                 </div>
             </div>

@@ -1,30 +1,50 @@
-<?php
-// show potential errors / feedback (from login object)
-if (isset($login)) {
-    if ($login->errors) {
-        foreach ($login->errors as $error) {
-            echo $error;
-        }
-    }
-    if ($login->messages) {
-        foreach ($login->messages as $message) {
-            echo $message;
-        }
-    }
-}
-?>
+
+
+<body>
+
 
 <!-- login form box -->
-<form method="post" action="index.php" name="loginform">
 
-    <label for="login_input_username">Username</label>
-    <input id="login_input_username" class="login_input" type="text" name="user_name" required />
 
-    <label for="login_input_password">Password</label>
-    <input id="login_input_password" class="login_input" type="password" name="user_password" autocomplete="off" required />
+<div id="result" class="row">
+  <div class="col-md-4">
 
-    <input type="submit"  name="login" value="Log in" />
+  </div>
+  <div class="col-md-4">
+    <form method="post" action="index.php" name="loginform">
 
-</form>
+      <div class="form-group">
+        <input name="user_name" id="login_input_username" type="text" class="form-control login_input" required placeholder="Username" class="form-control">
 
-<a href="register.php">Register new account</a>
+      </div>
+
+        <div class="form-group">
+          <input type="password" name="user_password" id="login_input_password" class="form-control login_input" autocomplete="off" required placeholder="Password" >
+
+        </div>
+        <div class="form-group">
+          <input style="width:100%;" class="btn btn-lg btn-success" type="submit"  name="login" value="Log in" />
+
+        </div>
+        <div class="form-group">
+          <a id="register" href="http://intelligence.ansolutions.com/register.php" style="width:100%;" class="btn btn-lg btn-info">Sign Up</a>
+
+        </div>
+
+
+    </form>
+  </div>
+  <div class="col-md-4">
+
+  </div>
+</div>
+
+
+
+
+
+</body>
+
+
+
+</html>

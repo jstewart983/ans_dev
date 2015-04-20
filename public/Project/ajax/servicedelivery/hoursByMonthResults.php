@@ -28,7 +28,7 @@ $path = parse_url($actual_link,PHP_URL_PATH);
     WHERE sr_type.description = "'.$type.'" and company.company_name = "'.$company.'"  and (convert(char(10), dbo.time_entry.date_entered_utc, 120) >="'.$range1.'" and convert(char(10), dbo.time_entry.date_entered_utc, 120) <= "'.$range2.'")
 
     group by day(time_entry.date_entered_utc),month(time_entry.date_entered_utc),year(time_entry.date_entered_utc)
-    order by month(time_entry.date_entered_utc),day(time_entry.date_entered_utc),year(time_entry.date_entered_utc) desc';
+    order by year(time_entry.date_entered_utc),month(time_entry.date_entered_utc),day(time_entry.date_entered_utc) ';
 
   }else if(isset($_GET['range1']) && isset($_GET['range2']) && isset($_GET['type'])){
     $range1 = $_GET['range1'];
@@ -48,7 +48,7 @@ $path = parse_url($actual_link,PHP_URL_PATH);
     WHERE sr_type.description = "'.$type.'" and  (convert(char(10), dbo.time_entry.date_entered_utc, 120) >="'.$range1.'" and convert(char(10), dbo.time_entry.date_entered_utc, 120) <= "'.$range2.'")
 
     group by day(time_entry.date_entered_utc),month(time_entry.date_entered_utc),year(time_entry.date_entered_utc)
-    order by month(time_entry.date_entered_utc),day(time_entry.date_entered_utc),year(time_entry.date_entered_utc) desc';
+    order by year(time_entry.date_entered_utc),month(time_entry.date_entered_utc),day(time_entry.date_entered_utc) ';
 
 
 
@@ -70,7 +70,7 @@ $path = parse_url($actual_link,PHP_URL_PATH);
     WHERE company.company_name = "'.$company.'"  and (convert(char(10), dbo.time_entry.date_entered_utc, 120) >="'.$range1.'" and convert(char(10), dbo.time_entry.date_entered_utc, 120) <= "'.$range2.'")
 
     group by day(time_entry.date_entered_utc),month(time_entry.date_entered_utc),year(time_entry.date_entered_utc)
-    order by month(time_entry.date_entered_utc),day(time_entry.date_entered_utc),year(time_entry.date_entered_utc) desc';
+    order by year(time_entry.date_entered_utc),month(time_entry.date_entered_utc),day(time_entry.date_entered_utc) ';
 
 
   }else if(isset($_GET['range1']) && isset($_GET['range2'])){
@@ -92,7 +92,7 @@ $path = parse_url($actual_link,PHP_URL_PATH);
     WHERE (convert(char(10), dbo.time_entry.date_entered_utc, 120) >="'.$range1.'" and convert(char(10), dbo.time_entry.date_entered_utc, 120) <= "'.$range2.'")
 
     group by day(time_entry.date_entered_utc),month(time_entry.date_entered_utc),year(time_entry.date_entered_utc)
-    order by month(time_entry.date_entered_utc),day(time_entry.date_entered_utc),year(time_entry.date_entered_utc) desc';
+    order by year(time_entry.date_entered_utc),month(time_entry.date_entered_utc),day(time_entry.date_entered_utc) ';
 
 
   }

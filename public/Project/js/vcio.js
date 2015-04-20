@@ -65,7 +65,7 @@ $(document).ready(function(){
 
 $.ajax({
     type: 'GET',
-    url: "../ajax/clientservices/getProjectRev.php",
+    url: "../../ajax/clientservices/getProjectRev.php",
     success: function(json) {
 
                /* avgTickets = [];
@@ -117,7 +117,7 @@ $('#projectRev1').fadeOut(200, function() {
 
 $.ajax({
     type: 'GET',
-    url: "../ajax/clientservices/getProjectRevMonth.php",
+    url: "../../ajax/clientservices/getProjectRevMonth.php",
     success: function(json) {
 
                /* avgTickets = [];
@@ -280,7 +280,7 @@ $('#projectRev2').fadeOut(200, function() {
 
 $.ajax({
     type: 'GET',
-    url: "../ajax/clientservices/getProductRev.php",
+    url: "../../ajax/clientservices/getProductRev.php",
     success: function(json) {
 
                /* avgTickets = [];
@@ -332,7 +332,7 @@ $('#productRev1').fadeOut(200, function() {
 
 $.ajax({
     type: 'GET',
-    url: "../ajax/clientservices/getProductRevMonth.php",
+    url: "../../ajax/clientservices/getProductRevMonth.php",
     success: function(json) {
 
                /* avgTickets = [];
@@ -433,7 +433,7 @@ var data = {
 
 $.ajax({
     type: 'GET',
-    url: "../ajax/clientservices/salesByVcio.php",
+    url: "../../ajax/clientservices/salesByVcio.php",
     success: function(json) {
 
               labels=[], sales = [];
@@ -503,7 +503,7 @@ var $span1 = $('<canvas id ="salesByVcio"style="height:100%;width:100%;"></canva
 
 
 
-$.ajax({ url: "../ajax/clientservices/salesByVcioTable.php",
+$.ajax({ url: "../../ajax/clientservices/salesByVcioTable.php",
                     context: document.body,
                     success: function(html){
 
@@ -543,7 +543,7 @@ var $span1 = $('<div class="col-md-12"id ="salesByVcioTable">'+html+'</div>');
 
  $.ajax({
     type: 'POST',
-    url: "../ajax/clientservices/salesByClient.php",
+    url: "../../ajax/clientservices/salesByClient.php",
     success: function(json) {
         //labels = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"];
         var xlabels = [], type_count = [];
@@ -662,7 +662,7 @@ var myNewChart1 = new Chart(ctx1).Pie(doughnutData);
 
  });
 
-$.ajax({ url: "../ajax/clientservices/salesByClientTable.php",
+$.ajax({ url: "../../ajax/clientservices/salesByClientTable.php",
                     context: document.body,
                     success: function(html){
 
@@ -701,7 +701,7 @@ var $span1 = $('<div class="col-md-12"id ="salesByClientTable">'+html+'</div>');
 
 
 
-$.ajax({ url: "../ajax/clientservices/pastDueOpps.php",
+$.ajax({ url: "../../ajax/clientservices/pastDueOpps.php",
                     context: document.body,
                     success: function(html){
 

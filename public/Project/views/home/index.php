@@ -73,11 +73,11 @@
             }
             </style>
     </head>
-    <body class="canvas">
+    <body id="sup" class="canvas">
       <div style="background-color:#fff;" class="navmenu navmenu-default navmenu-fixed-left offcanvas">
             <a class="navmenu-brand" href="#">ANS Intelligence</a>
             <ul class="nav navmenu-nav">
-              <li class="active"><a href="#">Overview</a></li>
+              <li class="active"><a href="#">Home</a></li>
               <li><a href="../solutiondelivery/">Solution Delivery</a></li>
               <li><a href="../servicedelivery/">Service Delivery</a></li>
               <li><a href="../clientservices/">Client Services</a></li>
@@ -96,11 +96,19 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <h2 style="margin-top:12px;text-align:center;font-size:20px;"id="title"></h2>
-            <img id="ans"style="height:auto;width:200px;display:block;margin-left:auto;margin-right:auto;"  src="http://www.ansolutions.com/wp-content/themes/ANS/images/header-logo.jpg" alt="ans" />
+
+            <div style="margin-right:15px;margin-top:10px;margin-bottom:auto;text-align:center;display: block;float: right; margin-left: 15px;height:53px;">
+              <a href="index.php?logout" class="btn btn-md btn-inverse">Logout</a>
+
+            </div>
+
 
           </div>
-      <div style="margin-top:42px;z-index:999;"class="container">
+      <div style="margin-top:62px;z-index:999;"class="container">
+        <div style="width:200px;display:block;margin-left:auto;margin-right:auto;">
+          <img id="ans"style="height:auto;width:100%;"  src="http://www.ansolutions.com/wp-content/themes/ANS/images/header-logo.jpg" alt="ans" />
+
+        </div>
         <div style="position:relative;z-index:999;"class="row">
           <div class="col-md-12">
           </div>
@@ -185,60 +193,62 @@
                 </div>
               </div>
             </div>
-            <script charset="utf-8">
-              $("#ans").hide().fadeIn(1000);
-              $("#hello").hide().fadeIn(2000);
-              $("#intel").hide().fadeIn(2200);
-              $("#choose").hide().fadeIn(2100);
-              $("#welcome").hide().fadeIn(2700);
-              $("#choice1").hide().fadeIn(2000);
-              $("#choice2").hide().fadeIn(2200);
-              $("#choice3").hide().fadeIn(2400);
-              $("#choice4").hide().fadeIn(2600);
-              //$("#barChart").hide().fadeIn(2900);
 
-              var data = {
-                  labels:["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36"],
-                  datasets: [
-                      {
-
-                          fillColor: "rgba(220,220,220,0.9)",
-                          strokeColor: "rgba(220,220,220,0.9)",
-                          highlightFill: "rgba(220,220,220,0.9)",
-                          highlightStroke: "rgba(220,220,220,.9)",
-                          data:[67,74,32,35,25,26,20,15,27,20,56,77,20,30,10,90,45,67,20,12,85,90,50,67,32,79,90,70,80,20,20,15,27,20,56,77],
-                          label: "This data"
-                      },
-                      {
-
-                          fillColor: "rgba(160,120,316,0.9)",
-                          strokeColor: "rgba(160,120,316,0.9)",
-                          highlightFill: "rgba(160,120,316,0.9)",
-                          highlightStroke: "rgba(160,120,316,0.9)",
-                          data:[10,20,40,30,15,67,74,32,35,25,26,57,81,14,30,30,70,20,90,100,45,30,25,76,67,74,32,35,25,26,20,15,27,20,56,77],
-                          label: "That data"
-                      }
-                  ]
-              };
-
-
-              var ctx = document.getElementById("barChart").getContext("2d");
-              var myNewChart = new Chart(ctx).Bar(data,{scaleShowGridLines:false,scaleShowVerticalLines: false,scaleShowHorizontalLines:false});
-              console.log(data.labels.length);
-              /*setInterval(function() {
-
-                // Get a random index point
-                var indexToUpdate = Math.floor(Math.random() * data.labels.length-1)+1;
-
-
-                myNewChart.datasets[1].bars[indexToUpdate].value = Math.floor(Math.random()*80)+1;
-                myNewChart.datasets[0].bars[indexToUpdate].value = Math.floor(Math.random()*80)+1;
-
-
-                myNewChart.update();
-                //myNewChart.addData(Math.floor(Math.random()*100)+1,Math.floor(Math.random()*100)+1,labels[Math.floor(Math.random()*14)+2]);
-              }, 1200);*/
-
-            </script>
           </body>
+          <script charset="utf-8">
+          $("#sup").hide().fadeIn(800);
+            /*$("#ans").hide().fadeIn(1000);
+            $("#hello").hide().fadeIn(2000);
+            $("#intel").hide().fadeIn(2200);
+            $("#choose").hide().fadeIn(2100);
+            $("#welcome").hide().fadeIn(2700);
+            $("#choice1").hide().fadeIn(2000);
+            $("#choice2").hide().fadeIn(2200);
+            $("#choice3").hide().fadeIn(2400);
+            $("#choice4").hide().fadeIn(2600);*/
+            //$("#barChart").hide().fadeIn(2900);
+
+            var data = {
+                labels:["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36"],
+                datasets: [
+                    {
+
+                        fillColor: "rgba(220,220,220,0.9)",
+                        strokeColor: "rgba(220,220,220,0.9)",
+                        highlightFill: "rgba(220,220,220,0.9)",
+                        highlightStroke: "rgba(220,220,220,.9)",
+                        data:[67,74,32,35,25,26,20,15,27,20,56,77,20,30,10,90,45,67,20,12,85,90,50,67,32,79,90,70,80,20,20,15,27,20,56,77],
+                        label: "This data"
+                    },
+                    {
+
+                        fillColor: "rgba(160,120,316,0.9)",
+                        strokeColor: "rgba(160,120,316,0.9)",
+                        highlightFill: "rgba(160,120,316,0.9)",
+                        highlightStroke: "rgba(160,120,316,0.9)",
+                        data:[10,20,40,30,15,67,74,32,35,25,26,57,81,14,30,30,70,20,90,100,45,30,25,76,67,74,32,35,25,26,20,15,27,20,56,77],
+                        label: "That data"
+                    }
+                ]
+            };
+
+
+            var ctx = document.getElementById("barChart").getContext("2d");
+            var myNewChart = new Chart(ctx).Bar(data,{scaleShowGridLines:false,scaleShowVerticalLines: false,scaleShowHorizontalLines:false});
+            console.log(data.labels.length);
+            /*setInterval(function() {
+
+              // Get a random index point
+              var indexToUpdate = Math.floor(Math.random() * data.labels.length-1)+1;
+
+
+              myNewChart.datasets[1].bars[indexToUpdate].value = Math.floor(Math.random()*80)+1;
+              myNewChart.datasets[0].bars[indexToUpdate].value = Math.floor(Math.random()*80)+1;
+
+
+              myNewChart.update();
+              //myNewChart.addData(Math.floor(Math.random()*100)+1,Math.floor(Math.random()*100)+1,labels[Math.floor(Math.random()*14)+2]);
+            }, 1200);*/
+
+          </script>
       </html>

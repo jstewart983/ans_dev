@@ -24,7 +24,7 @@ $path = parse_url($actual_link,PHP_URL_PATH);
     left outer join sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
     where sr_type.description = "'.$type.'" and company.company_name = "'.$company.'"  and (sr_service.date_entered >="'.$range1.'" and sr_service.date_entered <= "'.$range2.'")
     group by day(sr_service.date_entered),month(sr_service.Date_Entered),year(sr_service.Date_Entered)
-    order by month(sr_service.Date_Entered),day(sr_service.date_entered),year(sr_service.Date_Entered) desc';
+    order by year(sr_service.Date_Entered),month(sr_service.Date_Entered),day(sr_service.date_entered)';
 
   }else if(isset($_GET['range1']) && isset($_GET['range2']) && isset($_GET['type'])){
 
@@ -40,7 +40,7 @@ $path = parse_url($actual_link,PHP_URL_PATH);
     left outer join sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
     where sr_type.description = "'.$type.'" and  (sr_service.date_entered >="'.$range1.'" and sr_service.date_entered <= "'.$range2.'")
     group by day(sr_service.date_entered),month(sr_service.Date_Entered),year(sr_service.Date_Entered)
-    order by month(sr_service.Date_Entered),day(sr_service.date_entered),year(sr_service.Date_Entered) desc';
+    order by year(sr_service.Date_Entered),month(sr_service.Date_Entered),day(sr_service.date_entered)';
 
 
   }else if(isset($_GET['range1']) && isset($_GET['range2']) && isset($_GET['company'])){
@@ -55,7 +55,7 @@ $path = parse_url($actual_link,PHP_URL_PATH);
     left outer join company on company.company_recid = sr_service.company_recid
     where company.company_name = "'.$company.'" and (sr_service.date_entered >="'.$range1.'" and sr_service.date_entered <= "'.$range2.'")
     group by day(sr_service.date_entered),month(sr_service.Date_Entered),year(sr_service.Date_Entered)
-    order by month(sr_service.Date_Entered),day(sr_service.date_entered),year(sr_service.Date_Entered) desc';
+    order by year(sr_service.Date_Entered),month(sr_service.Date_Entered),day(sr_service.date_entered)';
   }else if(isset($_GET['range1']) && isset($_GET['range2'])){
     $range1 = $_GET['range1'];
     $range2 = $_GET['range2'];
@@ -66,7 +66,7 @@ $path = parse_url($actual_link,PHP_URL_PATH);
     left outer join company on company.company_recid = sr_service.company_recid
     where (sr_service.date_entered >="'.$range1.'" and sr_service.date_entered <= "'.$range2.'")
     group by day(sr_service.date_entered),month(sr_service.Date_Entered),year(sr_service.Date_Entered)
-    order by month(sr_service.Date_Entered),day(sr_service.date_entered),year(sr_service.Date_Entered) desc';
+    order by year(sr_service.Date_Entered),month(sr_service.Date_Entered),day(sr_service.date_entered)';
   }
   else{
     $query = 'select year(sr_service.Date_Entered) as year,month(sr_service.Date_Entered) as month,COUNT(distinct(sr_service.Date_Entered)) as Tickets,

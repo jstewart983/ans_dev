@@ -250,17 +250,7 @@ function getServiceByType(value){
   cache:false,
   success: function(json) {
 
-    json = json.sort();
-    json.sort(function (a, b) {
-if (a.Description > b.Description) {
-  return 1;
-}
-if (a.Description < b.Description) {
-  return -1;
-}
-// a must be equal to b
-return 0;
-});
+
 
       //labels = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"];
       var xlabels = [], type_count = [],total_count=[],colors = [];
@@ -474,7 +464,7 @@ function getWorkstations(value){
 
   $('#comp').fadeOut(200, function() {
 
-                 var $span1 = $('<h2 class="col-xs-6"style="text-align:center;" id="comp">'+workstations+'\n<span><img src="../../css/assets/icons/Computer.svg"/></span></h2>');
+                 var $span1 = $('<h2 class="col-xs-6"style="text-align:center;" id="comp">'+workstations+'\n<span><img src="../../../css/assets/icons/Computer.svg"/></span></h2>');
 
           $("#comp").replaceWith($span1);
 
@@ -516,7 +506,7 @@ function getServers(value){
 
   $('#serv').fadeOut(200, function() {
 
-                 var $span1 = $('<h2 class="col-xs-6" style="text-align:center;" id="serv">'+servers+'\n<span><img style="color:#3CB371;" src="../../css/assets/icons/Server.svg"  /></span></h2>');
+                 var $span1 = $('<h2 class="col-xs-6" style="text-align:center;" id="serv">'+servers+'\n<span><img style="color:#3CB371;" src="../../../css/assets/icons/Server.svg"  /></span></h2>');
 
           $("#serv").replaceWith($span1);
 
@@ -554,7 +544,7 @@ function getLocationCount(value){
       }
 
 
-  //<span><img style="height:70px;width:auto;" src="../../css/assets/building.svg"/></span>
+  //<span><img style="height:70px;width:auto;" src="../../../css/assets/building.svg"/></span>
 
   $('#locations').fadeOut(200, function() {
 

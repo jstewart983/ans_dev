@@ -96,7 +96,7 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
       <div style="background-color:#fff;" class="navmenu navmenu-default navmenu-fixed-left offcanvas">
             <a class="navmenu-brand" href="#">ANS Intelligence</a>
             <ul class="nav navmenu-nav">
-              <li><a href="../">Overview</a></li>
+              <li><a href="../home/">Home</a></li>
               <li><a href="../solutiondelivery/">Solution Delivery</a></li>
               <li><a href="../servicedelivery/">Service Delivery</a></li>
               <li><a href="../clientservices/">Client Services</a></li>
@@ -117,41 +117,56 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <h2 style="margin-top:12px;text-align:center;font-size:20px;"id="title"></h2>
+      <div class="col-md-3">
+
+      </div>
+      <div class="col-md-5">
+        <h2 style="margin-top:12px;text-align:center;font-size:20px;display: block;"id="title"></h2>
+
+      </div>
+
+
+      <div style="margin-right:15px;margin-top:10px;margin-bottom:auto;text-align:center;display: block;float: right; margin-left: 15px;height:53px;">
+        <a href="index.php?logout" class="btn btn-md btn-inverse">Logout</a>
+
+      </div>
     </div>
     <div style="margin-top:52px;"class="container">
       <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-4">
 
         </div>
-        <div class="col-md-8">
-          <div class="btn-group" role="group" aria-label="...">
-            <button type="button" class="btn btn-default"><h3>10</h3><h5>Total Users</h5></button>
-            <button type="button" class="btn btn-default"><h3>6</h3><h5>Users Logged in</h5></button>
-            <button type="button" class="btn btn-primary"><h3>1</h3><h5>Super Admin User</h5></button>
-            <button type="button" class="btn btn-success"><h3>2</h3><h5>Admin Users</h5></button>
-            <button type="button" class="btn btn-info"><h3>6</h3><h5>Management Users</h5></button>
-            <button type="button" class="btn btn-inverse"><h3>1</h3><h5>Standard User</h5></button>
+        <div id="user" class="col-md-4">
+          <div style="margin-top:62px;" class="btn-group" role="group" aria-label="...">
+            <button id="getUserCount" type="button" class="btn btn-primary"><span id="userCount">0 Total Users</span></button>
+            <button id="getUsersLoggedIn" type="button" class="btn btn-success"><span id="usersLoggedIn">0 Users Logged In</span></button>
+            <!--<button id="getUsersSuper" type="button" class="btn btn-primary"><h3>1</h3><p>Super Admin User</p></button>
+            <button id="getUsersAdmin" type="button" class="btn btn-success"><h3>2</h3><p>Admin Users</p></button>
+            <button id="getUsersManagement" type="button" class="btn btn-info"><h3>6</h3><p>Management Users</p></button>
+            <button id="getUsersStandard" type="button" class="btn btn-inverse"><h3>1</h3><p>Standard User</p></button>-->
           </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-4">
 
         </div>
       </div>
+      <div id="options">
         <div style="margin-top:82px;" class="row">
           <div class="col-md-1">
 
           </div>
-          <div id="choice4" class="col-md-5">
-            <a href="#">
+          <a id="usermanagement" href="#">
+          <div  class="col-md-5">
+
               <div class="panel panel-default">
                 <div class="panel-body">
                   <h5 style="text-align:center;">User Management <span class="glyphicon glyphicon-user"></span></h5>
 
                 </div>
             </div>
-          </a>
+
           </div>
+        </a>
           <div id="choice4" class="col-md-5">
             <a href="#">
               <div class="panel panel-default">
@@ -194,6 +209,8 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
 
           </div>
         </div>
+      </div>
+
 
         <!--<div style="margin-bottom:-5px;z-index:-1;" id="timelineSection"class="btn-group" role="group" aria-label="...">
           <button id="service" type="button" class="btn btn-default service active">Service</button>
@@ -341,7 +358,7 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
        <!-- Latest compiled and minified JavaScript -->
        <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <!--<script type="text/javascript" src="../js/admin.js"></script>-->
+    <script type="text/javascript" src="../../js/admin.js"></script>
 
     </body>
 
