@@ -4,3 +4,6 @@ config.php
 lconfig.php
 auth.php
 login.php
+db.php
+userconfig.php
+userconfigtest.php
