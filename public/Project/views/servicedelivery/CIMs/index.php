@@ -70,10 +70,11 @@
         <li class="active"><a href="#">Service Delivery</a></li>
         <li><a href="../../clientservices/">Client Services</a></li>
         <li><a href="../../resultsphysiotherapy/">Results Physiotherapy</a></li>
+        <li><a href="../../sales/">Sales</a></li>
         <li><a href="../../finance/">Finance</a></li>
       </ul>
       <ul class="nav navmenu-nav">
-        <li><a href="#">Admin</a></li>
+        <li><a href="../../admin/">Admin</a></li>
       </ul>
     </div>
 
@@ -92,8 +93,8 @@
       </div>
 
 
-      <div style="margin-right:15px;margin-top:10px;margin-bottom:auto;text-align:center;display: block;float: right; margin-left: 15px;height:53px;">
-        <a href="index.php?logout" class="btn btn-md btn-inverse">Logout</a>
+      <div id="logout_button" style="margin-right:15px;margin-top:10px;margin-bottom:auto;text-align:center;float: right; margin-left: 15px;height:53px;">
+        <a href="index.php?logout" class="btn btn-sm btn-inverse">Logout</a>
 
       </div>
     </div>

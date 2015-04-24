@@ -1,6 +1,6 @@
 <?php
 
-$con = mysqli_connect('127.0.0.1', 'jstewart', 'Changeme123', 'login');
+$con = mysqli_connect('127.0.0.1', 'jstewart', 'Scooto@@Z8**./#', 'login');
 
 
 if (!$con){

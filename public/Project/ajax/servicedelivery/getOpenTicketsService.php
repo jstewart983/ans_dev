@@ -11,16 +11,21 @@ $path = parse_url($actual_link,PHP_URL_PATH);
 if (strpos($path,'results') !== false) {
 
 $query = 'select Count(*) as openTickets
-from dbo.SR_Service LEFT OUTER JOIN dbo.SR_Board on dbo.SR_Service.SR_Board_RecID = dbo.SR_Board.SR_Board_RecID
+from dbo.SR_Service
+LEFT OUTER JOIN dbo.SR_Board on dbo.SR_Service.SR_Board_RecID = dbo.SR_Board.SR_Board_RecID
 left outer join company on company.company_recid = sr_service.company_recid
-where company_name = "Results Physiotherapy" and dbo.SR_Service.Date_Closed is null';
+left outer join sr_status on sr_service.sr_status_recid = sr_status.sr_status_recid
+
+where company_name = "Results Physiotherapy" and sr_status.description <> "Closed" and sr_status.description <> "Canceled" and sr_status.description <> "Closed - First Call" and sr_service.date_closed is null';
 
 
 }else{
 
   $query = 'select Count(*) as openTickets
-  from dbo.SR_Service LEFT OUTER JOIN dbo.SR_Board on dbo.SR_Service.SR_Board_RecID = dbo.SR_Board.SR_Board_RecID
-  where (dbo.SR_Board.Board_Name = "My Company/Service" or dbo.SR_Board.Board_Name = "Alerts - Service Delivery" or dbo.SR_Board.Board_Name = "Results Physiotherapy" or dbo.SR_Board.Board_Name="Results - Initiatives") and dbo.SR_Service.Date_Closed is null';
+  from dbo.SR_Service
+  LEFT OUTER JOIN dbo.SR_Board on dbo.SR_Service.SR_Board_RecID = dbo.SR_Board.SR_Board_RecID
+  left outer join sr_status on sr_service.sr_status_recid = sr_status.sr_status_recid
+  where (sr_status.description <> "Closed" and sr_status.description <> "Canceled" and sr_status.description <> "Closed - First Call") and (dbo.SR_Board.Board_Name = "My Company/Service" or dbo.SR_Board.Board_Name = "Alerts - Service Delivery" or dbo.SR_Board.Board_Name = "Results Physiotherapy" or dbo.SR_Board.Board_Name="Results - Initiatives") and sr_service.date_closed is null';
 
 
 }

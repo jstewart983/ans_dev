@@ -126,8 +126,8 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
             </div>
 
 
-            <div style="margin-right:15px;margin-top:10px;margin-bottom:auto;text-align:center;display: block;float: right; margin-left: 15px;height:53px;">
-              <a href="index.php?logout" class="btn btn-md btn-inverse">Logout</a>
+            <div id="logout_button" style="margin-right:15px;margin-top:10px;margin-bottom:auto;text-align:center;float: right; margin-left: 15px;height:53px;">
+              <a href="index.php?logout" class="btn btn-sm btn-inverse">Logout</a>
 
             </div>
           </div>

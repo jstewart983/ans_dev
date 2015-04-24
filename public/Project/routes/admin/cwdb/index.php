@@ -1,5 +1,6 @@
 <?php
-
+$admins = array('cwhite','bflippo','jstewart','rpinson','gsummey');
+$user_group= array('charlow');
 /**
  * A simple, clean and secure PHP Login Script / MINIMAL VERSION
  * For more versions (one-file, advanced, framework-like) visit http://www.php-login.net
@@ -32,24 +33,33 @@ $login = new Login();
 
 // ... ask if we are logged in here:
 if ($login->isUserLoggedIn() == true) {
-    // the user is logged in. you can do whatever you want here.
-    // for demonstration purposes, we simply show the "you are logged in" view.
-    if ($_SESSION['user_name']=="jstewart" || $_SESSION['user_name']=="jstewart@ansolutions.com"){
+  if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
+    // last request was more than 30 minutes ago
 
-      include("../../../views/admin/cwdb/index.php");
+    $login->doLogout();
 
-    }else{
+    include("../../../login/views/home_header.php");
+    include("../../../login/views/not_logged_in.php");
+  }else if (in_array($_SESSION['user_name'], $user_group) || in_array($_SESSION['user_name'], $admins)) {
 
-      include("../../../views/admin/access.php");
+          $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
+          // the user is logged in. redirect to the intended view
+          // for demonstration purposes, we simply show the "you are logged in" view.
+          include("../../../views/admin/cwdb/index.php");
+            }
+      else{
+
+        $_SESSION['LAST_ACTIVITY'] = time();
+        header('location:../');
+        }
+
 
     }
-
-} else {
+     else {
     // the user is not logged in. you can do whatever you want here.
     // for demonstration purposes, we simply show the "you are not logged in" view.
 
-
-    include("../../../login/views/sub-home_header.php");
+    include("../../../login/views/home_header.php");
     include("../../../login/views/not_logged_in.php");
 }
 

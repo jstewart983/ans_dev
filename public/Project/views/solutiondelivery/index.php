@@ -62,6 +62,16 @@
         }
         </style>
     <style type="text/css">
+    @media screen and (max-width: 999px) {
+  #logout_button {
+    visibility: hidden;
+    clear: both;
+    float: left;
+    margin: 10px auto 5px 20px;
+    width: 28%;
+    display: none;
+  }
+}
     .hidden{
       display:none;
     }
@@ -118,8 +128,8 @@
           </div>
 
 
-          <div style="margin-right:15px;margin-top:10px;margin-bottom:auto;text-align:center;display: block;float: right; margin-left: 15px;height:53px;">
-            <a href="index.php?logout" class="btn btn-md btn-inverse">Logout</a>
+          <div id="logout_button" style="margin-right:15px;margin-top:10px;margin-bottom:auto;text-align:center;float: right; margin-left: 15px;height:53px;">
+            <a href="index.php?logout" class="btn btn-sm btn-inverse">Logout</a>
 
           </div>
         </div>
@@ -137,7 +147,7 @@
                 </div>
             </div>
         </div>
-        <p style="text-align:center;">*Data is not real</p>
+
                 <!--KPIs-->
         <div style="margin-top:10px;" class="row">
             <div class="col-md-2">

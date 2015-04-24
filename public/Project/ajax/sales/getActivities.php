@@ -34,7 +34,7 @@ echo "</thead>";
 
 echo "<tbody  class='rowlink'>";
 
-while($row = mssql_fetch_array($results)) {
+while($row = mssql_fetch_assoc($results)) {
 
 
   echo "<tr class='co'>";
@@ -42,7 +42,15 @@ while($row = mssql_fetch_array($results)) {
 
 
      echo "<td>".$row['description']."</td>";
-     echo "<td>".$row['subject']."</td>";
+     if (strpos($row['subject'],'DO NOT CALL') !== false || strpos($row['subject'],'Revendored') !== false){
+
+       echo "<td style='color:#E74C3C;'>".$row['subject']."</td>";
+     }else{
+
+       echo "<td>".$row['subject']."</td>";
+
+     }
+
 
 
      echo "<td>".$row['last_update']."</td>";

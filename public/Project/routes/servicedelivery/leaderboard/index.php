@@ -1,6 +1,5 @@
 <?php
-$admins = array('cwhite','bflippo','jstewart','rpinson','gsummey');
-$user_group = array('bcrawford','zhoover','sfrench','jhaltom','nwhitaker','breynolds','jdumouchel','jfitzwater','tfitzpatrick','pfenech','tbrown','badams','pfotineas','dmitchell','cvarga','bdyer','mmcburnett','jsimpler','jfelts');
+
 /**
  * A simple, clean and secure PHP Login Script / MINIMAL VERSION
  * For more versions (one-file, advanced, framework-like) visit http://www.php-login.net
@@ -40,26 +39,21 @@ if ($login->isUserLoggedIn() == true) {
 
     include("../../../login/views/home_header.php");
     include("../../../login/views/not_logged_in.php");
-  }else if (in_array($_SESSION['user_name'], $user_group) || in_array($_SESSION['user_name'], $admins)) {
+  }else{
 
-          $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
-          // the user is logged in. redirect to the intended view
-          // for demonstration purposes, we simply show the "you are logged in" view.
-          include("../../../views/servicedelivery/servicedesk/index.php");
-            }
-      else{
-
-        $_SESSION['LAST_ACTIVITY'] = time();
-        header('location:../');
-        }
-
+    $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
+      // the user is logged in. redirect to the intended view
+      // for demonstration purposes, we simply show the "you are logged in" view.
+      include("../../../views/servicedelivery/leaderboard/index.php");
 
     }
-     else {
+
+
+} else {
     // the user is not logged in. you can do whatever you want here.
     // for demonstration purposes, we simply show the "you are not logged in" view.
 
-    include("../../../login/views/home_header.php");
+    include("../../../login/views/sub-home_header.php");
     include("../../../login/views/not_logged_in.php");
 }
 

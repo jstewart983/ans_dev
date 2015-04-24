@@ -7,13 +7,13 @@
     <form method="post" action="register.php" name="registerform">
 
       <div class="form-group">
-        <label for="login_input_username">Username (only letters and numbers, 2 to 64 characters)</label>
+        <label for="login_input_username">Username (please use your AD username)</label>
         <input id="login_input_username" class="form-control login_input" type="text" pattern="[a-zA-Z0-9]{2,64}" name="user_name" required />
 
       </div>
 
         <div class="form-group">
-          <label for="login_input_email">User's email</label>
+          <label for="login_input_email">Email (your ANS email)</label>
           <input id="login_input_email" class="form-control login_input" type="email" name="user_email" required />
         </div>
         <div class="form-group">

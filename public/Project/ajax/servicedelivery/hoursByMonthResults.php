@@ -95,6 +95,23 @@ $path = parse_url($actual_link,PHP_URL_PATH);
     order by year(time_entry.date_entered_utc),month(time_entry.date_entered_utc),day(time_entry.date_entered_utc) ';
 
 
+  }else if (strpos($path,'results') !== false) {
+
+    $query = '
+    SELECT   month(dbo.time_entry.date_entered_utc) as month,year(dbo.time_entry.date_entered_utc) as year,
+
+    SUM(time_entry.Hours_Actual) AS Billable_Hours
+    FROM         dbo.Time_Entry LEFT OUTER JOIN
+                          dbo.TE_Charge_Code ON dbo.Time_Entry.TE_Charge_Code_RecID = dbo.TE_Charge_Code.TE_Charge_Code_RecID LEFT OUTER JOIN
+                          dbo.Member ON dbo.Time_Entry.Member_RecID = dbo.Member.Member_RecID
+                          left outer join company on company.company_recid = time_entry.company_recid
+    WHERE  company_name = "Results Physiotherapy" and (convert(char(6), dbo.time_entry.date_entered_utc, 112) <> convert(char(6), getdate(), 112) and year(time_entry.date_entered_utc) > year(getdate())-2)
+
+    group by month(dbo.time_entry.date_entered_utc),year(dbo.time_entry.date_entered_utc)
+    order by year(dbo.time_entry.date_entered_utc),month(dbo.time_entry.date_entered_utc)';
+
+
+
   }
 
   else{

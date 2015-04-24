@@ -32,9 +32,22 @@ $login = new Login();
 
 // ... ask if we are logged in here:
 if ($login->isUserLoggedIn() == true) {
-    // the user is logged in. redirect to the intended view
-    // for demonstration purposes, we simply show the "you are logged in" view.
-    include("../../views/home/index.php");
+  if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
+    // last request was more than 30 minutes ago
+
+    $login->doLogout();
+
+    include("../../login/views/home_header.php");
+    include("../../login/views/not_logged_in.php");
+  }else{
+
+    $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
+      // the user is logged in. redirect to the intended view
+      // for demonstration purposes, we simply show the "you are logged in" view.
+      include("../../views/home/index.php");
+
+    }
+
 
 } else {
     // the user is not logged in. you can do whatever you want here.

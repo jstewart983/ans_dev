@@ -111,26 +111,26 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
           </div>
 
 
-    <div class="navbar navbar-default navbar-fixed-top">
-      <button style="display: block;float: left; margin-left: 15px;" type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <div class="col-md-3">
+          <div class="navbar navbar-default navbar-fixed-top">
+            <button style="display: block;float: left; margin-left: 15px;" type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <div class="col-md-3">
 
-      </div>
-      <div class="col-md-5">
-        <h2 style="margin-top:12px;text-align:center;font-size:20px;display: block;"id="title"></h2>
+            </div>
+            <div class="col-md-5">
+              <h2 style="margin-top:12px;text-align:center;font-size:20px;display: block;"id="title"></h2>
 
-      </div>
+            </div>
 
 
-      <div style="margin-right:15px;margin-top:10px;margin-bottom:auto;text-align:center;display: block;float: right; margin-left: 15px;height:53px;">
-        <a href="index.php?logout" class="btn btn-md btn-inverse">Logout</a>
+            <div id="logout_button" style="margin-right:15px;margin-top:10px;margin-bottom:auto;text-align:center;float: right; margin-left: 15px;height:53px;">
+              <a href="index.php?logout" class="btn btn-sm btn-inverse">Logout</a>
 
-      </div>
-    </div>
+            </div>
+          </div>
     <div style="margin-top:52px;"class="container">
       <div class="row">
         <div class="col-md-4">

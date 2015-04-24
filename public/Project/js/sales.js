@@ -126,6 +126,33 @@ function activityHistory(value) {
 }
 
 
+function agreementHistory(value) {
+  var company = value;
+  var parameter = "?company=";
+
+
+  $.ajax({
+    type:"GET",
+
+    url:"../../ajax/sales/getAgreements.php"+parameter+company,
+    success: function(json){
+      $('#timelineSection3 #timeline3').fadeOut(500, function() {
+
+     //var $span1 = json;
+     var $span1 = $('<div  id="timeline3" class="col-md-12">'+json+'</div>');
+     $("#timeline3").replaceWith($span1);
+     //$("#openProjects").replaceWith($span2);
+     $span1.fadeIn(500);
+
+ });
+      //$('#timeline1').append(json);
+
+    }
+  });
+
+
+}
+
 
 function oppHistory(value) {
   var company = value;
@@ -684,7 +711,7 @@ $(document).ready(function(){
         //console.log(queryString);
 
         var clickedVal = jQuery("#company" ,this).text();
-
+        clickedVal = encodeURIComponent(clickedVal);
         console.log(clickedVal);
         //console.log(data);
         //var title = clickedVal.substr(clickedVal.indexOf("=") + 1);
@@ -705,11 +732,12 @@ $(document).ready(function(){
         oppHistory(clickedVal);
         activityHistory(clickedVal);
         address(clickedVal);
+        agreementHistory(clickedVal);
 
 
         //$('#basicModal').modal('toggle');
         $('#basicModal1').modal('show');
-        $('#myModalLabel').text(clickedVal);
+        $('#myModalLabel').text(decodeURIComponent(clickedVal));
         //$('#basicModal').modal('hide');
 
 

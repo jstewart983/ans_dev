@@ -1,4 +1,13 @@
-
+@media screen and (max-width: 999px) {
+#logout_button {
+visibility: hidden;
+clear: both;
+float: left;
+margin: 10px auto 5px 20px;
+width: 28%;
+display: none;
+}
+}
 #fork {
     position: absolute;
     top: 0;

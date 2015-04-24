@@ -97,9 +97,9 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
             <a class="navmenu-brand" href="#">ANS Intelligence</a>
             <ul class="nav navmenu-nav">
               <li><a href="../">Overview</a></li>
-              <li><a href="../solution delivery/">Solution Delivery</a></li>
-              <li><a href="#">Service Delivery</a></li>
-              <li><a href="../client services/">Client Services</a></li>
+              <li><a href="../solutiondelivery/">Solution Delivery</a></li>
+              <li><a href="../servicedelivery">Service Delivery</a></li>
+              <li><a href="../clientservices/">Client Services</a></li>
               <li><a href="../resultsphysiotherapy/">Results Physiotherapy</a></li>
               <li><a href="../sales/">Sales</a></li>
               <li class="active"><a href="../finance/">Finance</a></li>
@@ -126,8 +126,8 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
             </div>
 
 
-            <div style="margin-right:15px;margin-top:10px;margin-bottom:auto;text-align:center;display: block;float: right; margin-left: 15px;height:53px;">
-              <a href="index.php?logout" class="btn btn-md btn-inverse">Logout</a>
+            <div id="logout_button" style="margin-right:15px;margin-top:10px;margin-bottom:auto;text-align:center;float: right; margin-left: 15px;height:53px;">
+              <a href="index.php?logout" class="btn btn-sm btn-inverse">Logout</a>
 
             </div>
           </div>

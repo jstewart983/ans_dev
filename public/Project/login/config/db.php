@@ -14,4 +14,4 @@
 define("DB_HOST", "127.0.0.1");
 define("DB_NAME", "login");
 define("DB_USER", "jstewart");
-define("DB_PASS", "Changeme123");
+define("DB_PASS", "Scooto@@Z8**./#");

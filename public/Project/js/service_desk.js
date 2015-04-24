@@ -154,7 +154,18 @@ function getBillableHoursTotal(){
 
         total_hours.push(json[$i]["computed"]);
 
+
       }
+
+      var color = "";
+
+      if(parseInt(json[0]["Difference"])>1){
+        color = "#2ECC71;";
+        json[0]["Difference"] = "+"+json[0]["Difference"];
+      }else{
+        color = "#E74C3C;";
+      }
+
 
       $("#title #totalBillableTitle").fadeOut(500,function(){
         $title = $('#totalBillableTitle').text();
@@ -168,9 +179,9 @@ function getBillableHoursTotal(){
       $("#title #totalBillable").fadeOut(500,function(){
 
         if(total_hours==0){
-          var $span1 = $('<h1 style="text-align:center;" id="closedFirst">0 hrs</h1>');
+          var $span1 = $('<h1 style="text-align:center;" id="closedFirst">0 hrs</h1><p style="text-align:center;"><span style="text-align:center;color:'+color+'">'+json[0]['Difference']+'</span> vs previous week</p>');
         }else{
-          var $span1 = $('<h1 style="text-align:center;" id="closedFirst">'+Math.round(total_hours)+' hrs</h1>');
+          var $span1 = $('<h1 style="text-align:center;" id="closedFirst">'+Math.round(total_hours)+' hrs</h1><p style="text-align:center;"><span style="text-align:center;color:'+color+'">'+json[0]['Difference']+'</span> vs last week</p>');
         }
 
 

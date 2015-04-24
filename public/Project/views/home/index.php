@@ -90,22 +90,22 @@
               <li><a href="../admin/">Admin</a></li>
             </ul>
           </div>
-          <div style="background-color:#fff;margin-bottom:10px;" class="navbar navbar-default navbar-fixed-top">
+          <div style="background-color:#fff;" class="navbar navbar-default navbar-fixed-top">
             <button style="display: block;float: left; margin-left: 15px;" type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body">
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
 
-            <div style="margin-right:15px;margin-top:10px;margin-bottom:auto;text-align:center;display: block;float: right; margin-left: 15px;height:53px;">
-              <a href="index.php?logout" class="btn btn-md btn-inverse">Logout</a>
+
+
+            <div id="logout_button" style="margin-right:15px;margin-top:10px;margin-bottom:auto;text-align:center;float: right; margin-left: 15px;height:53px;">
+              <a href="index.php?logout" class="btn btn-sm btn-inverse">Logout</a>
 
             </div>
-
-
           </div>
-      <div style="margin-top:62px;z-index:999;"class="container">
-        <div style="width:200px;display:block;margin-left:auto;margin-right:auto;">
+      <div style="margin-top:62px;"class="container">
+        <div style="margin-top:20px;width:200px;display:block;margin-left:auto;margin-right:auto;">
           <img id="ans"style="height:auto;width:100%;"  src="http://www.ansolutions.com/wp-content/themes/ANS/images/header-logo.jpg" alt="ans" />
 
         </div>
@@ -115,7 +115,7 @@
         </div>
         <div style="position:relative;z-index:999;"class="row">
           <div class="col-md-12">
-            <h1 style="font-size:50px;text-align:center;"><span id="hello">Hello.</span> <span id="welcome" >Welcome to </span><span id="intel">ANS Intelligence</span></h1>
+            <h1 style="font-size:50px;text-align:center;"><span id="hello">Hello <?php echo $_SESSION['user_name']; ?>.</span> <span id="welcome" >Welcome to </span><span id="intel">ANS Intelligence</span></h1>
           </div>
           <div class="col-md-12">
             <p id="choose"style="text-align:center;">

@@ -128,8 +128,8 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
       </div>
 
 
-      <div style="margin-right:15px;margin-top:10px;margin-bottom:auto;text-align:center;display: block;float: right; margin-left: 15px;height:53px;">
-        <a href="index.php?logout" class="btn btn-md btn-inverse">Logout</a>
+      <div id="logout_button" style="margin-right:15px;margin-top:10px;margin-bottom:auto;text-align:center;float: right; margin-left: 15px;height:53px;">
+        <a href="index.php?logout" class="btn btn-sm btn-inverse">Logout</a>
 
       </div>
     </div>
@@ -222,6 +222,17 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
                                 </div>
 
 
+
+                              </div>
+                              <div id="timelineSection3" style="margin-top:11px;"class="row">
+
+
+                                <div class="col-md-12">
+                                  <h4>Agreement History</h4>
+                                  <div  id="timeline3">
+
+                                  </div>
+                                </div>
 
                               </div>
                                 <div id="timelineSection2" style="margin-top:11px;"class="row">
