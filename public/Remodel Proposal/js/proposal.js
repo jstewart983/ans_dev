@@ -1,4 +1,89 @@
+//####SLIDE 2#####
+$('#step2').click(function() {
+  var timeout = null;
+  $('#slide').fadeOut(500,function(){
 
+  //$('#slide').replaceWith('#loading');
+  $('#loading').fadeIn(500);
+  $('#loading').removeClass('hidden');
+  });
+  //$('#slide1').addClass("hidden");
+  //$('#loading').removeClass("hidden");
+
+
+
+  $.ajax({
+      url: "views/slide1.html",
+
+      success: function(html){
+
+        setTimeout(function(){
+
+          $("#gear").replaceWith("<span class='remodelGreen'>done!</span>");
+
+
+        },2000)
+
+        setTimeout(function(){
+
+          $('#loading').fadeOut();
+          $('#meat').hide().html(html).fadeIn({ duration: 2000 });
+
+          var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
+          var premium = new countUp("reportPremium", 0, 6569, 0, 2,options);
+          premium.start();
+
+
+          var subsidy = new countUp("reportSubsidy", 0,4100, 0, 2,options);
+          subsidy.start();
+
+          var fee = new countUp("reportConsulting", 0,8100, 0, 2,options);
+
+
+          var data1 = {
+        labels:["1","2","3","4","5","6","7","8","9","10","11"],
+        datasets: [
+          {
+
+              fillColor: "rgb(69,188,155)",
+              strokeColor: "rgb(69,188,155)",
+              highlightFill: "rgb(69,188,155)",
+              highlightStroke: "rgb(69,188,155)",
+              data:[20,60,10,90,45,67,20,72,85,90,55],
+              label: "This data"
+          },
+          {
+
+              fillColor: "rgb(111,112,112)",
+              strokeColor: "rgb(111,112,112)",
+              highlightFill: "rgb(111,112,112)",
+              highlightStroke: "rgb(111,112,112)",
+              data:[20,30,20,40,65,27,30,45,85,120,80],
+              label: "That data"
+          }
+        ]
+        };
+
+
+        var ctx = document.getElementById("reportReviewChart").getContext("2d");
+        var myNewBar1 = new Chart(ctx).Bar(data1,{scaleShowGridLines:false,scaleShowVerticalLines: false,scaleShowHorizontalLines:false});
+
+
+          fee.start();
+        },4000)
+
+
+
+
+
+      }
+  });
+
+
+
+
+
+});
 
 
 

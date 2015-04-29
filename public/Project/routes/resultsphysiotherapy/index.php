@@ -1,5 +1,5 @@
 <?php
-$admins = array('cwhite','bflippo','jstewart','rpinson','gsummey','aholst');
+$admins = array('cwhite','bflippo','jstewart','rpinson','gsummey','aholst','plane@ansolutions.com','plane');
 $user_group = array('nkimes');
 /**
 /**

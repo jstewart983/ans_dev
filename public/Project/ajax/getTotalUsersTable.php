@@ -19,8 +19,7 @@ echo "<div style='margin-top:30px;' class='row'>
       <div class='col-md-4'></div>
       </div>";
 echo "<div style='width:100%;padding:0px;margin-top:10px;'class=' panel panel-default'>";
-echo "<div class='panel-heading'style='text-align:center;'><p id='urgentTicketsTitle'  style='text-align:center;'> <span><a id='info' data-description=''  data-datasource='' data-title='' data-query='".$query1."' href='#' class='fui-info-circle' data-toggle='modal' data-target='#basicModal'></a></span></p></div>";
-echo "<div style='width:100%;width:100%;overflow-y: scroll !important;max-height:478px;'class=panel-body>";
+echo "<div style='width:100%;width:100%;'class=panel-body>";
 echo "<table id='clientTable' style='width:100%;' class='table table-hover'>";
 echo "<thead>";
 echo "<th>User ID</th>";

@@ -16,9 +16,9 @@ $path = parse_url($actual_link,PHP_URL_PATH);
     $company = $_GET['company'];
     $type = $_GET['type'];
     $query = '
-    SELECT   month(dbo.time_entry.date_entered_utc) as month,year(dbo.time_entry.date_entered_utc) as year,
+    SELECT   month(dbo.time_entry.date_entered_utc) as month,day(time_entry.date_entered_utc) as day,year(dbo.time_entry.date_entered_utc) as year,
 
-    SUM(time_entry.Hours_Actual) AS Billable_Hours
+    SUM(time_entry.Hours_Actual) as Billable_Hours
     FROM         dbo.Time_Entry LEFT OUTER JOIN
                           dbo.TE_Charge_Code ON dbo.Time_Entry.TE_Charge_Code_RecID = dbo.TE_Charge_Code.TE_Charge_Code_RecID LEFT OUTER JOIN
                           dbo.Member ON dbo.Time_Entry.Member_RecID = dbo.Member.Member_RecID
@@ -36,9 +36,9 @@ $path = parse_url($actual_link,PHP_URL_PATH);
     //$company = $_GET['company'];
     $type = $_GET['type'];
     $query = '
-    SELECT   month(dbo.time_entry.date_entered_utc) as month,year(dbo.time_entry.date_entered_utc) as year,
+    SELECT   month(dbo.time_entry.date_entered_utc) as month,day(time_entry.date_entered_utc) as day,year(dbo.time_entry.date_entered_utc) as year,
 
-    SUM(time_entry.Hours_Actual) AS Billable_Hours
+    SUM(time_entry.Hours_Actual) as Billable_Hours
     FROM         dbo.Time_Entry LEFT OUTER JOIN
                           dbo.TE_Charge_Code ON dbo.Time_Entry.TE_Charge_Code_RecID = dbo.TE_Charge_Code.TE_Charge_Code_RecID LEFT OUTER JOIN
                           dbo.Member ON dbo.Time_Entry.Member_RecID = dbo.Member.Member_RecID
@@ -58,9 +58,9 @@ $path = parse_url($actual_link,PHP_URL_PATH);
     $company = $_GET['company'];
     //$type = $_GET['type'];
     $query = '
-    SELECT   month(dbo.time_entry.date_entered_utc) as month,year(dbo.time_entry.date_entered_utc) as year,
+    SELECT   month(dbo.time_entry.date_entered_utc) as month,day(time_entry.date_entered_utc) as day,year(dbo.time_entry.date_entered_utc) as year,
 
-    SUM(time_entry.Hours_Actual) AS Billable_Hours
+    SUM(time_entry.Hours_Actual) as Billable_Hours
     FROM         dbo.Time_Entry LEFT OUTER JOIN
                           dbo.TE_Charge_Code ON dbo.Time_Entry.TE_Charge_Code_RecID = dbo.TE_Charge_Code.TE_Charge_Code_RecID LEFT OUTER JOIN
                           dbo.Member ON dbo.Time_Entry.Member_RecID = dbo.Member.Member_RecID
@@ -82,7 +82,8 @@ $path = parse_url($actual_link,PHP_URL_PATH);
     $query = '
     SELECT   month(dbo.time_entry.date_entered_utc) as month,day(time_entry.date_entered_utc) as day,year(dbo.time_entry.date_entered_utc) as year,
 
-    SUM(time_entry.Hours_Actual) AS Billable_Hours
+    SUM(time_entry.Hours_Actual) as Billable_Hours
+
     FROM         dbo.Time_Entry LEFT OUTER JOIN
                           dbo.TE_Charge_Code ON dbo.Time_Entry.TE_Charge_Code_RecID = dbo.TE_Charge_Code.TE_Charge_Code_RecID LEFT OUTER JOIN
                           dbo.Member ON dbo.Time_Entry.Member_RecID = dbo.Member.Member_RecID

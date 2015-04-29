@@ -16,8 +16,7 @@ $path = parse_url($actual_link,PHP_URL_PATH);
     $range2 = $_GET['range2'];
     $company = $_GET['company'];
     $type = $_GET['type'];
-    $query = 'select year(sr_service.Date_Entered) as year,day(sr_service.date_entered) as day,month(sr_service.Date_Entered) as month,COUNT(distinct(sr_service.Date_Entered)) as Tickets,
-    COUNT(distinct(sr_service.Date_Closed)) as Closed
+    $query = 'select year(sr_service.Date_Entered) as year,day(sr_service.date_entered) as day,month(sr_service.Date_Entered) as month,COUNT(distinct(sr_service.Date_Entered)) as Tickets
     from dbo.SR_Service
     left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
     left outer join company on company.company_recid = sr_service.company_recid
@@ -32,8 +31,7 @@ $path = parse_url($actual_link,PHP_URL_PATH);
     $range2 = $_GET['range2'];
     $type = $_GET['type'];
     //$type = $_GET['type'];
-    $query = 'select year(sr_service.Date_Entered) as year,day(sr_service.date_entered) as day,month(sr_service.Date_Entered) as month,COUNT(distinct(sr_service.Date_Entered)) as Tickets,
-    COUNT(distinct(sr_service.Date_Closed)) as Closed
+    $query = 'select year(sr_service.Date_Entered) as year,day(sr_service.date_entered) as day,month(sr_service.Date_Entered) as month,COUNT(distinct(sr_service.Date_Entered)) as Tickets
     from dbo.SR_Service
     left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
     left outer join company on company.company_recid = sr_service.company_recid
@@ -48,8 +46,7 @@ $path = parse_url($actual_link,PHP_URL_PATH);
     $company = $_GET['company'];
     $range1 = $_GET['range1'];
     $range2 = $_GET['range2'];
-    $query = 'select year(sr_service.Date_Entered) as year,day(sr_service.date_entered) as day,month(sr_service.Date_Entered) as month,COUNT(distinct(sr_service.Date_Entered)) as Tickets,
-    COUNT(distinct(sr_service.Date_Closed)) as Closed
+    $query = 'select year(sr_service.Date_Entered) as year,day(sr_service.date_entered) as day,month(sr_service.Date_Entered) as month,COUNT(distinct(sr_service.Date_Entered)) as Tickets
     from dbo.SR_Service
     left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
     left outer join company on company.company_recid = sr_service.company_recid
@@ -59,8 +56,7 @@ $path = parse_url($actual_link,PHP_URL_PATH);
   }else if(isset($_GET['range1']) && isset($_GET['range2'])){
     $range1 = $_GET['range1'];
     $range2 = $_GET['range2'];
-    $query = 'select year(sr_service.Date_Entered) as year,day(sr_service.date_entered) as day,month(sr_service.Date_Entered) as month,COUNT(distinct(sr_service.Date_Entered)) as Tickets,
-    COUNT(distinct(sr_service.Date_Closed)) as Closed
+    $query = 'select year(sr_service.Date_Entered) as year,day(sr_service.date_entered) as day,month(sr_service.Date_Entered) as month,COUNT(distinct(sr_service.Date_Entered)) as Tickets
     from dbo.SR_Service
     left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
     left outer join company on company.company_recid = sr_service.company_recid
@@ -69,8 +65,7 @@ $path = parse_url($actual_link,PHP_URL_PATH);
     order by year(sr_service.Date_Entered),month(sr_service.Date_Entered),day(sr_service.date_entered)';
   }else if (strpos($path,'results') !== false) {
 
-    $query = 'select year(sr_service.Date_Entered) as year,month(sr_service.Date_Entered) as month,COUNT(distinct(sr_service.Date_Entered)) as Tickets,
-    COUNT(distinct(sr_service.Date_Closed)) as Closed
+    $query = 'select year(sr_service.Date_Entered) as year,month(sr_service.Date_Entered) as month,COUNT(distinct(sr_service.Date_Entered)) as Tickets
     from dbo.SR_Service
     left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
     left outer join company on company.company_recid = sr_service.company_recid
@@ -80,8 +75,7 @@ $path = parse_url($actual_link,PHP_URL_PATH);
 
   }
   else{
-    $query = 'select year(sr_service.Date_Entered) as year,month(sr_service.Date_Entered) as month,COUNT(distinct(sr_service.Date_Entered)) as Tickets,
-    COUNT(distinct(sr_service.Date_Closed)) as Closed
+    $query = 'select year(sr_service.Date_Entered) as year,month(sr_service.Date_Entered) as month,COUNT(distinct(sr_service.Date_Entered)) as Tickets
     from dbo.SR_Service
     left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
     left outer join company on company.company_recid = sr_service.company_recid

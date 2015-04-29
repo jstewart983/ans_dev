@@ -28,7 +28,15 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
         <script>$('.navmenu').offcanvas()</script>
         <script>
-
+        $("#ans").hide().fadeIn(800);
+        $("#hello").hide().fadeIn(800);
+        $("#intel").hide().fadeIn(800);
+        $("#choose").hide().fadeIn(800);
+        $("#welcome").hide().fadeIn(800);
+        $("#choice1").hide().fadeIn(800);
+        $("#choice2").hide().fadeIn(800);
+        $("#choice3").hide().fadeIn(800);
+        $("#choice4").hide().fadeIn(800);
         </script>
         <style media="screen">
           .container{
@@ -75,7 +83,7 @@
     </head>
     <body id="sup" class="canvas">
       <div style="background-color:#fff;" class="navmenu navmenu-default navmenu-fixed-left offcanvas">
-            <a class="navmenu-brand" href="#">ANS Intelligence</a>
+            <a class="navmenu-brand" href="#"><span><img src="../../css/assets/Lightbulb-only-icon-64.png" alt="" /></span> ANS Intelligence</a>
             <ul class="nav navmenu-nav">
               <li class="active"><a href="#">Home</a></li>
               <li><a href="../solutiondelivery/">Solution Delivery</a></li>
@@ -196,16 +204,8 @@
 
           </body>
           <script charset="utf-8">
-          $("#sup").hide().fadeIn(800);
-            /*$("#ans").hide().fadeIn(1000);
-            $("#hello").hide().fadeIn(2000);
-            $("#intel").hide().fadeIn(2200);
-            $("#choose").hide().fadeIn(2100);
-            $("#welcome").hide().fadeIn(2700);
-            $("#choice1").hide().fadeIn(2000);
-            $("#choice2").hide().fadeIn(2200);
-            $("#choice3").hide().fadeIn(2400);
-            $("#choice4").hide().fadeIn(2600);*/
+          //$("#sup").hide().fadeIn(800);
+
             //$("#barChart").hide().fadeIn(2900);
 
             var data = {

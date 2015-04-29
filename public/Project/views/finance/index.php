@@ -94,9 +94,9 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
 
     <body class="canvas">
       <div style="background-color:#fff;" class="navmenu navmenu-default navmenu-fixed-left offcanvas">
-            <a class="navmenu-brand" href="#">ANS Intelligence</a>
+            <a class="navmenu-brand" href="#"><span><img src="../../css/assets/Lightbulb-only-icon-64.png" alt="" /></span> ANS Intelligence</a>
             <ul class="nav navmenu-nav">
-              <li><a href="../">Overview</a></li>
+              <li><a href="../home/">Home</a></li>
               <li><a href="../solutiondelivery/">Solution Delivery</a></li>
               <li><a href="../servicedelivery">Service Delivery</a></li>
               <li><a href="../clientservices/">Client Services</a></li>

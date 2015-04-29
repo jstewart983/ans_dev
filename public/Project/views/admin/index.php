@@ -94,7 +94,7 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
 
     <body class="canvas">
       <div style="background-color:#fff;" class="navmenu navmenu-default navmenu-fixed-left offcanvas">
-            <a class="navmenu-brand" href="#">ANS Intelligence</a>
+            <a class="navmenu-brand" href="#"><span><img src="../../css/assets/Lightbulb-only-icon-64.png" alt="" /></span> ANS Intelligence</a>
             <ul class="nav navmenu-nav">
               <li><a href="../home/">Home</a></li>
               <li><a href="../solutiondelivery/">Solution Delivery</a></li>
@@ -138,8 +138,8 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
         </div>
         <div id="user" class="col-md-4">
           <div style="margin-top:62px;" class="btn-group" role="group" aria-label="...">
-            <button id="getUserCount" type="button" class="btn btn-primary"><span id="userCount">0 Total Users</span></button>
-            <button id="getUsersLoggedIn" type="button" class="btn btn-success"><span id="usersLoggedIn">0 Users Logged In</span></button>
+            <!--<button id="getUserCount" type="button" class="btn btn-primary"><span id="userCount">0 Total Users</span></button>
+            <button id="getUsersLoggedIn" type="button" class="btn btn-success"><span id="usersLoggedIn">0 Users Logged In</span></button>-->
             <!--<button id="getUsersSuper" type="button" class="btn btn-primary"><h3>1</h3><p>Super Admin User</p></button>
             <button id="getUsersAdmin" type="button" class="btn btn-success"><h3>2</h3><p>Admin Users</p></button>
             <button id="getUsersManagement" type="button" class="btn btn-info"><h3>6</h3><p>Management Users</p></button>

@@ -307,11 +307,97 @@ $("#title #billableDayTitle").fadeOut(500,function(){
   $p.fadeIn(1200);
 
 });
+$('.sup').empty();
+$('.sup').append('<canvas style="padding:10px;width:720px;height:431px;" id="billableDay">');
 
       var ctx = document.getElementById("billableDay").getContext("2d");
       var myNewChart = new Chart(ctx).Bar(data);
 
+      $("#billableDay").click(function(e) {
+         var activeBars = myNewChart.getBarsAtEvent(e);
+    //$('#basicModal2').modal('show');
+         //$('#basicModal2').find(".modal-title").text(activeBars[0].label);
+
+
+
+         $.ajax({
+           type:"GET",
+           url:"../../ajax/servicedelivery/billableByMember.php?member="+activeBars[0].label,
+           success:function(json){
+             $('.sup').empty();
+             function getRandomColor() {
+                 var letters = '0123456789ABCDEF'.split('');
+                 var color = '#';
+                 for (var i = 0; i < 6; i++ ) {
+                     color += letters[Math.floor(Math.random() * 16)];
+                 }
+                 return color;
+             }
+
+
+             var days = [];
+             var fillColor = [];
+             var hours = [];
+             var highlightFill = [];
+             var highlightStroke = [];
+
+
+
+             for($i=0;$i<json.length;$i++){
+
+
+               days.push(json[$i]["day"]);
+               hours.push(json[$i]["billable_hours"]);
+               fillColor.push("rgba(227, 75, 0, .5)");
+               highlightFill.push("rgba(227, 75, 0, .8)");
+               highlightStroke.push("rgba(227, 75, 0, .7)");
+
+           }
+
+
+
+
+       var data = {
+           labels: days,
+           datasets: [
+               {
+
+                   fillColor: "rgba(227, 75, 0, .5)",
+                   strokeColor: "rgba(227, 75, 0, .8)",
+                   highlightFill: "rgba(227, 75, 0, .75)",
+                   highlightStroke: "rgba(227, 75, 0, .1)",
+                   data:hours,
+                   label: "Billable hrs"
+               }
+           ]
+       };
+              console.log(data);
+
+
+
+              $('.sup').append('<a href="#" id="billableBack"><span class="fui-arrow-left"></span>back </a> <span> '+activeBars[0].label+' has worked '+activeBars[0].value+' hrs this week so far</span><canvas style="padding:10px;width:720px;height:231px;" id="billableDay">');
+                 var ctx2 = document.getElementById("billableDay").getContext("2d");
+                 var modalChart = new Chart(ctx2).Bar(data);
+                console.log(ctx2);
+                console.log(modalChart);
+           }
+         });
+
+
+      });
+      $(".sup").on('click','#billableBack',function(e) {
+        $('.sup').empty();
+        //$('#dude').empty();
+        e.preventDefault();
+        $('.sup').append('<canvas style="padding:10px;width:720px;height:231px;" id="billableDay">');
+
+        billableByDay();
+        
+      });
+
+
     }
+
 
   });
 
@@ -435,9 +521,10 @@ function getTicketHistory(value,value2,value3){
     url:"../../ajax/servicedelivery/ticketCountHistory.php"+value+value2+value3,
     success:function(json){
 
-      var day_labels = [];
-      var hours = [];
-      //var hours2 = [];
+      var ticket_day_labels = [];
+      var hours_day_labels = [];
+      var tickets = [];
+
       var workHours = [];
 
 
@@ -449,27 +536,38 @@ function getTicketHistory(value,value2,value3){
           for($i=0;$i<json.length;$i++){
             //var frame = "Month";
             if(frame == "Day"){
-              day_labels.push(json[$i]["month"]+"/"+json[$i]["day"]+"/"+json[$i]["year"]);
+              ticket_day_labels.push(json[$i]["month"]+"/"+json[$i]["day"]+"/"+json[$i]["year"]);
             }else{
-              day_labels.push(json[$i]["month"]+"-"+json[$i]["year"]);
+              ticket_day_labels.push(json[$i]["month"]+"-"+json[$i]["year"]);
             }
 
-            hours.push(json[$i]["Tickets"]);
+
+            tickets.push(json[$i]["Tickets"]);
             //hours2.push(json[$i]["Closed"]);
 
           }
-          console.log(day_labels);
-          console.log(hours);
+
           for($i=0;$i<json1.length;$i++){
 
 
 
+              //var frame = "Month";
+              if(frame == "Day"){
+                hours_day_labels.push(json1[$i]["month"]+"/"+json1[$i]["day"]+"/"+json1[$i]["year"]);
+              }else{
+                hours_day_labels.push(json1[$i]["month"]+"-"+json1[$i]["year"]);
+              }
             workHours.push(json1[$i]["Billable_Hours"]);
 
           }
 
+
+
+
+
+
           var data = {
-              labels: day_labels,
+              labels: ticket_day_labels,
               datasets: [
 
                   {
@@ -480,9 +578,15 @@ function getTicketHistory(value,value2,value3){
                       pointStrokeColor: "#fff",
                       pointHighlightFill: "#fff",
                       pointHighlightStroke: "rgba(220,220,220,1)",
-                      data: hours,
+                      data: tickets,
                       label: "Tickets Created"
-                  },
+                  }
+              ]
+          };
+          var data2= {
+              labels: hours_day_labels,
+              datasets: [
+
                   {
                   fillColor: "rgba(255, 99, 71, .5)",
                   strokeColor: "rgba(255, 99, 71, .8)",
@@ -521,14 +625,16 @@ function getTicketHistory(value,value2,value3){
 
 
           $('#chart').empty();
-          $('#chart').append('<canvas style="padding:10px;width:90%;height:400px;" id="ticketChart">');
+          $('#chart').append('<p style="text-align:center;">Tickets Opened</p><canvas style="padding:10px;width:90%;height:200px;" id="ticketChart">');
+          $('#chart').append('<p style="text-align:center;">Hours Worked</p><canvas style="padding:10px;width:90%;height:200px;" id="hoursChart">');
             var ctx = document.getElementById("ticketChart").getContext("2d");
+            var ctx2 = document.getElementById("hoursChart").getContext("2d");
+            var ticketChart = new Chart(ctx).Line(data)
+            var hoursChart = new Chart(ctx2).Line(data2);
 
-            var myNewChart = new Chart(ctx).Line(data);
 
 
-
-            legend(document.getElementById("ticketChartLegend"), data);
+            //legend(document.getElementById("ticketChartLegend"), data);
 
           }
 
@@ -783,6 +889,15 @@ urgentTickets();
 
 //top tickets by service type this week
 topTypes();
+$("#ticketsByType").click(
+      function(evt){
+          var activePoints = projectChart.getSegmentsAtEvent(evt);
+          var url = "http://example.com/?label=" + activePoints[0].label + "&value=" + activePoints[0].value;
+          alert(url);
+      }
+  );
+
+
 
 $.ajax({
   url: "../../ajax/clientservices/getClientList2.php",
@@ -824,6 +939,7 @@ $("#basicModal").on("show.bs.modal", function(e) {
 });
 
 
+
 $('input[name="daterange"]').daterangepicker();
 
 $('#daterange').on('apply.daterangepicker', function(ev, picker) {
@@ -833,17 +949,21 @@ $('#daterange').on('apply.daterangepicker', function(ev, picker) {
   var type = $('#typeTable option:selected').text();
 
   if(company == "Choose a Client" && type == "Choose a Service Type"){
+    company = encodeURIComponent(company);
     getTicketHistory("?range1="+start+"&range2="+end,'','');
 
   }else if(type == "Choose a Service Type" && company !="Choose a Client"){
+    company = encodeURIComponent(company);
 
     getTicketHistory("?range1="+start+"&range2="+end,"&company="+company,'');
 
   }else if(type != "Choose a Service Type" && company =="Choose a Client"){
+    company = encodeURIComponent(company);
 
     getTicketHistory("?range1="+start+"&range2="+end,'','&type='+type);
 
   }else if(type != "Choose a Service Type" && company !="Choose a Client"){
+    company = encodeURIComponent(company);
 
     getTicketHistory("?range1="+start+"&range2="+end,"&company="+company,'&type='+type);
 

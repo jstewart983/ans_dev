@@ -78,7 +78,7 @@
     <body class="canvas">
 
 <div style="background-color:#fff;" class="navmenu navmenu-default navmenu-fixed-left offcanvas">
-      <a class="navmenu-brand" href="#">ANS Intelligence</a>
+      <a class="navmenu-brand" href="#"><span><img src="../../css/assets/Lightbulb-only-icon-64.png" alt="" /></span> ANS Intelligence</a>
       <ul class="nav navmenu-nav">
         <li><a href="../home/">Home</a></li>
         <li><a href="../solutiondelivery/">Solution Delivery</a></li>
@@ -199,7 +199,7 @@
         <div class="row">
             <div id="title" class="col-md-6">
                 <div class="panel panel-default">
-                  <div class="panel-heading">
+                  <div id="dude" class="panel-heading">
                         <p id ="billableDayTitle" style="text-align:center;">Billable Hrs/Member - This Week <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
                   </div>
                   <div id="title"class="panel-body">
@@ -207,7 +207,10 @@
                           <div style="padding:5px;" id="billableDayLegend">
                           </div>
                         </div>
-                    <canvas id ="billableDay"style="margin-left:-2px;padding:15px;width:90%;height:200px;"></canvas>
+                        <div class="sup">
+                          <canvas id ="billableDay"style="margin-left:-2px;padding:15px;width:90%;height:200px;"></canvas>
+
+                        </div>
                   </div>
                 </div>
             </div>
@@ -346,6 +349,36 @@
                         <pre id="query">
 
                         </pre>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="basicModal2" tabindex="-1" role="dialog" aria-labelledby="basicModal2" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <button type="button"  class="close fui-cross" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title" id="myModalLabel"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <h4>
+
+                        </h4>
+                        <h2 id="description">
+
+                        </h2>
+                        <div id="modalChart">
+                          <canvas id="modalHoursChart" width="300" height="300"></canvas>
+                        </div>
+
+
+
+
 
                     </div>
                     <div class="modal-footer">

@@ -94,7 +94,7 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
 
     <body class="canvas">
       <div style="background-color:#fff;" class="navmenu navmenu-default navmenu-fixed-left offcanvas">
-            <a class="navmenu-brand" href="#">ANS Intelligence</a>
+            <a class="navmenu-brand" href="#"><span><img src="../../css/assets/Lightbulb-only-icon-64.png" alt="" /></span> ANS Intelligence</a>
             <ul class="nav navmenu-nav">
               <li><a href="../../home/">Home</a></li>
               <li><a href="../../solutiondelivery/">Solution Delivery</a></li>
@@ -130,46 +130,15 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
 
             </div>
           </div>
-    <div style="margin-top:52px;"class="container">
+          <div style="margin-top:22px;"class="container">
 
-        <div id="options">
+              <div id="options">
 
-        </div>
-
-
-    </div>
+              </div>
 
 
+          </div>
 
-            <!--End Projects Initiated Last Year-->
-
-
-
-
-
-
-
-
-
-               <!--<div style="margin-top:60px;text-align:center;" class="co-md-4"id="clientData"></div>-->
-             <!-- Don't delete this div. This is where RazorFlow will get rendered. -->
-            <!--<div id="dbTarget" style="position:relative;" class="rf"></div> -->
-
-
-           <!--<div id="wherethestuffis" class="col-md-2">
-
-               <canvas style=" margin-left:10px;background-color:#fff;" id="openTickets" height="600" width="200"></canvas>
-           </div>-->
-
-
-
-
-         <!--<script type="text/javascript">
-         var numAnim = new countUp("#avgTickets", 24.02, 99.99);
-            numAnim.start();
-        </script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-       <script src="../js/oneUp.js"></script>-->
        <script type="text/javascript" src="../../../js/jquery.min.js"></script>
        <script src="../../../js/jquery.searchable.js"></script>
 
