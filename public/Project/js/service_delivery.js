@@ -392,7 +392,7 @@ $('.sup').append('<canvas style="padding:10px;width:720px;height:431px;" id="bil
         $('.sup').append('<canvas style="padding:10px;width:720px;height:231px;" id="billableDay">');
 
         billableByDay();
-        
+
       });
 
 
@@ -629,7 +629,7 @@ function getTicketHistory(value,value2,value3){
           $('#chart').append('<p style="text-align:center;">Hours Worked</p><canvas style="padding:10px;width:90%;height:200px;" id="hoursChart">');
             var ctx = document.getElementById("ticketChart").getContext("2d");
             var ctx2 = document.getElementById("hoursChart").getContext("2d");
-            var ticketChart = new Chart(ctx).Line(data)
+            var ticketChart = new Chart(ctx).Line(data);
             var hoursChart = new Chart(ctx2).Line(data2);
 
 

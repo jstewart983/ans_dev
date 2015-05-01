@@ -9,7 +9,76 @@ $path = parse_url($actual_link,PHP_URL_PATH);
 //$path = strstr($path,"/service_delivery");
 //echo $path;
 //if (strpos($path,'results') !== false) {
+  if (strpos($path,'managedservices') !== false){
 
+    if(isset($_GET['range1']) && isset($_GET['range2']) && isset($_GET['company']) && isset($_GET['type'])){
+
+      $range1 = $_GET['range1'];
+      $range2 = $_GET['range2'];
+      $company = $_GET['company'];
+      $type = $_GET['type'];
+      $query = 'select year(sr_service.Date_Entered) as year,day(sr_service.date_entered) as day,month(sr_service.Date_Entered) as month,COUNT(distinct(sr_service.Date_Entered)) as Tickets
+      from dbo.SR_Service
+      left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
+      left outer join company on company.company_recid = sr_service.company_recid
+      left outer join sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
+      where (dbo.SR_Board.Board_Name = "BackOffice" or dbo.SR_Board.Board_Name = "Managed Services Requests" or dbo.SR_Board.Board_Name = "" or dbo.SR_Board.Board_Name="LogicMonitor") and sr_type.description = "'.$type.'" and company.company_name = "'.$company.'"  and (sr_service.date_entered >="'.$range1.'" and sr_service.date_entered <= "'.$range2.'")
+      group by day(sr_service.date_entered),month(sr_service.Date_Entered),year(sr_service.Date_Entered)
+      order by year(sr_service.Date_Entered),month(sr_service.Date_Entered),day(sr_service.date_entered)';
+
+    }else if(isset($_GET['range1']) && isset($_GET['range2']) && isset($_GET['type'])){
+
+      $range1 = $_GET['range1'];
+      $range2 = $_GET['range2'];
+      $type = $_GET['type'];
+      //$type = $_GET['type'];
+      $query = 'select year(sr_service.Date_Entered) as year,day(sr_service.date_entered) as day,month(sr_service.Date_Entered) as month,COUNT(distinct(sr_service.Date_Entered)) as Tickets
+      from dbo.SR_Service
+      left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
+      left outer join company on company.company_recid = sr_service.company_recid
+      left outer join sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
+      where (dbo.SR_Board.Board_Name = "BackOffice" or dbo.SR_Board.Board_Name = "Managed Services Requests" or dbo.SR_Board.Board_Name = "" or dbo.SR_Board.Board_Name="LogicMonitor") and sr_type.description = "'.$type.'" and  (sr_service.date_entered >="'.$range1.'" and sr_service.date_entered <= "'.$range2.'")
+      group by day(sr_service.date_entered),month(sr_service.Date_Entered),year(sr_service.Date_Entered)
+      order by year(sr_service.Date_Entered),month(sr_service.Date_Entered),day(sr_service.date_entered)';
+
+
+    }else if(isset($_GET['range1']) && isset($_GET['range2']) && isset($_GET['company'])){
+
+      $company = $_GET['company'];
+      $range1 = $_GET['range1'];
+      $range2 = $_GET['range2'];
+      $query = 'select year(sr_service.Date_Entered) as year,day(sr_service.date_entered) as day,month(sr_service.Date_Entered) as month,COUNT(distinct(sr_service.Date_Entered)) as Tickets
+      from dbo.SR_Service
+      left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
+      left outer join company on company.company_recid = sr_service.company_recid
+      where (dbo.SR_Board.Board_Name = "BackOffice" or dbo.SR_Board.Board_Name = "Managed Services Requests" or dbo.SR_Board.Board_Name = "" or dbo.SR_Board.Board_Name="LogicMonitor") and company.company_name = "'.$company.'" and (sr_service.date_entered >="'.$range1.'" and sr_service.date_entered <= "'.$range2.'")
+      group by day(sr_service.date_entered),month(sr_service.Date_Entered),year(sr_service.Date_Entered)
+      order by year(sr_service.Date_Entered),month(sr_service.Date_Entered),day(sr_service.date_entered)';
+    }else if(isset($_GET['range1']) && isset($_GET['range2'])){
+      $range1 = $_GET['range1'];
+      $range2 = $_GET['range2'];
+      $query = 'select year(sr_service.Date_Entered) as year,day(sr_service.date_entered) as day,month(sr_service.Date_Entered) as month,COUNT(distinct(sr_service.Date_Entered)) as Tickets
+      from dbo.SR_Service
+      left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
+      left outer join company on company.company_recid = sr_service.company_recid
+      where (dbo.SR_Board.Board_Name = "BackOffice" or dbo.SR_Board.Board_Name = "Managed Services Requests" or dbo.SR_Board.Board_Name = "" or dbo.SR_Board.Board_Name="LogicMonitor") and (sr_service.date_entered >="'.$range1.'" and sr_service.date_entered <= "'.$range2.'")
+      group by day(sr_service.date_entered),month(sr_service.Date_Entered),year(sr_service.Date_Entered)
+      order by year(sr_service.Date_Entered),month(sr_service.Date_Entered),day(sr_service.date_entered)';
+    }else{
+
+
+      $query = 'select year(sr_service.Date_Entered) as year,month(sr_service.Date_Entered) as month,COUNT(distinct(sr_service.Date_Entered)) as Tickets
+      from dbo.SR_Service
+      left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
+      left outer join company on company.company_recid = sr_service.company_recid
+      where (dbo.SR_Board.Board_Name = "BackOffice" or dbo.SR_Board.Board_Name = "Managed Services Requests" or dbo.SR_Board.Board_Name = "" or dbo.SR_Board.Board_Name="LogicMonitor") and (convert(char(6), sr_service.Date_Entered, 112) <> convert(char(6), getdate(), 112) and year(sr_service.Date_Entered) > year(getdate())-2)
+      group by month(sr_service.Date_Entered),year(sr_service.Date_Entered)
+      order by year(sr_service.Date_Entered),month(sr_service.Date_Entered) ';
+
+
+    }
+
+  }else{
   if(isset($_GET['range1']) && isset($_GET['range2']) && isset($_GET['company']) && isset($_GET['type'])){
 
     $range1 = $_GET['range1'];
@@ -83,6 +152,7 @@ $path = parse_url($actual_link,PHP_URL_PATH);
     group by month(sr_service.Date_Entered),year(sr_service.Date_Entered)
     order by year(sr_service.Date_Entered),month(sr_service.Date_Entered) ';
 
+  }
 }
 //}
 

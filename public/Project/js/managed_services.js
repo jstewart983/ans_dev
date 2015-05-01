@@ -629,7 +629,7 @@ function getTicketHistory(value,value2,value3){
           $('#chart').append('<p style="text-align:center;">Hours Worked</p><canvas style="padding:10px;width:90%;height:200px;" id="hoursChart">');
             var ctx = document.getElementById("ticketChart").getContext("2d");
             var ctx2 = document.getElementById("hoursChart").getContext("2d");
-            var ticketChart = new Chart(ctx).Line(data)
+            var ticketChart = new Chart(ctx).Line(data);
             var hoursChart = new Chart(ctx2).Line(data2);
 
 
@@ -682,12 +682,12 @@ function urgentTickets(){
 
 }
 
-function topTypes(){
+function topTypes(value,value2,value3){
 
   $.ajax({
 
     type:"GET",
-    url:"../../ajax/servicedelivery/topTypes.php",
+    url:"../../ajax/servicedelivery/topTypes.php"+value+value2+value3,
     success:function(json){
 
       //console.log(json);
@@ -866,7 +866,71 @@ function ticketsByBoard(){
 $(document).ready(function(){
 
 ticketsByBoard();
-topTypes();
 
+$.ajax({
+  url: "../../ajax/clientservices/getClientList2.php",
+                context: document.body,
+
+                success: function(html){
+                 $("#client2").append(html);
+
+                }
+
+                });
+
+
+$.ajax({
+url: "../../ajax/managedservices/getMembers.php",
+context: document.body,
+success: function(html){
+$("#member").append(html);
+
+}
+
+});
+
+$.ajax({
+url: "../../ajax/managedservices/topTypesTable.php",
+context: document.body,
+success: function(html){
+$("#msTypeTable").append(html);
+
+}
+
+});
+
+topTypes('','','');
+
+
+$('input[name="daterange"]').daterangepicker();
+
+$('#daterange').on('apply.daterangepicker', function(ev, picker) {
+  var start = picker.startDate.format('YYYY-MM-DD');
+  var end = picker.endDate.format('YYYY-MM-DD');
+  var company = $( "#client2 option:selected" ).text();
+  var type = $('#member option:selected').text();
+
+  if(company == "Choose a Client" && type == "Choose a Member"){
+    company = encodeURIComponent(company);
+    topTypes("?range1="+start+"&range2="+end,'','');
+
+  }else if(type == "Choose a Member" && company !="Choose a Client"){
+    company = encodeURIComponent(company);
+
+    topTypes("?range1="+start+"&range2="+end,"&company="+company,'');
+
+  }else if(type != "Choose a Member" && company =="Choose a Client"){
+    company = encodeURIComponent(company);
+
+    topTypes("?range1="+start+"&range2="+end,'','&member='+type);
+
+  }else if(type != "Choose a Member" && company !="Choose a Client"){
+    company = encodeURIComponent(company);
+
+    topTypes("?range1="+start+"&range2="+end,"&company="+company,'&member='+type);
+
+  }
+
+});
 
 });

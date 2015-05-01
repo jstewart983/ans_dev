@@ -35,6 +35,7 @@ else if (strpos($path,'CIM') !== false) {
 	order by sr_service.date_entered desc';
 
 }elseif(strpos($path,'managedservices') !== false){
+	$description="This displays a table of tickets that are both open and urgent on the BackOffice, LogicMonitor and Managed Services - Requests boards";
 
 	$count = '';
 	$header = "<h4 style='text-align:center;'>".$count." tickets are open and urgent</h4>";

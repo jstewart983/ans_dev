@@ -83,8 +83,8 @@
       <ul class="nav navmenu-nav">
         <li><a href="../home/">Home</a></li>
         <li><a href="../solutiondelivery/">Solution Delivery</a></li>
-        <li><a href="../managedservices/">Managed Services</a></li>
-        <li class="active"><a href="#">Service Delivery</a></li>
+        <li  class="active"><a href="../managedservices/">Managed Services</a></li>
+        <li><a href="../servicedelivery/">Service Delivery</a></li>
         <li><a href="../clientservices/">Client Services</a></li>
         <li><a href="../resultsphysiotherapy/">Results Physiotherapy</a></li>
         <li><a href="../sales/">Sales</a></li>
@@ -247,13 +247,55 @@
                         <p id="ticketsByTypeTitle1" style="text-align:center;">Hours by Service Type (top 10) - This Week  <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
                   </div>
                   <div id="title"class="panel-body">
-                    <div style="text-align:center"class="col-md-2">
-                          <div  id="ticketsByTypeLegend1">
+                                  <div style="margin-top:10px;" class="row">
+
+              <div class="col-md-2">
+
+              </div>
+              <div class="col-md-3">
+                <input id="daterange" class="form-control" type="text" name="daterange"placeholder="Select a Date Range"  />
+
+                  <script type="text/javascript">
+
+                    </script>
+              </div>
+
+
+              <div class="col-md-4">
+                <select id="client2" class="form-control">
+                  <option value="one">Choose a Client</option>
+
+                </select>
+              </div>
+              <div class="col-md-3">
+                <select id="member" class="form-control">
+                  <option value="one">Choose a Member</option>
+
+                </select>
+              </div>
+              <div class="col-md-1">
+
+              </div>
+
+
+
+            </div>
+              <div id="typeChart">
+                <div style="text-align:center"class="col-md-2">
+                      <div  id="ticketsByTypeLegend1">
+                      </div>
+                </div>
+                <div class="col-md-10">
+                      <canvas id ="ticketsByType1"style="margin-left:-2px;padding:15px;width:90%;height:100px;"></canvas>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div id="msTypeTable">
+
                           </div>
                         </div>
-                        <div class="col-md-10">
-                          <canvas id ="ticketsByType1"style="margin-left:-2px;padding:15px;width:90%;height:100px;"></canvas>
-                        </div>
+                      </div>
+                </div>
+              </div>
 
                   </div>
                 </div>
