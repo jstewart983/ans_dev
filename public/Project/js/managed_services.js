@@ -902,9 +902,9 @@ $("#msTypeTable").append(html);
 topTypes('','','');
 
 
-$('input[name="daterange"]').daterangepicker();
+$('input[name="daterange2"]').daterangepicker();
 
-$('#daterange').on('apply.daterangepicker', function(ev, picker) {
+$('#daterange2').on('apply.daterangepicker', function(ev, picker) {
   var start = picker.startDate.format('YYYY-MM-DD');
   var end = picker.endDate.format('YYYY-MM-DD');
   var company = $( "#client2 option:selected" ).text();

@@ -69,7 +69,7 @@ $query1 = str_replace('"',"",$query);
 $count = $rowcount;
 echo "<div style='width:100%;padding:0px;'class=' panel panel-default'>";
 echo "<div class='panel-heading'style='text-align:center;'><p id='urgentTicketsTitle'  style='text-align:center;'>".$title." <span><a id='info' data-description='".$description."'  data-datasource='".$datasource."' data-title='".$title."' data-query='".$query1."' href='#' class='fui-info-circle' data-toggle='modal' data-target='#basicModal'></a></span></p></div>";
-echo "<div style='width:100%;width:100%;overflow-y: scroll !important;height:278px;'class=panel-body>";
+echo "<div style='width:100%;width:100%;overflow-y: scroll !important;height:480px;'class=panel-body>";
 if($count == 1 && strpos($path,'CIM') !== false){
 	$header = "<h4 style='text-align:center;'>".$count." ticket is in CIM status</h4>";
 echo $header;

@@ -253,7 +253,7 @@
 
               </div>
               <div class="col-md-3">
-                <input id="daterange" class="form-control" type="text" name="daterange"placeholder="Select a Date Range"  />
+                <input id="daterange2" class="form-control" type="text" name="daterange2"placeholder="Select a Date Range"  />
 
                   <script type="text/javascript">
 
@@ -289,7 +289,7 @@
                       <canvas id ="ticketsByType1"style="margin-left:-2px;padding:15px;width:90%;height:100px;"></canvas>
                       <div class="row">
                         <div class="col-md-12">
-                          <div id="msTypeTable">
+                          <div style='width:100%;width:100%;overflow-y: scroll !important;height:478px;' id="msTypeTable">
 
                           </div>
                         </div>

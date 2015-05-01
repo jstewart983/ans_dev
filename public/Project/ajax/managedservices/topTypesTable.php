@@ -21,7 +21,7 @@ order by typeCount desc';
 $openTickets = mssql_query($query);
 
 
-echo "<table id='msTypeTable' style='width:100%;width:100%;overflow-y: scroll !important;height:478px;' class='table table-hover'>";
+echo "<table id='msTypeTable' style='width:100%;' class='table table-hover'>";
 echo "<thead>";
 echo "<th>Type</th>";
 echo "<th>Hours</th>";

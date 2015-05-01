@@ -101,6 +101,7 @@
             <ul class="nav navmenu-nav">
               <li><a href="../home/">Home</a></li>
               <li class="active"><a href="../solution delivery/">Solution Delivery</a></li>
+              <li><a href="../managedservices/">Managed Services</a></li>
               <li><a href="../servicedelivery/">Service Delivery</a></li>
               <li><a href="../clientservices/">Client Services</a></li>
               <li><a href="../resultsphysiotherapy/">Results Physiotherapy</a></li>
@@ -135,7 +136,7 @@
         </div>
 
         <div style="margin-top:52px;"class="container">
-        <div class="row">
+        <!--<div class="row">
             <div style="border-top:1px solid #ddd;border-left:1px solid #ddd;border-right:1px solid #ddd;border-bottom:1px solid #ddd;border-radius: 4px;background-color:#fff;"class="col-md-6">
                 <div style="padding:5px;">
                     <ul class="nav nav-pills">
@@ -146,10 +147,10 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div>-->
 
                 <!--KPIs-->
-        <div style="margin-top:10px;" class="row">
+        <div style="margin-top:30px;" class="row">
             <div class="col-md-2">
                 <div class="panel panel-default">
                   <div class="panel-heading">
