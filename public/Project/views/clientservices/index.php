@@ -77,7 +77,7 @@
 
         </style>
     <body class="canvas">
-<div  class="navmenu navmenu-default navmenu-fixed-left offcanvas">
+<div style="background-color:#fff;"  class="navmenu navmenu-default navmenu-fixed-left offcanvas">
       <a class="navmenu-brand" href="#"><span><img src="../../css/assets/Lightbulb-only-icon-64.png" alt="" /></span> ANS Intelligence</a>
       <ul class="nav navmenu-nav">
         <li><a href="../home/">Home</a></li>

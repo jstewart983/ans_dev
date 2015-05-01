@@ -21,15 +21,7 @@ where company_name = "Results Physiotherapy" and sr_status.description <> "Close
 
 }elseif(strpos($path,'managedservices') !== false){
 
-  $description = "This represents a count of tickets currently open on all boards managed by the Managed Services Team.";
-
-  $query = 'select Count(*) as openTickets
-  from dbo.SR_Service
-  LEFT OUTER JOIN dbo.SR_Board on dbo.SR_Service.SR_Board_RecID = dbo.SR_Board.SR_Board_RecID
-  left outer join sr_status on sr_service.sr_status_recid = sr_status.sr_status_recid
-  where (sr_status.description <> "Closed" and sr_status.description <> "Canceled" and sr_status.description <> "Closed - First Call") and (dbo.SR_Board.Board_Name = "BackOffice" or dbo.SR_Board.Board_Name = "Managed Services Requests" or dbo.SR_Board.Board_Name = "" or dbo.SR_Board.Board_Name="LogicMonitor") and sr_service.date_closed is null';
-
-  $query2 = 'select Count(*) as openTickets, sr_board.board_name
+  $query = 'select Count(*) as openTickets, sr_board.board_name
   from dbo.SR_Service
   LEFT OUTER JOIN dbo.SR_Board on dbo.SR_Service.SR_Board_RecID = dbo.SR_Board.SR_Board_RecID
   left outer join sr_status on sr_service.sr_status_recid = sr_status.sr_status_recid
@@ -40,35 +32,35 @@ where company_name = "Results Physiotherapy" and sr_status.description <> "Close
 }
 else{
 
-  $query = 'select Count(*) as openTickets
+  $query = 'select Count(*) as openTickets, sr_board.board_name
   from dbo.SR_Service
   LEFT OUTER JOIN dbo.SR_Board on dbo.SR_Service.SR_Board_RecID = dbo.SR_Board.SR_Board_RecID
   left outer join sr_status on sr_service.sr_status_recid = sr_status.sr_status_recid
-  where (sr_status.description <> "Closed" and sr_status.description <> "Canceled" and sr_status.description <> "Closed - First Call") and (dbo.SR_Board.Board_Name = "My Company/Service" or dbo.SR_Board.Board_Name = "Alerts - Service Delivery" or dbo.SR_Board.Board_Name = "Results Physiotherapy" or dbo.SR_Board.Board_Name="Results - Initiatives") and sr_service.date_closed is null';
-
+  where (sr_status.description <> "Closed" and sr_status.description <> "Canceled" and sr_status.description <> "Closed - First Call") and (dbo.SR_Board.Board_Name = "BackOffice" or dbo.SR_Board.Board_Name = "Managed Services Requests" or dbo.SR_Board.Board_Name = "" or dbo.SR_Board.Board_Name="LogicMonitor") and sr_service.date_closed is null
+  group by sr_board.board_name';
 
 }
-
-
 
 $openTickets = mssql_query($query);
-$query1 = str_replace('"', "", $query);
+
+echo "<table class='table table-list-search remodelGray'>";
 
 
+echo "<tbody>";
 
-// fetch all rows from the query
-$all_rows = array();
-while($row = mssql_fetch_assoc($openTickets)) {
-  $row["Title"] =$title;
-  $row["Description"] = $description;
-  $row["Query"] = $query1;
-  $row["Datasource"] = $datasource;
-    $all_rows []= $row;
 
+while($row = mssql_fetch_array($openTickets)) {
+
+	echo '<tr>
+					<td><b>'.$row['board_name'].'</b></td>
+					<td>'.$row['openTickets'].'</td>
+			</tr>';
 }
+echo "</tbody>";
+echo "</table>";
+//header("Content-Type: application/json");
 
-header("Content-Type: application/json");
-echo json_encode($all_rows);
+echo "</div>";
 
 
 ?>

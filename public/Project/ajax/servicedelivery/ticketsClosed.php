@@ -37,7 +37,20 @@ if (strpos($path,'desk') !== false) {
    and DATEDIFF( ww, sr_service.Date_Closed, GETDATE() ) = 0';
 
 
-}else{
+}elseif(strpos($path,'managedservices')!==false){
+
+  $description = "This represents a count of tickets closed by all members of the Managed Services Team for the current week starting on Sunday.";
+
+  $query = 'select COUNT(distinct(sr_service.Date_Closed)) as closedTickets
+  from dbo.SR_Service left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
+  left outer join member on member.member_id = sr_service.closed_by
+  left outer join company on company.company_recid = sr_service.company_recid
+  where (member.member_id = "plane" or member.member_id = "jmorgan" or member.member_id = "bfizer" or member.member_id = "rmillen")
+
+   and DATEDIFF( ww, sr_service.Date_Closed, GETDATE() ) = 0';
+
+}
+else{
 
   $query = 'select COUNT(distinct(sr_service.Date_Closed)) as closedTickets
   from dbo.SR_Service left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid

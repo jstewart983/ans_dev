@@ -41,6 +41,118 @@ else if(strpos($path,'desk') !== false){
 
 
 }
+else if(strpos($path,'managedservices') !== false){
+  $description ="This chart represents the top 10 service types by hours spent on them this week, by a member of the managed services team";
+
+  if(isset($_GET['range1']) && isset($_GET['range2']) && isset($_GET['company']) && isset($_GET['type'])){
+
+    $range1 = $_GET['range1'];
+    $range2 = $_GET['range2'];
+    $company = $_GET['company'];
+    $type = $_GET['type'];
+    $query = 'SELECT top 10 SR_service.summary as type,sum(time_entry.hours_actual) as typeCount
+    FROM cwwebapp_ans.dbo.Company Company, cwwebapp_ans.dbo.SR_Board SR_Board,dbo.member, cwwebapp_ans.dbo.SR_Service SR_Service, cwwebapp_ans.dbo.SR_Type SR_Type,cwwebapp_ans.dbo.Time_Entry
+    WHERE Company.Company_RecID = Time_Entry.Company_RecID AND
+    SR_Service.SR_Service_RecID = Time_Entry.SR_Service_RecID AND
+    Company.Company_RecID = SR_Service.Company_RecID AND
+    SR_Type.SR_Type_RecID = SR_Service.SR_Type_RecID AND
+    SR_Board.SR_Board_RecID = SR_Service.SR_Board_RecID AND
+    SR_Board.SR_Board_RecID = SR_Type.SR_Board_RecID AND SR_Service.Closed_By = Member.Member_ID AND
+
+    company.company_name = "'.$company.'" AND
+    (sr_service.date_entered >="'.$range1.'" and sr_service.date_entered <= "'.$range2.'") AND
+    sr_type.description = "'.$type.'"
+
+
+    and DATEDIFF( ww, dbo.Time_Entry.Date_Entered_UTC, GETDATE() ) = 0 and (member.member_id = "plane" or member.member_id = "jmorgan" or member.member_id = "bfizer" or member.member_id = "rmillen")
+    group by SR_service.summary
+    order by typeCount desc';
+
+  }else if(isset($_GET['range1']) && isset($_GET['range2']) && isset($_GET['type'])){
+
+    $range1 = $_GET['range1'];
+    $range2 = $_GET['range2'];
+    $type = $_GET['type'];
+    //$type = $_GET['type'];
+    $query = 'SELECT top 10 SR_service.summary as type,sum(time_entry.hours_actual) as typeCount
+    FROM cwwebapp_ans.dbo.Company Company, cwwebapp_ans.dbo.SR_Board SR_Board,dbo.member, cwwebapp_ans.dbo.SR_Service SR_Service, cwwebapp_ans.dbo.SR_Type SR_Type,cwwebapp_ans.dbo.Time_Entry
+    WHERE Company.Company_RecID = Time_Entry.Company_RecID AND
+    SR_Service.SR_Service_RecID = Time_Entry.SR_Service_RecID AND
+    Company.Company_RecID = SR_Service.Company_RecID AND
+    SR_Type.SR_Type_RecID = SR_Service.SR_Type_RecID AND
+    SR_Board.SR_Board_RecID = SR_Service.SR_Board_RecID AND
+    SR_Board.SR_Board_RecID = SR_Type.SR_Board_RecID AND SR_Service.Closed_By = Member.Member_ID AND
+
+    (sr_service.date_entered >="'.$range1.'" and sr_service.date_entered <= "'.$range2.'") AND
+    sr_type.description = "'.$type.'"
+
+
+    and DATEDIFF( ww, dbo.Time_Entry.Date_Entered_UTC, GETDATE() ) = 0 and (member.member_id = "plane" or member.member_id = "jmorgan" or member.member_id = "bfizer" or member.member_id = "rmillen")
+    group by SR_service.summary
+    order by typeCount desc';
+
+
+  }else if(isset($_GET['range1']) && isset($_GET['range2']) && isset($_GET['company'])){
+
+    $company = $_GET['company'];
+    $range1 = $_GET['range1'];
+    $range2 = $_GET['range2'];
+    $query = 'SELECT top 10 SR_service.summary as type,sum(time_entry.hours_actual) as typeCount
+    FROM cwwebapp_ans.dbo.Company Company, cwwebapp_ans.dbo.SR_Board SR_Board,dbo.member, cwwebapp_ans.dbo.SR_Service SR_Service, cwwebapp_ans.dbo.SR_Type SR_Type,cwwebapp_ans.dbo.Time_Entry
+    WHERE Company.Company_RecID = Time_Entry.Company_RecID AND
+    SR_Service.SR_Service_RecID = Time_Entry.SR_Service_RecID AND
+    Company.Company_RecID = SR_Service.Company_RecID AND
+    SR_Type.SR_Type_RecID = SR_Service.SR_Type_RecID AND
+    SR_Board.SR_Board_RecID = SR_Service.SR_Board_RecID AND
+    SR_Board.SR_Board_RecID = SR_Type.SR_Board_RecID AND SR_Service.Closed_By = Member.Member_ID AND
+
+    company.company_name = "'.$company.'" AND
+    (sr_service.date_entered >="'.$range1.'" and sr_service.date_entered <= "'.$range2.'")
+
+
+    and DATEDIFF( ww, dbo.Time_Entry.Date_Entered_UTC, GETDATE() ) = 0 and (member.member_id = "plane" or member.member_id = "jmorgan" or member.member_id = "bfizer" or member.member_id = "rmillen")
+    group by SR_service.summary
+    order by typeCount desc';
+  }else if(isset($_GET['range1']) && isset($_GET['range2'])){
+    $range1 = $_GET['range1'];
+    $range2 = $_GET['range2'];
+    $query = 'SELECT top 10 SR_service.summary as type,sum(time_entry.hours_actual) as typeCount
+    FROM cwwebapp_ans.dbo.Company Company, cwwebapp_ans.dbo.SR_Board SR_Board,dbo.member, cwwebapp_ans.dbo.SR_Service SR_Service, cwwebapp_ans.dbo.SR_Type SR_Type,cwwebapp_ans.dbo.Time_Entry
+    WHERE Company.Company_RecID = Time_Entry.Company_RecID AND
+    SR_Service.SR_Service_RecID = Time_Entry.SR_Service_RecID AND
+    Company.Company_RecID = SR_Service.Company_RecID AND
+    SR_Type.SR_Type_RecID = SR_Service.SR_Type_RecID AND
+    SR_Board.SR_Board_RecID = SR_Service.SR_Board_RecID AND
+    SR_Board.SR_Board_RecID = SR_Type.SR_Board_RecID AND SR_Service.Closed_By = Member.Member_ID AND
+
+
+    (sr_service.date_entered >="'.$range1.'" and sr_service.date_entered <= "'.$range2.'")
+
+
+
+    and DATEDIFF( ww, dbo.Time_Entry.Date_Entered_UTC, GETDATE() ) = 0 and (member.member_id = "plane" or member.member_id = "jmorgan" or member.member_id = "bfizer" or member.member_id = "rmillen")
+    group by SR_service.summary
+    order by typeCount desc';
+  }
+  else{
+
+  $query = 'SELECT top 10 SR_service.summary as type,sum(time_entry.hours_actual) as typeCount
+  FROM cwwebapp_ans.dbo.Company Company, cwwebapp_ans.dbo.SR_Board SR_Board,dbo.member, cwwebapp_ans.dbo.SR_Service SR_Service, cwwebapp_ans.dbo.SR_Type SR_Type,cwwebapp_ans.dbo.Time_Entry
+  WHERE Company.Company_RecID = Time_Entry.Company_RecID AND
+  SR_Service.SR_Service_RecID = Time_Entry.SR_Service_RecID AND
+  Company.Company_RecID = SR_Service.Company_RecID AND
+  SR_Type.SR_Type_RecID = SR_Service.SR_Type_RecID AND
+  SR_Board.SR_Board_RecID = SR_Service.SR_Board_RecID AND
+  SR_Board.SR_Board_RecID = SR_Type.SR_Board_RecID AND SR_Service.Closed_By = Member.Member_ID
+
+
+  and DATEDIFF( ww, dbo.Time_Entry.Date_Entered_UTC, GETDATE() ) = 0 and (member.member_id = "plane" or member.member_id = "jmorgan" or member.member_id = "bfizer" or member.member_id = "rmillen")
+  group by SR_service.summary
+  order by typeCount desc';
+
+}
+
+}
 else if(strpos($path,'CIM') !== false){
 
   $query = 'SELECT top 10 SR_Type.Description as type,sum(time_entry.hours_actual) as typeCount
