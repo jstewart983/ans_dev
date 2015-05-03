@@ -1,0 +1,220 @@
+  <div class="container">
+
+
+  <div style="margin-top:10px;" class="row">
+    <div class="col-md-2">
+
+    </div>
+    <div class="col-md-3">
+      <a id="back2" class="btn btn-lg btn-inverse"><span class="fui-triangle-left-large"></span> Previous</a>
+
+    </div>
+    <div class="col-md-4">
+      <div style="text-align:center;margin:auto;color:rgb(69,188,155);display:inline-block;width:30px;height:30px;border-radius:15px;" >
+
+
+
+          <h6>
+            1
+          </h6>
+      </div>
+      <div style="text-align:center;margin:auto;color:rgb(69,188,155);display:inline-block;width:50px;height:50px;border-radius:25px;" >
+
+        <h6>
+          2
+        </h6>
+
+
+
+      </div>
+      <div style="text-align:center;margin:auto;color:rgb(69,188,155);display:inline-block;width:30px;height:30px;border-radius:15px;" >
+
+
+        <h3>
+          3
+        </h3>
+
+
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <a id="slide3" class="btn btn-lg btn-primary">Save <span class="fui-check"></span></a>
+
+    </div>
+
+  </div>
+
+    <div class="row">
+      <div class="col-md-2">
+
+      </div>
+      <div class="col-md-4">
+        <table style="width:80%;" class="table table-list-search remodelGray">
+
+                  <thead>
+
+                        <p class="remodelGreen" style="text-align:left;">
+                          Report Review
+                        </p>
+
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td><b>Premium</b></td>
+                          <td id="reportPremium"></td>
+                      </tr>
+                      <tr>
+                        <td><b>Subsidy</b></td>
+                        <td id="reportSubsidy"></td>
+                      </tr>
+                      <tr>
+                        <td><b>Consulting Fee</b></td>
+                        <td id="reportConsulting"></td>
+                      </tr>
+
+
+                      </tr>
+
+                  </tbody>
+              </table>
+      </div>
+      <div class="col-md-4">
+        <canvas id="reportReviewChart">
+
+        </canvas>
+      </div>
+    </div>
+    <div class="row remodelGray">
+      <div class="col-md-4">
+        <div style="width:80%;margin:auto;" class="panel panel-default">
+          <div  class="panel-heading">
+            Current Plan
+          </div>
+          <div class="panel-body">
+            <table style="width:80%;" class="table table-list-search remodelGray">
+
+                      <tbody>
+                          <tr>
+                              <td><b>Carrier</b></td>
+                              <td id="carrierCurrent"></td>
+                          </tr>
+                          <tr>
+                            <td><b>Plan Name</b></td>
+                            <td id="planNameCurrent"></td>
+                          </tr>
+                          <tr>
+                            <td><b>Coins.</b></td>
+                            <td id="coinsCurrent"></td>
+                          </tr>
+                          <tr>
+                            <td><b>Copay</b></td>
+                            <td id="copayCurrent"></td>
+                          </tr>
+                          <tr>
+                            <td><b>Oop</b></td>
+                            <td id="oopCurrent"></td>
+                          </tr>
+                          <tr>
+                            <td><b>Costs</b></td>
+                            <td id="costsCurrent"></td>
+                          </tr>
+
+
+
+
+                      </tbody>
+                  </table>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-4">
+
+        <div style="width:80%;margin:auto;" class="panel panel-default">
+          <div style="background-color:#3d4550;color:#fff;" class="panel-heading">
+            <div style="display:inline-block;">
+              Target Plan
+            </div>
+            <div style="margin-left:20%;display:inline-block;">
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                  Choose plan
+                  <span class="caret"></span>
+                </button>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Plan B</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Plan B 2</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Plan B 3</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Plan B 4</a></li>
+                  </ul>
+                </div>
+            </div>
+
+          </div>
+          <div class="panel-body">
+            <table style="width:80%;" class="table table-list-search remodelGray">
+
+                      <tbody>
+                          <tr>
+                              <td><b>Carrier</b></td>
+                              <td id="carrierTarget"></td>
+                          </tr>
+                          <tr>
+                            <td><b>Plan Name</b></td>
+                            <td id="planNameTarget"></td>
+                          </tr>
+                          <tr>
+                            <td><b>Coins.</b></td>
+                            <td id="coinsTarget"></td>
+                          </tr>
+                          <tr>
+                            <td><b>Copay</b></td>
+                            <td id="copayTarget"></td>
+                          </tr>
+                          <tr>
+                            <td><b>Oop</b></td>
+                            <td id="oopTarget"></td>
+                          </tr>
+                          <tr>
+                            <td><b>Costs</b></td>
+                            <td id="costsTarget"></td>
+                          </tr>
+
+
+
+
+                      </tbody>
+                  </table>
+
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-4">
+
+        <div style="width:80%;margin:auto;" class="panel panel-default">
+          <div style="background-color:#fff;color:#3d4550;" class="panel-heading">
+            Employees
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-12">
+                <p>
+                  # of EE's on plan waived
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <a class="btn btn-lg btn-primary" id="censusEditor">
+                  Census Detail
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>

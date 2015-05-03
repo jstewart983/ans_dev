@@ -1,4 +1,4 @@
-$(document).ready(function(){
+/*$(document).ready(function(){
 
 var data2 = {
 labels:["2015","2016","2017","2018","2019","2020"],
@@ -48,3 +48,4 @@ var employees = new countUp("employees", 0,41, 0, 1.5);
 employees.start();
 
 });
+*/
