@@ -34,6 +34,21 @@ else if (strpos($path,'CIM') !== false) {
 	group by sr_service.sr_service_recid, sr_urgency.description,sr_service.summary,sr_urgency.sort_order,sr_service.date_entered,sr_status.description
 	order by sr_service.date_entered desc';
 
+}else if (strpos($path,'fieldservices') !== false) {
+	$count = '';
+	$title = "Tickets in CIM status";
+	$datasource = "Connectwise";
+	$description="This displays a table of tickets that are currently in the CIM status on any board";
+	$header = "<h4 style='text-align:center;'>".$count." tickets are in CIM status</h4>";
+	$query = 'select DATEDIFF(DAY, sr_service.date_entered, getdate()) as daysOpen,sr_service.sr_service_recid,sr_status.description as status, sr_service.date_entered,sr_urgency.description as urgency,sr_service.summary from sr_service
+	left outer join sr_type on sr_type.sr_type_recid = sr_service.sr_type_recid
+	left outer join sr_urgency on sr_urgency.sr_urgency_recid = sr_service.sr_urgency_recid
+	left outer join sr_board on sr_board.sr_board_recid = sr_service.sr_board_recid
+	left outer join sr_status on sr_status.sr_status_recid  = sr_service.sr_status_recid
+	where (sr_status.description="CIM") and sr_service.date_closed is null
+	group by sr_service.sr_service_recid, sr_urgency.description,sr_service.summary,sr_urgency.sort_order,sr_service.date_entered,sr_status.description
+	order by sr_service.date_entered desc';
+
 }elseif(strpos($path,'managedservices') !== false){
 	$description="This displays a table of tickets that are both open and urgent on the BackOffice, LogicMonitor and Managed Services - Requests boards";
 
@@ -77,6 +92,13 @@ echo $header;
 	$header = "<h4 style='text-align:center;'>".$count." tickets are in CIM status</h4>";
 	echo $header;
 }else if($count == 1 && strpos($path,'CIM') !== true){
+	$header = "<h4 style='text-align:center;'>".$count." ticket is open and urgent</h4>";
+	echo $header;
+
+}else if(strpos($path,'fieldservices') !== false && $count > 1){
+	$header = "<h4 style='text-align:center;'>".$count." tickets are in CIM status</h4>";
+	echo $header;
+}else if($count == 1 && strpos($path,'fieldservices') !== true){
 	$header = "<h4 style='text-align:center;'>".$count." ticket is open and urgent</h4>";
 	echo $header;
 

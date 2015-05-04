@@ -100,6 +100,7 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
               <li><a href="../../solutiondelivery/">Solution Delivery</a></li>
               <li><a href="../../managedservices/">Managed Services</a></li>
               <li><a href="../../servicedelivery/">Service Delivery</a></li>
+              <li><a href="../../fieldservices/">Field Services</a></li>
               <li><a href="../../clientservices/">Client Services</a></li>
               <li><a href="../../resultsphysiotherapy/">Results Physiotherapy</a></li>
               <li><a href="../../sales/">Sales</a></li>
@@ -133,8 +134,14 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
             </div>
           </div>
     <div style="margin-top:52px;"class="container">
-
       <div style="margin-top:52px;" class="row">
+        <div class="col-lg-2">
+          <a href='http://intelligence.ansolutions.com/routes/admin/' class='btn btn-sm btn-info'><span class='fui-triangle-left-large'></span> back</a>
+
+        </div>
+      </div>
+      <div style="margin-top:10px;"  class="row">
+
         <div class="col-lg-4 col-lg-offset-4">
           <input type="search" id="search" value="" class="form-control" placeholder="Search by Table or Column">
         </div>

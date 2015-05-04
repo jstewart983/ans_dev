@@ -13,6 +13,8 @@ function ticketsClosedThisWeek(){
           closed_tickets.push(json[$i]["closedTickets"]);
 
         }
+        var getTicketsClosedText = parseInt($('#ticketsClosed').text());
+        if(getTicketsClosedText !== parseInt(closed_tickets)){
 
         $("#title #closedTicketsTitle").fadeOut(500,function(){
 
@@ -41,6 +43,7 @@ function ticketsClosedThisWeek(){
           $span1.fadeIn(1200);
 
         });
+      }
 
     }
 
@@ -64,6 +67,9 @@ success:function(json){
 
 
       }
+
+      var getTicketsOpenText = parseInt($('#openTickets').text());
+      if(getTicketsOpenText !== parseInt(open_tickets)){
       $("#title #openTicketsTitle").fadeOut(500,function(){
         $title = $('#openTicketsTitle').text();
         $p = $('<p id="openTicketsTitle"  style="text-align:center;">'+json[0]["Title"]+' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
@@ -88,7 +94,7 @@ success:function(json){
      $span1.fadeIn(1200);
 
       });
-
+    }
     }
   });
 }
@@ -108,6 +114,10 @@ function closedFirstCall(){
 
 
       }
+      var firstCallText = $('#closedFirst').text();
+      firstCallText = firstCallText.substring(0,firstCallText.indexOf('%'));
+      firstCallText = parseInt(firstCallText);
+      if(firstCallText !== Math.round((first_call*100))){
 
       $("#title #closedFirstTitle").fadeOut(500,function(){
         $title = $('#closedFirstTitle').text();
@@ -132,7 +142,7 @@ function closedFirstCall(){
         $span1.fadeIn(1200);
 
       });
-
+    }
     }
 
 
@@ -166,6 +176,8 @@ function getBillableHoursTotal(){
         color = "#E74C3C;";
       }
 
+      var totalHoursText = parseInt($('#totalBillable').text());
+      if(totalHoursText !== Math.round(total_hours)){
 
       $("#title #totalBillableTitle").fadeOut(500,function(){
         $title = $('#totalBillableTitle').text();
@@ -179,9 +191,9 @@ function getBillableHoursTotal(){
       $("#title #totalBillable").fadeOut(500,function(){
 
         if(total_hours==0){
-          var $span1 = $('<h1 style="text-align:center;" id="closedFirst">0 hrs</h1><p style="text-align:center;"><span style="text-align:center;color:'+color+'">'+json[0]['Difference']+'</span> vs previous week</p>');
+          var $span1 = $('<h1 style="text-align:center;" id="totalBillable">0 hrs</h1><p style="text-align:center;"><span style="text-align:center;color:'+color+'">'+json[0]['Difference']+'</span> vs previous week</p>');
         }else{
-          var $span1 = $('<h1 style="text-align:center;" id="closedFirst">'+Math.round(total_hours)+' hrs</h1><p style="text-align:center;"><span style="text-align:center;color:'+color+'">'+json[0]['Difference']+'</span> vs last week</p>');
+          var $span1 = $('<h1 style="text-align:center;" id="totalBillable">'+Math.round(total_hours)+' <span style="font-size:25px;">hrs</span></h1><p style="text-align:center;"><span style="text-align:center;color:'+color+'">'+json[0]['Difference']+'</span> vs last week</p>');
         }
 
 
@@ -191,7 +203,7 @@ function getBillableHoursTotal(){
         $span1.fadeIn(1200);
 
       });
-
+    }
     }
 
   });
@@ -213,6 +225,9 @@ function avgInitialResponse(){
           avg_response.push(json[$i]["Average_IRT"]);
 
         }
+
+        var avg_responseText = parseInt($('#avgResponse').text());
+        if(avg_responseText !== Math.round(avg_response)){
 
         $("#title #avgResponseTitle").fadeOut(500,function(){
           $title = $('#avgResponseTitle').text();
@@ -237,7 +252,7 @@ function avgInitialResponse(){
           $span1.fadeIn(1200);
 
         });
-
+      }
       }
     });
 
@@ -858,26 +873,31 @@ $(document).ready(function(){
 
 //closed by service desk and client IT managers
 ticketsClosedThisWeek();
-//setInterval(function(){ ticketsClosedThisWeek(); }, 10000);
-//tickets that service delivery is responsible for
+setInterval(function(){ ticketsClosedThisWeek(); }, 10000);
+
+
 ticketsOpen();
-//setInterval(function(){ ticketsOpen(); }, 10000);
+setInterval(function(){ ticketsOpen(); }, 10000);
 
 
 //billable hours this week
 getBillableHoursTotal();
-//setInterval(function(){ getBillableHoursTotal(); }, 60000);
+setInterval(function(){ getBillableHoursTotal(); }, 10000);
 
 
 //closed first call % this year
 closedFirstCall();
+setInterval(function(){ closedFirstCall(); }, 10000);
+
 
 //last 7 business days
-avgInitialResponse()
+avgInitialResponse();
+setInterval(function(){ avgInitialResponse(); }, 10000);
 
 
 //billable by day - last 7 days
 billableByDay();
+setInterval(function(){ billableByDay(); }, 60000);
 
 
 //new tickets vs tickets closed by day - last 7 days
@@ -886,9 +906,14 @@ newVsOld();
 
 //urgent tickets that are open
 urgentTickets();
+setInterval(function(){ urgentTickets(); }, 100000);
+
+
 
 //top tickets by service type this week
 topTypes();
+setInterval(function(){ topTypes(); }, 60000);
+
 $("#ticketsByType").click(
       function(evt){
           var activePoints = projectChart.getSegmentsAtEvent(evt);

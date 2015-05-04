@@ -1,6 +1,4 @@
 
-
-
   <div style="margin-top:10px;" class="row">
     <div class="col-md-2">
 
@@ -10,9 +8,7 @@
 
     </div>
     <div class="col-md-4">
-
-      </div>
-
+    </div>
 
     <div class="col-md-3">
       <a id="slide3" class="btn btn-lg btn-primary">Save <span class="fui-check"></span></a>
@@ -22,174 +18,95 @@
   </div>
 
     <div class="row">
+
       <div class="col-md-2">
+        <h6 class="remodelGreen demo-panel-title">Remodel Plan Finishing</h6>
+
+                  <h6 id="employeeSavings"></h6>
+                  <p class="remodelGray">
+                    Employer Savings
+                  </p>
+                  <h6 id="employerSavings"></h6>
+                  <p class="remodelGray">
+                    Employee Savings
+                  </p>
+      </div>
+      <div class="col-md-1">
 
       </div>
-      <div class="col-md-4">
-        <table style="width:80%;" class="table table-list-search remodelGray">
+      <div class="col-md-7">
+        <div style="margin-top:15px;margin-bottom:15px;" class="panel panel-default">
+          <div class="panel-body">
+            <h6>Summary</h6>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <table style="margin-top:15px;width:100%;" class="table table-list-search remodelGray">
 
                   <thead>
 
                         <p class="remodelGreen" style="text-align:left;">
-                          Report Review
+                          Implementation Guide
                         </p>
-
+                        <th>
+                          ID
+                        </th>
+                        <th>
+                          HSA
+                        </th>
+                        <th>
+                          GrpCost
+                        </th>
+                        <th>
+                          IndPrm
+                        </th>
+                        <th>
+                          Subsidy
+                        </th>
+                        <th>
+                          Salary Up
+                        </th>
+                        <th>
+                          Est Tax Impact
+                        </th>
+                        <th>
+                          Result
+                        </th>
                   </thead>
                   <tbody>
                       <tr>
-                          <td><b>Premium</b></td>
-                          <td id="reportPremium"></td>
-                      </tr>
-                      <tr>
-                        <td><b>Subsidy</b></td>
-                        <td id="reportSubsidy"></td>
-                      </tr>
-                      <tr>
-                        <td><b>Consulting Fee</b></td>
-                        <td id="reportConsulting"></td>
+                          <td>3</td>
+                          <td>$45000</td>
+                          <td>
+                            $400000
+                          </td>
+                          <td>
+                            $12000
+                          </td>
+                          <td>
+                            $1200
+                          </td>
+                          <td>
+                            $3900
+                          </td>
+                          <td>
+                            $7899
+                          </td>
+                          <td>
+                            $78000/30%
+                          </td>
                       </tr>
 
-
-                      </tr>
 
                   </tbody>
               </table>
-      </div>
-      <div class="col-md-4">
-        <canvas id="reportReviewChart">
-
-        </canvas>
-      </div>
-    </div>
-    <div class="row remodelGray">
-      <div class="col-md-4">
-        <div style="width:80%;margin:auto;" class="panel panel-default">
-          <div  class="panel-heading">
-            Current Plan
-          </div>
-          <div class="panel-body">
-            <table style="width:80%;" class="table table-list-search remodelGray">
-
-                      <tbody>
-                          <tr>
-                              <td><b>Carrier</b></td>
-                              <td id="carrierCurrent"></td>
-                          </tr>
-                          <tr>
-                            <td><b>Plan Name</b></td>
-                            <td id="planNameCurrent"></td>
-                          </tr>
-                          <tr>
-                            <td><b>Coins.</b></td>
-                            <td id="coinsCurrent"></td>
-                          </tr>
-                          <tr>
-                            <td><b>Copay</b></td>
-                            <td id="copayCurrent"></td>
-                          </tr>
-                          <tr>
-                            <td><b>Oop</b></td>
-                            <td id="oopCurrent"></td>
-                          </tr>
-                          <tr>
-                            <td><b>Costs</b></td>
-                            <td id="costsCurrent"></td>
-                          </tr>
-
-
-
-
-                      </tbody>
-                  </table>
-          </div>
-        </div>
-
-      </div>
-      <div class="col-md-4">
-
-        <div style="width:80%;margin:auto;" class="panel panel-default">
-          <div style="background-color:#3d4550;color:#fff;" class="panel-heading">
-            <div style="display:inline-block;">
-              Target Plan
-            </div>
-            <div style="margin-left:20%;display:inline-block;">
-              <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                  Choose plan
-                  <span class="caret"></span>
-                </button>
-                  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Plan B</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Plan B 2</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Plan B 3</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Plan B 4</a></li>
-                  </ul>
-                </div>
-            </div>
-
-          </div>
-          <div class="panel-body">
-            <table style="width:80%;" class="table table-list-search remodelGray">
-
-                      <tbody>
-                          <tr>
-                              <td><b>Carrier</b></td>
-                              <td id="carrierTarget"></td>
-                          </tr>
-                          <tr>
-                            <td><b>Plan Name</b></td>
-                            <td id="planNameTarget"></td>
-                          </tr>
-                          <tr>
-                            <td><b>Coins.</b></td>
-                            <td id="coinsTarget"></td>
-                          </tr>
-                          <tr>
-                            <td><b>Copay</b></td>
-                            <td id="copayTarget"></td>
-                          </tr>
-                          <tr>
-                            <td><b>Oop</b></td>
-                            <td id="oopTarget"></td>
-                          </tr>
-                          <tr>
-                            <td><b>Costs</b></td>
-                            <td id="costsTarget"></td>
-                          </tr>
-
-
-
-
-                      </tbody>
-                  </table>
-
-          </div>
-        </div>
-
-      </div>
-      <div class="col-md-4">
-
-        <div style="width:80%;margin:auto;" class="panel panel-default">
-          <div style="background-color:#fff;color:#3d4550;" class="panel-heading">
-            Employees
-          </div>
-          <div class="panel-body">
-            <div class="row">
-              <div class="col-md-12">
-                <p>
-                  # of EE's on plan waived
-                </p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <a class="btn btn-lg btn-primary" id="censusEditor">
-                  Census Detail
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>

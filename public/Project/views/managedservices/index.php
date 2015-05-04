@@ -85,6 +85,7 @@
         <li><a href="../solutiondelivery/">Solution Delivery</a></li>
         <li  class="active"><a href="../managedservices/">Managed Services</a></li>
         <li><a href="../servicedelivery/">Service Delivery</a></li>
+        <li><a href="../fieldservices/">Field Services</a></li>
         <li><a href="../clientservices/">Client Services</a></li>
         <li><a href="../resultsphysiotherapy/">Results Physiotherapy</a></li>
         <li><a href="../sales/">Sales</a></li>
@@ -151,7 +152,7 @@
                         <p id="openTicketsTitle"  style="text-align:center;">Open Tickets <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
                   </div>
                   <div class="panel-body">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                       <h1 id="openTickets" style="text-align:left;">0</h1>
                     </div>
                     <div class="col-md-6">
@@ -247,7 +248,7 @@
                         <p id="ticketsByTypeTitle1" style="text-align:center;">Hours by Service Type (top 10) - This Week  <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
                   </div>
                   <div id="title"class="panel-body">
-                                  <div style="margin-top:10px;" class="row">
+            <div style="margin-top:10px;" class="row">
 
               <div class="col-md-2">
 

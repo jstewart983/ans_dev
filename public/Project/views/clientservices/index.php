@@ -84,6 +84,7 @@
         <li><a href="../solutiondelivery/">Solution Delivery</a></li>
         <li><a href="../managedservices/">Managed Services</a></li>
         <li><a href="../servicedelivery/">Service Delivery</a></li>
+        <li><a href="../fieldservices/">Field Services</a></li>
         <li class="active"><a href="#">Client Services</a></li>
         <li><a href="../resultsphysiotherapy/">Results Physiotherapy</a></li>
         <li><a href="../sales/">Sales</a></li>

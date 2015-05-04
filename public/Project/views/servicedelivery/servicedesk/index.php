@@ -196,8 +196,23 @@
                   </div>
                 </div>
             </div>
-
-        <div id="title" class="col-md-6">
+            <div id="title" class="col-md-6">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                        <p id="ticketsByTypeTitle" style="text-align:center;">Hours by Service Type (top 10) - This Week  <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
+                  </div>
+                  <div id="title"class="panel-body">
+                    <div style="text-align:center"class="col-md-2">
+                          <div  id="ticketsByTypeLegend">
+                          </div>
+                        </div>
+                        <div class="col-md-10">
+                          <canvas id ="ticketsByType"style="margin-left:-2px;padding:15px;width:90%;height:100px;"></canvas>
+                        </div>
+                  </div>
+                </div>
+            </div>
+        <!--<div id="title" class="col-md-6">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                         <p id="newOldTitle" style="text-align:center;">New Tickets vs Tickets Closed - Last 5 days <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
@@ -210,10 +225,10 @@
                         <canvas id ="newOld"style="margin-left:-2px;padding:15px;width:90%;height:200px;"></canvas>
                   </div>
                 </div>
-            </div>
+            </div>-->
         </div>
         <div class="row">
-            <div id="title" class="col-md-6">
+            <div id="title" class="col-md-12">
               <div id="urgentTicketsTable">
                 <div style='width:100%;padding:0px;'class=' panel panel-default'>
                 <div class='panel-heading'style='text-align:center;'>
@@ -236,22 +251,7 @@
             </div>
           </div>
         </div>
-            <div id="title" class="col-md-6">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                        <p id="ticketsByTypeTitle" style="text-align:center;">Hours by Service Type (top 10) - This Week  <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
-                  </div>
-                  <div id="title"class="panel-body">
-                    <div style="text-align:center"class="col-md-2">
-                          <div  id="ticketsByTypeLegend">
-                          </div>
-                        </div>
-                        <div class="col-md-10">
-                          <canvas id ="ticketsByType"style="margin-left:-2px;padding:15px;width:90%;height:100px;"></canvas>
-                        </div>
-                  </div>
-                </div>
-            </div>
+
         </div>
         <!--<div class="row">
           <div id="title" class="panel panel-default">

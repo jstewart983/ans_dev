@@ -1,7 +1,7 @@
 <?php
 
 require('../../config/config.php');
-$title = "Billable Hrs - This Week";
+$title = "Billable Hrs - This Wk";
 $description = "This represents the total billable client hours completed by the Service Delivery Team for the current week starting on Sunday.";
 $datasource = "Connectwise";
 
@@ -9,7 +9,7 @@ $actual_link = $_SERVER['HTTP_REFERER'];
 $path = parse_url($actual_link,PHP_URL_PATH);
 //$path = strstr($path,"/service_delivery");
 //echo $path;
-if (strpos($path,'desk') !== false) {
+if (strpos($path,'servicedelivery') !== false) {
 
   $query = 'select SUM(time_entry.Hours_Actual)
   from Time_Entry left outer join dbo.member      on dbo.time_entry.Member_RecID = member.Member_RecID
@@ -21,6 +21,19 @@ if (strpos($path,'desk') !== false) {
     and DATEDIFF(ww, dbo.time_entry.Date_Start, getdate())=1 and time_entry.Company_RecID <> 2';
 
 }elseif(strpos($path,'CIM') !== false){
+
+
+  $query = '
+  select SUM(time_entry.Hours_Actual)
+from Time_Entry left outer join dbo.member      on dbo.time_entry.Member_RecID = member.Member_RecID
+where time_entry.billable_flag = 1 and (dbo.member.Title like "%Client IT%" or dbo.member.Member_ID = "zhoover")
+and DATEDIFF(ww, dbo.time_entry.Date_Start, getdate())=0 and time_entry.Company_RecID <> 2';
+$query2 ='select SUM(time_entry.Hours_Actual) as hoursLastWeek
+  from Time_Entry left outer join dbo.member      on dbo.time_entry.Member_RecID = member.Member_RecID
+  where time_entry.billable_flag = 1 and (dbo.member.Title like "%Client IT%" or dbo.member.Member_ID = "zhoover")
+  and DATEDIFF(ww, dbo.time_entry.Date_Start, getdate())=1 and time_entry.Company_RecID <> 2';
+
+}elseif(strpos($path,'fieldservices') !== false){
 
 
   $query = '

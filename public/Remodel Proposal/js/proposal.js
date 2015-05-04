@@ -199,6 +199,16 @@ $('#meat').on('click','#slide3',function() {
       url: "views/slide3.html",
       success: function(html){
           $('#meat').hide().html(html).fadeIn({ duration: 500 });
+          var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
+          var employerSavings = $('employerSavings').text();
+          var actual = parseInt(employerSavings) * 2;
+          actual = parseInt(actual);
+          var employer = new countUp("employerSavings",3000,6578, 0, 2,options);
+          employer.start();
+          var employeeSavings = $('employeeSavings').text();
+
+          var employee = new countUp("employeeSavings",70000,94039,0,2,options);
+          employee.start();
       }
   });
 });
@@ -245,8 +255,32 @@ $('#meat').on('change','#checkbox2',function() {
 
   if ($(this).is(':checked')) {
     $('#hsa').append('<table style="width:100%;" class="table table-list-search remodelGray"><thead><p class="remodelGreen" style="text-align:left;">HSA</p></thead><tbody><tr><td><b>Premium</b></td><td id="reportPremium"></td></tr><tr><td><b>Subsidy</b></td><td id="reportSubsidy"></td></tr><tr><td><b>Consulting Fee</b></td><td id="reportConsulting"></td></tr></tr></tbody></table>');
+
+    var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
+    var employerSavings = $('employerSavings').text();
+    var actual = parseInt(employerSavings) * 2;
+    actual = parseInt(actual);
+    var employer = new countUp("employerSavings",6578,7000, 0, 2,options);
+    employer.start();
+    var employeeSavings = $('employeeSavings').text();
+
+    var employee = new countUp("employeeSavings",94039,80100,0,2,options);
+    employee.start();
+
   } else {
     $('#hsa').empty();
+
+    var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
+    var employerSavings = $('employerSavings').text();
+    var actual = parseInt(employerSavings) * 2;
+    actual = parseInt(actual);
+    var employer = new countUp("employerSavings",7000,6578, 0, 2,options);
+    employer.start();
+    var employeeSavings = $('employeeSavings').text();
+
+    var employee = new countUp("employeeSavings",80100,94039,0,2,options);
+    employee.start();
+
   }
 });
 $('#meat').on('change','#checkbox3',function() {
@@ -254,7 +288,31 @@ $('#meat').on('change','#checkbox3',function() {
 
   if ($(this).is(':checked')) {
     $('#teledoc').append('<table style="width:100%;" class="table table-list-search remodelGray"><thead><p class="remodelGreen" style="text-align:left;">Teledoc</p></thead><tbody><tr><td><b>Premium</b></td><td id="reportPremium"></td></tr><tr><td><b>Subsidy</b></td><td id="reportSubsidy"></td></tr><tr><td><b>Consulting Fee</b></td><td id="reportConsulting"></td></tr></tr></tbody></table>');
+
+    var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
+    var employerSavings = $('employerSavings').text();
+    var actual = parseInt(employerSavings) * 2;
+    actual = parseInt(actual);
+    var employer = new countUp("employerSavings",7000,3578, 0, 2,options);
+    employer.start();
+    var employeeSavings = $('employeeSavings').text();
+
+    var employee = new countUp("employeeSavings",80100,54039,0,2,options);
+    employee.start();
+
   } else {
     $('#teledoc').empty();
+
+    var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
+    var employerSavings = $('employerSavings').text();
+    var actual = parseInt(employerSavings) * 2;
+    actual = parseInt(actual);
+    var employer = new countUp("employerSavings",3578,7000, 0, 2,options);
+    employer.start();
+    var employeeSavings = $('employeeSavings').text();
+
+    var employee = new countUp("employeeSavings",54039,80100,0,2,options);
+    employee.start();
+
   }
 });

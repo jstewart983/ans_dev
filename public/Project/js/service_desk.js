@@ -179,9 +179,9 @@ function getBillableHoursTotal(){
       $("#title #totalBillable").fadeOut(500,function(){
 
         if(total_hours==0){
-          var $span1 = $('<h1 style="text-align:center;" id="closedFirst">0 hrs</h1><p style="text-align:center;"><span style="text-align:center;color:'+color+'">'+json[0]['Difference']+'</span> vs previous week</p>');
+          var $span1 = $('<h1 style="text-align:center;" id="totalBillable">0 hrs</h1><p style="text-align:center;"><span style="text-align:center;color:'+color+'">'+json[0]['Difference']+'</span> vs previous week</p>');
         }else{
-          var $span1 = $('<h1 style="text-align:center;" id="closedFirst">'+Math.round(total_hours)+' hrs</h1><p style="text-align:center;"><span style="text-align:center;color:'+color+'">'+json[0]['Difference']+'</span> vs last week</p>');
+          var $span1 = $('<h1 style="text-align:center;" id="totalBillable">'+Math.round(total_hours)+' hrs</h1><p style="text-align:center;"><span style="text-align:center;color:'+color+'">'+json[0]['Difference']+'</span> vs last week</p>');
         }
 
 
@@ -250,7 +250,7 @@ function billableByDay(){
   $.ajax({
 
     type:"GET",
-    url:"../../../ajax/servicedelivery/billableByMember.php",
+    url:"../../ajax/servicedelivery/billableByMember.php",
     success:function(json){
 
       function getRandomColor() {
@@ -307,11 +307,97 @@ $("#title #billableDayTitle").fadeOut(500,function(){
   $p.fadeIn(1200);
 
 });
+$('.sup').empty();
+$('.sup').append('<canvas style="padding:10px;width:720px;height:131px;" id="billableDay">');
 
       var ctx = document.getElementById("billableDay").getContext("2d");
       var myNewChart = new Chart(ctx).Bar(data);
 
+      $("#billableDay").click(function(e) {
+         var activeBars = myNewChart.getBarsAtEvent(e);
+    //$('#basicModal2').modal('show');
+         //$('#basicModal2').find(".modal-title").text(activeBars[0].label);
+
+
+
+         $.ajax({
+           type:"GET",
+           url:"../../ajax/servicedelivery/billableByMember.php?member="+activeBars[0].label,
+           success:function(json){
+             $('.sup').empty();
+             function getRandomColor() {
+                 var letters = '0123456789ABCDEF'.split('');
+                 var color = '#';
+                 for (var i = 0; i < 6; i++ ) {
+                     color += letters[Math.floor(Math.random() * 16)];
+                 }
+                 return color;
+             }
+
+
+             var days = [];
+             var fillColor = [];
+             var hours = [];
+             var highlightFill = [];
+             var highlightStroke = [];
+
+
+
+             for($i=0;$i<json.length;$i++){
+
+
+               days.push(json[$i]["day"]);
+               hours.push(json[$i]["billable_hours"]);
+               fillColor.push("rgba(227, 75, 0, .5)");
+               highlightFill.push("rgba(227, 75, 0, .8)");
+               highlightStroke.push("rgba(227, 75, 0, .7)");
+
+           }
+
+
+
+
+       var data = {
+           labels: days,
+           datasets: [
+               {
+
+                   fillColor: "rgba(227, 75, 0, .5)",
+                   strokeColor: "rgba(227, 75, 0, .8)",
+                   highlightFill: "rgba(227, 75, 0, .75)",
+                   highlightStroke: "rgba(227, 75, 0, .1)",
+                   data:hours,
+                   label: "Billable hrs"
+               }
+           ]
+       };
+              console.log(data);
+
+
+
+              $('.sup').append('<a href="#" id="billableBack"><span class="fui-arrow-left"></span>back </a> <span> '+activeBars[0].label+' has worked '+activeBars[0].value+' hrs this week so far</span><canvas style="padding:10px;width:720px;height:231px;" id="billableDay">');
+                 var ctx2 = document.getElementById("billableDay").getContext("2d");
+                 var modalChart = new Chart(ctx2).Bar(data);
+                console.log(ctx2);
+                console.log(modalChart);
+           }
+         });
+
+
+      });
+      $(".sup").on('click','#billableBack',function(e) {
+        $('.sup').empty();
+        //$('#dude').empty();
+        e.preventDefault();
+        $('.sup').append('<canvas style="padding:10px;width:720px;height:131px;" id="billableDay">');
+
+        billableByDay();
+
+      });
+
+
     }
+
 
   });
 
@@ -563,15 +649,15 @@ function urgentTickets(){
 
 }
 
-function topTypes(){
+function topTypes(value,value2,value3){
 
   $.ajax({
 
     type:"GET",
-    url:"../../../ajax/servicedelivery/topTypes.php",
+    url:"../../ajax/servicedelivery/topTypes.php"+value+value2+value3,
     success:function(json){
 
-      console.log(json);
+      //console.log(json);
       json = json.sort();
       json.sort(function (a, b) {
   if (a.Description > b.Description) {
@@ -583,7 +669,7 @@ function topTypes(){
   // a must be equal to b
   return 0;
 });
-      console.log(json);
+      //console.log(json);
         //labels = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"];
         var xlabels = [], type_count = [],colors = [];
             for(var i = 0; i < json.length; i++) {
@@ -607,12 +693,13 @@ function getRandomColor() {
 }
 
 
+
 doughnutData = [];
 
 
 
 for(var i = 0; i < xlabels.length;i++){
-if(xlabels[i] !== "undefined"){
+if(xlabels[i] != "undefined"){
   doughnutData.push({
     value:type_count[i],
     color:getRandomColor(),
@@ -623,7 +710,7 @@ if(xlabels[i] !== "undefined"){
 
 
 }
-console.log(doughnutData);
+//console.log(doughnutData);
 /*doughnutData = [
                 {
                     value: type_count[0],
@@ -702,7 +789,7 @@ console.log(doughnutData);
 
 
 
-          var $span2 = $('<canvas id="ticketsByType" style="margin-left:-2px;padding:15px;width:90%;height:200px;""></canvas>');
+        var $span2 = $('<canvas id="ticketsByType" style="margin-left:-2px;padding:15px;width:90%;height:90%;""></canvas>');
         //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
         $("#ticketsByType").replaceWith($span2);
         //$("#openProjects").replaceWith($span2);
@@ -765,9 +852,69 @@ newVsOld();
 urgentTickets();
 
 //top tickets by service type this week
-topTypes();
+topTypes('','','');
+$.ajax({
+  url: "../../ajax/clientservices/getClientList2.php",
+                context: document.body,
+
+                success: function(html){
+                 $("#client2").append(html);
+
+                }
+
+                });
 
 
+$.ajax({
+url: "../../ajax/fieldservices/getMembers.php",
+context: document.body,
+success: function(html){
+$("#member").append(html);
+
+}
+
+});
+
+/*$.ajax({
+url: "../../ajax/managedservices/topTypesTable.php",
+context: document.body,
+success: function(html){
+$("#msTypeTable").append(html);
+
+}
+
+});*/
+
+
+$('input[name="daterange2"]').daterangepicker();
+
+$('#daterange2').on('apply.daterangepicker', function(ev, picker) {
+  var start = picker.startDate.format('YYYY-MM-DD');
+  var end = picker.endDate.format('YYYY-MM-DD');
+  var company = $( "#client2 option:selected" ).text();
+  var type = $('#member option:selected').text();
+
+  if(company == "Choose a Client" && type == "Choose a Member"){
+    company = encodeURIComponent(company);
+    topTypes("?range1="+start+"&range2="+end,'','');
+
+  }else if(type == "Choose a Member" && company !="Choose a Client"){
+    company = encodeURIComponent(company);
+
+    topTypes("?range1="+start+"&range2="+end,"&company="+company,'');
+
+  }else if(type != "Choose a Member" && company =="Choose a Client"){
+    company = encodeURIComponent(company);
+
+    topTypes("?range1="+start+"&range2="+end,'','&member='+type);
+
+  }else if(type != "Choose a Member" && company !="Choose a Client"){
+    company = encodeURIComponent(company);
+
+    topTypes("?range1="+start+"&range2="+end,"&company="+company,'&member='+type);
+
+  }
+});
 //Ticket count since the beginning of time(for ANS)
 //getTicketHistory();
 
