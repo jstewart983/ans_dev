@@ -211,7 +211,7 @@ $('#meat').on('change','#checkbox1',function() {
 
 
   if ($(this).is(':checked')) {
-    $('#salaryUp').append('<p>Salary Up</p>');
+    $('#salaryUp').append('<table style="width:100%;" class="table table-list-search remodelGray"><thead><p class="remodelGreen" style="text-align:left;">Salary Up</p></thead><tbody><tr><td><b>Premium</b></td><td id="reportPremium"></td></tr><tr><td><b>Subsidy</b></td><td id="reportSubsidy"></td></tr><tr><td><b>Consulting Fee</b></td><td id="reportConsulting"></td></tr></tr></tbody></table>');
     //employer.reset();
     //employee.reset();
     var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
@@ -244,7 +244,7 @@ $('#meat').on('change','#checkbox2',function() {
 
 
   if ($(this).is(':checked')) {
-    $('#hsa').append('<p>HSA</p>');
+    $('#hsa').append('<table style="width:100%;" class="table table-list-search remodelGray"><thead><p class="remodelGreen" style="text-align:left;">HSA</p></thead><tbody><tr><td><b>Premium</b></td><td id="reportPremium"></td></tr><tr><td><b>Subsidy</b></td><td id="reportSubsidy"></td></tr><tr><td><b>Consulting Fee</b></td><td id="reportConsulting"></td></tr></tr></tbody></table>');
   } else {
     $('#hsa').empty();
   }
@@ -253,7 +253,7 @@ $('#meat').on('change','#checkbox3',function() {
 
 
   if ($(this).is(':checked')) {
-    $('#teledoc').append('<p>Teledoc</p>');
+    $('#teledoc').append('<table style="width:100%;" class="table table-list-search remodelGray"><thead><p class="remodelGreen" style="text-align:left;">Teledoc</p></thead><tbody><tr><td><b>Premium</b></td><td id="reportPremium"></td></tr><tr><td><b>Subsidy</b></td><td id="reportSubsidy"></td></tr><tr><td><b>Consulting Fee</b></td><td id="reportConsulting"></td></tr></tr></tbody></table>');
   } else {
     $('#teledoc').empty();
   }
