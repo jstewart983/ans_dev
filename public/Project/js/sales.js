@@ -666,6 +666,9 @@ $(document).ready(function(){
 
                     success: function(html){
                       $('#loading').fadeOut();
+                      $('#salesViews').empty();
+                      $('#prospectLookupView').clone().appendTo('#salesViews');
+                      $('#prospectLookupView').removeClass('hidden');
                      $("#clientTable").append(html);
 
                     }
@@ -746,7 +749,50 @@ $(document).ready(function(){
 
 
     });
-    //$("#clientTable").off('click','a.client');
+
+    $('#navButtons').on('click','#formButton', function(){
+
+      $('#salesViews').empty();
+      $('#requestFormView').clone().appendTo('#salesViews');
+      $('#requestFormView').removeClass('hidden');
+      $('#formButton').addClass('active');
+      $('#lookupButton').removeClass('active');
+      $('#dashboardButton').removeClass('active');
+
+    });
+    $('#navButtons').on('click','#dashboardButton', function(){
+
+      $('#salesViews').empty();
+      $('#requestDashboardView').clone().appendTo('#salesViews');
+      $('#requestDashboardView').removeClass('hidden');
+      $('#dashboardButton').addClass('active');
+      $('#lookupButton').removeClass('active');
+      $('#formButton').removeClass('active');
+
+    });
+    $('#navButtons').on('click','#lookupButton', function(){
+      $('#lookupButton').addClass('active');
+      $('#dashboardButton').removeClass('active');
+      $('#formButton').removeClass('active');
+      $('#loading').html('<img style="display:block;margin-left:auto;margin-right:auto;" src="../../css/assets/spiffygif_148x148.gif"> <h4 style="text-align:center;">loading company list...</h4>');
+
+      $.ajax({
+        url: "../../ajax/sales/getProspectList.php",
+                      context: document.body,
+
+                      success: function(html){
+                        $('#loading').fadeOut();
+                        $('#salesViews').empty();
+                        $('#prospectLookupView').clone().appendTo('#salesViews');
+                        $('#prospectLookupView').removeClass('hidden');
+
+                       $("#clientTable").append(html);
+
+                      }
+
+                      });
+
+    });
 
 });
 ///////////***************END CW DATA**************///////////////////
