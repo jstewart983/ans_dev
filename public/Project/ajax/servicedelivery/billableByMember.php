@@ -80,7 +80,7 @@ elseif(strpos($path,'managedservices') !== false){
   $query = '
   select member.member_id,SUM(time_entry.Hours_Actual) as billable_hours
   from Time_Entry left outer join dbo.member      on dbo.time_entry.Member_RecID = member.Member_RecID
-  where time_entry.billable_flag = 1 and (member.member_id = "plane" or member.member_id = "jmorgan" or member.member_id = "bfizer" or member.member_id = "rmillen")
+  where time_entry.billable_flag = 1 and (member.member_id = "wblakeburn" or member.member_id = "plane" or member.member_id = "jmorgan" or member.member_id = "bfizer" or member.member_id = "rmillen")
   and DATEDIFF(ww, dbo.time_entry.Date_Start, getdate())=0 and time_entry.Company_RecID <> 2
   group by member.member_id
   order by member.member_id desc

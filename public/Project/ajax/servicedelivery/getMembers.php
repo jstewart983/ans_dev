@@ -3,7 +3,7 @@
 
 //project hours completed last week
 $serviceTypeList = mssql_query('SELECT member.member_id FROM member
-where (member.member_id = "wblakeburn" or member.member_id = "plane" or member.member_id = "jmorgan" or member.member_id = "bfizer" or member.member_id = "rmillen")');
+where inactive_flag <> 1 and (dbo.member.Title like "%IT Support%")');
 
 
 while($row = mssql_fetch_array($serviceTypeList)) {

@@ -662,141 +662,78 @@ $(document).ready(function(){
 
     $.ajax({
       url: "../../ajax/sales/getProspectList.php",
-                    context: document.body,
+      context: document.body,
+      success: function(html){
+      $('#loading').fadeOut();
+      $('#salesViews').empty();
+      $('#prospectLookupView').clone().appendTo('#salesViews');
+      $('#prospectLookupView').removeClass('hidden');
+      $("#clientTable").append(html);
+      $('#search').livefilter({selector:'tbody tr'});
+  }
 
-                    success: function(html){
-                      $('#loading').fadeOut();
-                     $("#clientTable").append(html);
+});
 
-                    }
+$('#search').livefilter({selector:'tbody tr'});
 
-                    });
 
-                    //getMrr('');
-                    //getAvgTickets('');
-                    //getOpenTickets('');
-                    //getServiceByType('');
-                    //getOSType('');
-                    //getWorkstations('');
-                    //getServers('');
-                    //getLocationCount('');
-              //drawTimeline1('');
-              //drawTimeline2('');
-
-              //drawTimeline('');
-              $('input').livefilter({selector:'tbody tr'});
-
-              /*$("#search").keyup(function () {
-                  var value = this.value.toLowerCase().trim();
-
-                  $("table tr").each(function (index) {
-                      if (!index) return;
-                      $(this).find("td").each(function () {
-                          var id = $(this).text().toLowerCase().trim();
-                          var not_found = (id.indexOf(value) == -1);
-                          $(this).closest('tr').toggle(!not_found);
-                          return not_found;
-                      });
-                  });
-              });*/
 
     $('#clientTable').on('click','tr.co',function(e){
        e.preventDefault();
-       //e.stopPropagation();
-       //$("#dropdown").removeClass("open");
-
-
-       //$("#timelineSection").removeClass("hidden");
-        //var queryString = window.location.substring( window.location.indexOf('?') + 1 );
-        //console.log(queryString);
-
         var clickedVal = jQuery("#company" ,this).text();
         clickedVal = encodeURIComponent(clickedVal);
         console.log(clickedVal);
-        //console.log(data);
-        //var title = clickedVal.substr(clickedVal.indexOf("=") + 1);
-        //title = unescape(title)
-
-        //$("#title").text(clickedVal);
-        //getOSType(clickedVal);
-        //getWorkstations(clickedVal);
-        //getServers(clickedVal);
-        //getMrr(clickedVal);
-        //getAvgTickets(clickedVal);
-        //getOpenTickets(clickedVal);
-        //getServiceByType(clickedVal);
-
-
-        //getLocationCount(clickedVal);
-        //serviceHistory(clickedVal);
         oppHistory(clickedVal);
         activityHistory(clickedVal);
         address(clickedVal);
         agreementHistory(clickedVal);
-
-
-        //$('#basicModal').modal('toggle');
         $('#basicModal1').modal('show');
         $('#myModalLabel').text(decodeURIComponent(clickedVal));
-        //$('#basicModal').modal('hide');
+    });
 
 
-        //$("#timelineSection1").removeClass("hidden");
-        //$("#timelineSection2").removeClass("hidden");
+    $('#navButtons').on('click','#formButton', function(){
 
+      $('#salesViews').empty();
+      $('#requestFormView').clone().appendTo('#salesViews');
+      $('#requestFormView').removeClass('hidden');
+      $('#formButton').addClass('active');
+      $('#lookupButton').removeClass('active');
+      $('#dashboardButton').removeClass('active');
 
     });
-    //$("#clientTable").off('click','a.client');
+    $('#navButtons').on('click','#dashboardButton', function(){
+
+      $('#salesViews').empty();
+      $('#requestDashboardView').clone().appendTo('#salesViews');
+      $('#requestDashboardView').removeClass('hidden');
+      $('#dashboardButton').addClass('active');
+      $('#lookupButton').removeClass('active');
+      $('#formButton').removeClass('active');
+
+    });
+    $('#navButtons').on('click','#lookupButton', function(){
+      $('#lookupButton').addClass('active');
+      $('#dashboardButton').removeClass('active');
+      $('#formButton').removeClass('active');
+      $('#loading').html('<img style="display:block;margin-left:auto;margin-right:auto;" src="../../css/assets/spiffygif_148x148.gif"> <h4 style="text-align:center;">loading company list...</h4>');
+
+      $.ajax({
+        url: "../../ajax/sales/getProspectList.php",
+                      context: document.body,
+
+                      success: function(html){
+                        $('#loading').fadeOut();
+                        $('#salesViews').empty();
+                        $('#prospectLookupView').clone().appendTo('#salesViews');
+                        $('#prospectLookupView').removeClass('hidden');
+
+                       $("#clientTable").append(html);
+                       $('#search').livefilter({selector:'tbody tr'});
+                      }
+
+                      });
+
+    });
 
 });
-///////////***************END CW DATA**************///////////////////
-
-/*$(function() {
-
-
-    // Get the form.
-    var form = $('#companyForm');
-
-    // Get the messages div.
-    //var formMessages = $('#form-messages');
-
-    // Set up an event listener for the contact form.
-    $(form).submit(function(e) {
-
-
-
-
-
-
-        // Stop the browser from submitting the form.
-        e.preventDefault();
-         event.stopPropagation();
-
-        $('#companyForm input').on('click',function(){
-            var clickedVal = $(this).attr('href');
-             e.preventDefault();
-             event.stopPropagation();
-            console.log(clickedVal);
-
-
-
-
-
-
-
-
-
-
-var title = clickedVal.substr(clickedVal.indexOf("=") + 1);
-
-$("#title").text(title);
-getClientData(clickedVal);
-$('input').off('click');
-
-        });
-
-
-
-    });
-
-});*/

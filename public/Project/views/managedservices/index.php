@@ -15,7 +15,6 @@
         <link rel="stylesheet" href="../../libraries/Flat-UI-master/dist/css/flat-ui.min.css">
         <link rel="stylesheet" href="../../libraries/Flat-UI-master/fonts/glyphicons/flat-ui-icons-regular.svg">
         <!-- Latest compiled and minified CSS -->
-
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
         <link rel="stylesheet" href="../../libraries/timeline-2.9.1/timeline.css" media="screen" title="no title" charset="utf-8">
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
@@ -23,7 +22,6 @@
         <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/2.9.0/moment.min.js"></script>
         <script type="text/javascript" src="../../js/service_delivery.js"></script>
         <script type="text/javascript" src="../../js/managed_services.js"></script>
-
         <script type="text/javascript" src="../../js/Chart.js"></script>
         <script type="text/javascript" src="../../js/legend.js"></script>
         <script src="../../libraries/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -269,7 +267,7 @@
                 </select>
               </div>
               <div class="col-md-3">
-                <select id="member" class="form-control">
+                <select id="member1" class="form-control">
                   <option value="one">Choose a Member</option>
 
                 </select>

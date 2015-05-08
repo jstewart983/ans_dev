@@ -697,12 +697,12 @@ function urgentTickets(){
 
 }
 
-function topTypes(){
+function topTypes(value,value2,value3){
 
   $.ajax({
 
     type:"GET",
-    url:"../../ajax/servicedelivery/topTypes.php",
+    url:"../../ajax/servicedelivery/topTypes.php"+value+value2+value3,
     success:function(json){
 
       //console.log(json);
@@ -837,7 +837,7 @@ if(xlabels[i] != "undefined"){
 
 
 
-        var $span2 = $('<canvas id="ticketsByType" style="margin-left:-2px;padding:15px;width:90%;height:200px;""></canvas>');
+        var $span2 = $('<canvas id="ticketsByType" style="margin-left:-2px;padding:15px;width:90%;height:90%;""></canvas>');
         //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
         $("#ticketsByType").replaceWith($span2);
         //$("#openProjects").replaceWith($span2);
@@ -911,16 +911,30 @@ setInterval(function(){ urgentTickets(); }, 100000);
 
 
 //top tickets by service type this week
-topTypes();
+topTypes('','','');
 setInterval(function(){ topTypes(); }, 60000);
 
-$("#ticketsByType").click(
-      function(evt){
-          var activePoints = projectChart.getSegmentsAtEvent(evt);
-          var url = "http://example.com/?label=" + activePoints[0].label + "&value=" + activePoints[0].value;
-          alert(url);
-      }
-  );
+$.ajax({
+  url: "../../ajax/clientservices/getClientList2.php",
+                context: document.body,
+
+                success: function(html){
+                 $("#client2").append(html);
+
+                }
+
+                });
+
+
+$.ajax({
+url: "../../ajax/servicedelivery/getMembers.php",
+context: document.body,
+success: function(html){
+$("#member").append(html);
+
+}
+
+});
 
 
 
@@ -996,6 +1010,36 @@ $('#daterange').on('apply.daterangepicker', function(ev, picker) {
 
 });
 
+
+$('input[name="daterange2"]').daterangepicker();
+
+$('#daterange2').on('apply.daterangepicker', function(ev, picker) {
+  var start = picker.startDate.format('YYYY-MM-DD');
+  var end = picker.endDate.format('YYYY-MM-DD');
+  var company = $( "#client2 option:selected" ).text();
+  var type = $('#member option:selected').text();
+
+  if(company == "Choose a Client" && type == "Choose a Member"){
+    company = encodeURIComponent(company);
+    topTypes("?range1="+start+"&range2="+end,'','');
+
+  }else if(type == "Choose a Member" && company !="Choose a Client"){
+    company = encodeURIComponent(company);
+
+    topTypes("?range1="+start+"&range2="+end,"&company="+company,'');
+
+  }else if(type != "Choose a Member" && company =="Choose a Client"){
+    company = encodeURIComponent(company);
+
+    topTypes("?range1="+start+"&range2="+end,'','&member='+type);
+
+  }else if(type != "Choose a Member" && company !="Choose a Client"){
+    company = encodeURIComponent(company);
+
+    topTypes("?range1="+start+"&range2="+end,"&company="+company,'&member='+type);
+
+  }
+});
 
 
 

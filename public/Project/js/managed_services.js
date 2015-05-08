@@ -3,35 +3,36 @@
 
 function topTypes(value,value2,value3){
 
+if(value == 'undefined' && value2 == 'undefined' && value3 == 'undefined'){
+
+  var url = "../../ajax/managedservices/topTypes.php";
+}else{
+
+  var url = "../../ajax/managedservices/topTypes.php"+value+value2+value3;
+
+}
+
+
   $.ajax({
 
     type:"GET",
-    url:"../../ajax/servicedelivery/topTypes.php"+value+value2+value3,
+    url:url,
     success:function(json){
 
-      //console.log(json);
-      json = json.sort();
-      json.sort(function (a, b) {
-  if (a.Description > b.Description) {
-    return 1;
-  }
-  if (a.Description < b.Description) {
-    return -1;
-  }
-  // a must be equal to b
-  return 0;
-});
-      //console.log(json);
-        //labels = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"];
         var xlabels = [], type_count = [],colors = [];
-            for(var i = 0; i < json.length; i++) {
+        var backup = 0;
+
+console.log(json[0]['backupHours']);
+
+
+            /*for(var i = 0; i < json.length; i++) {
 
                 label:xlabels.push(json[i]["type"]);
                 //value: type_count.push(json[i]["total_hours"]);
                 value: type_count.push(json[i]["typeCount"]);
                 //fillColor: colors.push (getRandomColor());
 
-                }
+              }*/
 
 
 
@@ -50,7 +51,7 @@ doughnutData = [];
 
 
 
-for(var i = 0; i < xlabels.length;i++){
+/*for(var i = 0; i < xlabels.length;i++){
 if(xlabels[i] != "undefined"){
   doughnutData.push({
     value:type_count[i],
@@ -61,7 +62,56 @@ if(xlabels[i] != "undefined"){
 }
 
 
-}
+}*/
+
+doughnutData.push({
+  value:json[0]['backupHours'],
+  color:getRandomColor(),
+  highlight:getRandomColor(),
+  label:'Backup'
+});
+doughnutData.push({
+  value:json[1]['avHours'],
+  color:getRandomColor(),
+  highlight:getRandomColor(),
+  label:'AV'
+});
+doughnutData.push({
+  value:json[2]['bobHours'],
+  color:getRandomColor(),
+  highlight:getRandomColor(),
+  label:'BOB'
+});
+doughnutData.push({
+  value:json[3]['adminHours'],
+  color:getRandomColor(),
+  highlight:getRandomColor(),
+  label:'Admin'
+});
+doughnutData.push({
+  value:json[4]['meetingHours'],
+  color:getRandomColor(),
+  highlight:getRandomColor(),
+  label:'Meeting'
+});
+doughnutData.push({
+  value:json[5]['projectHours'],
+  color:getRandomColor(),
+  highlight:getRandomColor(),
+  label:'Project'
+});
+doughnutData.push({
+  value:json[6]['ptoHours'],
+  color:getRandomColor(),
+  highlight:getRandomColor(),
+  label:'PTO'
+});
+doughnutData.push({
+  value:json[7]['elseHours'],
+  color:getRandomColor(),
+  highlight:getRandomColor(),
+  label:'All'
+});
 //console.log(doughnutData);
 /*doughnutData = [
                 {
@@ -202,13 +252,13 @@ $.ajax({
 url: "../../ajax/managedservices/getMembers.php",
 context: document.body,
 success: function(html){
-$("#member").append(html);
+$("#member1").append(html);
 
 }
 
 });
 
-$.ajax({
+/*$.ajax({
 url: "../../ajax/managedservices/topTypesTable.php",
 context: document.body,
 success: function(html){
@@ -216,9 +266,9 @@ $("#msTypeTable").append(html);
 
 }
 
-});
+});*/
 
-topTypes('','','');
+//topTypes('','','');
 
 
 $('input[name="daterange2"]').daterangepicker();
@@ -227,7 +277,7 @@ $('#daterange2').on('apply.daterangepicker', function(ev, picker) {
   var start = picker.startDate.format('YYYY-MM-DD');
   var end = picker.endDate.format('YYYY-MM-DD');
   var company = $( "#client2 option:selected" ).text();
-  var type = $('#member option:selected').text();
+  var type = $('#member1 option:selected').text();
 
   if(company == "Choose a Client" && type == "Choose a Member"){
     company = encodeURIComponent(company);

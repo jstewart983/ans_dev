@@ -168,7 +168,7 @@ x';
   dbo.time_entry on x.Time_RecID = dbo.Time_Entry.Time_RecID
   left outer join
   dbo.member on dbo.Time_Entry.Member_RecID = dbo.member.Member_RecID
-  where (member.member_id = "plane" or member.member_id = "jmorgan" or member.member_id = "bfizer" or member.member_id = "rmillen"))e
+  where (member.member_id = "wblakeburn" or member.member_id = "plane" or member.member_id = "jmorgan" or member.member_id = "bfizer" or member.member_id = "rmillen"))e
 
 
   left outer join

@@ -83,11 +83,11 @@ function getUserCount(){
 
 
 $(document).ready(function(){
-  getUserCount();
+  /*getUserCount();
   getUsersLoggedIn();
   setInterval(function() {
     getUsersLoggedIn();
-}, 3000);
+}, 3000);*/
 
 
   $('#loading').html('<img style="display:block;margin-left:auto;margin-right:auto;" src="../../../css/assets/spiffygif_148x148.gif"> <h4 style="text-align:center;">Loading CW DB Structure...</h4>');
