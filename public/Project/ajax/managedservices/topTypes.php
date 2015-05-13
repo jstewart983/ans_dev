@@ -198,74 +198,113 @@ if(isset($_GET['range1']) && isset($_GET['range2']) && isset($_GET['company']) &
     $title = "Hours by Service Type (top 10) - ".$range1. " - ".$range2;
 
     $backupQuery = 'SELECT sum(time_entry.hours_actual) as backupHours
-    FROM cwwebapp_ans.dbo.Company Company, cwwebapp_ans.dbo.SR_Board SR_Board,dbo.member, cwwebapp_ans.dbo.SR_Service SR_Service, cwwebapp_ans.dbo.SR_Type SR_Type,cwwebapp_ans.dbo.Time_Entry
-    WHERE Company.Company_RecID = Time_Entry.Company_RecID AND
-    SR_Service.SR_Service_RecID = Time_Entry.SR_Service_RecID AND
-    Company.Company_RecID = SR_Service.Company_RecID AND
-    member.member_recid = time_entry.member_recid AND
-    SR_Type.SR_Type_RecID = SR_Service.SR_Type_RecID AND
-    SR_Board.SR_Board_RecID = SR_Service.SR_Board_RecID AND
-    SR_Board.SR_Board_RecID = SR_Type.SR_Board_RecID
-    and company.company_name = "'.$company.'"
-    and (sr_service.summary like "%ImageManager%" or sr_service.summary like "%BU%" or sr_service.summary like "%Accelerite%" or sr_service.summary like "%Syncback%" or sr_service.summary like "%\[Warning]%")
-    and (dbo.Time_Entry.Date_Start >="'.$range1.'" and dbo.Time_Entry.Date_Start <= "'.$range2.'")
-     and (member.member_id = "wblakeburn" or member.member_id = "plane" or member.member_id = "jmorgan" or member.member_id = "bfizer" or member.member_id = "rmillen")
+                  FROM cwwebapp_ans.dbo.Company Company, cwwebapp_ans.dbo.SR_Board SR_Board,dbo.member, cwwebapp_ans.dbo.SR_Service SR_Service, cwwebapp_ans.dbo.SR_Type SR_Type,cwwebapp_ans.dbo.Time_Entry
+                  WHERE Company.Company_RecID = Time_Entry.Company_RecID AND
+                  SR_Service.SR_Service_RecID = Time_Entry.SR_Service_RecID AND
+                  Company.Company_RecID = SR_Service.Company_RecID AND
+                  SR_Type.SR_Type_RecID = SR_Service.SR_Type_RecID AND
+                  member.member_recid = time_entry.member_recid AND
+                  SR_Board.SR_Board_RecID = SR_Service.SR_Board_RecID AND
+                  SR_Board.SR_Board_RecID = SR_Type.SR_Board_RecID and
+                  sr_board.board_name <> "Managed Services - Requests"
+                   and company.company_name = "'.$company.'"
+                  and (sr_service.summary like "%ImageManager%" or sr_service.summary like "%BU - %" or sr_service.summary like "%Accelerite%" or sr_service.summary like "%Syncback%" or sr_service.summary like "%\[Warning]%")
+                  and (dbo.Time_Entry.Date_Start >="'.$range1.'" and dbo.Time_Entry.Date_Start <= "'.$range2.'")
 
-    ';
+
+                  ';
 
     $avQuery = 'SELECT sum(time_entry.hours_actual) as avHours
-    FROM cwwebapp_ans.dbo.Company Company, cwwebapp_ans.dbo.SR_Board SR_Board,dbo.member, cwwebapp_ans.dbo.SR_Service SR_Service, cwwebapp_ans.dbo.SR_Type SR_Type,cwwebapp_ans.dbo.Time_Entry
-    WHERE Company.Company_RecID = Time_Entry.Company_RecID AND
-    SR_Service.SR_Service_RecID = Time_Entry.SR_Service_RecID AND
-    Company.Company_RecID = SR_Service.Company_RecID AND
-    member.member_recid = time_entry.member_recid AND
-    SR_Type.SR_Type_RecID = SR_Service.SR_Type_RecID AND
-    SR_Board.SR_Board_RecID = SR_Service.SR_Board_RecID AND
-    SR_Board.SR_Board_RecID = SR_Type.SR_Board_RecID
-    and company.company_name = "'.$company.'"
-    and (sr_service.summary like "%AV%" or sr_service.summary like "%ESET%") and
+                FROM Time_Entry
+                left outer join company on time_entry.company_recid = company.company_recid
+                left outer join sr_service on time_Entry.sr_service_recid = sr_service.sr_service_recid
+                left outer join member on time_entry.member_recid = member.member_recid
+                left outer join sr_board on sr_service.sr_board_recid = sr_board.sr_board_recid
+                WHERE company.company_name = "'.$company.'" and
+                sr_board.board_name <> "Managed Services - Requests"
+                and (sr_service.summary LIKE "%ESET - %" or sr_service.summary LIKE "%AV - %")
+                and (dbo.Time_Entry.Date_Start >="'.$range1.'" and dbo.Time_Entry.Date_Start <= "'.$range2.'")
 
-    (dbo.Time_Entry.Date_Start >="'.$range1.'" and dbo.Time_Entry.Date_Start <= "'.$range2.'") and
-     (member.member_id = "wblakeburn" or member.member_id = "plane" or member.member_id = "jmorgan" or member.member_id = "bfizer" or member.member_id = "rmillen")
 
     ';
 
     $bobQuery = 'SELECT sum(time_entry.hours_actual) as bobHours
-    FROM cwwebapp_ans.dbo.Company Company, cwwebapp_ans.dbo.SR_Board SR_Board,dbo.member, cwwebapp_ans.dbo.SR_Service SR_Service, cwwebapp_ans.dbo.SR_Type SR_Type,cwwebapp_ans.dbo.Time_Entry
-    WHERE Company.Company_RecID = Time_Entry.Company_RecID AND
-    SR_Service.SR_Service_RecID = Time_Entry.SR_Service_RecID AND
-    Company.Company_RecID = SR_Service.Company_RecID AND
-    member.member_recid = time_entry.member_recid AND
-    SR_Type.SR_Type_RecID = SR_Service.SR_Type_RecID AND
-    SR_Board.SR_Board_RecID = SR_Service.SR_Board_RecID AND
-    SR_Board.SR_Board_RecID = SR_Type.SR_Board_RecID
-    and company.company_name = "'.$company.'"
-    and sr_service.summary NOT LIKE "%AV%" and sr_service.summary NOT LIKE "%ESET%" and sr_service.summary NOT LIKE "%BU%" and sr_service.summary NOT LIKE "%\[Warning]%" and sr_service.summary NOT LIKE "%Syncback%" and sr_service.summary NOT LIKE "%Accelerite%" and sr_service.summary NOT LIKE "%ImageManager%"
-    and (dbo.Time_Entry.Date_Start >="'.$range1.'" and dbo.Time_Entry.Date_Start <= "'.$range2.'") and
-     (member.member_id = "wblakeburn" or member.member_id = "plane" or member.member_id = "jmorgan" or member.member_id = "bfizer" or member.member_id = "rmillen")
+                    FROM Time_Entry
+                    left outer join company on time_entry.company_recid = company.company_recid
+                    left outer join sr_service on time_Entry.sr_service_recid = sr_service.sr_service_recid
+                    left outer join member on time_entry.member_recid = member.member_recid
+                    left outer join te_charge_code on time_entry.te_charge_code_recid = te_charge_code.te_charge_code_recid
+                    left outer join sr_board on sr_service.sr_board_recid = sr_board.sr_board_recid
+                    WHERE company.company_name = "'.$company.'" and
+                    sr_board.board_name <> "Managed Services - Requests" and (sr_board.board_name = "BackOffice" or sr_board.board_name = "LogicMonitor" or sr_board.board_name = "My Company/Service" or sr_board.board_name = "Results Physiotherapy")
+
+
+                    and sr_service.summary NOT LIKE "%AV - %" and sr_service.summary NOT LIKE "%ESET - %" and sr_service.summary NOT LIKE "%BU - %" and sr_service.summary NOT LIKE "%\[Warning]%" and sr_service.summary NOT LIKE "%Syncback%" and sr_service.summary NOT LIKE "%Accelerite%" and sr_service.summary NOT LIKE "%ImageManager%"
+                    and (dbo.Time_Entry.Date_Start >="'.$range1.'" and dbo.Time_Entry.Date_Start <= "'.$range2.'")
+
     ';
 
+
     $adminQuery = 'SELECT sum(time_entry.hours_actual) as adminHours
-    FROM time_entry
-    left outer join member on time_entry.member_recid = member.member_recid
-    left outer join te_charge_code on time_entry.te_charge_code_recid = te_charge_code.te_charge_code_recid
-    WHERE te_charge_code.description = "Admin"
-    and (dbo.Time_Entry.Date_Start >="'.$range1.'" and dbo.Time_Entry.Date_Start <= "'.$range2.'") and (member.member_id = "wblakeburn" or member.member_id = "plane" or member.member_id = "jmorgan" or member.member_id = "bfizer" or member.member_id = "rmillen")';
+                  FROM time_entry
+                  left outer join member on time_entry.member_recid = member.member_recid
+                  left outer join te_charge_code on time_entry.te_charge_code_recid = te_charge_code.te_charge_code_recid
+                  left outer join company on time_entry.company_recid = company.company_recid
+                  WHERE company.company_name = "'.$company.'" and  te_charge_code.description = "Admin"
+                  and (dbo.Time_Entry.Date_Start >="'.$range1.'" and dbo.Time_Entry.Date_Start <= "'.$range2.'")';
 
     $meetingQuery = 'SELECT sum(time_entry.hours_actual) as meetingHours
-    FROM time_entry
-    left outer join member on time_entry.member_recid = member.member_recid
-    left outer join te_charge_code on time_entry.te_charge_code_recid = te_charge_code.te_charge_code_recid
-    WHERE te_charge_code.description = "Meeting"
-    and (dbo.Time_Entry.Date_Start >="'.$range1.'" and dbo.Time_Entry.Date_Start <= "'.$range2.'") and (member.member_id = "wblakeburn" or member.member_id = "plane" or member.member_id = "jmorgan" or member.member_id = "bfizer" or member.member_id = "rmillen")';
+                    FROM time_entry
+                    left outer join member on time_entry.member_recid = member.member_recid
+                    left outer join te_charge_code on time_entry.te_charge_code_recid = te_charge_code.te_charge_code_recid
+                    left outer join company on time_entry.company_recid = company.company_recid
+                    WHERE company.company_name = "'.$company.'" and  te_charge_code.description = "Meeting"
+                    and (dbo.Time_Entry.Date_Start >="'.$range1.'" and dbo.Time_Entry.Date_Start <= "'.$range2.'")';
+
+    $ptoQuery = 'SELECT sum(time_entry.hours_actual) as ptoHours
+                FROM time_entry
+                left outer join member on time_entry.member_recid = member.member_recid
+                left outer join te_charge_code on time_entry.te_charge_code_recid = te_charge_code.te_charge_code_recid
+                left outer join company on time_entry.company_recid = company.company_recid
+                WHERE company.company_name = "'.$company.'" and  te_charge_code.description = "PTO"
+                and (dbo.Time_Entry.Date_Start >="'.$range1.'" and dbo.Time_Entry.Date_Start <= "'.$range2.'")';
+
+    $otherChargeQuery = 'SELECT sum(time_entry.hours_actual) as otherChargeHours
+                        FROM time_entry
+                        left outer join company on time_entry.company_recid = company.company_recid
+                        left outer join member on time_entry.member_recid = member.member_recid
+                        left outer join te_charge_code on time_entry.te_charge_code_recid = te_charge_code.te_charge_code_recid
+                        left outer join sr_service on time_entry.sr_service_recid = sr_service.sr_service_recid
+                        left outer join sr_board on sr_service.sr_board_recid = sr_board.sr_board_recid
+                        WHERE company.company_name = "'.$company.'" and  te_charge_code.description <> "PTO" and te_charge_code.description <> "Admin"and te_charge_code.description <> "Meeting"
+                        and (dbo.Time_Entry.Date_Start >="'.$range1.'" and dbo.Time_Entry.Date_Start <= "'.$range2.'")';
+
+    $otherQuery = 'SELECT sum(time_entry.hours_actual) as internalHours
+                  FROM time_entry
+                  left outer join member on time_entry.member_recid = member.member_recid
+                  left outer join sr_service on time_entry.sr_service_recid = sr_service.sr_service_recid
+                  left outer join te_charge_code on time_entry.te_charge_code_recid = te_charge_code.te_charge_code_recid
+                  left outer join company on time_entry.company_recid = company.company_recid
+                  left outer join sr_board on sr_service.sr_board_recid = sr_board.sr_board_recid
+                  WHERE  company.company_name = "'.$company.'" and  (dbo.Time_Entry.Date_Start >="'.$range1.'" and dbo.Time_Entry.Date_Start <= "'.$range2.'")';
 
     $projectQuery = 'SELECT SUM(CASE WHEN dbo.time_entry.PM_Project_RecID IS NOT NULL THEN dbo.time_entry.Hours_Actual ELSE 0 END) AS projectHours
-    FROM         dbo.Time_Entry LEFT OUTER JOIN
+                      FROM dbo.Time_Entry LEFT OUTER JOIN
                           dbo.TE_Charge_Code ON dbo.Time_Entry.TE_Charge_Code_RecID = dbo.TE_Charge_Code.TE_Charge_Code_RecID LEFT OUTER JOIN
                           dbo.Member ON dbo.Time_Entry.Member_RecID = dbo.Member.Member_RecID
                           left outer join company on time_entry.company_recid = company.company_recid
-    WHERE and company.company_name = "'.$company.'" and (dbo.Time_Entry.Date_Start >="'.$range1.'" and dbo.Time_Entry.Date_Start <= "'.$range2.'") and (member.member_id = "wblakeburn" or member.member_id = "plane" or member.member_id = "jmorgan" or member.member_id = "bfizer" or member.member_id = "rmillen")';
+                      WHERE company.company_name = "'.$company.'"  and (dbo.Time_Entry.Date_Start >="'.$range1.'" and dbo.Time_Entry.Date_Start <= "'.$range2.'")';
 
+    $requestQuery = 'SELECT sum(time_entry.hours_actual) as requestHours
+                    FROM Time_Entry
+                    left outer join company on time_entry.company_recid = company.company_recid
+                    left outer join sr_service on time_Entry.sr_service_recid = sr_service.sr_service_recid
+                    left outer join member on time_entry.member_recid = member.member_recid
+                    left outer join te_charge_code on time_entry.te_charge_code_recid = te_charge_code.te_charge_code_recid
+                    left outer join sr_board on sr_service.sr_board_recid = sr_board.sr_board_recid
+                    WHERE company.company_name = "'.$company.'" and
+                      sr_board.board_name = "Managed Services - Requests"
+                    and (dbo.Time_Entry.Date_Start >="'.$range1.'" and dbo.Time_Entry.Date_Start <= "'.$range2.'")';
 
 
 }else if(isset($_GET['range1']) && isset($_GET['range2'])){
