@@ -51,6 +51,7 @@ doughnutData = [];
 
 
 
+
 /*for(var i = 0; i < xlabels.length;i++){
 if(xlabels[i] != "undefined"){
   doughnutData.push({
@@ -63,56 +64,215 @@ if(xlabels[i] != "undefined"){
 
 
 }*/
+if(json[0]['backupHours'] == null){
+  doughnutData.push({
+    value:0,
+    color:getRandomColor(),
+    highlight:getRandomColor(),
+    label:'Backup'
+  });
+json[0]['backupHours'] = 0;
+}else{
 
-doughnutData.push({
-  value:json[0]['backupHours'],
-  color:getRandomColor(),
-  highlight:getRandomColor(),
-  label:'Backup'
-});
-doughnutData.push({
-  value:json[1]['avHours'],
-  color:getRandomColor(),
-  highlight:getRandomColor(),
-  label:'AV'
-});
+  doughnutData.push({
+    value:json[0]['backupHours'],
+    color:getRandomColor(),
+    highlight:getRandomColor(),
+    label:'Backup'
+  });
+}
+
+
+if(json[1]['avHours'] == null){
+
+  doughnutData.push({
+    value:0,
+    color:getRandomColor(),
+    highlight:getRandomColor(),
+    label:'AV'
+  });
+  json[1]['avHours'] = 0;
+}else{
+
+  doughnutData.push({
+    value:json[1]['avHours'],
+    color:getRandomColor(),
+    highlight:getRandomColor(),
+    label:'AV'
+  });
+
+}
+
+if(json[2]['bobHours'] == null){
+  json[2]['bobHours'] = 0;
+  doughnutData.push({
+    value:json[2]['bobHours'],
+    color:getRandomColor(),
+    highlight:getRandomColor(),
+    label:'BOB'
+  });
+}else{
 doughnutData.push({
   value:json[2]['bobHours'],
   color:getRandomColor(),
   highlight:getRandomColor(),
   label:'BOB'
 });
+}
+
+if(json[3]['adminHours'] == null){
+  json[3]['adminHours'] = 0;
+  doughnutData.push({
+    value:json[3]['adminHours'],
+    color:getRandomColor(),
+    highlight:getRandomColor(),
+    label:'Admin'
+  });
+
+}else{
 doughnutData.push({
   value:json[3]['adminHours'],
   color:getRandomColor(),
   highlight:getRandomColor(),
   label:'Admin'
 });
-doughnutData.push({
-  value:json[4]['meetingHours'],
-  color:getRandomColor(),
-  highlight:getRandomColor(),
-  label:'Meeting'
-});
-doughnutData.push({
-  value:json[5]['projectHours'],
-  color:getRandomColor(),
-  highlight:getRandomColor(),
-  label:'Project'
-});
-doughnutData.push({
-  value:json[6]['ptoHours'],
-  color:getRandomColor(),
-  highlight:getRandomColor(),
-  label:'PTO'
-});
-doughnutData.push({
-  value:json[7]['elseHours'],
-  color:getRandomColor(),
-  highlight:getRandomColor(),
-  label:'All'
-});
-//console.log(doughnutData);
+}
+
+if(json[4]['meetingHours'] == null){
+  json[4]['meetingHours'] = 0;
+  doughnutData.push({
+    value:json[4]['meetingHours'],
+    color:getRandomColor(),
+    highlight:getRandomColor(),
+    label:'Meeting'
+  });
+}else{
+
+  doughnutData.push({
+    value:json[4]['meetingHours'],
+    color:getRandomColor(),
+    highlight:getRandomColor(),
+    label:'Meeting'
+  });
+}
+
+
+if(json[5]['projectHours'] == null){
+  json[5]['projectHours'] = 0;
+  doughnutData.push({
+    value:json[5]['projectHours'],
+    color:getRandomColor(),
+    highlight:getRandomColor(),
+    label:'Project'
+  });
+
+}else{
+
+  doughnutData.push({
+    value:json[5]['projectHours'],
+    color:getRandomColor(),
+    highlight:getRandomColor(),
+    label:'Project'
+  });
+}
+
+
+
+if(json[6]['ptoHours'] == null){
+  doughnutData.push({
+    value:0,
+    color:getRandomColor(),
+    highlight:getRandomColor(),
+    label:'PTO'
+  });
+  json[6]['ptoHours'] = 0;
+
+}else{
+
+  doughnutData.push({
+    value:json[6]['ptoHours'],
+    color:getRandomColor(),
+    highlight:getRandomColor(),
+    label:'PTO'
+  });
+
+}
+
+
+
+/*if(json[8]['internalHours'] == null){
+
+  doughnutData.push({
+    value:0,
+    color:getRandomColor(),
+    highlight:getRandomColor(),
+    label:'Internal'
+  });
+}else{
+
+  doughnutData.push({
+    value:json[8]['internalHours'],
+    color:getRandomColor(),
+    highlight:getRandomColor(),
+    label:'Internal'
+  });
+
+}*/
+if(json[9]['requestHours'] == null){
+
+  doughnutData.push({
+    value:0,
+    color:getRandomColor(),
+    highlight:getRandomColor(),
+    label:'MS Requests'
+  });
+
+  json[9]['requestHours'] = 0;
+}else{
+
+  doughnutData.push({
+    value:json[9]['requestHours'],
+    color:getRandomColor(),
+    highlight:getRandomColor(),
+    label:'MS Requests'
+  });
+
+}
+
+if(json[7]['otherChargeHours'] == null){
+  doughnutData.push({
+    value:0,
+    color:getRandomColor(),
+    highlight:getRandomColor(),
+    label:'Other'
+  });
+
+  json[7]['otherChargeHours'] = 0;
+}else{
+  doughnutData.push({
+    value:json[7]['otherChargeHours'],
+    color:getRandomColor(),
+    highlight:getRandomColor(),
+    label:'Other'
+  });
+}
+
+var total_hours = parseInt(json[0]['backupHours']) + parseInt(json[1]['avHours']) +
+parseInt(json[2]['bobHours']) + parseInt(json[3]['adminHours']) +
+parseInt(json[4]['meetingHours']) + parseInt(json[6]['ptoHours']) + parseInt(json[5]['projectHours'])
++ parseInt(json[7]['otherChargeHours']) + parseInt(json[9]['requestHours']);
+total_hours = parseInt(total_hours);
+
+console.log(total_hours);
+
+var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '',suffix : 'hrs'}
+
+          var hours = new countUp("totalHours", 0, total_hours, 0, 2,options);
+          hours.start();
+
+
+
+console.log(doughnutData);
 /*doughnutData = [
                 {
                     value: type_count[0],

@@ -17,6 +17,8 @@
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
         <link rel="stylesheet" href="../../libraries/timeline-2.9.1/timeline.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
         <script type="text/javascript" src="../../js/jquery.min.js"></script>
         <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/2.9.0/moment.min.js"></script>
@@ -24,6 +26,7 @@
         <script type="text/javascript" src="../../js/managed_services.js"></script>
         <script type="text/javascript" src="../../js/Chart.js"></script>
         <script type="text/javascript" src="../../js/legend.js"></script>
+        <script type="text/javascript" src="../../js/oneUp.js"></script>
         <script src="../../libraries/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
@@ -109,6 +112,9 @@
 
       </div>
 
+      <div id="issue_button" style="margin-right:15px;margin-top:10px;margin-bottom:auto;text-align:center;float: right; margin-left: 15px;height:53px;">
+        <a  id="issue" class="btn btn-sm btn-primary">Submit Issue/Request</a>
+      </div>
 
       <div id="logout_button" style="margin-right:15px;margin-top:10px;margin-bottom:auto;text-align:center;float: right; margin-left: 15px;height:53px;">
         <a href="index.php?logout" class="btn btn-sm btn-inverse">Logout</a>
@@ -165,10 +171,14 @@
             <div id="title" class="col-md-2">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                        <p id="totalBillableTitle" style="text-align:center;">Billable Hrs - This Week <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
+                    <p id="totalBillableTitle" style="text-align:center;">Billable Hrs - This Week <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
                   </div>
                   <div id="title"class="panel-body">
+                    <div id="dateSwitch">
+                      <a style="float:right;"  id="lastWk" class="btn btn-xs btn-info">Last Wk</a>
+                    </div>
                     <h1 id="totalBillable"style="text-align:center;">0 hrs</h1>
+                    <p id="vs"></p>
                   </div>
                 </div>
             </div>
@@ -284,15 +294,18 @@
                       <div  id="ticketsByTypeLegend1">
                       </div>
                 </div>
-                <div class="col-md-10">
+                <div class="col-md-1">
+                  <h1 style="font-size:80px;" id="totalHours"></h1>
+                </div>
+                <div class="col-md-9">
                       <canvas id ="ticketsByType1"style="margin-left:-2px;padding:15px;width:90%;height:100px;"></canvas>
-                      <div class="row">
+                      <!--<div class="row">
                         <div class="col-md-12">
                           <div style='width:100%;width:100%;overflow-y: scroll !important;height:478px;' id="msTypeTable">
 
                           </div>
                         </div>
-                      </div>
+                      </div>-->
                 </div>
               </div>
 
@@ -352,6 +365,22 @@
           </div>
 
         </div>
+        </div>
+        <div class="row">
+          <div id="title" class="col-md-12">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                          <p id="newOldTitle" style="text-align:center;">New Tickets vs Tickets Closed - Last 5 days <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
+                    </div>
+                    <div id="title"class="panel-body">
+                      <div style="text-align:center"class="col-md-2">
+                            <div style="padding:5px;" id="newOldLegend">
+                            </div>
+                          </div>
+                      <canvas id ="newOld"style="margin-left:-2px;padding:15px;width:90%;height:200px;"></canvas>
+                    </div>
+                  </div>
+              </div>
         </div>
         <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
             <div class="modal-dialog">
@@ -416,9 +445,60 @@
             </div>
           </div>
         </div>
+        <div  class="modal fade" id="issueModal2" tabindex="-1" role="dialog" aria-labelledby="issueModal2" aria-hidden="true">
+            <div  class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <button type="button"  class="close fui-cross" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title" id="myModalLabel1">Issues, Requests and Ideas Are Welcome</h4>
+                    </div>
+                    <div id="body" class="modal-body">
+
+                      <form role="form" id="contact-form" class="contact-form">
+                                          <div class="row">
+                                          <div class="col-md-6">
+                                            <div class="form-group">
+                                                  <input type="text" class="form-control" name="Name" autocomplete="off" id="name" placeholder="Name">
+                                            </div>
+                                          </div>
+  <div class="col-md-6">
+  <div class="form-group">
+  <select id="type" class="form-control">
+  <option value="one">Select request type</option>
+  <option value="Issue">Issue</option>
+  <option value="Request">Request</option>
+  <option value="Idea">Idea</option>
+  </select>
+                                            </div>
+                                          </div>
+                                          </div>
+                                          <div class="row">
+                                            <div class="col-md-12">
+                                            <div class="form-group">
+                                                  <textarea id="description" class="form-control textarea" rows="3" name="Message" id="Message" placeholder="Message"></textarea>
+                                            </div>
+                                          </div>
+                                          </div>
+                                          <div class="row">
+                                            <div id="alertMessage" class="col-md-6">
+
+                                            </div>
+                                          <div class="col-md-6">
+                                        <button id="submit_issue"type="submit" class="btn main-btn pull-right">Send message</button>
+                                        </div>
+                                        </div>
+                                      </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+          </div>
+        </div>
 
 </div>
-
+  <script src="../../js/asana.js"></script>
     </body>
 
 </html>

@@ -2,7 +2,7 @@ rf.StandaloneDashboard(function(db){
 db.setTabbedDashboardTitle("ANS Reporting");
      var tab1 = new Dashboard ();
      tab1.setDashboardTitle('Active Client List');
-    
+
     var table = new TableComponent ('test');
     table.setCaption ("Regional Sales");
     table.setDimensions(8, 4);
@@ -14,8 +14,8 @@ db.setTabbedDashboardTitle("ANS Reporting");
     table.addColumn ('City', "City");
     table.addColumn ('State_ID', "State");
     table.addColumn ('Zip', "Zip");
-    
-    
+
+
 
 /*table.addColumn ('name', 'Name');
 table.addColumn ('category', 'Category');
@@ -26,10 +26,10 @@ table.addColumn ('price', 'Price');*/
 {name: "Tomatoes", category: "Vegetables", price: 8},
 {name: "Orange Juice", category: "Beverages", price: 12},
 {name: "Root Beer", category: "Beverages", price: 13},
-];  
+];
 console.log(tableData);
-    
-        
+
+
         $.get("../ajax/getClientList.php", function(data) {
     var c = { data: [] };
 
@@ -37,31 +37,31 @@ for (var o in data) {
     var n = o.match(/^object(\d+)$/);
     if (n) c.data[n[1]] = data[o];
     console.log(data);
-    
+
 }
-   table.addMultipleRows(data);     
-        
-        
-        
-        
+   table.addMultipleRows(data);
 
-    
-    
+
+
+
+
+
+
     });
-     
-   
-    
-    
-    
 
-    
-    
-   
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     tab1.addComponent(table);
   // Now actually add the dashboards to the main dashboard.
@@ -69,6 +69,5 @@ for (var o in data) {
     title: "Active Client List",
     active: true // this tab should be active by default.
   });
-  
-}, {tabbed:true});
 
+}, {tabbed:true});

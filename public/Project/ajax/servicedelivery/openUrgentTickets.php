@@ -59,7 +59,7 @@ else if (strpos($path,'CIM') !== false) {
 	left outer join sr_urgency on sr_urgency.sr_urgency_recid = sr_service.sr_urgency_recid
 	left outer join sr_board on sr_board.sr_board_recid = sr_service.sr_board_recid
 	left outer join sr_status on sr_status.sr_status_recid  = sr_service.sr_status_recid
-	where (dbo.SR_Board.Board_Name = "BackOffice" or dbo.SR_Board.Board_Name = "Managed Services Requests" or dbo.SR_Board.Board_Name = "" or dbo.SR_Board.Board_Name="LogicMonitor") and sr_service.date_closed is null and (sr_urgency.sort_order = 2 or sr_urgency.sort_order = 1 or sr_urgency.sort_order = 100)
+	where sr_service.closed_by is null and (dbo.SR_Board.Board_Name = "BackOffice" or dbo.SR_Board.Board_Name = "Managed Services Requests" or dbo.SR_Board.Board_Name = "" or dbo.SR_Board.Board_Name="LogicMonitor") and sr_service.date_closed is null and (sr_urgency.sort_order = 2 or sr_urgency.sort_order = 1 or sr_urgency.sort_order = 100) and (sr_status.description <> "Closed" and sr_status.description <> "Canceled" and sr_status.description <> "Closed - First Call")
 	group by sr_service.sr_service_recid, sr_urgency.description,sr_service.summary,sr_urgency.sort_order,sr_service.date_entered,sr_status.description
 	order by sr_service.date_entered desc';
 
@@ -72,7 +72,7 @@ else{
 	left outer join sr_urgency on sr_urgency.sr_urgency_recid = sr_service.sr_urgency_recid
 	left outer join sr_board on sr_board.sr_board_recid = sr_service.sr_board_recid
 	left outer join sr_status on sr_status.sr_status_recid  = sr_service.sr_status_recid
-	where (sr_board.board_name = "My Company/Service" or sr_board.board_name = "Alerts - Service Delivery") and sr_service.date_closed is null and (sr_urgency.sort_order = 2 or sr_urgency.sort_order = 1 or sr_urgency.sort_order = 100)
+	where sr_service.closed_by is null and (sr_urgency.sort_order = 2 or sr_urgency.sort_order = 1 or sr_urgency.sort_order = 100) and (dbo.SR_Board.Board_Name = "My Company/Service" or dbo.SR_Board.Board_Name = "Alerts - Service Delivery" or dbo.SR_Board.Board_Name = "Results Physiotherapy" or dbo.SR_Board.Board_Name="Results - Initiatives") and sr_service.date_closed is null and (sr_status.description <> "Closed" and sr_status.description <> "Canceled" and sr_status.description <> "Closed - First Call")
 	group by sr_service.sr_service_recid, sr_urgency.description,sr_service.summary,sr_urgency.sort_order,sr_service.date_entered,sr_status.description
 	order by sr_service.date_entered desc';
 

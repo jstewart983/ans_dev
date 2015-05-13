@@ -684,7 +684,7 @@ $(document).ready(function(){
               //drawTimeline2('');
 
               //drawTimeline('');
-              $('input').livefilter({selector:'tbody tr'});
+              $('#search').livefilter({selector:'tbody tr'});
 
               /*$("#search").keyup(function () {
                   var value = this.value.toLowerCase().trim();

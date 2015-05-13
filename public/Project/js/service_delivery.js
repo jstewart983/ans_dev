@@ -155,7 +155,7 @@ function getBillableHoursTotal(){
 
   $.ajax({
     type:"GET",
-    url:"../../ajax/servicedelivery/getServiceBillableHours.php",
+    url:"../../../ajax/servicedelivery/getServiceBillableHours.php",
     success:function(json){
 
       var total_hours = [];
@@ -176,9 +176,7 @@ function getBillableHoursTotal(){
         color = "#E74C3C;";
       }
 
-      var totalHoursText = parseInt($('#totalBillable').text());
-      if(totalHoursText !== Math.round(total_hours)){
-
+      //$("#totalBillableTitle").empty();
       $("#title #totalBillableTitle").fadeOut(500,function(){
         $title = $('#totalBillableTitle').text();
         $p = $('<p id="totalBillableTitle"  style="text-align:center;">'+json[0]["Title"]+' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
@@ -187,26 +185,41 @@ function getBillableHoursTotal(){
 
       });
 
-
+      //$("#totalBillable").empty();
       $("#title #totalBillable").fadeOut(500,function(){
 
-        if(total_hours==0){
-          var $span1 = $('<h1 style="text-align:center;" id="totalBillable">0 hrs</h1><p style="text-align:center;"><span style="text-align:center;color:'+color+'">'+json[0]['Difference']+'</span> vs previous week</p>');
-        }else{
-          var $span1 = $('<h1 style="text-align:center;" id="totalBillable">'+Math.round(total_hours)+' <span style="font-size:25px;">hrs</span></h1><p style="text-align:center;"><span style="text-align:center;color:'+color+'">'+json[0]['Difference']+'</span> vs last week</p>');
-        }
+
+          var $span1 = $('<h1 style="text-align:center;" id="totalBillable">'+Math.round(total_hours)+' hrs</h1>');
+          var $span2 = $('<p id="vs" style="text-align:center;"><span style="text-align:center;color:'+color+'">'+json[0]['Difference']+'</span> vs last week</p>')
 
 
         //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
         $("#totalBillable").replaceWith($span1);
+        $("#vs").replaceWith($span2);
         //$("#openProjects").replaceWith($span2);
         $span1.fadeIn(1200);
+        $span2.fadeIn(1200);
 
       });
-    }
+
+      $("#dateSwitch #thisWk").fadeOut(500,function(){
+
+        var $button = $('<a style="float:right;"  id="lastWk" class="btn btn-xs btn-info">Last Wk</a>');
+
+        $('#thisWk').replaceWith($button);
+
+        $button.fadeIn(1200);
+      });
+
+
+
     }
 
   });
+  if(totalID){
+    clearInterval(totalID);
+    var totalID = setInterval(function(){ getBillableHoursTotal(); }, 3000);
+  }
 
 }
 
@@ -863,7 +876,78 @@ if(xlabels[i] != "undefined"){
 
 }
 
+function getBillableLastWeek(){
 
+  $.ajax({
+    type:"GET",
+    url:"../../ajax/fieldservices/getHoursLastWeek.php",
+    success:function(json){
+
+      var total_hours = [];
+
+      for($i=0;$i<json.length;$i++){
+
+        total_hours.push(json[$i]["computed"]);
+
+
+      }
+
+      var color = "";
+
+      if(parseInt(json[0]["Difference"])>1){
+        color = "#2ECC71;";
+        json[0]["Difference"] = "+"+json[0]["Difference"];
+      }else{
+        color = "#E74C3C;";
+      }
+
+      var totalHoursText = parseInt($('#totalBillable').text());
+      if(totalHoursText !== Math.round(total_hours)){
+
+      $("#title #totalBillableTitle").fadeOut(500,function(){
+        $title = $('#totalBillableTitle').text();
+        $p = $('<p id="totalBillableTitle"  style="text-align:center;">'+json[0]["Title"]+' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+        $("#totalBillableTitle").replaceWith($p);
+        $p.fadeIn(1200);
+
+      });
+
+
+      $("#title #totalBillable").fadeOut(500,function(){
+
+
+          var $span1 = $('<h1 style="text-align:center;" id="totalBillable">'+Math.round(total_hours)+' hrs</h1>');
+
+
+        //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
+        $("#totalBillable").replaceWith($span1);
+        //$("#openProjects").replaceWith($span2);
+        $span1.fadeIn(1200);
+
+      });
+
+      $('#title #vs').fadeOut(500,function(){
+        var $span2 = $('<p id="vs" style="text-align:center;"><span style="text-align:center;color:'+color+'">'+json[0]['Difference']+'</span> vs previous week</p>')
+        $("#vs").replaceWith($span2);
+        $span2.fadeIn(1200);
+
+
+
+      });
+
+      $("#dateSwitch #lastWk").fadeOut(500,function(){
+
+        var $button = $('<a style="float:right;"  id="thisWk" class="btn btn-xs btn-inverse">This Wk</a>');
+
+        $('#lastWk').replaceWith($button);
+
+        $button.fadeIn(1200);
+      });
+    }
+    }
+
+  });
+}
 
 
 $(document).ready(function(){
@@ -882,7 +966,7 @@ setInterval(function(){ ticketsOpen(); }, 10000);
 
 //billable hours this week
 getBillableHoursTotal();
-setInterval(function(){ getBillableHoursTotal(); }, 10000);
+var totalID = setInterval(function(){ getBillableHoursTotal(); }, 10000);
 
 
 //closed first call % this year
@@ -912,7 +996,7 @@ setInterval(function(){ urgentTickets(); }, 100000);
 
 //top tickets by service type this week
 topTypes('','','');
-setInterval(function(){ topTypes(); }, 60000);
+//setInterval(function(){ topTypes(); }, 60000);
 
 $.ajax({
   url: "../../ajax/clientservices/getClientList2.php",
@@ -965,6 +1049,26 @@ getTicketHistory('','','');
 
 //Ticket count since the beginning of time(for ANS)
 //getTicketHistory();
+
+$('#dateSwitch').on('click','#lastWk',function(e){
+clearInterval(totalID);
+e.preventDefault();
+getBillableLastWeek();
+
+
+
+});
+
+$('#dateSwitch').on('click','#thisWk',function(e){
+
+e.preventDefault();
+getBillableHoursTotal();
+//var totalID = setInterval(function(){ getBillableHoursTotal(); }, 3000);
+
+
+
+});
+
 
 // Fill modal with content from link href
 $("#basicModal").on("show.bs.modal", function(e) {

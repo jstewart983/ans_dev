@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="../../libraries/Flat-UI-master/dist/css/flat-ui.min.css">
         <link rel="stylesheet" href="../../libraries/Flat-UI-master/fonts/glyphicons/flat-ui-icons-regular.svg">
         <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
         <link rel="stylesheet" href="../../libraries/timeline-2.9.1/timeline.css" media="screen" title="no title" charset="utf-8">
@@ -46,7 +47,7 @@
 
         <style type="text/css">
         @media screen and (max-width: 999px) {
-      #logout_button {
+      #logout_button,#issue_button {
         visibility: hidden;
         clear: both;
         float: left;
@@ -54,6 +55,7 @@
         width: 28%;
         display: none;
       }
+
     }
         div{
           font-size:15px !important;
@@ -110,6 +112,9 @@
 
       </div>
 
+      <div id="issue_button" style="margin-right:15px;margin-top:10px;margin-bottom:auto;text-align:center;float: right; margin-left: 15px;height:53px;">
+        <a  id="issue" class="btn btn-sm btn-primary">Submit Issue/Request</a>
+      </div>
 
       <div id="logout_button" style="margin-right:15px;margin-top:10px;margin-bottom:auto;text-align:center;float: right; margin-left: 15px;height:53px;">
         <a href="index.php?logout" class="btn btn-sm btn-inverse">Logout</a>
@@ -169,7 +174,12 @@
                         <p id="totalBillableTitle" style="text-align:center;">Billable Hrs - This Week <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
                   </div>
                   <div id="title"class="panel-body">
+                    <div id="dateSwitch">
+                      <a style="float:right;"  id="lastWk" class="btn btn-xs btn-info">Last Wk</a>
+
+                    </div>
                     <h1 id="totalBillable"style="text-align:center;">0 hrs</h1>
+                    <p id="vs"></p>
                   </div>
                 </div>
             </div>
@@ -436,9 +446,61 @@
             </div>
           </div>
         </div>
+        <div  class="modal fade" id="issueModal2" tabindex="-1" role="dialog" aria-labelledby="issueModal2" aria-hidden="true">
+            <div  class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <button type="button"  class="close fui-cross" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title" id="myModalLabel1">Issues, Requests and Ideas Are Welcome</h4>
+                    </div>
+                    <div id="body" class="modal-body">
+
+                      <form role="form" id="contact-form" class="contact-form">
+                                          <div class="row">
+                                          <div class="col-md-6">
+                                            <div class="form-group">
+                                                  <input type="text" class="form-control" name="Name" autocomplete="off" id="name" placeholder="Name">
+                                            </div>
+                                          </div>
+        <div class="col-md-6">
+        <div class="form-group">
+        <select id="type" class="form-control">
+        <option value="one">Select request type</option>
+        <option value="Issue">Issue</option>
+        <option value="Request">Request</option>
+        <option value="Idea">Idea</option>
+        </select>
+                                            </div>
+                                          </div>
+                                          </div>
+                                          <div class="row">
+                                            <div class="col-md-12">
+                                            <div class="form-group">
+                                                  <textarea id="description" class="form-control textarea" rows="3" name="Message" id="Message" placeholder="Message"></textarea>
+                                            </div>
+                                          </div>
+                                          </div>
+                                          <div class="row">
+                                            <div id="alertMessage" class="col-md-6">
+
+                                            </div>
+                                          <div class="col-md-6">
+                                        <button id="submit_issue"type="submit" class="btn main-btn pull-right">Send message</button>
+                                        </div>
+                                        </div>
+                                      </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+          </div>
+        </div>
+
 
 </div>
-
+  <script src="../../js/asana.js"></script>
     </body>
 
 </html>

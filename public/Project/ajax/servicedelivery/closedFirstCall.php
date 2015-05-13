@@ -2,7 +2,7 @@
 
 require('../../config/config.php');
 $actual_link = $_SERVER['HTTP_REFERER'];
-$title = "Closed First Call %";
+$title = "Closed First Call % - Last 7 days";
 $description = "This represents the percentage of tickets that were closed on the first call in the past 7 days on all boards managed by the Service Delivery Team, excluding Saturday and Sunday. (CFC% = Count of Closed First Call/Total Closed)";
 $datasource = "Connectwise";
 $path = parse_url($actual_link,PHP_URL_PATH);
@@ -40,6 +40,8 @@ as CFC';
 
   where convert(date,dbo.sr_service.Date_Closed) >= convert(date,GETDATE()-7)
   and CONVERT(date,dbo.sr_service.Date_Closed) <> CONVERT(date,getdate())
+  and datename(dw,convert(date,dbo.sr_service.Date_Closed)) <> "Saturday"
+  and datename(dw,convert(date,dbo.sr_service.Date_Closed)) <> "Sunday"
   and dbo.sr_status.description = "Closed - First Call")as float)/
   (select count(*)
   from dbo.sr_service left outer join
