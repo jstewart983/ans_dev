@@ -220,16 +220,8 @@
           </div>
 
         </div>
-        <div style="position:relative;z-index:999;" class="row">
-          <div class="col-md-2">
 
-          </div>
-
-          <div class="col-md-2">
-
-          </div>
-        </div>
-              <div style="opacity:.9;" class="row">
+              <div style="position:relative;z-index:-1;opacity:.9;margin-top:-100px;" class="row">
                 <div class="col-md-12">
                   <canvas id="barChart" style="margin-left:-10px;width:100%;" height="100"></canvas>
                 </div>
@@ -301,7 +293,7 @@
                         strokeColor: "rgba(220,220,220,0.9)",
                         highlightFill: "rgba(220,220,220,0.9)",
                         highlightStroke: "rgba(220,220,220,.9)",
-                        data:[67,74,32,35,25,26,20,15,27,20,56,77,20,30,10,90,45,67,20,12,85,90,50,67,32,79,90,70,80,20,20,15,27,20,56,77],
+                        data:[67,74,32,35,25,26,20,65,27,20,56,77,20,30,40,90,45,67,20,12,85,90,50,67,32,79,90,70,80,20,70,75,27,20,56,77],
                         label: "This data"
                     },
                     {
@@ -310,7 +302,7 @@
                         strokeColor: "rgba(160,120,316,0.9)",
                         highlightFill: "rgba(160,120,316,0.9)",
                         highlightStroke: "rgba(160,120,316,0.9)",
-                        data:[10,20,40,30,15,67,74,32,35,25,26,57,81,14,30,30,70,20,90,100,45,30,25,76,67,74,32,35,25,26,20,15,27,20,56,77],
+                        data:[30,60,40,30,55,67,74,32,35,25,26,57,81,14,30,30,70,20,90,100,45,30,25,76,67,74,32,35,95,26,20,45,27,80,56,77],
                         label: "That data"
                     }
                 ]
@@ -318,7 +310,7 @@
 
 
             var ctx = document.getElementById("barChart").getContext("2d");
-            var myNewChart = new Chart(ctx).Bar(data,{scaleShowGridLines:false,scaleShowVerticalLines: false,scaleShowHorizontalLines:false});
+            var myNewChart = new Chart(ctx).Bar(data,{scaleShowGridLines:false,scaleShowVerticalLines: false,scaleShowHorizontalLines:false,responsive:false});
             //console.log(data.labels.length);
             setInterval(function() {
 
