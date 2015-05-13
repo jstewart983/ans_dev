@@ -141,9 +141,7 @@
           </div>
         </div>
         <div style="position:relative;z-index:999;margin-top:5px;"class="row">
-          <div class="col-md-2">
 
-          </div>
           <div id="choice1" class="col-md-4">
             <a href="../solutiondelivery/">
               <div class="panel panel-default">
@@ -168,14 +166,6 @@
             </div>
           </a>
           </div>
-          <div class="col-md-2">
-
-          </div>
-        </div>
-        <div style="position:relative;z-index:999;" class="row">
-          <div class="col-md-2">
-
-          </div>
           <div id="choice3" class="col-md-4">
             <a href="../clientservices/">
               <div class="panel panel-default">
@@ -188,6 +178,10 @@
             </div>
           </a>
           </div>
+
+        </div>
+        <div style="position:relative;z-index:999;" class="row">
+
           <div id="choice4" class="col-md-4">
             <a href="../resultsphysiotherapy/">
               <div class="panel panel-default">
@@ -197,16 +191,8 @@
                     <b>Build Status</b> = QA
                   </p>
                 </div>
-            </div>
-          </a>
-          </div>
-          <div class="col-md-2">
-
-          </div>
-        </div>
-        <div style="position:relative;z-index:999;" class="row">
-          <div class="col-md-2">
-
+              </div>
+            </a>
           </div>
           <div id="choice3" class="col-md-4">
             <a href="../managedservices/">
@@ -232,6 +218,13 @@
             </div>
           </a>
           </div>
+
+        </div>
+        <div style="position:relative;z-index:999;" class="row">
+          <div class="col-md-2">
+
+          </div>
+
           <div class="col-md-2">
 
           </div>
@@ -326,20 +319,20 @@
 
             var ctx = document.getElementById("barChart").getContext("2d");
             var myNewChart = new Chart(ctx).Bar(data,{scaleShowGridLines:false,scaleShowVerticalLines: false,scaleShowHorizontalLines:false});
-            console.log(data.labels.length);
-            /*setInterval(function() {
+            //console.log(data.labels.length);
+            setInterval(function() {
 
               // Get a random index point
               var indexToUpdate = Math.floor(Math.random() * data.labels.length-1)+1;
 
 
-              myNewChart.datasets[1].bars[indexToUpdate].value = Math.floor(Math.random()*80)+1;
-              myNewChart.datasets[0].bars[indexToUpdate].value = Math.floor(Math.random()*80)+1;
+              myNewChart.datasets[1].bars[indexToUpdate].value = Math.floor(Math.random()*100)+1;
+              myNewChart.datasets[0].bars[indexToUpdate].value = Math.floor(Math.random()*100)+1;
 
 
               myNewChart.update();
               //myNewChart.addData(Math.floor(Math.random()*100)+1,Math.floor(Math.random()*100)+1,labels[Math.floor(Math.random()*14)+2]);
-            }, 1200);*/
+            }, 1200);
 
           </script>
       </html>
