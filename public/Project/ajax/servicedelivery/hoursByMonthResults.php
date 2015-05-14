@@ -213,7 +213,7 @@ else{
 
   }
   else{
-    
+
         $query = '
     SELECT     month(dbo.time_entry.date_start) as month,year(dbo.time_entry.date_start) as year,
 
@@ -230,7 +230,7 @@ else{
 
     group by month(dbo.time_entry.date_start),year(dbo.time_entry.date_start)
     order by year(dbo.time_entry.date_start),month(dbo.time_entry.date_start)';
-    
+
   }
 
 }
