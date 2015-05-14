@@ -101,10 +101,9 @@
             <a class="navmenu-brand" href="#"><span><img src="../../css/assets/Lightbulb-only-icon-64.png" alt="" /></span> ANS Intelligence</a>
             <ul class="nav navmenu-nav">
               <li><a href="../home/">Home</a></li>
-              <li class="active"><a href="../solutiondelivery/">Solution Delivery</a></li>
+              <li class="active"><a href="../solution delivery/">Solution Delivery</a></li>
               <li><a href="../managedservices/">Managed Services</a></li>
-              <li><a href="#">Service Delivery</a></li>
-              <li><a href="../fieldservices/">Field Services</a></li>
+              <li><a href="../servicedelivery/">Service Delivery</a></li>
               <li><a href="../clientservices/">Client Services</a></li>
               <li><a href="../resultsphysiotherapy/">Results Physiotherapy</a></li>
               <li><a href="../sales/">Sales</a></li>
@@ -114,7 +113,7 @@
             <ul class="nav navmenu-nav">
               <li><a href="../admin/">Admin</a></li>
             </ul>
-          </div>
+        </div>
 
         <div class="navbar navbar-default navbar-fixed-top">
           <button style="display: block;float: left; margin-left: 15px;" type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body">
