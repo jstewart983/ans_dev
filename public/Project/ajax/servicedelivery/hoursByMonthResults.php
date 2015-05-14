@@ -118,7 +118,7 @@ else{
   order by year(dbo.time_entry.date_entered_utc),month(dbo.time_entry.date_entered_utc)';
 }
 
-}else{
+}else if(strpos($path,'servicedelivery') !== false) {
 
   if(isset($_GET['range1']) && isset($_GET['range2']) && isset($_GET['company']) && isset($_GET['type'])){
 

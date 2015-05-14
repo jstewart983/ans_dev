@@ -1,5 +1,5 @@
 <?php
-$admins = array('jcufr','cwhite','bflippo','jstewart','rpinson','gsummey','gsummey@ansolutions.com','aholst','plane@ansolutions.com','plane','jclauer','jclauer@ansolutions.com');
+$admins = array('nkimes','nkimes@ansolutions.com','jcufr','cwhite','bflippo','jstewart','rpinson','gsummey','gsummey@ansolutions.com','aholst','plane@ansolutions.com','plane','Jclauer','jclauer@ansolutions.com');
 $user_group = array('jclauer','aholst','jkindt','cleggett','nkimes','kcraftjenkins','fgroenert');
 /**
 /**

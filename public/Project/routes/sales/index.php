@@ -1,5 +1,5 @@
 <?php
-$admins = array('cwhite','bflippo','jstewart','rpinson','gsummey','gsummey@ansolutions.com','aholst','plane@ansolutions.com','plane','jclauer','jclauer@ansolutions.com');
+$admins = array('nkimes','nkimes@ansolutions.com','cwhite','bflippo','jstewart','rpinson','gsummey','gsummey@ansolutions.com','aholst','plane@ansolutions.com','plane','Jclauer','jclauer@ansolutions.com');
 $user_group = array('jcufr','jlaudin','ckelly','sthorsen','jmiser','fmonroe','pcrocker');
 /**
  * A simple, clean and secure PHP Login Script / MINIMAL VERSION
