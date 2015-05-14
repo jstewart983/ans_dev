@@ -136,7 +136,8 @@ else{
                           left outer join company on time_entry.company_recid = company.company_recid
                           left outer join sr_service on time_entry.sr_service_recid = sr_service.sr_service_recid
                           left outer join  sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
-    WHERE sr_type.description = "'.$type.'" and company.company_name = "'.$company.'"  and (convert(char(10), dbo.time_entry.date_entered_utc, 120) >="'.$range1.'" and convert(char(10), dbo.time_entry.date_entered_utc, 120) <= "'.$range2.'")
+                          left outer join sr_board on sr_service.sr_board_recid = sr_board.sr_board_recid
+    WHERE (dbo.SR_Board.Board_Name = "My Company/Service" or dbo.SR_Board.Board_Name = "Alerts - Service Delivery" or dbo.SR_Board.Board_Name = "Results Physiotherapy" or dbo.SR_Board.Board_Name="Results - Initiatives") and  sr_type.description = "'.$type.'" and company.company_name =       "'.$company.'"  and (convert(char(10), dbo.time_entry.date_entered_utc, 120)     >="'.$range1.'" and convert(char(10), dbo.time_entry.date_entered_utc, 120) <= "'.$range2.'")
 
     group by day(time_entry.date_entered_utc),month(time_entry.date_entered_utc),year(time_entry.date_entered_utc)
     order by year(time_entry.date_entered_utc),month(time_entry.date_entered_utc),day(time_entry.date_entered_utc) ';
@@ -156,7 +157,8 @@ else{
                           left outer join company on time_entry.company_recid = company.company_recid
                           left outer join sr_service on time_entry.sr_service_recid = sr_service.sr_service_recid
                           left outer join  sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
-    WHERE sr_type.description = "'.$type.'" and  (convert(char(10), dbo.time_entry.date_entered_utc, 120) >="'.$range1.'" and convert(char(10), dbo.time_entry.date_entered_utc, 120) <= "'.$range2.'")
+                              left outer join sr_board on sr_service.sr_board_recid = sr_board.sr_board_recid
+    WHERE (dbo.SR_Board.Board_Name = "My Company/Service" or dbo.SR_Board.Board_Name = "Alerts - Service Delivery" or dbo.SR_Board.Board_Name = "Results Physiotherapy" or dbo.SR_Board.Board_Name="Results - Initiatives") and sr_type.description = "'.$type.'" and  (convert(char(10), dbo.time_entry.date_entered_utc, 120) >="'.$range1.'" and convert(char(10), dbo.time_entry.date_entered_utc, 120) <= "'.$range2.'")
 
     group by day(time_entry.date_entered_utc),month(time_entry.date_entered_utc),year(time_entry.date_entered_utc)
     order by year(time_entry.date_entered_utc),month(time_entry.date_entered_utc),day(time_entry.date_entered_utc) ';
@@ -178,7 +180,8 @@ else{
                           left outer join company on time_entry.company_recid = company.company_recid
                           left outer join sr_service on time_entry.sr_service_recid = sr_service.sr_service_recid
                           left outer join sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
-    WHERE company.company_name = "'.$company.'"  and (convert(char(10), dbo.time_entry.date_entered_utc, 120) >="'.$range1.'" and convert(char(10), dbo.time_entry.date_entered_utc, 120) <= "'.$range2.'")
+                             left outer join sr_board on sr_service.sr_board_recid = sr_board.sr_board_recid
+    WHERE (dbo.SR_Board.Board_Name = "My Company/Service" or dbo.SR_Board.Board_Name = "Alerts - Service Delivery" or dbo.SR_Board.Board_Name = "Results Physiotherapy" or dbo.SR_Board.Board_Name="Results - Initiatives") and company.company_name = "'.$company.'"  and (convert(char(10), dbo.time_entry.date_entered_utc, 120) >="'.$range1.'" and convert(char(10), dbo.time_entry.date_entered_utc, 120) <= "'.$range2.'")
 
     group by day(time_entry.date_entered_utc),month(time_entry.date_entered_utc),year(time_entry.date_entered_utc)
     order by year(time_entry.date_entered_utc),month(time_entry.date_entered_utc),day(time_entry.date_entered_utc) ';
@@ -201,7 +204,8 @@ else{
                           left outer join company on time_entry.company_recid = company.company_recid
                           left outer join sr_service on time_entry.sr_service_recid = sr_service.sr_service_recid
                           left outer join sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
-    WHERE (convert(char(10), dbo.time_entry.date_entered_utc, 120) >="'.$range1.'" and convert(char(10), dbo.time_entry.date_entered_utc, 120) <= "'.$range2.'")
+                              left outer join sr_board on sr_service.sr_board_recid = sr_board.sr_board_recid
+    WHERE (dbo.SR_Board.Board_Name = "My Company/Service" or dbo.SR_Board.Board_Name = "Alerts - Service Delivery" or dbo.SR_Board.Board_Name = "Results Physiotherapy" or dbo.SR_Board.Board_Name="Results - Initiatives") and (convert(char(10), dbo.time_entry.date_entered_utc, 120) >="'.$range1.'" and convert(char(10), dbo.time_entry.date_entered_utc, 120) <= "'.$range2.'")
 
     group by day(time_entry.date_entered_utc),month(time_entry.date_entered_utc),year(time_entry.date_entered_utc)
     order by year(time_entry.date_entered_utc),month(time_entry.date_entered_utc),day(time_entry.date_entered_utc) ';
