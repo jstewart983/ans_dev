@@ -16,7 +16,7 @@ if (strpos($path,'managedservices') !== false) {
     $company = $_GET['company'];
     $type = $_GET['type'];
     $query = '
-    SELECT   month(dbo.time_entry.date_entered_utc) as month,day(time_entry.date_entered_utc) as day,year(dbo.time_entry.date_entered_utc) as year,
+    SELECT   month(dbo.time_entry.date_start) as month,day(time_entry.date_start) as day,year(dbo.time_entry.date_start) as year,
 
     SUM(time_entry.Hours_Actual) as Billable_Hours
     FROM         dbo.Time_Entry LEFT OUTER JOIN
@@ -26,10 +26,10 @@ if (strpos($path,'managedservices') !== false) {
                           left outer join sr_service on time_entry.sr_service_recid = sr_service.sr_service_recid
                           left outer join  sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
                           left outer join sr_board on sr_service.sr_board_recid = sr_board.sr_board_recid
-    WHERE (dbo.SR_Board.Board_Name = "BackOffice" or dbo.SR_Board.Board_Name = "Managed Services Requests" or dbo.SR_Board.Board_Name = "" or dbo.SR_Board.Board_Name="LogicMonitor") and sr_type.description = "'.$type.'" and company.company_name = "'.$company.'"  and (convert(char(10), dbo.time_entry.date_entered_utc, 120) >="'.$range1.'" and convert(char(10), dbo.time_entry.date_entered_utc, 120) <= "'.$range2.'")
+    WHERE (dbo.SR_Board.Board_Name = "BackOffice" or dbo.SR_Board.Board_Name = "Managed Services Requests" or dbo.SR_Board.Board_Name = "" or dbo.SR_Board.Board_Name="LogicMonitor") and sr_type.description = "'.$type.'" and company.company_name = "'.$company.'"  and (convert(char(10), dbo.time_entry.date_start, 120) >="'.$range1.'" and convert(char(10), dbo.time_entry.date_start, 120) <= "'.$range2.'")
 
-    group by day(time_entry.date_entered_utc),month(time_entry.date_entered_utc),year(time_entry.date_entered_utc)
-    order by year(time_entry.date_entered_utc),month(time_entry.date_entered_utc),day(time_entry.date_entered_utc) ';
+    group by day(time_entry.date_start),month(time_entry.date_start),year(time_entry.date_start)
+    order by year(time_entry.date_start),month(time_entry.date_start),day(time_entry.date_start) ';
 
   }else if(isset($_GET['range1']) && isset($_GET['range2']) && isset($_GET['type'])){
     $range1 = $_GET['range1'];
@@ -37,7 +37,7 @@ if (strpos($path,'managedservices') !== false) {
     //$company = $_GET['company'];
     $type = $_GET['type'];
     $query = '
-    SELECT   month(dbo.time_entry.date_entered_utc) as month,day(time_entry.date_entered_utc) as day,year(dbo.time_entry.date_entered_utc) as year,
+    SELECT   month(dbo.time_entry.date_start) as month,day(time_entry.date_start) as day,year(dbo.time_entry.date_start) as year,
 
     SUM(time_entry.Hours_Actual) as Billable_Hours
     FROM         dbo.Time_Entry LEFT OUTER JOIN
@@ -47,10 +47,10 @@ if (strpos($path,'managedservices') !== false) {
                           left outer join sr_service on time_entry.sr_service_recid = sr_service.sr_service_recid
                           left outer join  sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
                           left outer join sr_board on sr_service.sr_board_recid = sr_board.sr_board_recid
-    WHERE (dbo.SR_Board.Board_Name = "BackOffice" or dbo.SR_Board.Board_Name = "Managed Services Requests" or dbo.SR_Board.Board_Name = "" or dbo.SR_Board.Board_Name="LogicMonitor") and sr_type.description = "'.$type.'" and  (convert(char(10), dbo.time_entry.date_entered_utc, 120) >="'.$range1.'" and convert(char(10), dbo.time_entry.date_entered_utc, 120) <= "'.$range2.'")
+    WHERE (dbo.SR_Board.Board_Name = "BackOffice" or dbo.SR_Board.Board_Name = "Managed Services Requests" or dbo.SR_Board.Board_Name = "" or dbo.SR_Board.Board_Name="LogicMonitor") and sr_type.description = "'.$type.'" and  (convert(char(10), dbo.time_entry.date_start, 120) >="'.$range1.'" and convert(char(10), dbo.time_entry.date_start, 120) <= "'.$range2.'")
 
-    group by day(time_entry.date_entered_utc),month(time_entry.date_entered_utc),year(time_entry.date_entered_utc)
-    order by year(time_entry.date_entered_utc),month(time_entry.date_entered_utc),day(time_entry.date_entered_utc) ';
+    group by day(time_entry.date_start),month(time_entry.date_start),year(time_entry.date_start)
+    order by year(time_entry.date_start),month(time_entry.date_start),day(time_entry.date_start) ';
 
 
 
@@ -60,7 +60,7 @@ if (strpos($path,'managedservices') !== false) {
     $company = $_GET['company'];
     //$type = $_GET['type'];
     $query = '
-    SELECT   month(dbo.time_entry.date_entered_utc) as month,day(time_entry.date_entered_utc) as day,year(dbo.time_entry.date_entered_utc) as year,
+    SELECT   month(dbo.time_entry.date_start) as month,day(time_entry.date_start) as day,year(dbo.time_entry.date_start) as year,
 
     SUM(time_entry.Hours_Actual) as Billable_Hours
     FROM         dbo.Time_Entry LEFT OUTER JOIN
@@ -70,10 +70,10 @@ if (strpos($path,'managedservices') !== false) {
                           left outer join sr_service on time_entry.sr_service_recid = sr_service.sr_service_recid
                           left outer join sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
                           left outer join sr_board on sr_service.sr_board_recid = sr_board.sr_board_recid
-    WHERE (dbo.SR_Board.Board_Name = "BackOffice" or dbo.SR_Board.Board_Name = "Managed Services Requests" or dbo.SR_Board.Board_Name = "" or dbo.SR_Board.Board_Name="LogicMonitor") and company.company_name = "'.$company.'"  and (convert(char(10), dbo.time_entry.date_entered_utc, 120) >="'.$range1.'" and convert(char(10), dbo.time_entry.date_entered_utc, 120) <= "'.$range2.'")
+    WHERE (dbo.SR_Board.Board_Name = "BackOffice" or dbo.SR_Board.Board_Name = "Managed Services Requests" or dbo.SR_Board.Board_Name = "" or dbo.SR_Board.Board_Name="LogicMonitor") and company.company_name = "'.$company.'"  and (convert(char(10), dbo.time_entry.date_start, 120) >="'.$range1.'" and convert(char(10), dbo.time_entry.date_start, 120) <= "'.$range2.'")
 
-    group by day(time_entry.date_entered_utc),month(time_entry.date_entered_utc),year(time_entry.date_entered_utc)
-    order by year(time_entry.date_entered_utc),month(time_entry.date_entered_utc),day(time_entry.date_entered_utc) ';
+    group by day(time_entry.date_start),month(time_entry.date_start),year(time_entry.date_start)
+    order by year(time_entry.date_start),month(time_entry.date_start),day(time_entry.date_start) ';
 
 
   }else if(isset($_GET['range1']) && isset($_GET['range2'])){
@@ -83,7 +83,7 @@ if (strpos($path,'managedservices') !== false) {
     //$type = $_GET['type'];
 
     $query = '
-    SELECT   month(dbo.time_entry.date_entered_utc) as month,day(time_entry.date_entered_utc) as day,year(dbo.time_entry.date_entered_utc) as year,
+    SELECT   month(dbo.time_entry.date_start) as month,day(time_entry.date_start) as day,year(dbo.time_entry.date_start) as year,
 
     SUM(time_entry.Hours_Actual) as Billable_Hours
 
@@ -94,16 +94,16 @@ if (strpos($path,'managedservices') !== false) {
                           left outer join sr_service on time_entry.sr_service_recid = sr_service.sr_service_recid
                           left outer join sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
                           left outer join sr_board on sr_service.sr_board_recid = sr_board.sr_board_recid
-    WHERE (dbo.SR_Board.Board_Name = "BackOffice" or dbo.SR_Board.Board_Name = "Managed Services Requests" or dbo.SR_Board.Board_Name = "" or dbo.SR_Board.Board_Name="LogicMonitor") and (convert(char(10), dbo.time_entry.date_entered_utc, 120) >="'.$range1.'" and convert(char(10), dbo.time_entry.date_entered_utc, 120) <= "'.$range2.'")
+    WHERE (dbo.SR_Board.Board_Name = "BackOffice" or dbo.SR_Board.Board_Name = "Managed Services Requests" or dbo.SR_Board.Board_Name = "" or dbo.SR_Board.Board_Name="LogicMonitor") and (convert(char(10), dbo.time_entry.date_start, 120) >="'.$range1.'" and convert(char(10), dbo.time_entry.date_start, 120) <= "'.$range2.'")
 
-    group by day(time_entry.date_entered_utc),month(time_entry.date_entered_utc),year(time_entry.date_entered_utc)
-    order by year(time_entry.date_entered_utc),month(time_entry.date_entered_utc),day(time_entry.date_entered_utc) ';
+    group by day(time_entry.date_start),month(time_entry.date_start),year(time_entry.date_start)
+    order by year(time_entry.date_start),month(time_entry.date_start),day(time_entry.date_start) ';
 
 
   }
 else{
   $query = '
-  SELECT   month(dbo.time_entry.date_entered_utc) as month,year(dbo.time_entry.date_entered_utc) as year,
+  SELECT   month(dbo.time_entry.date_start) as month,year(dbo.time_entry.date_start) as year,
 
   SUM(time_entry.Hours_Actual) AS Billable_Hours
   FROM         dbo.Time_Entry LEFT OUTER JOIN
@@ -112,10 +112,10 @@ else{
                         left outer join company on company.company_recid = time_entry.company_recid
                         left outer join sr_service on time_entry.sr_service_recid = sr_service.sr_service_recid
                         left outer join sr_board on sr_service.sr_board_recid = sr_board.sr_board_recid
-  WHERE (dbo.SR_Board.Board_Name = "BackOffice" or dbo.SR_Board.Board_Name = "Managed Services Requests" or dbo.SR_Board.Board_Name = "" or dbo.SR_Board.Board_Name="LogicMonitor") and  (convert(char(6), dbo.time_entry.date_entered_utc, 112) <> convert(char(6), getdate(), 112) and year(time_entry.date_entered_utc) > year(getdate())-2)
+  WHERE (dbo.SR_Board.Board_Name = "BackOffice" or dbo.SR_Board.Board_Name = "Managed Services Requests" or dbo.SR_Board.Board_Name = "" or dbo.SR_Board.Board_Name="LogicMonitor") and  (convert(char(6), dbo.time_entry.date_start, 112) <> convert(char(6), getdate(), 112) and year(time_entry.date_start) > year(getdate())-2)
 
-  group by month(dbo.time_entry.date_entered_utc),year(dbo.time_entry.date_entered_utc)
-  order by year(dbo.time_entry.date_entered_utc),month(dbo.time_entry.date_entered_utc)';
+  group by month(dbo.time_entry.date_start),year(dbo.time_entry.date_start)
+  order by year(dbo.time_entry.date_start),month(dbo.time_entry.date_start)';
 }
 
 }else if(strpos($path,'servicedelivery') !== false) {
@@ -127,7 +127,7 @@ else{
     $company = $_GET['company'];
     $type = $_GET['type'];
     $query = '
-    SELECT   month(dbo.time_entry.date_entered_utc) as month,day(time_entry.date_entered_utc) as day,year(dbo.time_entry.date_entered_utc) as year,
+    SELECT   month(dbo.time_entry.date_start) as month,day(time_entry.date_start) as day,year(dbo.time_entry.date_start) as year,
 
     SUM(time_entry.Hours_Actual) as Billable_Hours
     FROM         dbo.Time_Entry LEFT OUTER JOIN
@@ -137,10 +137,10 @@ else{
                           left outer join sr_service on time_entry.sr_service_recid = sr_service.sr_service_recid
                           left outer join  sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
                           left outer join sr_board on sr_service.sr_board_recid = sr_board.sr_board_recid
-    WHERE (dbo.SR_Board.Board_Name = "My Company/Service" or dbo.SR_Board.Board_Name = "Alerts - Service Delivery" or dbo.SR_Board.Board_Name = "Results Physiotherapy" or dbo.SR_Board.Board_Name="Results - Initiatives") and  sr_type.description = "'.$type.'" and company.company_name =       "'.$company.'"  and (convert(char(10), dbo.time_entry.date_entered_utc, 120)     >="'.$range1.'" and convert(char(10), dbo.time_entry.date_entered_utc, 120) <= "'.$range2.'")
+    WHERE (dbo.SR_Board.Board_Name = "My Company/Service" or dbo.SR_Board.Board_Name = "Alerts - Service Delivery" or dbo.SR_Board.Board_Name = "Results Physiotherapy" or dbo.SR_Board.Board_Name="Results - Initiatives") and  sr_type.description = "'.$type.'" and company.company_name =       "'.$company.'"  and (convert(char(10), dbo.time_entry.date_start, 120)     >="'.$range1.'" and convert(char(10), dbo.time_entry.date_start, 120) <= "'.$range2.'")
 
-    group by day(time_entry.date_entered_utc),month(time_entry.date_entered_utc),year(time_entry.date_entered_utc)
-    order by year(time_entry.date_entered_utc),month(time_entry.date_entered_utc),day(time_entry.date_entered_utc) ';
+    group by day(time_entry.date_start),month(time_entry.date_start),year(time_entry.date_start)
+    order by year(time_entry.date_start),month(time_entry.date_start),day(time_entry.date_start) ';
 
   }else if(isset($_GET['range1']) && isset($_GET['range2']) && isset($_GET['type'])){
     $range1 = $_GET['range1'];
@@ -148,7 +148,7 @@ else{
     //$company = $_GET['company'];
     $type = $_GET['type'];
     $query = '
-    SELECT   month(dbo.time_entry.date_entered_utc) as month,day(time_entry.date_entered_utc) as day,year(dbo.time_entry.date_entered_utc) as year,
+    SELECT   month(dbo.time_entry.date_start) as month,day(time_entry.date_start) as day,year(dbo.time_entry.date_start) as year,
 
     SUM(time_entry.Hours_Actual) as Billable_Hours
     FROM         dbo.Time_Entry LEFT OUTER JOIN
@@ -158,10 +158,10 @@ else{
                           left outer join sr_service on time_entry.sr_service_recid = sr_service.sr_service_recid
                           left outer join  sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
                               left outer join sr_board on sr_service.sr_board_recid = sr_board.sr_board_recid
-    WHERE (dbo.SR_Board.Board_Name = "My Company/Service" or dbo.SR_Board.Board_Name = "Alerts - Service Delivery" or dbo.SR_Board.Board_Name = "Results Physiotherapy" or dbo.SR_Board.Board_Name="Results - Initiatives") and sr_type.description = "'.$type.'" and  (convert(char(10), dbo.time_entry.date_entered_utc, 120) >="'.$range1.'" and convert(char(10), dbo.time_entry.date_entered_utc, 120) <= "'.$range2.'")
+    WHERE (dbo.SR_Board.Board_Name = "My Company/Service" or dbo.SR_Board.Board_Name = "Alerts - Service Delivery" or dbo.SR_Board.Board_Name = "Results Physiotherapy" or dbo.SR_Board.Board_Name="Results - Initiatives") and sr_type.description = "'.$type.'" and  (convert(char(10), dbo.time_entry.date_start, 120) >="'.$range1.'" and convert(char(10), dbo.time_entry.date_start, 120) <= "'.$range2.'")
 
-    group by day(time_entry.date_entered_utc),month(time_entry.date_entered_utc),year(time_entry.date_entered_utc)
-    order by year(time_entry.date_entered_utc),month(time_entry.date_entered_utc),day(time_entry.date_entered_utc) ';
+    group by day(time_entry.date_start),month(time_entry.date_start),year(time_entry.date_start)
+    order by year(time_entry.date_start),month(time_entry.date_start),day(time_entry.date_start) ';
 
 
 
@@ -171,7 +171,7 @@ else{
     $company = $_GET['company'];
     //$type = $_GET['type'];
     $query = '
-    SELECT   month(dbo.time_entry.date_entered_utc) as month,day(time_entry.date_entered_utc) as day,year(dbo.time_entry.date_entered_utc) as year,
+    SELECT   month(dbo.time_entry.date_start) as month,day(time_entry.date_start) as day,year(dbo.time_entry.date_start) as year,
 
     SUM(time_entry.Hours_Actual) as Billable_Hours
     FROM         dbo.Time_Entry LEFT OUTER JOIN
@@ -181,10 +181,10 @@ else{
                           left outer join sr_service on time_entry.sr_service_recid = sr_service.sr_service_recid
                           left outer join sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
                              left outer join sr_board on sr_service.sr_board_recid = sr_board.sr_board_recid
-    WHERE (dbo.SR_Board.Board_Name = "My Company/Service" or dbo.SR_Board.Board_Name = "Alerts - Service Delivery" or dbo.SR_Board.Board_Name = "Results Physiotherapy" or dbo.SR_Board.Board_Name="Results - Initiatives") and company.company_name = "'.$company.'"  and (convert(char(10), dbo.time_entry.date_entered_utc, 120) >="'.$range1.'" and convert(char(10), dbo.time_entry.date_entered_utc, 120) <= "'.$range2.'")
+    WHERE (dbo.SR_Board.Board_Name = "My Company/Service" or dbo.SR_Board.Board_Name = "Alerts - Service Delivery" or dbo.SR_Board.Board_Name = "Results Physiotherapy" or dbo.SR_Board.Board_Name="Results - Initiatives") and company.company_name = "'.$company.'"  and (convert(char(10), dbo.time_entry.date_start, 120) >="'.$range1.'" and convert(char(10), dbo.time_entry.date_start, 120) <= "'.$range2.'")
 
-    group by day(time_entry.date_entered_utc),month(time_entry.date_entered_utc),year(time_entry.date_entered_utc)
-    order by year(time_entry.date_entered_utc),month(time_entry.date_entered_utc),day(time_entry.date_entered_utc) ';
+    group by day(time_entry.date_start),month(time_entry.date_start),year(time_entry.date_start)
+    order by year(time_entry.date_start),month(time_entry.date_start),day(time_entry.date_start) ';
 
 
   }else if(isset($_GET['range1']) && isset($_GET['range2'])){
@@ -194,7 +194,7 @@ else{
     //$type = $_GET['type'];
 
     $query = '
-    SELECT   month(dbo.time_entry.date_entered_utc) as month,day(time_entry.date_entered_utc) as day,year(dbo.time_entry.date_entered_utc) as year,
+    SELECT   month(dbo.time_entry.date_start) as month,day(time_entry.date_start) as day,year(dbo.time_entry.date_start) as year,
 
     SUM(time_entry.Hours_Actual) as Billable_Hours
 
@@ -205,58 +205,80 @@ else{
                           left outer join sr_service on time_entry.sr_service_recid = sr_service.sr_service_recid
                           left outer join sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
                               left outer join sr_board on sr_service.sr_board_recid = sr_board.sr_board_recid
-    WHERE (dbo.SR_Board.Board_Name = "My Company/Service" or dbo.SR_Board.Board_Name = "Alerts - Service Delivery" or dbo.SR_Board.Board_Name = "Results Physiotherapy" or dbo.SR_Board.Board_Name="Results - Initiatives") and (convert(char(10), dbo.time_entry.date_entered_utc, 120) >="'.$range1.'" and convert(char(10), dbo.time_entry.date_entered_utc, 120) <= "'.$range2.'")
+    WHERE (dbo.SR_Board.Board_Name = "My Company/Service" or dbo.SR_Board.Board_Name = "Alerts - Service Delivery" or dbo.SR_Board.Board_Name = "Results Physiotherapy" or dbo.SR_Board.Board_Name="Results - Initiatives") and (convert(char(10), dbo.time_entry.date_start, 120) >="'.$range1.'" and convert(char(10), dbo.time_entry.date_start, 120) <= "'.$range2.'")
 
-    group by day(time_entry.date_entered_utc),month(time_entry.date_entered_utc),year(time_entry.date_entered_utc)
-    order by year(time_entry.date_entered_utc),month(time_entry.date_entered_utc),day(time_entry.date_entered_utc) ';
-
-
-  }else if (strpos($path,'results') !== false) {
-
-    $query = '
-    SELECT   month(dbo.time_entry.date_entered_utc) as month,year(dbo.time_entry.date_entered_utc) as year,
-
-    SUM(time_entry.Hours_Actual) AS Billable_Hours
-    FROM         dbo.Time_Entry LEFT OUTER JOIN
-                          dbo.TE_Charge_Code ON dbo.Time_Entry.TE_Charge_Code_RecID = dbo.TE_Charge_Code.TE_Charge_Code_RecID LEFT OUTER JOIN
-                          dbo.Member ON dbo.Time_Entry.Member_RecID = dbo.Member.Member_RecID
-                          left outer join company on company.company_recid = time_entry.company_recid
-    WHERE  company_name = "Results Physiotherapy" and (convert(char(6), dbo.time_entry.date_entered_utc, 112) <> convert(char(6), getdate(), 112) and year(time_entry.date_entered_utc) > year(getdate())-2)
-
-    group by month(dbo.time_entry.date_entered_utc),year(dbo.time_entry.date_entered_utc)
-    order by year(dbo.time_entry.date_entered_utc),month(dbo.time_entry.date_entered_utc)';
-
+    group by day(time_entry.date_start),month(time_entry.date_start),year(time_entry.date_start)
+    order by year(time_entry.date_start),month(time_entry.date_start),day(time_entry.date_start) ';
 
 
   }
-
   else{
-
-
-    $query = '
-    SELECT   month(dbo.time_entry.date_entered_utc) as month,year(dbo.time_entry.date_entered_utc) as year,
+    
+        $query = '
+    SELECT     month(dbo.time_entry.date_start) as month,year(dbo.time_entry.date_start) as year,
 
     SUM(time_entry.Hours_Actual) AS Billable_Hours
+
     FROM         dbo.Time_Entry LEFT OUTER JOIN
                           dbo.TE_Charge_Code ON dbo.Time_Entry.TE_Charge_Code_RecID = dbo.TE_Charge_Code.TE_Charge_Code_RecID LEFT OUTER JOIN
                           dbo.Member ON dbo.Time_Entry.Member_RecID = dbo.Member.Member_RecID
-                          left outer join company on company.company_recid = time_entry.company_recid
-    WHERE  (convert(char(6), dbo.time_entry.date_entered_utc, 112) <> convert(char(6), getdate(), 112) and year(time_entry.date_entered_utc) > year(getdate())-2)
+                          left outer join company on time_entry.company_recid = company.company_recid
+                          left outer join sr_service on time_entry.sr_service_recid = sr_service.sr_service_recid
+                          left outer join sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
+                              left outer join sr_board on sr_service.sr_board_recid = sr_board.sr_board_recid
+    WHERE (dbo.SR_Board.Board_Name = "My Company/Service" or dbo.SR_Board.Board_Name = "Alerts - Service Delivery" or dbo.SR_Board.Board_Name = "Results Physiotherapy" or dbo.SR_Board.Board_Name="Results - Initiatives") and (convert(char(6), dbo.time_entry.date_start, 112) <> convert(char(6), getdate(), 112) and year(time_entry.date_start) > year(getdate())-2)
 
-    group by month(dbo.time_entry.date_entered_utc),year(dbo.time_entry.date_entered_utc)
-    order by year(dbo.time_entry.date_entered_utc),month(dbo.time_entry.date_entered_utc)';
-
-
+    group by month(dbo.time_entry.date_start),year(dbo.time_entry.date_start)
+    order by year(dbo.time_entry.date_start),month(dbo.time_entry.date_start)';
+    
   }
-
 
 }
+else if (strpos($path,'results') !== false) {
+
+    $query = '
+    SELECT   month(dbo.time_entry.date_start) as month,year(dbo.time_entry.date_start) as year,
+
+    SUM(time_entry.Hours_Actual) AS Billable_Hours
+    FROM         dbo.Time_Entry LEFT OUTER JOIN
+                          dbo.TE_Charge_Code ON dbo.Time_Entry.TE_Charge_Code_RecID = dbo.TE_Charge_Code.TE_Charge_Code_RecID LEFT OUTER JOIN
+                          dbo.Member ON dbo.Time_Entry.Member_RecID = dbo.Member.Member_RecID
+                          left outer join company on company.company_recid = time_entry.company_recid
+    WHERE  company_name = "Results Physiotherapy" and (convert(char(6), dbo.time_entry.date_start, 112) <> convert(char(6), getdate(), 112) and year(time_entry.date_start) > year(getdate())-2)
+
+    group by month(dbo.time_entry.date_start),year(dbo.time_entry.date_start)
+    order by year(dbo.time_entry.date_start),month(dbo.time_entry.date_start)';
+
+
+
+  }
+  /*else{
+
+
+    $query = '
+    SELECT   month(dbo.time_entry.date_start) as month,year(dbo.time_entry.date_start) as year,
+
+    SUM(time_entry.Hours_Actual) AS Billable_Hours
+    FROM         dbo.Time_Entry LEFT OUTER JOIN
+                          dbo.TE_Charge_Code ON dbo.Time_Entry.TE_Charge_Code_RecID = dbo.TE_Charge_Code.TE_Charge_Code_RecID LEFT OUTER JOIN
+                          dbo.Member ON dbo.Time_Entry.Member_RecID = dbo.Member.Member_RecID
+                          left outer join company on company.company_recid = time_entry.company_recid
+    WHERE  (convert(char(6), dbo.time_entry.date_start, 112) <> convert(char(6), getdate(), 112) and year(time_entry.date_start) > year(getdate())-2)
+
+    group by month(dbo.time_entry.date_start),year(dbo.time_entry.date_start)
+    order by year(dbo.time_entry.date_start),month(dbo.time_entry.date_start)';
+
+
+  }*/
+
+
+
 
 
 /*}else{
 
   $query = '
-  SELECT   month(dbo.time_entry.date_entered_utc) as month,year(dbo.time_entry.date_entered_utc) as year,
+  SELECT   month(dbo.time_entry.date_start) as month,year(dbo.time_entry.date_start) as year,
 
   SUM(time_entry.Hours_Actual) AS Billable_Hours
   FROM         dbo.Time_Entry LEFT OUTER JOIN
@@ -282,10 +304,10 @@ else{
   dbo.Member.Member_id = "jdumouchel" or
   dbo.Member.Member_id = "jfitzwater" or
   dbo.Member.Member_id = "pfenech" or dbo.Member.Member_id = "zhoover") and
-  (convert(char(6), dbo.time_entry.date_entered_utc, 112) <> convert(char(6), getdate(), 112) and year(time_entry.date_entered_utc) > year(getdate())-2)
+  (convert(char(6), dbo.time_entry.date_start, 112) <> convert(char(6), getdate(), 112) and year(time_entry.date_start) > year(getdate())-2)
 
-  group by month(dbo.time_entry.date_entered_utc),year(dbo.time_entry.date_entered_utc)
-  order by year(dbo.time_entry.date_entered_utc),month(dbo.time_entry.date_entered_utc)';
+  group by month(dbo.time_entry.date_start),year(dbo.time_entry.date_start)
+  order by year(dbo.time_entry.date_start),month(dbo.time_entry.date_start)';
 
 }*/
 
