@@ -22,7 +22,7 @@ $path = parse_url($actual_link,PHP_URL_PATH);
       left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
       left outer join company on company.company_recid = sr_service.company_recid
       left outer join sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
-      where (dbo.SR_Board.Board_Name = "BackOffice" or dbo.SR_Board.Board_Name = "Managed Services Requests" or dbo.SR_Board.Board_Name = "" or dbo.SR_Board.Board_Name="LogicMonitor") and sr_type.description = "'.$type.'" and company.company_name = "'.$company.'"  and (sr_service.date_entered >="'.$range1.'" and sr_service.date_entered <= "'.$range2.'")
+      where (dbo.SR_Board.Board_Name = "BackOffice" or dbo.SR_Board.Board_Name = "Managed Services Requests" or dbo.SR_Board.Board_Name = "" or dbo.SR_Board.Board_Name="LogicMonitor") and sr_type.description = "'.$type.'" and company.company_name = "'.$company.'"  and (sr_service.date_entered   >="'.$range1.'" and sr_service.date_entered <= "'.$range2.'")
       group by day(sr_service.date_entered),month(sr_service.Date_Entered),year(sr_service.Date_Entered)
       order by year(sr_service.Date_Entered),month(sr_service.Date_Entered),day(sr_service.date_entered)';
 
@@ -90,7 +90,7 @@ $path = parse_url($actual_link,PHP_URL_PATH);
     left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
     left outer join company on company.company_recid = sr_service.company_recid
     left outer join sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
-    where sr_type.description = "'.$type.'" and company.company_name = "'.$company.'"  and (sr_service.date_entered >="'.$range1.'" and sr_service.date_entered <= "'.$range2.'")
+    WHERE (dbo.SR_Board.Board_Name = "My Company/Service" or dbo.SR_Board.Board_Name = "Alerts - Service Delivery" or dbo.SR_Board.Board_Name = "Results Physiotherapy" or dbo.SR_Board.Board_Name="Results - Initiatives") and sr_type.description = "'.$type.'" and company.company_name = "'.$company.'"     and (sr_service.date_entered >="'.$range1.'" and sr_service.date_entered <= "'.$range2.'")
     group by day(sr_service.date_entered),month(sr_service.Date_Entered),year(sr_service.Date_Entered)
     order by year(sr_service.Date_Entered),month(sr_service.Date_Entered),day(sr_service.date_entered)';
 
@@ -105,7 +105,7 @@ $path = parse_url($actual_link,PHP_URL_PATH);
     left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
     left outer join company on company.company_recid = sr_service.company_recid
     left outer join sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
-    where sr_type.description = "'.$type.'" and  (sr_service.date_entered >="'.$range1.'" and sr_service.date_entered <= "'.$range2.'")
+    where (dbo.SR_Board.Board_Name = "My Company/Service" or dbo.SR_Board.Board_Name = "Alerts - Service Delivery" or dbo.SR_Board.Board_Name = "Results Physiotherapy" or dbo.SR_Board.Board_Name="Results - Initiatives") and sr_type.description = "'.$type.'" and  (sr_service.date_entered >="'.$range1.'" and sr_service.date_entered <= "'.$range2.'")
     group by day(sr_service.date_entered),month(sr_service.Date_Entered),year(sr_service.Date_Entered)
     order by year(sr_service.Date_Entered),month(sr_service.Date_Entered),day(sr_service.date_entered)';
 
@@ -119,7 +119,7 @@ $path = parse_url($actual_link,PHP_URL_PATH);
     from dbo.SR_Service
     left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
     left outer join company on company.company_recid = sr_service.company_recid
-    where company.company_name = "'.$company.'" and (sr_service.date_entered >="'.$range1.'" and sr_service.date_entered <= "'.$range2.'")
+    where (dbo.SR_Board.Board_Name = "My Company/Service" or dbo.SR_Board.Board_Name = "Alerts - Service Delivery" or dbo.SR_Board.Board_Name = "Results Physiotherapy" or dbo.SR_Board.Board_Name="Results - Initiatives") and company.company_name = "'.$company.'" and (sr_service.date_entered >="'.$range1.'" and sr_service.date_entered <= "'.$range2.'")
     group by day(sr_service.date_entered),month(sr_service.Date_Entered),year(sr_service.Date_Entered)
     order by year(sr_service.Date_Entered),month(sr_service.Date_Entered),day(sr_service.date_entered)';
   }else if(isset($_GET['range1']) && isset($_GET['range2'])){
@@ -129,7 +129,7 @@ $path = parse_url($actual_link,PHP_URL_PATH);
     from dbo.SR_Service
     left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
     left outer join company on company.company_recid = sr_service.company_recid
-    where (sr_service.date_entered >="'.$range1.'" and sr_service.date_entered <= "'.$range2.'")
+    where (dbo.SR_Board.Board_Name = "My Company/Service" or dbo.SR_Board.Board_Name = "Alerts - Service Delivery" or dbo.SR_Board.Board_Name = "Results Physiotherapy" or dbo.SR_Board.Board_Name="Results - Initiatives") and (sr_service.date_entered >="'.$range1.'" and sr_service.date_entered <= "'.$range2.'")
     group by day(sr_service.date_entered),month(sr_service.Date_Entered),year(sr_service.Date_Entered)
     order by year(sr_service.Date_Entered),month(sr_service.Date_Entered),day(sr_service.date_entered)';
   }else if (strpos($path,'results') !== false) {
@@ -138,7 +138,7 @@ $path = parse_url($actual_link,PHP_URL_PATH);
     from dbo.SR_Service
     left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
     left outer join company on company.company_recid = sr_service.company_recid
-    where company_name= "Results Physiotherapy" and (convert(char(6), sr_service.Date_Entered, 112) <> convert(char(6), getdate(), 112) and year(sr_service.Date_Entered) > year(getdate())-2)
+    where (dbo.SR_Board.Board_Name = "My Company/Service" or dbo.SR_Board.Board_Name = "Alerts - Service Delivery" or dbo.SR_Board.Board_Name = "Results Physiotherapy" or dbo.SR_Board.Board_Name="Results - Initiatives") and company_name= "Results Physiotherapy" and (convert(char(6), sr_service.Date_Entered, 112) <> convert(char(6), getdate(), 112) and year(sr_service.Date_Entered) > year(getdate())-2)
     group by month(sr_service.Date_Entered),year(sr_service.Date_Entered)
     order by year(sr_service.Date_Entered),month(sr_service.Date_Entered) ';
 
@@ -148,7 +148,7 @@ $path = parse_url($actual_link,PHP_URL_PATH);
     from dbo.SR_Service
     left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
     left outer join company on company.company_recid = sr_service.company_recid
-    where (convert(char(6), sr_service.Date_Entered, 112) <> convert(char(6), getdate(), 112) and year(sr_service.Date_Entered) > year(getdate())-2)
+    where (dbo.SR_Board.Board_Name = "My Company/Service" or dbo.SR_Board.Board_Name = "Alerts - Service Delivery" or dbo.SR_Board.Board_Name = "Results Physiotherapy" or dbo.SR_Board.Board_Name="Results - Initiatives") and (convert(char(6), sr_service.Date_Entered, 112) <> convert(char(6), getdate(), 112) and year(sr_service.Date_Entered) > year(getdate())-2)
     group by month(sr_service.Date_Entered),year(sr_service.Date_Entered)
     order by year(sr_service.Date_Entered),month(sr_service.Date_Entered) ';
 
