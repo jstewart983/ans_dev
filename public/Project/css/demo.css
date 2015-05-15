@@ -24,7 +24,7 @@ display: none;
 }
 
 .legend {
-    width: 5em;
+    width: 20em;
 
 }
 
@@ -33,6 +33,7 @@ display: none;
     margin-bottom: 0.5em;
     line-height: 1.2em;
     padding: 0 0.3em;
+    text-align: left;
 }
 
 .legend .color-sample {

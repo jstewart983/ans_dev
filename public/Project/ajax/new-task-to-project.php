@@ -21,7 +21,7 @@ $projectId = '33538467149515'; // The project where we want to save our task
 // First we create the task
 $result = $asana->createTask(array(
     'workspace' => $workspaceId, // Workspace ID
-    'name' => $type." - ".$sessionName, // Name of task
+    'name' => $type." - ".$name, // Name of task
     'assignee' => 'nj.jstewart@gmail.com',
     'notes' => $description."\n".$_SERVER["HTTP_REFERER"]."\n".$_SERVER['HTTP_USER_AGENT'] // Assign task to...
     //'followers' => array('XXXXX', 'XXXXXXXX') // We add some followers to the task... (this time by ID), this is totally optional

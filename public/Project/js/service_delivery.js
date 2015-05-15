@@ -888,6 +888,36 @@ function getBillableLastWeek(){
 }
 
 
+function legendHours(parent, data) {
+    parent.className = 'legend';
+    var datas = data.hasOwnProperty('datasets') ? data.datasets : data;
+
+    // remove possible children of the parent
+    while(parent.hasChildNodes()) {
+        parent.removeChild(parent.lastChild);
+    }
+
+    datas.forEach(function(d) {
+        var title = document.createElement('span');
+        title.className = 'title';
+        parent.appendChild(title);
+
+        var colorSample = document.createElement('div');
+        colorSample.className = 'color-sample';
+        colorSample.style.backgroundColor = d.hasOwnProperty('strokeColor') ? d.strokeColor : d.color;
+        colorSample.style.borderColor = d.hasOwnProperty('fillColor') ? d.fillColor : d.color;
+        title.appendChild(colorSample);
+
+        var text1 = document.createTextNode(d.label);
+        var text2 = document.createTextNode(d.value);
+        var space = document.createTextNode(": ");
+        var suffix = document.createTextNode("hrs");
+        title.appendChild(text1);
+        title.appendChild(space);
+        title.appendChild(text2);
+        title.appendChild(suffix);
+    });
+}
 
 
 function topClients(value){
@@ -912,12 +942,12 @@ function topClients(value){
 });
       //console.log(json);
         //labels = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"];
-        var xlabels = [], type_count = [],colors = [];
+        var companies = [], clientHours = [],colors = [];
             for(var i = 0; i < json.length; i++) {
 
-                label:xlabels.push(json[i]["co"]);
+                label:companies.push(json[i]["co"]);
                 //value: type_count.push(json[i]["total_hours"]);
-                value: type_count.push(json[i]["clientHours"]);
+                value: clientHours.push(json[i]["clientHours"]);
                 //fillColor: colors.push (getRandomColor());
 
                 }
@@ -935,19 +965,21 @@ function getRandomColor() {
 
 
 
-doughnutData = [];
+doughnutDataHours = [];
 
 
 
-for(var i = 0; i < xlabels.length;i++){
-if(xlabels[i] != "undefined"){
-  doughnutData.push({
-    value:type_count[i],
+for(var i = 0; i < companies.length;i++){
+if(companies[i] != "undefined"){
+
+  doughnutDataHours.push({
+    value:clientHours[i],
     color:getRandomColor(),
     highlight:getRandomColor(),
-    label:xlabels[i]
+    label:companies[i]
   });
-}
+
+  }
 
 
 }
@@ -975,9 +1007,9 @@ if(xlabels[i] != "undefined"){
         $span2.fadeIn(900);
         //$span2.fadeIn(500);
 
-        var rCM = document.getElementById("clientsByHours").getContext("2d");
-        var clientHoursChart = new Chart(rCM).Doughnut(doughnutData);
-        legend(document.getElementById("clientsByHoursLegend"), doughnutData);
+        var rCM1 = document.getElementById("clientsByHours").getContext("2d");
+        var clientHoursChart = new Chart(rCM1).Doughnut(doughnutDataHours);
+        legendHours(document.getElementById("clientsByHoursLegend"), doughnutDataHours);
 
     });
 

@@ -247,7 +247,7 @@
                       <p id="clientsByHoursTitle" style="text-align:center;">Hours by Client (top 10) - This Week  <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
                 </div>
                 <div id="title"class="panel-body">
-                  <div style="margin-top:10px;" class="row">
+                  <div style="margin-top:10px;margin-bottom:5px;" class="row">
 
                     <div class="col-md-2">
 
@@ -269,13 +269,11 @@
 
                   </div>
                   <div style="text-align:center"class="col-md-3">
-                    <div  id="clientsByHoursLegend">
+                    <div stye="width:20em;text-align:left;"  id="clientsByHoursLegend">
                     </div>
                   </div>
-                  <div class="col-md-2">
 
-                  </div>
-                  <div class="col-md-8">
+                  <div class="col-md-9">
                     <canvas id ="clientsByHours"style="margin-left:-2px;padding:15px;width:90%;height:100px;"></canvas>
                   </div>
                 </div>

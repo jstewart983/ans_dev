@@ -19,6 +19,8 @@ function legend(parent, data) {
         title.appendChild(colorSample);
 
         var text = document.createTextNode(d.label);
+
         title.appendChild(text);
+
     });
 }
