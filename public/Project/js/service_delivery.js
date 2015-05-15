@@ -771,69 +771,7 @@ if(xlabels[i] != "undefined"){
 
 
 }
-//console.log(doughnutData);
-/*doughnutData = [
-                {
-                    value: type_count[0],
-                    color: getRandomColor(),
-                    highlight: getRandomColor(),
-                    label: xlabels[0]
-                },
-                {
-                    value: type_count[1],
-                    color: getRandomColor(),
-                    highlight: getRandomColor(),
-                    label: xlabels[1]
-                },
-                {
-                    value: type_count[2],
-                    color: getRandomColor(),
-                    highlight: getRandomColor(),
-                    label: xlabels[2]
-                },
-                {
-                    value: type_count[3],
-                    color: getRandomColor(),
-                    highlight: getRandomColor(),
-                    label: xlabels[3]
-                },
-                {
-                    value: type_count[4],
-                    color: getRandomColor(),
-                    highlight: getRandomColor(),
-                    label: xlabels[4]
-                },
-                {
-                    value: type_count[5],
-                    color: getRandomColor(),
-                    highlight: getRandomColor(),
-                    label: xlabels[5]
-                },
-                {
-                    value: type_count[6],
-                    color: getRandomColor(),
-                    highlight: getRandomColor(),
-                    label: xlabels[6]
-                },
-                {
-                    value: type_count[7],
-                    color: "#FDB45C",
-                    highlight: "#FFC870",
-                    label: xlabels[7]
-                },
-                {
-                    value: type_count[8],
-                    color: "#46BFBD",
-                    highlight: "#5AD3D1",
-                    label: xlabels[8]
-                },
-                {
-                    value: type_count[9],
-                    color:"#F7464A",
-                    highlight: "#FF5A5E",
-                    label: xlabels[9]
-                },
-            ];*/
+
 
 
             $("#title #ticketsByTypeTitle").fadeOut(500,function(){
@@ -950,6 +888,114 @@ function getBillableLastWeek(){
 }
 
 
+
+
+function topClients(value){
+
+  $.ajax({
+
+    type:"GET",
+    url:"../../ajax/servicedelivery/hoursByClient.php"+value,
+    success:function(json){
+
+      //console.log(json);
+      json = json.sort();
+      json.sort(function (a, b) {
+  if (a.Description > b.Description) {
+    return 1;
+  }
+  if (a.Description < b.Description) {
+    return -1;
+  }
+  // a must be equal to b
+  return 0;
+});
+      //console.log(json);
+        //labels = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"];
+        var xlabels = [], type_count = [],colors = [];
+            for(var i = 0; i < json.length; i++) {
+
+                label:xlabels.push(json[i]["co"]);
+                //value: type_count.push(json[i]["total_hours"]);
+                value: type_count.push(json[i]["clientHours"]);
+                //fillColor: colors.push (getRandomColor());
+
+                }
+
+
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+
+
+doughnutData = [];
+
+
+
+for(var i = 0; i < xlabels.length;i++){
+if(xlabels[i] != "undefined"){
+  doughnutData.push({
+    value:type_count[i],
+    color:getRandomColor(),
+    highlight:getRandomColor(),
+    label:xlabels[i]
+  });
+}
+
+
+}
+
+
+
+            $("#title #clientsByHoursTitle").fadeOut(500,function(){
+              //$title = $('#newOldTitle').text();
+              $p = $('<p id="clientsByHoursTitle"  style="text-align:center;">'+json[0]["Title"]+' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+              $("#clientsByHoursTitle").replaceWith($p);
+              $p.fadeIn(1200);
+
+            });
+
+        $('#title #clientsByHours').fadeOut(200, function() {
+
+
+
+
+
+        var $span2 = $('<canvas id="clientsByHours" style="margin-left:-2px;padding:15px;width:90%;height:90%;""></canvas>');
+        //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
+        $("#clientsByHours").replaceWith($span2);
+        //$("#openProjects").replaceWith($span2);
+        $span2.fadeIn(900);
+        //$span2.fadeIn(500);
+
+        var rCM = document.getElementById("clientsByHours").getContext("2d");
+        var clientHoursChart = new Chart(rCM).Doughnut(doughnutData);
+        legend(document.getElementById("clientsByHoursLegend"), doughnutData);
+
+    });
+
+
+
+
+
+
+
+    }
+
+  });
+
+}
+
+
+
+
 $(document).ready(function(){
 
 
@@ -996,6 +1042,7 @@ setInterval(function(){ urgentTickets(); }, 100000);
 
 //top tickets by service type this week
 topTypes('','','');
+topClients('');
 //setInterval(function(){ topTypes(); }, 60000);
 
 $.ajax({
@@ -1145,6 +1192,26 @@ $('#daterange2').on('apply.daterangepicker', function(ev, picker) {
   }
 });
 
+
+
+$('input[name="daterange3"]').daterangepicker();
+
+$('#daterange3').on('apply.daterangepicker', function(ev, picker) {
+  var start = picker.startDate.format('YYYY-MM-DD');
+  var end = picker.endDate.format('YYYY-MM-DD');
+  //var company = $( "#client2 option:selected" ).text();
+  //var type = $('#member option:selected').text();
+
+
+
+    topClients("?range1="+start+"&range2="+end);
+
+    //company = encodeURIComponent(company);
+
+    //topClients("?range1="+start+"&range2="+end,"&company="+company,'&member='+type);
+
+
+});
 
 
 

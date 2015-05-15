@@ -226,7 +226,7 @@ else{
                           left outer join sr_service on time_entry.sr_service_recid = sr_service.sr_service_recid
                           left outer join sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
                               left outer join sr_board on sr_service.sr_board_recid = sr_board.sr_board_recid
-    WHEREdbo.member.Title like "%IT Support%" and (dbo.SR_Board.Board_Name = "My Company/Service" or dbo.SR_Board.Board_Name = "Alerts - Service Delivery" or dbo.SR_Board.Board_Name = "Results Physiotherapy" or dbo.SR_Board.Board_Name="Results - Initiatives") and (convert(char(6), dbo.time_entry.date_start, 112) <> convert(char(6), getdate(), 112) and year(time_entry.date_start) > year(getdate())-2)
+    WHERE dbo.member.Title like "%IT Support%" and (dbo.SR_Board.Board_Name = "My Company/Service" or dbo.SR_Board.Board_Name = "Alerts - Service Delivery" or dbo.SR_Board.Board_Name = "Results Physiotherapy" or dbo.SR_Board.Board_Name="Results - Initiatives") and (convert(char(6), dbo.time_entry.date_start, 112) <> convert(char(6), getdate(), 112) and year(time_entry.date_start) > year(getdate())-2)
 
     group by month(dbo.time_entry.date_start),year(dbo.time_entry.date_start)
     order by year(dbo.time_entry.date_start),month(dbo.time_entry.date_start)';

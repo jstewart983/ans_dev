@@ -241,6 +241,62 @@
             </div>
         </div>
         <div class="row">
+          <div id="title" class="col-md-12">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                      <p id="clientsByHoursTitle" style="text-align:center;">Hours by Client (top 10) - This Week  <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
+                </div>
+                <div id="title"class="panel-body">
+                  <div style="margin-top:10px;" class="row">
+
+                    <div class="col-md-2">
+
+                    </div>
+                    <div class="col-md-3">
+                      <input id="daterange3" class="form-control" type="text" name="daterange3"placeholder="Select a Date Range"  />
+
+                        <script type="text/javascript">
+
+                          </script>
+                    </div>
+
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-md-1">
+                    </div>
+
+                  </div>
+                  <div style="text-align:center"class="col-md-3">
+                    <div  id="clientsByHoursLegend">
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+
+                  </div>
+                  <div class="col-md-8">
+                    <canvas id ="clientsByHours"style="margin-left:-2px;padding:15px;width:90%;height:100px;"></canvas>
+                  </div>
+                </div>
+              </div>
+          </div>
+      <!--<div id="title" class="col-md-6">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                      <p id="newOldTitle" style="text-align:center;">New Tickets vs Tickets Closed - Last 5 days <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
+                </div>
+                <div id="title"class="panel-body">
+                  <div style="text-align:center"class="col-md-2">
+                        <div style="padding:5px;" id="newOldLegend">
+                        </div>
+                      </div>
+                      <canvas id ="newOld"style="margin-left:-2px;padding:15px;width:90%;height:200px;"></canvas>
+                </div>
+              </div>
+          </div>-->
+      </div>
+        <!--<div class="row">
             <div id="title" class="col-md-12">
               <div id="urgentTicketsTable">
                 <div style='width:100%;padding:0px;'class=' panel panel-default'>
@@ -264,7 +320,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div>-->
       <div class="row">
         <div id="title" class="col-md-12">
             <div class="panel panel-default">
@@ -462,14 +518,14 @@
                                                   <input type="text" class="form-control" name="Name" autocomplete="off" id="name" placeholder="Name">
                                             </div>
                                           </div>
-        <div class="col-md-6">
-        <div class="form-group">
-        <select id="type" class="form-control">
-        <option value="one">Select request type</option>
-        <option value="Issue">Issue</option>
-        <option value="Request">Request</option>
-        <option value="Idea">Idea</option>
-        </select>
+                                              <div class="col-md-6">
+                                              <div class="form-group">
+                                              <select id="type" class="form-control">
+                                              <option value="one">Select request type</option>
+                                              <option value="Issue">Issue</option>
+                                              <option value="Request">Request</option>
+                                              <option value="Idea">Idea</option>
+                                              </select>
                                             </div>
                                           </div>
                                           </div>
