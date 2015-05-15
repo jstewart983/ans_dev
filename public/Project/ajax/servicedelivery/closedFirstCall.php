@@ -2,8 +2,8 @@
 
 require('../../config/config.php');
 $actual_link = $_SERVER['HTTP_REFERER'];
-$title = "Closed First Call % - Last 7 days";
-$description = "This represents the percentage of tickets that were closed on the first call in the past 7 days on all boards managed by the Service Delivery Team, excluding Saturday and Sunday. (CFC% = Count of Closed First Call/Total Closed)";
+$title = "Closed First Call % - This Wk";
+$description = "This represents the percentage of tickets that were closed on the first call this week on all boards managed by the Service Delivery Team, excluding Saturday and Sunday. (CFC% = Count of Closed First Call/Total Closed)";
 $datasource = "Connectwise";
 $path = parse_url($actual_link,PHP_URL_PATH);
 //$path = strstr($path,"/service_delivery");
@@ -30,7 +30,7 @@ and datename(dw,convert(date,dbo.sr_service.Date_Closed)) <> "Sunday" and compan
 dbo.SR_Service.SR_Board_RecID = 35 or dbo.SR_Service.SR_Board_RecID = 36 or dbo.SR_Service.SR_Board_RecID = 41)))
 as CFC';
 
-}else{
+} else{
 
 
   $query = 'select
@@ -38,8 +38,7 @@ as CFC';
   from dbo.SR_Service left outer join
   dbo.sr_status on dbo.sr_service.sr_status_recid = dbo.sr_status.sr_status_recid
 
-  where convert(date,dbo.sr_service.Date_Closed) >= convert(date,GETDATE()-7)
-  and CONVERT(date,dbo.sr_service.Date_Closed) <> CONVERT(date,getdate())
+  where DATEDIFF( ww, dbo.SR_Service.Date_Closed, GETDATE() ) = 0
   and datename(dw,convert(date,dbo.sr_service.Date_Closed)) <> "Saturday"
   and datename(dw,convert(date,dbo.sr_service.Date_Closed)) <> "Sunday"
   and dbo.sr_status.description = "Closed - First Call")as float)/
@@ -47,8 +46,7 @@ as CFC';
   from dbo.sr_service left outer join
   dbo.sr_status on dbo.sr_service.sr_status_recid = dbo.sr_status.sr_status_recid
 
-  where convert(date,dbo.sr_service.Date_Closed) >= convert(date,GETDATE()-7)
-  and CONVERT(date,dbo.sr_service.Date_Closed) <> CONVERT(date,getdate())
+  where DATEDIFF( ww, dbo.SR_Service.Date_Closed, GETDATE() ) = 0
   and datename(dw,convert(date,dbo.sr_service.Date_Closed)) <> "Saturday"
   and datename(dw,convert(date,dbo.sr_service.Date_Closed)) <> "Sunday" and (dbo.SR_Service.SR_Board_RecID = 1 or dbo.SR_Service.SR_Board_RecID = 30 or
   dbo.SR_Service.SR_Board_RecID = 35 or dbo.SR_Service.SR_Board_RecID = 36)))

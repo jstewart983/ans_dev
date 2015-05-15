@@ -952,8 +952,6 @@ function topClients(value){
 
                 }
 
-
-
 function getRandomColor() {
     var letters = '0123456789ABCDEF'.split('');
     var color = '#';
@@ -962,7 +960,6 @@ function getRandomColor() {
     }
     return color;
 }
-
 
 
 doughnutDataHours = [];
@@ -983,8 +980,6 @@ if(companies[i] != "undefined"){
 
 
 }
-
-
 
             $("#title #clientsByHoursTitle").fadeOut(500,function(){
               //$title = $('#newOldTitle').text();
@@ -1012,12 +1007,6 @@ if(companies[i] != "undefined"){
         legendHours(document.getElementById("clientsByHoursLegend"), doughnutDataHours);
 
     });
-
-
-
-
-
-
 
     }
 
