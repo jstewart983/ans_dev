@@ -1049,7 +1049,7 @@ function ticketsByBoard(){
 
 function ticketsByBoardService(){
 
-  $('#boardTableService').empty();
+  $('#boardTable').empty();
 
   var colors = ['#A0EEC0','#50C5B7','#9CEC5B','#8AE9C1'];
   $.ajax({
@@ -1070,11 +1070,8 @@ function ticketsByBoardService(){
 
       $p = $(html);
 
-      //if($p !== $('#boardTable')){
-        $('#boardTableService').empty();
-        $('#boardTableService').replaceWith('<ul id="boardTableService" class="nav nav-pills">'+$p+'</ul>');
-      //}
-
+      $('#boardTable').empty();
+      $('#boardTable').replaceWith('<ul id="boardTable" class="nav nav-pills">'+$p+'</ul>');
 
 
 

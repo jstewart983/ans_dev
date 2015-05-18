@@ -143,7 +143,7 @@
             </div>
             <div class="col-md-7">
               <div id="boards" style="padding:5px;">
-                  <ul id="boardTableService" class="nav nav-pills">
+                  <ul id="boardTable" class="nav nav-pills">
 
                   </ul>
               </div>
