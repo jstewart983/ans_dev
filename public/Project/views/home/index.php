@@ -298,10 +298,10 @@
                     },
                     {
 
-                        fillColor: "rgba(160,120,316,0.9)",
-                        strokeColor: "rgba(160,120,316,0.9)",
-                        highlightFill: "rgba(160,120,316,0.9)",
-                        highlightStroke: "rgba(160,120,316,0.9)",
+                        fillColor: "rgba(247, 142, 30, 0.9)",
+                        strokeColor: "rgba(247, 142, 30, 0.9)",
+                        highlightFill: "rgba(247, 142, 30, 0.9)",
+                        highlightStroke: "rgba(247, 142, 30, 0.9)",
                         data:[30,60,40,30,55,67,74,32,35,25,26,57,81,14,30,30,70,20,90,100,45,30,25,76,67,74,32,35,95,26,20,45,27,80,56,77],
                         label: "That data"
                     }
