@@ -1,6 +1,6 @@
 <?php
 require('../../config/config.php');
-$title = "Hours by Service Type (top 10) - This Week";
+$title = "Hours by Service Type (top 10) - This Wk";
 $description ="This chart represents the top 10 service types by hours spent on them this week, by a member of the service desk or field services team (depending on the filter selected above)";
 $datasource ="Connectwise";
 $actual_link = $_SERVER['HTTP_REFERER'];

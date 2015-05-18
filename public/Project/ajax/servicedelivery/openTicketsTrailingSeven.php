@@ -3,7 +3,7 @@
 require('../../config/config.php');
 $title = "New Tickets vs Tickets Closed - This Wk";
 $datasource = "Connectwise";
-$description = "This represents the count of tickets opened and closed by day, this week";
+$description = "This represents the count of tickets opened and closed by day (by Service Delivery), this week";
 $actual_link = $_SERVER['HTTP_REFERER'];
 $path = parse_url($actual_link,PHP_URL_PATH);
 //$path = strstr($path,"/service_delivery");

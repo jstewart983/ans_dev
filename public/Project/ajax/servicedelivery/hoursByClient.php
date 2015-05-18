@@ -3,7 +3,7 @@
 //error_reporting(-1);
 //ini_set('display_errors', 'On');
 require('../../config/config.php');
-$title = "Hours by Service Type (top 10) - This Week";
+$title = "Hours by Service Type (top 10) - This Wk";
 $description ="This chart represents the top 10 service types by hours spent on them this week, by a member of the service desk or field services team (depending on the filter selected above)";
 $datasource ="Connectwise";
 $actual_link = $_SERVER['HTTP_REFERER'];
@@ -38,7 +38,7 @@ if(isset($_GET['range1']) && isset($_GET['range2'])){
     order by clientHours desc';
   }
   else{
-    $title = "Hours by Client (top 10) this wk";
+    $title = "Hours by Client (top 10) - This Wk";
 
     $query = 'SELECT top 10 company.company_name as co, sum(time_entry.hours_actual) as clientHours
   FROM cwwebapp_ans.dbo.Company Company, cwwebapp_ans.dbo.SR_Board SR_Board,dbo.member, cwwebapp_ans.dbo.SR_Service SR_Service, cwwebapp_ans.dbo.SR_Type SR_Type,cwwebapp_ans.dbo.Time_Entry

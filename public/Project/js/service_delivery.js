@@ -1021,6 +1021,45 @@ if(companies[i] != "undefined"){
 }
 
 
+function ticketsByBoard(){
+
+  $('#boardTable').replaceWith('<ul id="boardTable" class="nav nav-pills"></ul>');
+
+  var colors = ['#A0EEC0','#50C5B7','#9CEC5B','#8AE9C1'];
+  $.ajax({
+    type:'GET',
+    url:"../../ajax/managedservices/openTicketsByBoard.php",
+    success:function(json){
+      var board_name = '';
+      for(var $i = 0; $i < json.length;$i++){
+        board_name = json[$i]['board_name'];
+        $('<a class="btn" id="board" href="?board='+board_name.replace(' ','%20')+'" style="margin-right:5px;background-color:'+colors[$i]+'" href="#">'+json[$i]['board_name']+' '+json[$i]['openTickets']+'</a>').hide().appendTo("#boardTable").fadeIn(500);
+
+
+      }
+
+
+
+    }
+
+  });
+
+
+}
+
+function tickets(board){
+  $("#allTickets").empty();
+  $.ajax({
+    type:'GET',
+    url:"../../ajax/getTickets.php"+board,
+    success:function(json){
+
+      $(json).hide().appendTo("#allTickets").fadeIn(500);
+    }
+
+  });
+
+}
 
 
 $(document).ready(function(){
@@ -1035,6 +1074,10 @@ setInterval(function(){ ticketsClosedThisWeek(); }, 10000);
 
 ticketsOpen();
 setInterval(function(){ ticketsOpen(); }, 10000);
+
+
+ticketsByBoard();
+setInterval(function(){ ticketsByBoard(); }, 10000);
 
 
 //billable hours this week
@@ -1236,6 +1279,18 @@ $('#daterange3').on('apply.daterangepicker', function(ev, picker) {
     //company = encodeURIComponent(company);
 
     //topClients("?range1="+start+"&range2="+end,"&company="+company,'&member='+type);
+
+
+});
+
+$('#boardTable').on('click','#board',function(e){
+  e.preventDefault();
+  var clickedVal = $(this).attr('href');
+  var title = clickedVal.substr(clickedVal.indexOf("=") + 1);
+  var title = unescape(title);
+  $('#myModalLabel4').text(title);
+  tickets(clickedVal);
+  $('#issueModal4').modal('show');
 
 
 });

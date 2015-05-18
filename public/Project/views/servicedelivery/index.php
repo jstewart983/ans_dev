@@ -132,6 +132,17 @@
                     </ul>
                 </div>
             </div>
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-7">
+              <div style="padding:5px;">
+                  <ul id="boardTable" class="nav nav-pills">
+
+                  </ul>
+              </div>
+
+            </div>
         </div>
 
 
@@ -155,6 +166,7 @@
                   </div>
                   <div class="panel-body">
                     <h1 id="openTickets" style="text-align:center;">0</h1>
+
                   </div>
                 </div>
             </div>
@@ -543,6 +555,26 @@
                                         </div>
                                         </div>
                                       </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+          </div>
+        </div>
+        <div  class="modal fade" id="issueModal4" tabindex="-1" role="dialog" aria-labelledby="issueModal4" aria-hidden="true">
+            <div  class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <button type="button"  class="close fui-cross" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title" id="myModalLabel4"></h4>
+                    </div>
+                    <div id="body" class="modal-body">
+
+                      <div id="allTickets">
+
+                      </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
