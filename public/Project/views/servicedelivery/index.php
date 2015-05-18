@@ -9,7 +9,7 @@
 
         <title>Service Delivery</title>
         <link rel="stylesheet" type="text/css" href="../../css/demo.css">
-        <link rel="stylesheet" type="text/css" href="../../css/razorflow.min.css">
+        <!--<link rel="stylesheet" type="text/css" href="../../css/razorflow.min.css">-->
         <link rel="stylesheet" type="text/css" href="../../css/navbar.css">
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="../../libraries/Flat-UI-master/dist/css/flat-ui.min.css">
