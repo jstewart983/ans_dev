@@ -1,6 +1,6 @@
 <?php
 require('../../config/config.php');
-$title = "Avg Initial Response Time - Last 7 days";
+$title = "Avg Initial Response Time - This Wk";
 $datasource = "Connectwise";
 $description = "This represents the average amount of time that passes between the date and time that a ticket is entered and the date and time of the first time entry, omitting non-business hours. This number is only looking at tickets on the My Company board that were entered in the last 7 days and where the first time entry is from a member of the service desk team, not including tickets against ANS.";
 
@@ -73,7 +73,7 @@ if(strpos($path,'CIM') !== false) {
   dbo.SR_Board on dbo.SR_Service.SR_Board_RecID = dbo.SR_Board.SR_Board_RecID left outer join
   dbo.Company on dbo.sr_service.Company_RecID = dbo.company.Company_RecID left outer join
   dbo.Member on dbo.time_entry.Member_RecID = dbo.member.Member_RecID
-  where dbo.sr_service.Date_Entered >= (getdate()-7) and Board_Name = "My Company/Service" AND (Company_Name <> "Advanced Network Solutions")
+  where DATEDIFF( ww, dbo.SR_Service.Date_Entered, GETDATE() ) = 0 and Board_Name = "My Company/Service" AND (Company_Name <> "Advanced Network Solutions")
   group by dbo.sr_service.Date_Entered, dbo.sr_service.SR_Service_RecID, Company_Name)
   x
 ';
@@ -107,7 +107,7 @@ dbo.SR_Service on dbo.Time_Entry.SR_Service_RecID = dbo.sr_service.SR_Service_Re
 dbo.SR_Board on dbo.SR_Service.SR_Board_RecID = dbo.SR_Board.SR_Board_RecID left outer join
 dbo.Company on dbo.sr_service.Company_RecID = dbo.company.Company_RecID left outer join
 dbo.Member on dbo.time_entry.Member_RecID = dbo.member.Member_RecID
-where dbo.sr_service.Date_Entered >= (getdate()-7) AND (Company_Name = "Results Physiotherapy")
+where DATEDIFF( ww, dbo.SR_Service.Date_Entered, GETDATE() ) = 0 AND (Company_Name = "Results Physiotherapy")
 group by dbo.sr_service.Date_Entered, dbo.sr_service.SR_Service_RecID, Company_Name)
 x';
 }else if (strpos($path,'servicedelivery') !== false) {
@@ -140,7 +140,7 @@ x';
   dbo.SR_Board on dbo.SR_Service.SR_Board_RecID = dbo.SR_Board.SR_Board_RecID left outer join
   dbo.Company on dbo.sr_service.Company_RecID = dbo.company.Company_RecID left outer join
   dbo.Member on dbo.time_entry.Member_RecID = dbo.member.Member_RecID
-  where dbo.sr_service.Date_Entered >= (getdate()-7) and Board_Name = "My Company/Service" AND (Company_Name <> "Advanced Network Solutions")
+  where DATEDIFF( ww, dbo.SR_Service.Date_Entered, GETDATE() ) = 0 and Board_Name = "My Company/Service" AND (Company_Name <> "Advanced Network Solutions")
   group by dbo.sr_service.Date_Entered, dbo.sr_service.SR_Service_RecID, Company_Name)
   x
 ';
@@ -213,7 +213,7 @@ else{
   dbo.SR_Board on dbo.SR_Service.SR_Board_RecID = dbo.SR_Board.SR_Board_RecID left outer join
   dbo.Company on dbo.sr_service.Company_RecID = dbo.company.Company_RecID left outer join
   dbo.Member on dbo.time_entry.Member_RecID = dbo.member.Member_RecID
-  where dbo.sr_service.Date_Entered >= (getdate()-7) and Board_Name = "My Company/Service" AND (Company_Name <> "Advanced Network Solutions")
+  where DATEDIFF( ww, dbo.SR_Service.Date_Entered, GETDATE() ) = 0 and Board_Name = "My Company/Service" AND (Company_Name <> "Advanced Network Solutions")
   group by dbo.sr_service.Date_Entered, dbo.sr_service.SR_Service_RecID, Company_Name)
   x
 ';
