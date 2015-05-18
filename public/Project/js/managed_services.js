@@ -378,7 +378,7 @@ console.log(doughnutData);
 }
 
 function ticketsByBoard(){
-
+  $('#boardTable').empty();
   $.ajax({
     type:'GET',
     url:"../../ajax/managedservices/openTicketsByBoard.php",
@@ -395,6 +395,7 @@ function ticketsByBoard(){
 $(document).ready(function(){
 
 ticketsByBoard();
+setInterval(function(){ ticketsByBoard(); }, 10000);
 
 $.ajax({
   url: "../../ajax/clientservices/getClientList2.php",

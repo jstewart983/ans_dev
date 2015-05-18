@@ -1047,6 +1047,44 @@ function ticketsByBoard(){
 
 }
 
+function ticketsByBoardService(){
+
+  $('#boardTableService').empty();
+
+  var colors = ['#A0EEC0','#50C5B7','#9CEC5B','#8AE9C1'];
+  $.ajax({
+    type:'GET',
+    url:"../../ajax/managedservices/openTicketsByBoard.php",
+    success:function(json){
+      var board_name = '';
+      var html = '';
+      for(var $i = 0; $i < json.length;$i++){
+
+        board_name = json[$i]['board_name'];
+        html = html + $('<a class="btn" id="board" href="?board='+board_name.replace(' ','%20')+'" style="margin-right:5px;background-color:'+colors[$i]+'" href="#">'+json[$i]['board_name']+' '+json[$i]['openTickets']+'</a>').hide().appendTo("#boardTable").fadeIn(500);
+
+
+      }
+
+
+
+      $p = $(html);
+
+      //if($p !== $('#boardTable')){
+        $('#boardTableService').empty();
+        $('#boardTableService').replaceWith('<ul id="boardTableService" class="nav nav-pills">'+$p+'</ul>');
+      //}
+
+
+
+
+    }
+
+  });
+
+
+}
+
 function tickets(board){
   $("#allTickets").empty();
   $.ajax({
@@ -1076,8 +1114,8 @@ ticketsOpen();
 setInterval(function(){ ticketsOpen(); }, 10000);
 
 
-ticketsByBoard();
-setInterval(function(){ ticketsByBoard(); }, 10000);
+ticketsByBoardService();
+setInterval(function(){ ticketsByBoardService(); }, 60000);
 
 
 //billable hours this week

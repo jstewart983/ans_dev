@@ -74,6 +74,12 @@
         .navmenu .navmenu-default{
             background-color: #fff;
             }
+            @media (min-width: 768px){
+            .modal-dialog4 {
+              width: 100%;
+              margin: 30px auto;
+            }
+          }
             </style>
     </head>
 
@@ -136,8 +142,8 @@
 
             </div>
             <div class="col-md-7">
-              <div style="padding:5px;">
-                  <ul id="boardTable" class="nav nav-pills">
+              <div id="boards" style="padding:5px;">
+                  <ul id="boardTableService" class="nav nav-pills">
 
                   </ul>
               </div>
@@ -563,8 +569,8 @@
             </div>
           </div>
         </div>
-        <div  class="modal fade" id="issueModal4" tabindex="-1" role="dialog" aria-labelledby="issueModal4" aria-hidden="true">
-            <div  class="modal-dialog">
+        <div style="width:auto;" class="modal fade" id="issueModal4" tabindex="-1" role="dialog" aria-labelledby="issueModal4" aria-hidden="true">
+            <div  class="modal-dialog4">
                 <div class="modal-content">
                     <div class="modal-header">
                     <button type="button"  class="close fui-cross" data-dismiss="modal" aria-hidden="true"></button>
