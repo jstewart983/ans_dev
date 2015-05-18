@@ -141,7 +141,7 @@
             <div class="col-md-2">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                        <p id="closedTicketsTitle" style="text-align:center;">Tickets Closed - This Week <span>      <a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
+                        <p id="closedTicketsTitle" style="text-align:center;">Tickets Closed - This Wk <span>      <a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
                   </div>
                   <div class="panel-body">
                     <h1 id="ticketsClosed"style="text-align:center;">0</h1>
@@ -171,7 +171,7 @@
             <div id="title" class="col-md-2">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                        <p id="totalBillableTitle" style="text-align:center;">Billable Hrs - This Week <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
+                        <p id="totalBillableTitle" style="text-align:center;">Billable Hrs - This Wk <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
                   </div>
                   <div id="title"class="panel-body">
                     <div id="dateSwitch">
@@ -186,7 +186,7 @@
             <div id="title" class="col-md-4">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                        <p id="avgResponseTitle" style="text-align:center;">Avg Initial Response Time - Last 7 days <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
+                        <p id="avgResponseTitle" style="text-align:center;">Avg Initial Response Time - This Wk <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
                   </div>
                   <div id="title"class="panel-body">
                     <h1 id="avgResponse"style="text-align:center;">0 minutes</h1>
@@ -210,7 +210,7 @@
             <div id="title" class="col-md-6">
                 <div class="panel panel-default">
                   <div id="dude" class="panel-heading">
-                        <p id ="billableDayTitle" style="text-align:center;">Billable Hrs/Member - This Week <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
+                        <p id ="billableDayTitle" style="text-align:center;">Billable Hrs/Member - This Wk <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
                   </div>
                   <div id="title"class="panel-body">
                     <div style="text-align:center"class="col-md-2">
@@ -228,7 +228,7 @@
         <div id="title" class="col-md-6">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                        <p id="newOldTitle" style="text-align:center;">New Tickets vs Tickets Closed - Last 5 days <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
+                        <p id="newOldTitle" style="text-align:center;">New Tickets vs Tickets Closed - This Wk <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
                   </div>
                   <div id="title"class="panel-body">
                     <div style="text-align:center"class="col-md-2">

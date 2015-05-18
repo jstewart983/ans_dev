@@ -453,15 +453,21 @@ function newVsOld(){
 
             //day_labels.push(json2[$i]["Week_Day"]);
             tickets_created.push(json2[$i]["Opened_Tickets"]);
+            day_labels.push(json2[$i]["Week_Day"]);
+          }
+
+          for($i=0;$i<json2.length;$i++){
+
+
+              tickets_closed.push(json1[$i]["Closed_Tickets"]);
+
+
 
           }
 
-          for($i=0;$i<json1.length;$i++){
-
-            day_labels.push(json1[$i]["Week_Day"]);
-            tickets_closed.push(json1[$i]["Closed_Tickets"]);
-
-          }
+          console.log(tickets_created);
+          console.log(day_labels);
+          console.log(tickets_closed);
 
 
           var data = {
@@ -1053,7 +1059,7 @@ setInterval(function(){ billableByDay(); }, 60000);
 
 //new tickets vs tickets closed by day - last 7 days
 newVsOld();
-
+setInterval(function(){ newVsOld(); }, 60000);
 
 //urgent tickets that are open
 urgentTickets();
