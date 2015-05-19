@@ -274,11 +274,11 @@ function avgInitialResponse(){
 }
 
 
-function billableByDay(){
+function billableByDay(ranges,datetype){
   $.ajax({
 
     type:"GET",
-    url:"../../ajax/servicedelivery/billableByMember.php",
+    url:"../../ajax/servicedelivery/billableByMember.php"+ranges+datetype,
     success:function(json){
 
       function getRandomColor() {
@@ -350,7 +350,7 @@ $('.sup').append('<canvas style="padding:10px;width:720px;height:431px;" id="bil
 
          $.ajax({
            type:"GET",
-           url:"../../ajax/servicedelivery/billableByMember.php?member="+activeBars[0].label,
+           url:"../../ajax/servicedelivery/billableByMember.php"+ranges+datetype+"&member="+activeBars[0].label,
            success:function(json){
              $('.sup').empty();
              function getRandomColor() {
@@ -403,11 +403,18 @@ $('.sup').append('<canvas style="padding:10px;width:720px;height:431px;" id="bil
 
 
 
-              $('.sup').append('<a href="#" id="billableBack"><span class="fui-arrow-left"></span>back </a> <span> '+activeBars[0].label+' has worked '+activeBars[0].value+' hrs this week so far</span><canvas style="padding:10px;width:720px;height:231px;" id="billableDay">');
+              $('.sup').append('<a href="#" id="billableBack"><span class="fui-arrow-left"></span>back </a> <span> '+activeBars[0].label+': <span id="memberHours"></span></span><canvas style="padding:10px;width:720px;height:231px;" id="billableDay">');
                  var ctx2 = document.getElementById("billableDay").getContext("2d");
                  var modalChart = new Chart(ctx2).Bar(data);
                 console.log(ctx2);
                 console.log(modalChart);
+                var total_hours = parseInt(activeBars[0].value);
+                var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '',suffix : 'hrs'}
+
+                var hours = new countUp("totalHours", 0, total_hours, 0, 2,options);
+                hours.start();
+
+
            }
          });
 
@@ -419,7 +426,7 @@ $('.sup').append('<canvas style="padding:10px;width:720px;height:431px;" id="bil
         e.preventDefault();
         $('.sup').append('<canvas style="padding:10px;width:720px;height:231px;" id="billableDay">');
 
-        billableByDay();
+        billableByDay('','');
 
       });
 
@@ -1131,8 +1138,8 @@ setInterval(function(){ avgInitialResponse(); }, 10000);
 
 
 //billable by day - last 7 days
-billableByDay();
-setInterval(function(){ billableByDay(); }, 60000);
+billableByDay('','');
+//setInterval(function(){ billableByDay('',''); }, 60000);
 
 
 //new tickets vs tickets closed by day - last 7 days
@@ -1296,6 +1303,48 @@ $('#daterange2').on('apply.daterangepicker', function(ev, picker) {
 
   }
 });
+
+
+
+$('input[name="daterange4"]').daterangepicker();
+
+$('#daterange4').on('apply.daterangepicker', function(ev, picker) {
+  var start = picker.startDate.format('YYYY-MM-DD');
+  var end = picker.endDate.format('YYYY-MM-DD');
+  function days_between(date1, date2) {
+
+      // The number of milliseconds in one day
+      var ONE_DAY = 1000 * 60 * 60 * 24
+
+      // Convert both dates to milliseconds
+      var date1_ms = date1.getTime()
+      var date2_ms = date2.getTime()
+
+      // Calculate the difference in milliseconds
+      var difference_ms = Math.abs(date1_ms - date2_ms)
+
+      // Convert back to days and return
+      return Math.round(difference_ms/ONE_DAY)
+
+  }
+  function parseDate(input) {
+  var parts = input.match(/(\d+)/g);
+  // new Date(year, month [, date [, hours[, minutes[, seconds[, ms]]]]])
+  return new Date(parts[0], parts[1]-1, parts[2]); // months are 0-based
+}
+
+
+  if (days_between(parseDate(start),parseDate(end)) > 30){
+    billableByDay("?range1="+start+"&range2="+end,"&datetype=month");
+  }else{
+
+    billableByDay("?range1="+start+"&range2="+end,"&datetype=day");
+  }
+
+
+
+});
+
 
 
 

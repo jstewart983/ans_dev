@@ -10,7 +10,71 @@ $path = parse_url($actual_link,PHP_URL_PATH);
 //$path = strstr($path,"/service_delivery");
 //echo $path;
 if (strpos($path,'servicedelivery') !== false) {
-  if(isset($_GET['member'])){
+
+  //If date range is selected do this stuff below
+  if(isset($_GET['range1']) && isset($_GET['range2'])){
+
+    $range1 = $_GET['range1'];
+    $range2 = $_GET['range2'];
+    //if a member is clicked in billable hours by member chart
+    if(isset($_GET['member'])){
+      //if the datetype set in the url is day then group by day
+      if($_GET['datetype']=='day'){
+            $member = $_GET['member'];
+            $query ='select SUM(time_entry.Hours_Actual) as billable_hours,DATENAME(dw,dbo.time_entry.Date_Start) as day,day(dbo.time_entry.Date_Start)
+          from Time_Entry left outer join dbo.member  on dbo.time_entry.Member_RecID = member.Member_RecID
+          left outer join dbo.company on dbo.time_entry.company_recid = company.company_recid
+          where dbo.member.member_id = "'.$member.'" and time_entry.billable_flag = 1
+          and (dbo.Time_Entry.date_start >="'.$range1.'" and dbo.Time_Entry.date_start <= "'.$range2.'") and time_entry.Company_RecID <> 2
+          group by DATENAME(dw,dbo.time_entry.Date_Start),day(dbo.time_entry.Date_Start)
+          order by day(dbo.time_entry.Date_Start)
+          ';
+          //otherwise if the datetype set in the url is month then group by month
+          }else{
+            $member = $_GET['member'];
+            $query ='select SUM(time_entry.Hours_Actual) as billable_hours,month(dbo.time_entry.Date_Start),year(dbo.time_entry.Date_Start)
+          from Time_Entry left outer join dbo.member  on dbo.time_entry.Member_RecID = member.Member_RecID
+          left outer join dbo.company on dbo.time_entry.company_recid = company.company_recid
+          where dbo.member.member_id = "'.$member.'" and time_entry.billable_flag = 1
+          and (dbo.Time_Entry.date_start >="'.$range1.'" and dbo.Time_Entry.date_start <= "'.$range2.'") and time_entry.Company_RecID <> 2
+          group by month(dbo.time_entry.Date_Start),year(dbo.time_entry.Date_Start)
+          order by month(dbo.time_entry.Date_Start)
+          ';
+            }
+        }else{
+            $query = 'select member.member_id,SUM(time_entry.Hours_Actual) as billable_hours
+          from Time_Entry left outer join dbo.member on dbo.time_entry.Member_RecID = member.Member_RecID
+          where time_entry.billable_flag = 1 and (dbo.member.Title like "%IT Support%")
+          and (dbo.Time_Entry.date_start >="'.$range1.'" and dbo.Time_Entry.date_start <= "'.$range2.'") and time_entry.Company_RecID <> 2
+          group by member.member_id
+          order by member.member_id desc';
+            }
+  }else{
+
+    $query = 'select member.member_id,SUM(time_entry.Hours_Actual) as billable_hours
+  from Time_Entry left outer join dbo.member      on dbo.time_entry.Member_RecID = member.Member_RecID
+  where time_entry.billable_flag = 1 and (dbo.member.Title like "%IT Support%")
+  and DATEDIFF(ww, dbo.time_entry.Date_Start, getdate())=0 and time_entry.Company_RecID <> 2
+  group by member.member_id
+  order by member.member_id desc';
+
+  }////////END Date range selection check///////////
+//if a member is clicked in billable hours by member chart
+  /*else if(isset($_GET['member'])){
+    //if the datetype set in the url is day then group by day
+    if($_GET['datetype']=='day'){
+      $member = $_GET['member'];
+      $query ='select SUM(time_entry.Hours_Actual) as billable_hours,DATENAME(dw,dbo.time_entry.Date_Start) as day,day(dbo.time_entry.Date_Start)
+    from Time_Entry left outer join dbo.member  on dbo.time_entry.Member_RecID = member.Member_RecID
+    left outer join dbo.company on dbo.time_entry.company_recid = company.company_recid
+    where dbo.member.member_id = "'.$member.'" and time_entry.billable_flag = 1
+    and DATEDIFF(ww, dbo.time_entry.Date_Start, getdate())=0 and time_entry.Company_RecID <> 2
+    group by DATENAME(dw,dbo.time_entry.Date_Start),day(dbo.time_entry.Date_Start)
+    order by day(dbo.time_entry.Date_Start)
+    ';
+
+  //otherwise if the datetype set in the url is month then group by month
+  }else{
     $member = $_GET['member'];
     $query ='select SUM(time_entry.Hours_Actual) as billable_hours,DATENAME(dw,dbo.time_entry.Date_Start) as day,day(dbo.time_entry.Date_Start)
   from Time_Entry left outer join dbo.member  on dbo.time_entry.Member_RecID = member.Member_RecID
@@ -21,15 +85,22 @@ if (strpos($path,'servicedelivery') !== false) {
   order by day(dbo.time_entry.Date_Start)
   ';
 
+  }
+
+
 }else{
   $query = 'select member.member_id,SUM(time_entry.Hours_Actual) as billable_hours
 from Time_Entry left outer join dbo.member      on dbo.time_entry.Member_RecID = member.Member_RecID
 where time_entry.billable_flag = 1 and (dbo.member.Title like "%IT Support%")
-and DATEDIFF(ww, dbo.time_entry.Date_Start, getdate())=0 and time_entry.Company_RecID <> 2
+and (dbo.Time_Entry.date_start >="'.$range1.'" and dbo.Time_Entry.date_start <= "'.$range2.'") and time_entry.Company_RecID <> 2
 group by member.member_id
 order by member.member_id desc';
   }
-}elseif(strpos($path,'CIM') !== false){
+*//////////////END SERVICE DELIVERY////////////
+
+
+}
+elseif(strpos($path,'CIM') !== false){
 
   $query = '
   select member.member_id,SUM(time_entry.Hours_Actual) as billable_hours
