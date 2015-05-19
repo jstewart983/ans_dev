@@ -346,11 +346,15 @@ $('.sup').append('<canvas style="padding:10px;width:720px;height:431px;" id="bil
     //$('#basicModal2').modal('show');
          //$('#basicModal2').find(".modal-title").text(activeBars[0].label);
 
-
+         if(ranges && datetype !== ''){
+           var memberurl = "../../ajax/servicedelivery/billableByMember.php"+ranges+datetype+"&member="+activeBars[0].label;
+         }else{
+           var memberurl = "../../ajax/servicedelivery/billableByMember.php?member="+activeBars[0].label+"&datetype=day";
+         }
 
          $.ajax({
            type:"GET",
-           url:"../../ajax/servicedelivery/billableByMember.php"+ranges+datetype+"&member="+activeBars[0].label,
+           url:memberurl,
            success:function(json){
              $('.sup').empty();
              function getRandomColor() {
@@ -371,16 +375,19 @@ $('.sup').append('<canvas style="padding:10px;width:720px;height:431px;" id="bil
 
 
 
-             for($i=0;$i<json.length;$i++){
+               for($i=0;$i<json.length;$i++){
 
 
-               days.push(json[$i]["day"]);
-               hours.push(json[$i]["billable_hours"]);
-               fillColor.push("rgba(227, 75, 0, .5)");
-               highlightFill.push("rgba(227, 75, 0, .8)");
-               highlightStroke.push("rgba(227, 75, 0, .7)");
+                 days.push(json[$i]["day"]);
+                 hours.push(json[$i]["billable_hours"]);
+                 fillColor.push("rgba(227, 75, 0, .5)");
+                 highlightFill.push("rgba(227, 75, 0, .8)");
+                 highlightStroke.push("rgba(227, 75, 0, .7)");
 
-           }
+               }
+
+
+
 
 
 
@@ -411,7 +418,7 @@ $('.sup').append('<canvas style="padding:10px;width:720px;height:431px;" id="bil
                 var total_hours = parseInt(activeBars[0].value);
                 var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '',suffix : 'hrs'}
 
-                var hours = new countUp("totalHours", 0, total_hours, 0, 2,options);
+                var hours = new countUp("memberHours", 0, total_hours, 0, 2,options);
                 hours.start();
 
 
@@ -421,11 +428,12 @@ $('.sup').append('<canvas style="padding:10px;width:720px;height:431px;" id="bil
 
       });
       $(".sup").on('click','#billableBack',function(e) {
+
+        $('#daterange4').empty();
         $('.sup').empty();
         //$('#dude').empty();
         e.preventDefault();
-        $('.sup').append('<canvas style="padding:10px;width:720px;height:231px;" id="billableDay">');
-
+        //$('.sup').append('<canvas style="padding:10px;width:720px;height:231px;" id="billableDay">');
         billableByDay('','');
 
       });
