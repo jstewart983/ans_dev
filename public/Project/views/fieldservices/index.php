@@ -36,6 +36,7 @@
 
         <script type="text/javascript" src="../../js/Chart.js"></script>
         <script type="text/javascript" src="../../js/legend.js"></script>
+        <script type="text/javascript" src="../../js/oneUp.js"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
         <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/1/daterangepicker.js"></script>
@@ -186,7 +187,7 @@
                         <div style="padding:5px;" id="billableDayLegend">
                         </div>
                     </div>
-                      <div class="sup">
+                      <div id="sup">
                         <canvas id ="billableDay"style="margin-left:-2px;padding:15px;width:90%;height:200px;"></canvas>
 
                       </div>

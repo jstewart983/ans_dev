@@ -252,7 +252,7 @@
                     </div>
                       <div style="text-align:center"class="col-md-2">
                       </div>
-                    <div class="sup">
+                    <div id="sup">
                         <canvas id ="billableDay"style="margin-left:-2px;padding:15px;width:90%;height:200px;"></canvas>
                     </div>
                   </div>

@@ -275,6 +275,8 @@ function avgInitialResponse(){
 
 
 function billableByDay(ranges,datetype){
+  $('#billableDay').remove();
+
   $.ajax({
 
     type:"GET",
@@ -335,8 +337,8 @@ $("#title #billableDayTitle").fadeOut(500,function(){
   $p.fadeIn(1200);
 
 });
-$('.sup').empty();
-$('.sup').append('<canvas style="padding:10px;width:720px;height:431px;" id="billableDay">');
+$('#sup').empty();
+$('#sup').replaceWith('<div id="sup"><canvas style="padding:10px;width:720px;height:431px;" id="billableDay"></div>');
 
       var ctx = document.getElementById("billableDay").getContext("2d");
       var myNewChart = new Chart(ctx).Bar(data);
@@ -356,7 +358,7 @@ $('.sup').append('<canvas style="padding:10px;width:720px;height:431px;" id="bil
            type:"GET",
            url:memberurl,
            success:function(json){
-             $('.sup').empty();
+             $('#sup').empty();
              function getRandomColor() {
                  var letters = '0123456789ABCDEF'.split('');
                  var color = '#';
@@ -409,12 +411,12 @@ $('.sup').append('<canvas style="padding:10px;width:720px;height:431px;" id="bil
               console.log(data);
 
 
-
-              $('.sup').append('<a href="#" id="billableBack"><span class="fui-arrow-left"></span>back </a> <span> '+activeBars[0].label+': <span id="memberHours"></span></span><canvas style="padding:10px;width:720px;height:231px;" id="billableDay">');
+              $('#sup').empty();
+              $('#sup').append('<a href="#" id="billableBack"><span class="fui-arrow-left"></span>back </a> <span> '+activeBars[0].label+': <span id="memberHours"></span></span><canvas style="padding:10px;width:720px;height:231px;" id="billableDay">');
                  var ctx2 = document.getElementById("billableDay").getContext("2d");
                  var modalChart = new Chart(ctx2).Bar(data);
-                console.log(ctx2);
-                console.log(modalChart);
+                //console.log(ctx2);
+                //console.log(modalChart);
                 var total_hours = parseInt(activeBars[0].value);
                 var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '',suffix : 'hrs'}
 
@@ -427,10 +429,11 @@ $('.sup').append('<canvas style="padding:10px;width:720px;height:431px;" id="bil
 
 
       });
-      $(".sup").on('click','#billableBack',function(e) {
+      $("#sup").on('click','#billableBack',function(e) {
 
-        $('#daterange4').empty();
-        $('.sup').empty();
+        $('#daterange4').val('');
+        $('#sup').empty();
+        $('#billableDay').remove();
         //$('#dude').empty();
         e.preventDefault();
         //$('.sup').append('<canvas style="padding:10px;width:720px;height:231px;" id="billableDay">');

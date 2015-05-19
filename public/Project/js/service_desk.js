@@ -261,11 +261,13 @@ function avgInitialResponse(){
 }
 
 
-function billableByDay(){
+function billableByDay(ranges,datetype){
+  //$('#billableDay').remove();
+
   $.ajax({
 
     type:"GET",
-    url:"../../ajax/servicedelivery/billableByMember.php",
+    url:"../../ajax/servicedelivery/billableByMember.php"+ranges+datetype,
     success:function(json){
 
       function getRandomColor() {
@@ -322,8 +324,8 @@ $("#title #billableDayTitle").fadeOut(500,function(){
   $p.fadeIn(1200);
 
 });
-$('.sup').empty();
-$('.sup').append('<canvas style="padding:10px;width:720px;height:131px;" id="billableDay">');
+//$('#sup').empty();
+$('#sup').replaceWith('<div id="sup"><canvas id ="billableDay"style="margin-left:-2px;padding:15px;width:90%;height:200px;"></canvas></div>');
 
       var ctx = document.getElementById("billableDay").getContext("2d");
       var myNewChart = new Chart(ctx).Bar(data);
@@ -333,13 +335,17 @@ $('.sup').append('<canvas style="padding:10px;width:720px;height:131px;" id="bil
     //$('#basicModal2').modal('show');
          //$('#basicModal2').find(".modal-title").text(activeBars[0].label);
 
-
+         if(ranges && datetype !== ''){
+           var memberurl = "../../ajax/servicedelivery/billableByMember.php"+ranges+datetype+"&member="+activeBars[0].label;
+         }else{
+           var memberurl = "../../ajax/servicedelivery/billableByMember.php?member="+activeBars[0].label+"&datetype=day";
+         }
 
          $.ajax({
            type:"GET",
-           url:"../../ajax/servicedelivery/billableByMember.php?member="+activeBars[0].label,
+           url:memberurl,
            success:function(json){
-             $('.sup').empty();
+             //$('#sup').empty();
              function getRandomColor() {
                  var letters = '0123456789ABCDEF'.split('');
                  var color = '#';
@@ -358,16 +364,19 @@ $('.sup').append('<canvas style="padding:10px;width:720px;height:131px;" id="bil
 
 
 
-             for($i=0;$i<json.length;$i++){
+               for($i=0;$i<json.length;$i++){
 
 
-               days.push(json[$i]["day"]);
-               hours.push(json[$i]["billable_hours"]);
-               fillColor.push("rgba(227, 75, 0, .5)");
-               highlightFill.push("rgba(227, 75, 0, .8)");
-               highlightStroke.push("rgba(227, 75, 0, .7)");
+                 days.push(json[$i]["day"]);
+                 hours.push(json[$i]["billable_hours"]);
+                 fillColor.push("rgba(227, 75, 0, .5)");
+                 highlightFill.push("rgba(227, 75, 0, .8)");
+                 highlightStroke.push("rgba(227, 75, 0, .7)");
 
-           }
+               }
+
+
+
 
 
 
@@ -389,24 +398,33 @@ $('.sup').append('<canvas style="padding:10px;width:720px;height:131px;" id="bil
               console.log(data);
 
 
-
-              $('.sup').append('<a href="#" id="billableBack"><span class="fui-arrow-left"></span>back </a> <span> '+activeBars[0].label+' has worked '+activeBars[0].value+' hrs this week so far</span><canvas style="padding:10px;width:720px;height:231px;" id="billableDay">');
+              //$('#sup').empty();
+              $('#sup').append('<a href="#" id="billableBack"><span class="fui-arrow-left"></span>back </a> <span> '+activeBars[0].label+': <span id="memberHours"></span></span><canvas style="padding:10px;width:720px;height:231px;" id="billableDay">');
                  var ctx2 = document.getElementById("billableDay").getContext("2d");
                  var modalChart = new Chart(ctx2).Bar(data);
-                console.log(ctx2);
-                console.log(modalChart);
+                //console.log(ctx2);
+                //console.log(modalChart);
+                var total_hours = parseInt(activeBars[0].value);
+                var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '',suffix : 'hrs'}
+
+                var hours = new countUp("memberHours", 0, total_hours, 0, 2,options);
+                hours.start();
+
+
            }
          });
 
 
       });
-      $(".sup").on('click','#billableBack',function(e) {
-        $('.sup').empty();
+      $("#sup").on('click','#billableBack',function(e) {
+
+        $('#daterange4').val('');
+        //$('#sup').empty();
+        //$('#billableDay').remove();
         //$('#dude').empty();
         e.preventDefault();
-        $('.sup').append('<canvas style="padding:10px;width:720px;height:131px;" id="billableDay">');
-
-        billableByDay();
+        //$('.sup').append('<canvas style="padding:10px;width:720px;height:231px;" id="billableDay">');
+        billableByDay('','');
 
       });
 
@@ -417,7 +435,6 @@ $('.sup').append('<canvas style="padding:10px;width:720px;height:131px;" id="bil
   });
 
 }
-
 
 function newVsOld(){
 
@@ -940,8 +957,8 @@ avgInitialResponse()
 
 
 //billable by day - last 7 days
-billableByDay();
-setInterval(function(){ billableByDay(); }, 60000);
+billableByDay('','');
+//setInterval(function(){ billableByDay(); }, 60000);
 
 //new tickets vs tickets closed by day - last 7 days
 newVsOld();
