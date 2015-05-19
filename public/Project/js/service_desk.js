@@ -398,7 +398,7 @@ $('#sup').replaceWith('<div id="sup"><canvas id ="billableDay"style="margin-left
               console.log(data);
 
 
-              //$('#sup').empty();
+              $('#sup').empty();
               $('#sup').append('<a href="#" id="billableBack"><span class="fui-arrow-left"></span>back </a> <span> '+activeBars[0].label+': <span id="memberHours"></span></span><canvas style="padding:10px;width:720px;height:231px;" id="billableDay">');
                  var ctx2 = document.getElementById("billableDay").getContext("2d");
                  var modalChart = new Chart(ctx2).Bar(data);
@@ -419,8 +419,8 @@ $('#sup').replaceWith('<div id="sup"><canvas id ="billableDay"style="margin-left
       $("#sup").on('click','#billableBack',function(e) {
 
         $('#daterange4').val('');
-        //$('#sup').empty();
-        //$('#billableDay').remove();
+        $('#sup').empty();
+        $('#billableDay').remove();
         //$('#dude').empty();
         e.preventDefault();
         //$('.sup').append('<canvas style="padding:10px;width:720px;height:231px;" id="billableDay">');
@@ -1020,6 +1020,47 @@ getBillableHoursTotal();
 
 
 });
+
+
+$('input[name="daterange4"]').daterangepicker();
+
+$('#daterange4').on('apply.daterangepicker', function(ev, picker) {
+  var start = picker.startDate.format('YYYY-MM-DD');
+  var end = picker.endDate.format('YYYY-MM-DD');
+  function days_between(date1, date2) {
+
+      // The number of milliseconds in one day
+      var ONE_DAY = 1000 * 60 * 60 * 24
+
+      // Convert both dates to milliseconds
+      var date1_ms = date1.getTime()
+      var date2_ms = date2.getTime()
+
+      // Calculate the difference in milliseconds
+      var difference_ms = Math.abs(date1_ms - date2_ms)
+
+      // Convert back to days and return
+      return Math.round(difference_ms/ONE_DAY)
+
+  }
+  function parseDate(input) {
+  var parts = input.match(/(\d+)/g);
+  // new Date(year, month [, date [, hours[, minutes[, seconds[, ms]]]]])
+  return new Date(parts[0], parts[1]-1, parts[2]); // months are 0-based
+}
+
+
+  if (days_between(parseDate(start),parseDate(end)) > 30){
+    billableByDay("?range1="+start+"&range2="+end,"&datetype=month");
+  }else{
+
+    billableByDay("?range1="+start+"&range2="+end,"&datetype=day");
+  }
+
+
+
+});
+
 
 
 $('input[name="daterange2"]').daterangepicker();

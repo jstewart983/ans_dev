@@ -180,17 +180,32 @@
           <div id="title" class="col-md-12">
               <div class="panel panel-default">
                 <div id="dude" class="panel-heading">
-                      <p id ="billableDayTitle" style="text-align:center;">Billable Hrs/Member - This Week <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
+                      <p id ="billableDayTitle" style="text-align:center;">Billable Hrs/Member - This Wk <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
                 </div>
                 <div id="title"class="panel-body">
-                  <div style="text-align:center"class="col-md-2">
-                        <div style="padding:5px;" id="billableDayLegend">
-                        </div>
+                  <div style="margin-top:10px;margin-bottom:5px;" class="row">
+                    <div class="col-md-2">
                     </div>
-                      <div id="sup">
-                        <canvas id ="billableDay"style="margin-left:-2px;padding:15px;width:90%;height:200px;"></canvas>
+                      <div class="col-md-2">
+                        <input id="daterange4" class="form-control" type="text" name="daterange4"placeholder="Select a Date Range"  />
 
+                          <script type="text/javascript">
+
+                          </script>
                       </div>
+                      <div class="col-md-5">
+                      </div>
+                      <div class="col-md-3">
+                      </div>
+                      <div class="col-md-1">
+                      </div>
+
+                  </div>
+                    <div style="text-align:center"class="col-md-2">
+                    </div>
+                  <div id="sup">
+                      <canvas id ="billableDay"style="margin-left:-2px;padding:15px;width:90%;height:200px;"></canvas>
+                  </div>
                 </div>
               </div>
           </div>
