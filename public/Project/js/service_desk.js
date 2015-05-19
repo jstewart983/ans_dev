@@ -326,7 +326,7 @@ $("#title #billableDayTitle").fadeOut(500,function(){
 });
 //$('#sup').empty();
 $('#sup').replaceWith('<div id="sup"><canvas id ="billableDay"style="margin-left:-2px;padding:15px;width:90%;height:200px;"></canvas></div>');
-
+        
       var ctx = document.getElementById("billableDay").getContext("2d");
       var myNewChart = new Chart(ctx).Bar(data);
 

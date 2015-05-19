@@ -1025,9 +1025,21 @@ if(companies[i] != "undefined"){
         //$("#openProjects").replaceWith($span2);
         $span2.fadeIn(900);
         //$span2.fadeIn(500);
+        var options =
+    {
+        tooltipTemplate: "<%= value %>",
 
+        onAnimationComplete: function()
+        {
+            this.showTooltip(this.segments, true);
+        },
+
+        tooltipEvents: [],
+
+        showTooltips: true
+    }
         var rCM1 = document.getElementById("clientsByHours").getContext("2d");
-        var clientHoursChart = new Chart(rCM1).Doughnut(doughnutDataHours);
+        var clientHoursChart = new Chart(rCM1).Doughnut(doughnutDataHours,options);
         legendHours(document.getElementById("clientsByHoursLegend"), doughnutDataHours);
 
     });
