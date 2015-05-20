@@ -28,7 +28,8 @@ group by convert(date,dbo.sr_service.Date_Closed)';
   where datename(dw,convert(date,dbo.sr_service.Date_Closed)) <> "Saturday"
   and datename(dw,convert(date,dbo.sr_service.Date_Closed)) <> "Sunday" and  (dbo.member.Title like "%IT Support%") and DATEDIFF( ww, dbo.sr_service.Date_Closed, GETDATE() ) = 0
 
-  group by convert(date,dbo.sr_service.Date_Closed)';
+  group by convert(date,dbo.sr_service.Date_Closed)
+  order by convert(date,dbo.sr_service.Date_Closed)';
 
 }
 

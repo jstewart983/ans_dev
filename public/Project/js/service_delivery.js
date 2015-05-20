@@ -1167,7 +1167,7 @@ billableByDay('','');
 
 //new tickets vs tickets closed by day - last 7 days
 newVsOld();
-setInterval(function(){ newVsOld(); }, 60000);
+//setInterval(function(){ newVsOld(); }, 60000);
 
 //urgent tickets that are open
 urgentTickets();

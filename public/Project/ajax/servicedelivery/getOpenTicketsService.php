@@ -16,7 +16,7 @@ LEFT OUTER JOIN dbo.SR_Board on dbo.SR_Service.SR_Board_RecID = dbo.SR_Board.SR_
 left outer join company on company.company_recid = sr_service.company_recid
 left outer join sr_status on sr_service.sr_status_recid = sr_status.sr_status_recid
 
-where company_name = "Results Physiotherapy" and sr_status.description <> "Closed" and sr_status.description <> "Canceled" and sr_status.description <> "Closed - First Call" and sr_service.date_closed is null';
+where company_name = "Results Physiotherapy" and sr_status.description <> "Closed" and sr_status.description <> "Cancelled" and sr_status.description <> "Closed - First Call" and sr_service.date_closed is null';
 
 
 }elseif(strpos($path,'managedservices') !== false){
@@ -27,13 +27,13 @@ where company_name = "Results Physiotherapy" and sr_status.description <> "Close
   from dbo.SR_Service
   LEFT OUTER JOIN dbo.SR_Board on dbo.SR_Service.SR_Board_RecID = dbo.SR_Board.SR_Board_RecID
   left outer join sr_status on sr_service.sr_status_recid = sr_status.sr_status_recid
-  where (sr_status.description <> "Closed" and sr_status.description <> "Canceled" and sr_status.description <> "Closed - First Call") and (dbo.SR_Board.Board_Name = "BackOffice" or dbo.SR_Board.Board_Name = "Managed Services Requests" or dbo.SR_Board.Board_Name = "" or dbo.SR_Board.Board_Name="LogicMonitor") and sr_service.date_closed is null';
+  where (sr_status.description <> "Closed" and sr_status.description <> "cancelled" and sr_status.description <> "Closed - First Call") and (dbo.SR_Board.Board_Name = "BackOffice" or dbo.SR_Board.Board_Name = "Managed Services Requests" or dbo.SR_Board.Board_Name = "" or dbo.SR_Board.Board_Name="LogicMonitor") and sr_service.date_closed is null';
 
   $query2 = 'select Count(*) as openTickets, sr_board.board_name
   from dbo.SR_Service
   LEFT OUTER JOIN dbo.SR_Board on dbo.SR_Service.SR_Board_RecID = dbo.SR_Board.SR_Board_RecID
   left outer join sr_status on sr_service.sr_status_recid = sr_status.sr_status_recid
-  where (sr_status.description <> "Closed" and sr_status.description <> "Canceled" and sr_status.description <> "Closed - First Call") and (dbo.SR_Board.Board_Name = "BackOffice" or dbo.SR_Board.Board_Name = "Managed Services Requests" or dbo.SR_Board.Board_Name = "" or dbo.SR_Board.Board_Name="LogicMonitor") and sr_service.date_closed is null
+  where (sr_status.description <> "Closed" and sr_status.description <> "Cancelled" and sr_status.description <> "Closed - First Call") and (dbo.SR_Board.Board_Name = "BackOffice" or dbo.SR_Board.Board_Name = "Managed Services Requests" or dbo.SR_Board.Board_Name = "" or dbo.SR_Board.Board_Name="LogicMonitor") and sr_service.date_closed is null
   group by sr_board.board_name';
 
 
@@ -45,7 +45,7 @@ where company_name = "Results Physiotherapy" and sr_status.description <> "Close
   from dbo.SR_Service
   LEFT OUTER JOIN dbo.SR_Board on dbo.SR_Service.SR_Board_RecID = dbo.SR_Board.SR_Board_RecID
   left outer join sr_status on sr_service.sr_status_recid = sr_status.sr_status_recid
-  where (sr_status.description <> "Closed" and sr_status.description <> "Canceled" and sr_status.description <> "Closed - First Call") and (dbo.SR_Board.Board_Name = "My Company/Service" or dbo.SR_Board.Board_Name = "Results Physiotherapy" or dbo.SR_Board.Board_Name="Results - Initiatives") and sr_service.date_closed is null';
+  where (sr_status.description <> "Closed" and sr_status.description <> "cancelled" and sr_status.description <> "Closed - First Call") and (dbo.SR_Board.Board_Name = "My Company/Service" or dbo.SR_Board.Board_Name = "Results Physiotherapy" or dbo.SR_Board.Board_Name="Results - Initiatives") and sr_service.date_closed is null';
 
 
 }
@@ -55,7 +55,7 @@ else{
   from dbo.SR_Service
   LEFT OUTER JOIN dbo.SR_Board on dbo.SR_Service.SR_Board_RecID = dbo.SR_Board.SR_Board_RecID
   left outer join sr_status on sr_service.sr_status_recid = sr_status.sr_status_recid
-  where (sr_status.description <> "Closed" and sr_status.description <> "Canceled" and sr_status.description <> "Closed - First Call") and (dbo.SR_Board.Board_Name = "My Company/Service" or dbo.SR_Board.Board_Name = "Alerts - Service Delivery" or dbo.SR_Board.Board_Name = "Results Physiotherapy" or dbo.SR_Board.Board_Name="Results - Initiatives") and sr_service.date_closed is null';
+  where (sr_status.description <> "Closed" and sr_status.description <> "cancelled" and sr_status.description <> "Closed - First Call") and (dbo.SR_Board.Board_Name = "My Company/Service" or dbo.SR_Board.Board_Name = "Alerts - Service Delivery" or dbo.SR_Board.Board_Name = "Results Physiotherapy" or dbo.SR_Board.Board_Name="Results - Initiatives") and sr_service.date_closed is null';
 
 
 }

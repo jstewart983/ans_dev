@@ -24,7 +24,8 @@ group by convert(date,dbo.sr_service.Date_Entered)';
   where datename(dw,convert(date,dbo.sr_service.Date_Entered)) <> "Saturday"
   and datename(dw,convert(date,dbo.sr_service.Date_Entered)) <> "Sunday" and (board_name = "My Company/Service" or board_name = "Alerts - Service Delivery" or board_name = "Results Physiotherapy") and DATEDIFF( ww, dbo.SR_Service.Date_Entered, GETDATE() ) = 0
 
-  group by convert(date,dbo.sr_service.Date_Entered)';
+  group by convert(date,dbo.sr_service.Date_Entered)
+  order by convert(date,dbo.sr_service.Date_Entered)';
 
 }
 
