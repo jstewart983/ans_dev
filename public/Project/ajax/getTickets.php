@@ -20,7 +20,7 @@ if(isset($_GET['board'])){
 	left outer join sr_board on sr_board.sr_board_recid = sr_service.sr_board_recid
 	left outer join sr_status on sr_status.sr_status_recid  = sr_service.sr_status_recid
   left outer join company on sr_service.company_recid = company.company_recid
-  where sr_board.board_name = "'.$board.'" and (sr_status.description <> "Closed" and sr_status.description <> "Canceled" and sr_status.description <> "Closed - First Call") and sr_service.date_closed is null
+  where sr_board.board_name = "'.$board.'" and (sr_status.description <> "Closed" and sr_status.description <> "cancelled" and sr_status.description <> "Closed - First Call") and sr_service.date_closed is null
   order by sr_service.date_entered desc';
 }
 
