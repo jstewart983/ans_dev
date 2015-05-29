@@ -249,7 +249,7 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
 
                   </div>
                   <div>
-                    <div style="background-color:#34495e;" id="title" class="panel-body">
+                    <div  id="title" class="panel-body">
 
                       <h1 id="mrr"style="text-align:center;">$0</h1>
 
