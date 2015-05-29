@@ -132,7 +132,7 @@
         </div>
         <div style="position:relative;z-index:999;"class="row">
           <div class="col-md-12">
-            <h1 style="font-size:50px;text-align:center;"><span id="hello">Hello <?php echo $_SESSION['fName']; ?>.</span> <span id="welcome" >Welcome to </span><span id="intel">ANS Intelligence.</span></h1>
+            <h1 style="font-size:50px;text-align:center;"><span id="hello">Hello <?php if($_SESSION['fName']==)  echo $_SESSION['fName']; ?>.</span> <span id="welcome" >Welcome to </span><span id="intel">ANS Intelligence.</span></h1>
           </div>
           <div class="col-md-12">
             <p id="choose"style="text-align:center;">
@@ -242,14 +242,14 @@
                                                         <input type="text" class="form-control" name="Name" autocomplete="off" id="name" placeholder="Name">
                                                   </div>
                                                 </div>
-        <div class="col-md-6">
-        <div class="form-group">
-        <select id="type" class="form-control">
-        <option value="one">Select request type</option>
-        <option value="Issue">Issue</option>
-        <option value="Request">Request</option>
-        <option value="Idea">Idea</option>
-        </select>
+                                                  <div class="col-md-6">
+                                                  <div class="form-group">
+                                                  <select id="type" class="form-control">
+                                                  <option value="one">Select request type</option>
+                                                  <option value="Issue">Issue</option>
+                                                  <option value="Request">Request</option>
+                                                  <option value="Idea">Idea</option>
+                                                  </select>
                                                   </div>
                                                 </div>
                                                 </div>

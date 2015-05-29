@@ -4,7 +4,7 @@ require('../config/userconfig.php');
 
 
 
-$query = 'SELECT user_id,fName,lName,user_group_id,user_name,user_email FROM users WHERE user_logged_in = 1';
+$query = 'SELECT user_id,fName,lName,user_group_id,user_name,user_email,user_logged_in FROM users';
 
 
 
@@ -21,6 +21,7 @@ echo "<th>User ID</th>";
 echo "<th>Name</th>";
 echo "<th>User Name</th>";
 echo "<th>Email</th>";
+echo "<td>Logged in?</td>";
 
 echo "</thead>";
 
@@ -31,7 +32,11 @@ echo "<tbody>";
 while($row = mysqli_fetch_array($results)) {
 
 
-
+if($row['user_logged_in']==1){
+	$logged_in = "yes";
+}else{
+	$logged_in = "No";
+}
 
 
 
@@ -40,6 +45,7 @@ while($row = mysqli_fetch_array($results)) {
 		echo "<td>".$row['fName']." ".$row['lName']."</td>";
      echo "<td>".$row['user_name']."</td>";
      echo "<td>".$row['user_email']."</td>";
+		echo "<td>".$logged_in."</td>";
     echo "</tr>";
 
 
