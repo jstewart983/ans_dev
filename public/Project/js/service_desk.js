@@ -326,7 +326,7 @@ $("#title #billableDayTitle").fadeOut(500,function(){
 });
 //$('#sup').empty();
 $('#sup').replaceWith('<div id="sup"><canvas id ="billableDay"style="margin-left:-2px;padding:15px;width:90%;height:200px;"></canvas></div>');
-        
+
       var ctx = document.getElementById("billableDay").getContext("2d");
       var myNewChart = new Chart(ctx).Bar(data);
 
@@ -924,7 +924,34 @@ function getBillableLastWeek(){
 
 
 
+function orphanedTickets(){
 
+  $.ajax({
+    type:"GET",
+    url:"../../../ajax/servicedelivery/orphanedTickets.php",
+    success:function(table){
+
+
+
+      $('#orphanedTicketsTable').fadeOut(600, function() {
+
+            var $span1 = $('<div id ="orphanedTicketsTable">'+table+'</div>');
+
+
+
+             $("#orphanedTicketsTable").replaceWith($span1);
+
+           $span1.fadeIn(800);
+
+
+
+          });
+
+
+    }
+  });
+
+}
 
 
 
@@ -967,6 +994,11 @@ newVsOld();
 //urgent tickets that are open
 urgentTickets();
 setInterval(function(){ urgentTickets(); }, 60000);
+
+orphanedTickets();
+setInterval(function(){ orphanedTickets(); }, 60000);
+
+
 //top tickets by service type this week
 topTypes('','','');
 $.ajax({

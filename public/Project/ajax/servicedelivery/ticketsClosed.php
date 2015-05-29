@@ -13,9 +13,9 @@ if (strpos($path,'servicedelivery') !== false) {
   $query = 'select COUNT(distinct(sr_service.Date_Closed)) as closedTickets
   from dbo.SR_Service left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
   left outer join member on member.member_id = sr_service.closed_by
-  where (dbo.member.Title like "%IT Support%") and
-
-  (board_name = "My Company/Service" or board_name = "Alerts - Service Delivery" or board_name = "Results Physiotherapy") and DATEDIFF( ww, sr_service.Date_Closed, GETDATE() ) = 0';
+  left outer join time_entry on SR_Service.sr_service_recid = time_entry.sr_service_recid
+  where time_entry.Hours_Actual > 0 and (dbo.member.Title like "%IT Support%") and
+  DATEDIFF( ww, sr_service.Date_Closed, GETDATE() ) = 0';
 
 }elseif(strpos($path,'CIM') !== false){
 

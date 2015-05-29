@@ -301,6 +301,32 @@
         </div>
 
         </div>
+        <div class="row">
+            <div id="title" class="col-md-12">
+              <div id="orphanedTicketsTable">
+                <div style='width:100%;padding:0px;'class=' panel panel-default'>
+                <div class='panel-heading'style='text-align:center;'>
+                  <p id="orphanedTicketsTitle" style="text-align:center;">Orphaned Tickets <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
+                </div>
+                <div style='width:100%;width:100%;overflow-y: scroll !important;height:278px;'class=panel-body>
+                  <table id='clientTable' style='width:100%;' class='table table-hover'>
+                  <thead>
+                  <th>Ticket #</th>
+                  <th>Urgency</th>
+                  <th>Status</th>
+                  <th>Summary</th>
+                  <th>Days Open</th>
+                  </thead>
+                  <tbody  class='rowlink'>
+
+                    </tbody>
+                    </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        </div>
       <!--  <div class="row">
           <div id="title" class="panel panel-default">
             <div class="panel-heading">
@@ -364,14 +390,14 @@
                                                   <input type="text" class="form-control" name="Name" autocomplete="off" id="name" placeholder="Name">
                                             </div>
                                           </div>
-<div class="col-md-6">
-<div class="form-group">
-<select id="type" class="form-control">
-<option value="one">Select request type</option>
-<option value="Issue">Issue</option>
-<option value="Request">Request</option>
-<option value="Idea">Idea</option>
-</select>
+                                              <div class="col-md-6">
+                                              <div class="form-group">
+                                              <select id="type" class="form-control">
+                                              <option value="one">Select request type</option>
+                                              <option value="Issue">Issue</option>
+                                              <option value="Request">Request</option>
+                                              <option value="Idea">Idea</option>
+                                              </select>
                                             </div>
                                           </div>
                                           </div>

@@ -132,7 +132,7 @@
         </div>
         <div style="position:relative;z-index:999;"class="row">
           <div class="col-md-12">
-            <h1 style="font-size:50px;text-align:center;"><span id="hello">Hello <?php if($_SESSION['fName']==)  echo $_SESSION['fName']; ?>.</span> <span id="welcome" >Welcome to </span><span id="intel">ANS Intelligence.</span></h1>
+            <h1 style="font-size:50px;text-align:center;"><span id="hello">Hello <?php echo $_SESSION['fName']; ?>.</span> <span id="welcome" >Welcome to </span><span id="intel">ANS Intelligence.</span></h1>
           </div>
           <div class="col-md-12">
             <p id="choose"style="text-align:center;">

@@ -1151,8 +1151,8 @@ var totalID = setInterval(function(){ getBillableHoursTotal(); }, 10000);
 
 
 //closed first call % this year
-closedFirstCall();
-setInterval(function(){ closedFirstCall(); }, 10000);
+//closedFirstCall();
+//setInterval(function(){ closedFirstCall(); }, 10000);
 
 
 //last 7 business days

@@ -177,7 +177,7 @@
                   </div>
                 </div>
             </div>
-            <div id="title" class="col-md-2">
+            <!--<div id="title" class="col-md-2">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                         <p id="closedFirstTitle" style="text-align:center;">Closed First Call % <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
@@ -186,8 +186,8 @@
                     <h1 id="closedFirst"style="text-align:center;">0%</h1>
                   </div>
                 </div>
-            </div>
-            <div id="title" class="col-md-2">
+            </div>-->
+            <div id="title" class="col-md-4">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                         <p id="totalBillableTitle" style="text-align:center;">Billable Hrs - This Wk <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
