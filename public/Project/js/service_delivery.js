@@ -338,7 +338,7 @@ $("#title #billableDayTitle").fadeOut(500,function(){
 
 });
 $('#sup').empty();
-$('#sup').replaceWith('<div id="sup"><canvas style="padding:10px;width:720px;height:431px;" id="billableDay"></div>');
+$('#sup').replaceWith('<div id="sup"><canvas style="padding:10px;width:720px;height:231px;" id="billableDay"></div>');
 
       var ctx = document.getElementById("billableDay").getContext("2d");
       var myNewChart = new Chart(ctx).Bar(data);
@@ -474,7 +474,7 @@ function newVsOld(){
             day_labels.push(json2[$i]["Week_Day"]);
           }
 
-          for($i=0;$i<json2.length;$i++){
+          for($i=0;$i<json1.length;$i++){
 
 
               tickets_closed.push(json1[$i]["Closed_Tickets"]);
@@ -1151,8 +1151,8 @@ var totalID = setInterval(function(){ getBillableHoursTotal(); }, 10000);
 
 
 //closed first call % this year
-//closedFirstCall();
-//setInterval(function(){ closedFirstCall(); }, 10000);
+closedFirstCall();
+setInterval(function(){ closedFirstCall(); }, 10000);
 
 
 //last 7 business days

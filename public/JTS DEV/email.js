@@ -1,5 +1,5 @@
 function sendEmail(form) {
-        
+  //$('#contact_form').replaceWith('<div id="contact_form" style="min-height:399px;><h4 style="display:table;margin:0 auto;text-align:center;">sending...</h4></div>')
         // Serialize the form data.
         var formData = $(form).serialize();
 
@@ -20,40 +20,27 @@ function sendEmail(form) {
             $('#textarea').val('');
             $('#captcha').val('');
 
-            $('#contactForm').fadeOut(500, function() {
-
-
-
-
-    $("contactForm").addClass("noDisplay");
-        $('#aboutMe').removeClass("noDisplay");
-       $('#aboutMe').fadeIn('slow', function() {
-           // Animation complete
-            });
-
-        
-
-    });
+            $('#contact_form').replaceWith('<div id="contact_form" style="min-height:399px;"><h4 class="btn btn-primary" style="display:table;margin:0 auto;text-align:center;">Success!</h4></div>')
 
 
 
 
             // Make sure that the formMessages div has the 'success' class.
-          
+
             //$(formMessages).removeClass('error');
             //$(formMessages).addClass('alert alert-success success');
 
-            
+
         })
         .fail(function(data) {
             // Make sure that the formMessages div has the 'error' class.
-           
+
 
             // Set the message text.
            alert("message did not send");
         });
 
-    
+
 }
 
 
@@ -72,7 +59,7 @@ $(document).ready(function(){
             e.stopPropagation();
             emailSendLimit++;
         }
-        
+
         //e.unbind();
 
     });

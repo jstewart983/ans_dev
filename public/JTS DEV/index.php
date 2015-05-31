@@ -106,7 +106,8 @@ box-shadow: 2px 3px 13px -1px rgba(0,0,0,0.75);
 	/*background:url(https://lh6.googleusercontent.com/-V_RsM4a6IOg/UzasCy0ZBrI/AAAAAAAAtcY/6ozFxL2WJwA/w1583-h1187-no/IMG_0900.JPG);*/
 	background-color:#FF6347;
 	width:100%;
-	height:500px;
+	min-height:500px;
+	height: auto;
   display:inline-block;
 	margin-bottom:-10px;
 }
@@ -116,10 +117,34 @@ box-shadow: 2px 3px 13px -1px rgba(0,0,0,0.75);
   /*background-color:rgba(0,0,0,0.7);*/
   color:#fff;
 }
-
+.work{
+	background-color:#6A5ACD;
+	color:#fff;
+}
+.contact{
+	background-color:#20B2AA;
+	color:#fff;
+}
+.work:hover{
+		background-color: #6A1ACD;
+		color:#FF6347;
+}
+.contact:hover{
+		background-color: #20B0AA;
+		color:#FF6347;
+}
+.work:active{
+	background-color: #6A8BCD;
+	color:#FF6347;
+}
+.contact:active{
+		background-color: #21B9AA;
+		color:#FF6347;
+}
     </style>
 
 <body>
+
 
 <!--	<img class="stewart" style="-webkit-filter: brightness(0.2);
 -moz-filter: brightness(0.2);
@@ -164,14 +189,19 @@ box-shadow: 2px 3px 13px -1px rgba(0,0,0,0.75);
 
 </div>
 </div>
-<div style="color:#fff;text-align:center;margin-top:0;" class="row">
-	<div style="background-color:#6A5ACD;" class="col-md-6">
+<div style="color:#fff;text-align:center;margin-top:0px;" class="row">
+	<a class="work" href="#myWork">
+		<div class="col-md-6 work">
 		<h2>My Work</h2>
 	</div>
-	<div style="background-color:#20B2AA;" class="col-md-6">
+</a>
+<a class="contact" href="#contactForm">
+	<div  class="col-md-6 contact">
 		<h2>Contact</h2>
 	</div>
+</a>
 </div>
+
 	<div id="strengths" style="margin-top:40px;" class="row">
 		<div class="col-md-2"></div>
 
@@ -188,36 +218,21 @@ box-shadow: 2px 3px 13px -1px rgba(0,0,0,0.75);
 
 		</div>
 		<div class="col-md-2"></div>
-		<div class="col-md-3">
+		<div class="col-md-4">
 
 				<h4 style="text-align:center;">I am learning...</h4>
 				<div style="margin-left:auto;margin-right:auto;width:155px;">
-					<ul style="text-align:left;">
-						<li>Backbone.js</li>
-						<li>Node.js</li>
-						<li>Socket.io</li>
-						<li>Angularjs</li>
-						<li>Gulp</li>
+					<p>
+						Javascript frameworks, MEAN stack (reading <a href="https://leanpub.com/mean-machine">this book</a>)
+					</p>
 
-				</ul>
 				</div>
 
 
 		</div>
 	</div>
 
-		<div style="margin-top:40px;margin-bottom:20px;" class="row">
-			<div class="col-md-12">
-				<h4 style="margin-left:auto;margin-right:auto;text-align:center;">
-					<a style="display:inline;"  type="button" href="#myWork" class="btn btn-primary">See my work</a>
 
-
-
-					<a style="display:inline;"  href="#contactForm" type="button" class="btn btn-success">Send me a message</a>
-				</h4>
-			</div>
-
-		</div>
 
 		</div>
 		</div>
@@ -229,7 +244,7 @@ box-shadow: 2px 3px 13px -1px rgba(0,0,0,0.75);
 			</div>
 			<div style="margin-top:30px;"class="row">
 			<div id="leftRow" class="col-md-6">
-				<div style="height:20px;width:90%;margin-left:auto;margin-right:auto;margin-bottom:4px;"class="display:inline">
+				<div style="height:20px;width:90%;margin-left:auto;margin-right:auto;margin-bottom:10px;"class="display:inline">
 					<img style="display:inline;height:20px;width:auto;"src="developer-icon-set/SVG-color/html5-color.svg">
 					<img style="display:inline;height:20px;width:auto;"src="icons/jquery/jquery-original.svg">
 					<img style="display:inline;height:20px;width:auto;"src="developer-icon-set/SVG-color/ajax-color.svg">
@@ -242,10 +257,13 @@ box-shadow: 2px 3px 13px -1px rgba(0,0,0,0.75);
 
 				</div>
 				<div class="imgShadow" style="width:90%;height:90%;margin:auto;"class="panel panel-default">
-					<img style="width:100%;height:100%;border-radius:1%;" src="http://www.jtsdev.com/MyWork/BI_Tool_Screenshot.png">
+					<img style="width:100%;height:50%;border-radius:1%;" src="css/assets/ansintelligence.png">
+
+					<img style="width:100%;height:50%;border-radius:1%;" src="http://www.jtsdev.com/MyWork/BI_Tool_Screenshot.png">
+
 				</div>
 				<div style="margin-top:30px;" class="col-md-12">
-					<div style="height:20px;width:90%;margin-left:auto;margin-right:auto;margin-bottom:4px;"class="display:inline">
+					<div style="height:20px;width:90%;margin-left:auto;margin-right:auto;margin-bottom:10px;"class="display:inline">
 						<img style="display:inline;height:20px;width:auto;"src="developer-icon-set/SVG-color/html5-color.svg">
 						<img style="display:inline;height:20px;width:auto;"src="icons/jquery/jquery-original.svg">
 						<img style="display:inline;height:20px;width:auto;"src="developer-icon-set/SVG-color/bootstrap-color.svg">
@@ -254,11 +272,11 @@ box-shadow: 2px 3px 13px -1px rgba(0,0,0,0.75);
 
 					</div>
 					<div class="imgShadow" style="width:90%;height:90%;margin:auto;"class="panel panel-default">
-						<img style="width:100%;height:100%;border-radius:2%;" src="http://www.jtsdev.com/MyWork/quick_estimator.png">
+						<img style="width:100%;height:100%;border-radius:2%;" src="css/assets/quickestimator.png">
 					</div>
 				</div>
 				<div style="margin-top:30px;" class="col-md-12">
-					<div style="height:20px;width:90%;margin-left:auto;margin-right:auto;margin-bottom:4px;"class="display:inline">
+					<div style="height:20px;width:90%;margin-left:auto;margin-right:auto;margin-bottom:10px;"class="display:inline">
 						<img style="display:inline;height:20px;width:auto;"src="developer-icon-set/SVG-color/html5-color.svg">
 						<img style="display:inline;height:20px;width:auto;"src="icons/angularjs/angularjs-original.svg">
 						<img style="display:inline;height:20px;width:auto;"src="icons/mysql/mysql-original.svg">
@@ -273,7 +291,7 @@ box-shadow: 2px 3px 13px -1px rgba(0,0,0,0.75);
 					</div>
 				</div>
 				<div style="margin-top:30px;" class="col-md-12">
-					<div style="height:20px;width:90%;margin-left:auto;margin-right:auto;margin-bottom:4px;"class="display:inline">
+					<div style="height:20px;width:90%;margin-left:auto;margin-right:auto;margin-bottom:10px;"class="display:inline">
 						<img style="display:inline;height:20px;width:auto;"src="developer-icon-set/SVG-color/html5-color.svg">
 						<img style="display:inline;height:20px;width:auto;"src="icons/ruby/ruby-original.svg">
 						<img style="display:inline;height:20px;width:auto;"src="developer-icon-set/SVG-color/bootstrap-color.svg">
@@ -288,7 +306,7 @@ box-shadow: 2px 3px 13px -1px rgba(0,0,0,0.75);
 
 			</div>
 			<div id="rightRow"style="margin-top:30px;"class="col-md-6">
-				<div style="height:20px;width:90%;margin-left:auto;margin-right:auto;margin-bottom:4px;"class="display:inline">
+				<div style="height:20px;width:90%;margin-left:auto;margin-right:auto;margin-bottom:10px;"class="display:inline">
 						<img style="display:inline;height:20px;width:auto;"src="developer-icon-set/SVG-color/html5-color.svg">
 						<img style="display:inline;height:20px;width:auto;"src="icons/jquery/jquery-original.svg">
 						<img style="display:inline;height:20px;width:auto;"src="developer-icon-set/SVG-color/ajax-color.svg">
