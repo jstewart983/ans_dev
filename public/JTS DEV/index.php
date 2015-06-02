@@ -173,6 +173,9 @@ box-shadow: 2px 3px 13px -1px rgba(0,0,0,0.75);
 				<p style="text-align:center;">
 					I write code for the world wide web.
 				</p>
+				<p style="text-align:center;">
+					<q>Internet...that's the one with email. Right?</q>
+				</p>
 				<div style="text-align:center;height:20px;width:90%;margin-left:auto;margin-right:auto;margin-bottom:4px;"class="display:inline">
 					<a id="github" href="https://github.com/jstewart983"><span class="fui-github"></span></a>
 					<a id="linkedin" href="https://www.linkedin.com/pub/jordan-stewart/46/ab3/47"><span class="fui-linkedin"></span></a>
