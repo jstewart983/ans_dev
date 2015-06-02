@@ -226,7 +226,7 @@
         </div>-->
         <!--Billable hours and new tickets vs closed tickets this week charts-->
         <div class="row">
-            <div id="title" class="col-md-12">
+            <div id="title" class="col-md-6">
                 <div class="panel panel-default">
                   <div id="dude" class="panel-heading">
                         <p id ="billableDayTitle" style="text-align:center;">Billable Hrs/Member - This Wk <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
@@ -252,14 +252,14 @@
                       <div style="text-align:center"class="col-md-2">
                       </div>
 
-                    <div id="sup" style="max-height:250px;">
+                    <div id="sup">
                         <canvas id ="billableDay"></canvas>
                     </div>
                   </div>
                 </div>
             </div>
 
-        <!--<div id="title" class="col-md-6">
+        <div id="title" class="col-md-6">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                         <p id="newOldTitle" style="text-align:center;">New Tickets vs Tickets Closed - This Wk <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
@@ -272,7 +272,7 @@
                     <canvas id ="newOld"style="margin-left:-2px;padding:15px;width:90%;height:200px;"></canvas>
                   </div>
                 </div>
-            </div>-->
+            </div>
         </div>
         <div class="row">
           <div id="title" class="col-md-12">
