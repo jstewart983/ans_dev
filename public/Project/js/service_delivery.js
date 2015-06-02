@@ -275,7 +275,7 @@ function avgInitialResponse(){
 
 
 function billableByDay(ranges,datetype){
-  $('#billableDay').remove();
+  //$('#billableDay').remove();
 
   $.ajax({
 
@@ -338,14 +338,14 @@ $("#title #billableDayTitle").fadeOut(500,function(){
 
 });
 $('#sup').empty();
-$('#sup').replaceWith('<div id="sup"><canvas style="padding:10px;width:720px;height:231px;" id="billableDay"></div>');
+$('#sup').replaceWith('<div id="sup"><canvas style="padding:10px;width:auto;height:100px;" id="billableDay"></div>');
 
       var ctx = document.getElementById("billableDay").getContext("2d");
       var myNewChart = new Chart(ctx).Bar(data);
 
       $("#billableDay").click(function(e) {
          var activeBars = myNewChart.getBarsAtEvent(e);
-    //$('#basicModal2').modal('show');
+    	    //$('#basicModal2').modal('show');
          //$('#basicModal2').find(".modal-title").text(activeBars[0].label);
 
          if(ranges && datetype !== ''){
@@ -412,7 +412,7 @@ $('#sup').replaceWith('<div id="sup"><canvas style="padding:10px;width:720px;hei
 
 
               $('#sup').empty();
-              $('#sup').append('<a href="#" id="billableBack"><span class="fui-arrow-left"></span>back </a> <span> '+activeBars[0].label+': <span id="memberHours"></span></span><canvas style="padding:10px;width:720px;height:231px;" id="billableDay">');
+              $('#sup').append('<a href="#" id="billableBack"><span class="fui-arrow-left"></span>back </a> <span> '+activeBars[0].label+': <span id="memberHours"></span></span><canvas style="padding:10px;width:auto;height:100px;" id="billableDay">');
                  var ctx2 = document.getElementById("billableDay").getContext("2d");
                  var modalChart = new Chart(ctx2).Bar(data);
                 //console.log(ctx2);
@@ -433,7 +433,7 @@ $('#sup').replaceWith('<div id="sup"><canvas style="padding:10px;width:720px;hei
 
         $('#daterange4').val('');
         $('#sup').empty();
-        $('#billableDay').remove();
+        //$('#billableDay').remove();
         //$('#dude').empty();
         e.preventDefault();
         //$('.sup').append('<canvas style="padding:10px;width:720px;height:231px;" id="billableDay">');

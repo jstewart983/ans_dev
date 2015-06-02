@@ -1,0 +1,192 @@
+
+  <div style="margin-top:10px;" class="row">
+    <div class="col-md-2">
+
+    </div>
+    <div class="col-md-3">
+
+    </div>
+    <div class="col-md-4">
+    </div>
+
+    <div class="col-md-3">
+      <a id="slide3" class="btn btn-lg btn-inverse">Next <span class="fui-triangle-right-large"></span></a>
+
+    </div>
+
+  </div>
+
+    <div class="row">
+
+      <div class="col-md-2">
+        <h6 class="remodelGreen demo-panel-title">Remodel Plan Framework</h6>
+        <div id="reviewChart">
+          <canvas id="reportReviewChart">
+          </canvas>
+        </div>
+
+  	             
+                  
+                  <h6 id="employeeSavings"></h6>
+                  <p class="remodelGray">
+                    Total Savings
+                  </p>
+                  <h6 id="employeeSavings"></h6>
+                  <p class="remodelGray">
+                    Employer Savings
+                  </p>
+                  <h6 id="employerSavings"></h6>
+                  <p class="remodelGray">
+                    Employee Savings
+                  </p>
+      </div>
+      <div class="col-md-2">
+
+      </div>
+      <div class="col-md-6">
+        <label class="checkbox" for="checkbox1">
+          <input type="checkbox"  value="" id="checkbox1" data-toggle="checkbox" class="custom-checkbox"><span class="icons">
+                      <span class="icon-unchecked">
+                      </span>
+                      <span class="icon-checked">
+                      </span>
+                    </span>
+                    <h5  class="remodelGray">Salary Up</h5>
+                  </label>
+                  <div style="margin-left:20px;" id="salary" class="hidden">
+                    <p>Set Salary Increase for Employees</p>
+                     <label class="checkbox" for="percentCheckbox" >
+                        <input type="checkbox"  value="" id="percentCheckbox" data-toggle="checkbox" class="custom-checkbox">
+                       <span class="icons">
+                        <span class="icon-unchecked">
+                      </span>
+                      <span class="icon-checked">
+                      </span>
+                    </span>
+                    <h6  class="remodelGray">% of Employee Cost</h6>
+                  </label>
+                  <div id="percentSlider" class="hidden">
+                    
+                      
+                   
+                <form class="form-horizontal form-pricing-slider sliders" role="form">
+                  <div class="col-md-3">
+                  <input type="hidden" id="employeesSlider" class="form-control">
+                      <p style="text-align:center;"class="price lead" id="employees-label"></p>
+                      <span class="price"></span>
+                    <div id="slider"></div>
+                       </div>
+                  
+              </form>
+              
+              <h7 class="remodelGray" style="text-align:center;">Employee Cost</h7>
+                  </div>
+                    <label class="checkbox" for="byFamily">
+                      <input type="checkbox"  value="" id="byFamily" data-toggle="checkbox" class="custom-checkbox"><span class="icons">
+                      <span class="icon-unchecked">
+                      </span>
+                      <span class="icon-checked">
+                      </span>
+                    </span>
+                    <h6  class="remodelGray">By Family Status</h6>
+                  </label>
+                  <div id="byFamilyDetail" class="hidden">
+                                          <table style="width:100%;" class="table table-list-search remodelGray">
+                        <thead>
+                          <th>
+                            
+                          </th>
+                          <th>
+                            Salary Up Amount
+                          </th>
+                        </thead>
+                          <tbody>
+                            <tr>
+                              <td><b>Single</b></td>
+                              <td id="reportSingle">
+                                <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="single" autocomplete="off" id="single" value="150">
+                                    </div>
+                                    </td>
+                            </tr>
+                            <tr>
+                              <td><b>Couple</b></td>
+                              <td id="reportCouple">
+                                <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="couple" autocomplete="off" id="couple" value="300">
+                                    </div>
+                                    </td>
+                             </tr>
+                              <tr>
+                                <td><b>Single Parent</b></td>
+                                <td id="reportSingleParent">
+                                  <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="singleParent" autocomplete="off" id="singleParent" value="250">
+                                    </div>
+                                </td>
+                             </tr>
+                            </tbody
+                            ></table>
+                  </div>
+                  </div>
+                  <label class="checkbox" for="checkbox2">
+                    <input type="checkbox"  value="" id="checkbox2" data-toggle="checkbox" class="custom-checkbox"><span class="icons">
+                        <span class="icon-unchecked">
+                        </span>
+                        <span class="icon-checked">
+                        </span>
+                      </span>
+                      <h5 class="remodelGray">Health Savings Account</h5>
+                  </label>
+                  <div class="hidden" id="hsa">
+                      <table style="width:100%;" class="table table-list-search remodelGray">
+                        <thead>
+                          <th>
+                            
+                          </th>
+                          <th>
+                            HSA Contribution
+                          </th>
+                        </thead>
+                          <tbody>
+                            <tr>
+                              <td><b>Single</b></td>
+                              <td id="reportSingle">
+                                <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="single" autocomplete="off" id="single" value="150">
+                                    </div>
+                                    </td>
+                            </tr>
+                            <tr>
+                              <td><b>Couple</b></td>
+                              <td id="reportCouple">
+                                <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="couple" autocomplete="off" id="couple" value="300">
+                                    </div>
+                                    </td>
+                             </tr>
+                              <tr>
+                                <td><b>Single Parent</b></td>
+                                <td id="reportSingleParent">
+                                  <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="singleParent" autocomplete="off" id="singleParent" value="250">
+                                    </div>
+                                </td>
+                             </tr>
+                                                           <tr>
+                                <td><b>Family</b></td>
+                                <td id="reportFamily">
+                                  <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="family" autocomplete="off" id="family" value="250">
+                                    </div>
+                                </td>
+                             </tr>
+                            </tbody
+                            ></table>
+                  </div>
+
+
+
+
+      </div>
+    </div>

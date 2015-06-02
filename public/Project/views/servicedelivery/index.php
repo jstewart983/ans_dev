@@ -252,8 +252,8 @@
                       <div style="text-align:center"class="col-md-2">
                       </div>
 
-                    <div id="sup">
-                        <canvas id ="billableDay"style="margin-left:-2px;padding:15px;width:90%;height:200px;"></canvas>
+                    <div id="sup" style="max-height:250px;">
+                        <canvas id ="billableDay"></canvas>
                     </div>
                   </div>
                 </div>

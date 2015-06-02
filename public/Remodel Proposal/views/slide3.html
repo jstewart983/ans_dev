@@ -1,17 +1,18 @@
 
+
+
   <div style="margin-top:10px;" class="row">
     <div class="col-md-2">
 
     </div>
     <div class="col-md-3">
-      <a id="back2" class="btn btn-lg btn-inverse"><span class="fui-triangle-left-large"></span> Previous</a>
 
     </div>
     <div class="col-md-4">
     </div>
 
     <div class="col-md-3">
-      <a id="slide3" class="btn btn-lg btn-primary">Save <span class="fui-check"></span></a>
+      <a id="slide3" class="btn btn-lg btn-inverse">Next <span class="fui-triangle-right-large"></span></a>
 
     </div>
 
@@ -20,7 +21,13 @@
     <div class="row">
 
       <div class="col-md-2">
-        <h6 class="remodelGreen demo-panel-title">Remodel Plan Finishing</h6>
+        <h6 class="remodelGreen demo-panel-title">Remodel Plan Framework</h6>
+        <div id="reviewChart">
+          <canvas id="reportReviewChart">
+          </canvas>
+        </div>
+
+
 
                   <h6 id="employeeSavings"></h6>
                   <p class="remodelGray">
@@ -31,82 +38,235 @@
                     Employee Savings
                   </p>
       </div>
-      <div class="col-md-1">
-
+       <div class="col-md-2">
+         
+       </div>
+      <div class="col-md-6">
+        <div style='width:100%;overflow-y: scroll !important;height:480px;'>
+  	     <table style="width:100%;" class="table table-list-search remodelGray">
+                        <thead>
+                          <th>
+                            
+                          </th>
+                          <th>
+                            HSA
+                          </th>
+                          <th>
+                            Employee Group Cost
+                          </th>
+                          <th>
+                            Individual Premium
+                          </th>
+                          <th>
+                            Subsidy
+                          </th>
+                          <th>
+                            Salary Up
+                          </th>
+                          <th>
+                            
+                          </th>
+                        </thead>
+                          <tbody>
+                            <tr>
+                              <td><b>Employee 1</b></td>
+                              <td id="reportSingle">
+                                <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="single" autocomplete="off" id="single" value="150">
+                                </div>
+                              </td>
+                                 <td id="reportSingle">
+                                <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="single" autocomplete="off" id="single" value="150">
+                                </div>
+                              </td>
+                                  <td id="reportSingle">
+                                <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="single" autocomplete="off" id="single" value="150">
+                                </div>
+                              </td>
+                                <td id="reportSingle">
+                                <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="single" autocomplete="off" id="single" value="150">
+                                </div>
+                              </td>
+                                <td id="reportSingle">
+                                <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="single" autocomplete="off" id="single" value="150">
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><b>Employee 2</b></td>
+                              <td id="reportCouple">
+                                <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="couple" autocomplete="off" id="couple" value="300">
+                                    </div>
+                                    </td>
+                                                                  <td id="reportSingle">
+                                <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="single" autocomplete="off" id="single" value="150">
+                                </div>
+                              </td>
+                                                              <td id="reportSingle">
+                                <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="single" autocomplete="off" id="single" value="150">
+                                </div>
+                              </td>
+                                                              <td id="reportSingle">
+                                <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="single" autocomplete="off" id="single" value="150">
+                                </div>
+                              </td>
+                                                              <td id="reportSingle">
+                                <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="single" autocomplete="off" id="single" value="150">
+                                </div>
+                              </td>
+                             </tr>
+                              <tr>
+                                <td><b>Employee 3</b></td>
+                                <td id="reportSingleParent">
+                                  <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="singleParent" autocomplete="off" id="singleParent" value="250">
+                                    </div>
+                                </td>
+                                                                <td id="reportSingle">
+                                <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="single" autocomplete="off" id="single" value="150">
+                                </div>
+                              </td>
+                                                              <td id="reportSingle">
+                                <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="single" autocomplete="off" id="single" value="150">
+                                </div>
+                              </td>
+                                                              <td id="reportSingle">
+                                <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="single" autocomplete="off" id="single" value="150">
+                                </div>
+                              </td>
+                                                              <td id="reportSingle">
+                                <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="single" autocomplete="off" id="single" value="150">
+                                </div>
+                              </td></tr>
+                                                              <tr><td><b>Employee 4</b></td>
+                                <td id="reportSingleParent">
+                                  <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="singleParent" autocomplete="off" id="singleParent" value="250">
+                                    </div>
+                                </td>
+                                                                <td id="reportSingle">
+                                <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="single" autocomplete="off" id="single" value="150">
+                                </div>
+                              </td>
+                                                              <td id="reportSingle">
+                                <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="single" autocomplete="off" id="single" value="150">
+                                </div>
+                              </td>
+                                                              <td id="reportSingle">
+                                <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="single" autocomplete="off" id="single" value="150">
+                                </div>
+                              </td>
+                                                              <td id="reportSingle">
+                                <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="single" autocomplete="off" id="single" value="150">
+                                </div>
+                              </td>
+                              </tr>
+                                     <tr>                        <td><b>Employee 5</b></td>
+                                <td id="reportSingleParent">
+                                  <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="singleParent" autocomplete="off" id="singleParent" value="250">
+                                    </div>
+                                </td>
+                                                                <td id="reportSingle">
+                                <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="single" autocomplete="off" id="single" value="150">
+                                </div>
+                              </td>
+                                                              <td id="reportSingle">
+                                <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="single" autocomplete="off" id="single" value="150">
+                                </div>
+                              </td>
+                                                              <td id="reportSingle">
+                                <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="single" autocomplete="off" id="single" value="150">
+                                </div>
+                              </td>
+                                                              <td id="reportSingle">
+                                <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="single" autocomplete="off" id="single" value="150">
+                                </div>
+                              </td>
+                              </tr>
+                                 <tr>                             <td><b>Employee 6</b></td>
+                                <td id="reportSingleParent">
+                                  <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="singleParent" autocomplete="off" id="singleParent" value="250">
+                                    </div>
+                                </td>
+                                                                <td id="reportSingle">
+                                <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="single" autocomplete="off" id="single" value="150">
+                                </div>
+                              </td>
+                                                              <td id="reportSingle">
+                                <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="single" autocomplete="off" id="single" value="150">
+                                </div>
+                              </td>
+                                                              <td id="reportSingle">
+                                <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="single" autocomplete="off" id="single" value="150">
+                                </div>
+                              </td>
+                                                              <td id="reportSingle">
+                                <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="single" autocomplete="off" id="single" value="150">
+                                </div>
+                              </td>
+                              </tr>
+                              <tr>
+                                                              <td><b>Employee 7</b></td>
+                                <td id="reportSingleParent">
+                                  <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="singleParent" autocomplete="off" id="singleParent" value="250">
+                                    </div>
+                                </td>
+                                                                <td id="reportSingle">
+                                <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="single" autocomplete="off" id="single" value="150">
+                                </div>
+                              </td>
+                                                              <td id="reportSingle">
+                                <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="single" autocomplete="off" id="single" value="150">
+                                </div>
+                              </td>
+                                                              <td id="reportSingle">
+                                <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="single" autocomplete="off" id="single" value="150">
+                                </div>
+                              </td>
+                                                              <td id="reportSingle">
+                                <div class="form-group">
+                                  <input style="text-align:center;width:80%;float:left;" type="text" class="form-control" name="single" autocomplete="off" id="single" value="150">
+                                </div>
+                              </td>
+                         
+                             </tr>
+                            </tbody
+                            ></table>
+     </div>
       </div>
-      <div class="col-md-7">
-        <div style="margin-top:15px;margin-bottom:15px;" class="panel panel-default">
-          <div class="panel-body">
-            <h6>Summary</h6>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <table style="margin-top:15px;width:100%;" class="table table-list-search remodelGray">
-
-                  <thead>
-
-                        <p class="remodelGreen" style="text-align:left;">
-                          Implementation Guide
-                        </p>
-                        <th>
-                          ID
-                        </th>
-                        <th>
-                          HSA
-                        </th>
-                        <th>
-                          GrpCost
-                        </th>
-                        <th>
-                          IndPrm
-                        </th>
-                        <th>
-                          Subsidy
-                        </th>
-                        <th>
-                          Salary Up
-                        </th>
-                        <th>
-                          Est Tax Impact
-                        </th>
-                        <th>
-                          Result
-                        </th>
-                  </thead>
-                  <tbody>
-                      <tr>
-                          <td>3</td>
-                          <td>$45000</td>
-                          <td>
-                            $400000
-                          </td>
-                          <td>
-                            $12000
-                          </td>
-                          <td>
-                            $1200
-                          </td>
-                          <td>
-                            $3900
-                          </td>
-                          <td>
-                            $7899
-                          </td>
-                          <td>
-                            $78000/30%
-                          </td>
-                      </tr>
 
 
-                  </tbody>
-              </table>
+
       </div>
     </div>

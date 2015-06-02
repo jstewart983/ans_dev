@@ -1,170 +1,14 @@
-body{
-  font-family: 'PT Sans';
-}
+body {
 
-
-.slide {
-    margin:2% auto;
-
-
-
-    line-height: 300px;
-    font-size: 50px;
-    text-align: center;
-
-
-
+	padding-top: 50px;
+	padding-bottom: 50px;
+	background-color: #F5F5F5;
+	font-family: 'Ubuntu', sans-serif;
 
 }
-
-
-#box1 {
-    background-color: #fff;
-
+h1{
+	margin-top: 10px;
 }
-
-#box2 {
-    background-color: #fff;
-
-}
-
-#box3 {
-    background-color: #fff;
-
-
-}
-
-.titlebar {
-  margin-top:30px;
-  width:50%;
-  min-height:60px !important;
-  vertical-align:text-bottom;
-  border-bottom:1px #282828;
-
-}
-.title{
-
-
-  margin:auto;
-
-}
-
-button.remodel{
-
-
-
-
-  text-align:center;
-
-
-
-}
-
-
-
-
-
-.invisible{
-
-  display:none;
-
-}
-
-.l-header-h {
-  position: relative;
-  margin: 0 auto;
-  height: 100%;
-  width: 96%;
-  max-width: 1200px;
-}
-
-.w-logo {
-  clear: both;
-  height: 100%;
-  position: relative;
-}
-
-
-
-
-
-
-.option {
-
-    border-radius: 5px;
-
-
-    -webkit-transition: all 0.5s ease-out;
-    -moz-transition: all 0.5s ease-out;
-    -ms-transition: all 0.5s ease-out;
-    -o-transition: all 0.5s ease-out;
-    transition: all 0.5s ease-out;
-    text-align: center;
-
-
-    text-decoration: none;
-}
-.option:hover {
-    background-color: #f1f1f1 !important;
-}
-
-span {
-    position: relative;
-    z-index: 1;
-    line-height: 23px;
-    transition: 0.3s ease;
-    -webkit-transition: 0.3s ease;
-    -moz-transition: 0.3s ease;
-    -o-transition: 0.3s ease;
-    -ms-transition: 0.3s ease;
-}
-.option:hover span {
-    color: #5a5a5a;
-}
-.btnBefore, .btnAfter {
-    content: '';
-    position: absolute;
-    height: 0;
-    width: 0;
-    border: solid #34495e;
-    border-width: 0;
-    border-radius: 0;
-    transition: 0;
-    -webkit-transition: 0;
-    -moz-transition: 0;
-    -o-transition: 0;
-    -ms-transition: 0;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    border-color: #34495e;
-    border-radius: 5px;
-}
-    .option .btnBefore {
-    right: 0;
-    bottom: 0;
-}
-.option .btnAfter {
-    left: 0;
-    top: 0;
-}
-.option:hover .btnBefore {
-    border-width: 0 0 1px 1px;
-}
-.option:hover .btnAfter {
-    border-width: 1px 1px 0 0;
-}
-
-.option:hover .btnAfter, .option:hover .btnBefore {
-height: 100%;
-width: 100%;
-transition: width 0.5s ease, height 0.5s ease 0.5s, border-top-right-radius 0.1s ease 0.4s, border-bottom-left-radius 0.1s ease 0.4s, border-bottom-right-radius 0.1s ease 0.9s, border-top-left-radius 0.1s ease 0.9s;
--webkit-transition: width 0.5s ease, height 0.5s ease 0.5s, border-top-right-radius 0.1s ease 0.4s, border-bottom-left-radius 0.1s ease 0.4s, border-bottom-right-radius 0.1s ease 0.9s, border-top-left-radius 0.1s ease 0.9s;
--moz-transition: width 0.5s ease, height 0.5s ease 0.5s, border-top-right-radius 0.1s ease 0.4s, border-bottom-left-radius 0.1s ease 0.4s, border-bottom-right-radius 0.1s ease 0.9s, border-top-left-radius 0.1s ease 0.9s;
--o-transition: width 0.5s ease, height 0.5s ease 0.5s, border-top-right-radius 0.1s ease 0.4s, border-bottom-left-radius 0.1s ease 0.4s, border-bottom-right-radius 0.1s ease 0.9s, border-top-left-radius 0.1s ease 0.9s;
--ms-transition: width 0.5s ease, height 0.5s ease 0.5s, border-top-right-radius 0.1s ease 0.4s, border-bottom-left-radius 0.1s ease 0.4s, border-bottom-right-radius 0.1s ease 0.9s, border-top-left-radius 0.1s ease 0.9s;
-}
-
 #circle {
 	width: 100px;
 	height: 100px;
@@ -182,13 +26,13 @@ transition: width 0.5s ease, height 0.5s ease 0.5s, border-top-right-radius 0.1s
 	height: 300px;
 	width: 300px;
 	padding: 40px;
-
+	
 	color: #fff;
 	background-color: #A9A9A9;
 	-moz-border-radius: 150px;
 	-webkit-border-radius: 150px;
 	border-radius: 150px;
-
+	
 }
 .lead{
 	margin-top: 40px;
@@ -215,13 +59,13 @@ transition: width 0.5s ease, height 0.5s ease 0.5s, border-top-right-radius 0.1s
 -moz-border-radius: 150px;
 	-webkit-border-radius: 150px;
 	border-radius: 150px;
-
+	
 }
 .premiumtax{
 	color: #000;
+	
 
-
-
+	
 }
 .price-box {
 	margin: 0 auto;
@@ -245,7 +89,7 @@ transition: width 0.5s ease, height 0.5s ease 0.5s, border-top-right-radius 0.1s
 	height: 2.2em;
 	cursor: default;
 	margin: 0 -15px auto !important;
-	text-align: center;
+	text-align: center;	
 	line-height: 30px;
 	color: #FFFFFF;
 	font-size: 15px;
@@ -337,17 +181,17 @@ h4.great {
 	margin: 10px auto;
 	padding: 10px;
 	border-radius: 5px 5px 5px;
-
+	
 }
 .form-pricing-slider {
-
+	
 	padding: 20px;
 	border-radius: 5px 5px 5px;
 	background-color: #F5F5F5;
 }
 
 .price-form {
-
+	
 	margin-bottom: 10px;
 	padding: 20px;
 	border: 1px solid #eeeeee;
@@ -403,9 +247,14 @@ hr.style {
     border-bottom: 1px dashed #ccc;
     background: #999;
 }
+.col-md-3{
+	text-align: center;
+	padding: 50px;
+}
 
-
-
+.container{
+	text-align: center;
+}
 /* centered columns styles */
 .row-centered {
     text-align:center;
