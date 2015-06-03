@@ -671,6 +671,17 @@ $(document).ready(function(){
                     }
 
                     });
+                        $.ajax({
+      url: "../../ajax/sales/presalesTickets.php",
+                    context: document.body,
+
+                    success: function(html){
+                      $('#loading').fadeOut();
+                     $("#requestTable").append(html);
+
+                    }
+
+                    });
 
                     //getMrr('');
                     //getAvgTickets('');

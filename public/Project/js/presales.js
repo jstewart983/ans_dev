@@ -9,15 +9,15 @@
 
 
 
-function drawTimeline1(value){
+function serviceHistory(value){
 
-  var company = value.substr(value.indexOf("=")+1);
-  var parameter = value.substr(0, value.indexOf('=')+1);
+  var company = value;
+  var parameter = "?company=";
 
 
   $.ajax({
-    type:"POST",
-    url:"../../ajax/clientservices/getServiceHistory.php"+parameter+company,
+    type:"GET",
+    url:"../ajax/sales/getServiceHistory.php"+parameter+company,
     success: function(json){
       data = [];
 
@@ -27,20 +27,29 @@ function drawTimeline1(value){
         data.push({
           'start': new Date(json[$i]["yearNum"],json[$i]["monthNum"],json[$i]["dayNum"]),
           //'end':  new Date(json[$i]["yearRes"],json[$i]["monthRes"],json[$i]["dayRes"]),  // end is optional
-          'content': "#"+json[$i]["TicketNbr"]+"<br />"+json[$i]["ServiceType"]+"<br />"+json[$i]["Urgency"]
+          'content': "#"+json[$i]["TicketNbr"]//+"<br />"+json[$i]["ServiceType"]+"<br />"+json[$i]["Urgency"]
           //'className': 'event'
            //Optional: a field 'className'
           // Optional: a field 'editable'
         });
       }
-
+      console.log(data);
       var options = {
         "width":  "100%",
-        "height": "400px",
+        "height": "200px",
         "style": "box",
         "editable": false,
         "cluster":true
       };
+      //$('#timelineSection1').fadeOut(500, function() {
+
+     //var $span1 = $('<div id="timelineSection1" style="margin-top:11px;"class="row"><div class="panel panel-default"><div style="text-align:center;"class="panel-heading"><p>Service Timeline</p></div><div  class="panel-body"><div  id="timeline2" class="col-md-12"></div></div></div></div>');
+     //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
+     //$("#timelineSection1").replaceWith($span1);
+     //$("#openProjects").replaceWith($span2);
+     //$span1.fadeIn(1200);
+
+ //});
       timeline1 = new links.Timeline(document.getElementById('timeline1'),options);
 
       timeline1.draw(data);
@@ -62,44 +71,110 @@ function drawTimeline1(value){
 
 });*/
 }
+function address(value) {
+  var company = value;
+  var parameter = "?company=";
 
-
-
-
-function drawTimeline2(value) {
-  var company = value.substr(value.indexOf("=")+1);
-  var parameter = value.substr(0, value.indexOf('=')+1);
 
   $.ajax({
-    type:"POST",
-    url:"../../ajax/clientservices/getOppHistory.php"+parameter+company,
+    type:"GET",
+
+    url:"../../ajax/sales/getAddress.php"+parameter+company,
     success: function(json){
+      $('#timelineSection2 #timeline').fadeOut(500, function() {
+
+     //var $span1 = json;
+     var $span1 = $('<div  id="timeline" class="col-md-12">'+json+'</div>');
+     $("#timeline").replaceWith($span1);
+     //$("#openProjects").replaceWith($span2);
+     $span1.fadeIn(500);
+
+ });
+      //$('#timeline1').append(json);
+
+    }
+  });
 
 
-      data1 = [];
+}
 
-      for($i=0;$i<json.length;$i++){
-        //var date = parseInt(json[$i]["yearNum"])+","+parseInt(json[$i]["monthNum"])+","+parseInt(json[$i]["dayNum"]);
-        data1.push({
-          'start': new Date(json[$i]["yearNum"],json[$i]["monthNum"],json[$i]["dayNum"]),
-          'end':  new Date(json[$i]["yearRes"],json[$i]["monthRes"],json[$i]["dayRes"]),  // end is optional
-          'content': json[$i]["oppName"]
-          //'className': 'opp'
-           //Optional: a field 'className'
-          // Optional: a field 'editable'
-        });
-      }
+function activityHistory(value) {
+  var company = value;
+  var parameter = "?company=";
 
-      var options = {
-        "width":  "100%",
-        "height": "400px",
-        "style": "box",
-        "editable": false,
-        "cluster":true
-      };
-      timeline2 = new links.Timeline(document.getElementById('timeline2'),options);
 
-      timeline2.draw(data1);
+  $.ajax({
+    type:"GET",
+
+    url:"../../ajax/sales/getActivities.php"+parameter+company,
+    success: function(json){
+      $('#timelineSection2 #timeline2').fadeOut(500, function() {
+
+     //var $span1 = json;
+     var $span1 = $('<div  id="timeline2" class="col-md-12">'+json+'</div>');
+     $("#timeline2").replaceWith($span1);
+     //$("#openProjects").replaceWith($span2);
+     $span1.fadeIn(500);
+
+ });
+      //$('#timeline1').append(json);
+
+    }
+  });
+
+
+}
+
+
+function agreementHistory(value) {
+  var company = value;
+  var parameter = "?company=";
+
+
+  $.ajax({
+    type:"GET",
+
+    url:"../../ajax/sales/getAgreements.php"+parameter+company,
+    success: function(json){
+      $('#timelineSection3 #timeline3').fadeOut(500, function() {
+
+     //var $span1 = json;
+     var $span1 = $('<div  id="timeline3" class="col-md-12">'+json+'</div>');
+     $("#timeline3").replaceWith($span1);
+     //$("#openProjects").replaceWith($span2);
+     $span1.fadeIn(500);
+
+ });
+      //$('#timeline1').append(json);
+
+    }
+  });
+
+
+}
+
+
+function oppHistory(value) {
+  var company = value;
+  var parameter = "?company=";
+
+
+  $.ajax({
+    type:"GET",
+
+    url:"../../ajax/sales/getOppHistory.php"+parameter+company,
+    success: function(json){
+      $('#timelineSection2 #timeline1').fadeOut(500, function() {
+
+     //var $span1 = json;
+     var $span1 = $('<div  id="timeline1" class="col-md-12">'+json+'</div>');
+     $("#timeline1").replaceWith($span1);
+     //$("#openProjects").replaceWith($span2);
+     $span1.fadeIn(500);
+
+ });
+      //$('#timeline1').append(json);
+
     }
   });
 
@@ -136,7 +211,7 @@ success: function(json) {
      $('#title #mrr').fadeOut(500, function() {
 
     if(mrr==0){
-      var $span1 = $('<h1 style="text-align:center;" id="mrr">$0</h1>');
+      var $span1 = $('<h2 style="text-align:center;" id="mrr">$0</h2>');
     }else{
       var total = mrr.reduce(function(a, b) {
         return a + b;
@@ -144,7 +219,7 @@ success: function(json) {
       total = total.toFixed(2).replace(/./g, function(c, i, a) {
         return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c;
         });
-      var $span1 = $('<h1 style="text-align:center;" id="mrr">$'+total+'</h1>');
+      var $span1 = $('<h3 style="text-align:center;" id="mrr">$'+total+'</h3>');
       }
 
 
@@ -183,7 +258,7 @@ function getAvgTickets(value){
 
        $('#title #avgTickets').fadeOut(500, function() {
 
-      var $span1 = $('<h1 style="text-align:center;" id="avgTickets">'+json+'</h1>');
+      var $span1 = $('<h2 style="text-align:center;" id="avgTickets">'+json+'</h2>');
       //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
       $("#avgTickets").replaceWith($span1);
       //$("#openProjects").replaceWith($span2);
@@ -219,7 +294,7 @@ function getOpenTickets(value){
 
            $('#title #openTickets').fadeOut(500, function() {
 
-          var $span1 = $('<h1 style="text-align:center;" id="openTickets">'+json+'</h1>');
+          var $span1 = $('<h2 style="text-align:center;" id="openTickets">'+json+'</h2>');
           //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
           $("#openTickets").replaceWith($span1);
           //$("#openProjects").replaceWith($span2);
@@ -363,7 +438,7 @@ function getOSType(value){
   $.ajax({
     type:"POST",
 
-    url:"../../ajax/clientservices/getOSType.php"+parameter+encodeURIComponent(company),
+    url:"../../ajax/clientservices/getOSType.php"+parameter+company,
 
 
     success:function(json){
@@ -376,11 +451,12 @@ function getOSType(value){
           }
           return color;
       }
-            var color1 = [],color2 = [],count = [],type = [];
+            var count = [];
+            var type = [];
             for($i=0;$i<json.length;$i++){
 
-            color1.push(getRandomColor());
-            color2.push(getRandomColor());
+            //color1.push(getRandomColor());
+            //color2.push(getRandomColor());
             count.push(json[$i]["osCount"]);
             type.push(json[$i]["OS"]);
 
@@ -394,7 +470,7 @@ function getOSType(value){
   $('#wherethestuffis #osType').fadeOut(200, function() {
 
 
-   var $span2 = $('<canvas id="osType" style="width:600px;height:300px;" ></canvas>');
+   var $span2 = $('<canvas id="osType" style="width:400px;height:300px;" ></canvas>');
    //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
    $("#osType").replaceWith($span2);
    //$("#openProjects").replaceWith($span2);
@@ -409,21 +485,22 @@ function getOSType(value){
 
 
 
-   myPieChart.removeData();
-   myPieChart.update();
+   //myPieChart.removeData();
+   //myPieChart.update();
 
-   for($i=0;$i<count.length;$i++){
+   for($i=0;$i<json.length;$i++){
 
      myPieChart.addData({
 
          value: count[$i],
-         color: color1[$i],
-         highlight: color2[$i],
+         color: getRandomColor(),
+         highlight: getRandomColor(),
          label: type[$i]
      });
 
-     myPieChart.update();
+
    }
+   myPieChart.update();
 
   });
 
@@ -449,10 +526,10 @@ function getWorkstations(value){
 
   var company = value.substr(value.indexOf("=")+1);
   var parameter = value.substr(0, value.indexOf('=')+1);
-
+  console.log(company);
 
   $.ajax({
-      type: 'POST',
+      type: 'GET',
       url: "../../ajax/clientservices/getWorkstations.php"+parameter+company,
       cache:false,
       success: function(json) {
@@ -472,7 +549,7 @@ function getWorkstations(value){
 
   $('#comp').fadeOut(200, function() {
 
-                 var $span1 = $('<h1 class="col-xs-6"style="text-align:center;" id="comp">'+workstations+'\n<span><img src="../../css/assets/icons/Computer.svg"/></span></h1>');
+                 var $span1 = $('<h2 class="col-xs-6"style="text-align:center;" id="comp">'+workstations+'\n<span><img src="../../css/assets/icons/Computer.svg"/></span></h2>');
 
           $("#comp").replaceWith($span1);
 
@@ -494,7 +571,7 @@ function getServers(value){
   var parameter = value.substr(0, value.indexOf('=')+1);
 
   $.ajax({
-      type: 'POST',
+      type: 'GET',
       url: "../../ajax/clientservices/getServers.php"+parameter+company,
       cache:false,
       success: function(json) {
@@ -514,7 +591,7 @@ function getServers(value){
 
   $('#serv').fadeOut(200, function() {
 
-                 var $span1 = $('<h1 class="col-xs-6" style="text-align:center;" id="serv">'+servers+'\n<span><img style="color:#3CB371;" src="../../css/assets/icons/Server.svg"  /></span></h1>');
+                 var $span1 = $('<h2 class="col-xs-6" style="text-align:center;" id="serv">'+servers+'\n<span><img style="color:#3CB371;" src="../../css/assets/icons/Server.svg"  /></span></h2>');
 
           $("#serv").replaceWith($span1);
 
@@ -538,7 +615,7 @@ function getLocationCount(value){
   var parameter = value.substr(0, value.indexOf('=')+1);
 
   $.ajax({
-      type: 'POST',
+      type: 'GET',
       url: "../../ajax/clientservices/getLocationCount.php"+parameter+company,
       cache:false,
       success: function(json) {
@@ -556,7 +633,7 @@ function getLocationCount(value){
 
   $('#locations').fadeOut(200, function() {
 
-                 var $span1 = $('<div id="locations" class="panel-body"><h1 style="text-align:center;">'+locations+'</h1></div>');
+                 var $span1 = $('<div id="locations" class="panel-body"><h2 style="text-align:center;">'+locations+'</h2></div>');
 
           $("#locations").replaceWith($span1);
 
@@ -573,34 +650,7 @@ function getLocationCount(value){
 }
 
 
-function getLocations(){
 
-  $.ajax({
-    type:"GET",
-    url:"../../ajax/servicedelivery/getLocations.php",
-    success:function(table){
-
-
-
-      $('#locationsTable').fadeOut(600, function() {
-
-            var $span1 = $('<div id ="locationsTable">'+table+'</div>');
-
-
-
-             $("#locationsTable").replaceWith($span1);
-
-           $span1.fadeIn(800);
-
-
-
-          });
-
-
-    }
-  });
-
-}
 
 
 
@@ -608,67 +658,95 @@ function getLocations(){
 
 $(document).ready(function(){
 
-    /*$.ajax({
-      url: "../../ajax/clientservices/getClientList.php",
+  $('#loading').html('<img style="display:block;margin-left:auto;margin-right:auto;" src="../../css/assets/spiffygif_148x148.gif"> <h4 style="text-align:center;">loading requests...</h4>');
+
+
+                        $.ajax({
+      url: "../../ajax/sales/presalesTickets.php",
                     context: document.body,
 
                     success: function(html){
-                     $("#clientTable").append(html);
+                      $('#loading').fadeOut();
+                     $("#requestTable").append(html);
 
                     }
 
-                  });*/
-  	                 getLocations();
-                     setInterval(function(){ getLocations(); }, 10000);
-                    getMrr('?company=Results Physiotherapy');
-                    getAvgTickets('?company=Results Physiotherapy');
-                    getOpenTickets('?company=Results Physiotherapy');
-                    getServiceByType('?company=Results Physiotherapy');
-                    getOSType('?company=Results Physiotherapy');
-                    getWorkstations('?company=Results Physiotherapy');
-                    getServers('?company=Results Physiotherapy');
-                    getLocationCount('?company=Results Physiotherapy');
-                    drawTimeline1('?company=Results Physiotherapy');
-                    drawTimeline2('?company=Results Physiotherapy');
+                    });
+
+                    //getMrr('');
+                    //getAvgTickets('');
+                    //getOpenTickets('');
+                    //getServiceByType('');
+                    //getOSType('');
+                    //getWorkstations('');
+                    //getServers('');
+                    //getLocationCount('');
+              //drawTimeline1('');
+              //drawTimeline2('');
 
               //drawTimeline('');
+              $('#search').livefilter({selector:'tbody tr'});
 
-    /*$('#clientTable').on('click','a.client',function(e){
+              /*$("#search").keyup(function () {
+                  var value = this.value.toLowerCase().trim();
+
+                  $("table tr").each(function (index) {
+                      if (!index) return;
+                      $(this).find("td").each(function () {
+                          var id = $(this).text().toLowerCase().trim();
+                          var not_found = (id.indexOf(value) == -1);
+                          $(this).closest('tr').toggle(!not_found);
+                          return not_found;
+                      });
+                  });
+              });*/
+
+    $('#clientTable').on('click','tr.co',function(e){
        e.preventDefault();
        //e.stopPropagation();
-       $("#dropdown").removeClass("open");
+       //$("#dropdown").removeClass("open");
 
 
-       $("#timelineSection").removeClass("hidden");
+       //$("#timelineSection").removeClass("hidden");
         //var queryString = window.location.substring( window.location.indexOf('?') + 1 );
         //console.log(queryString);
 
-        var clickedVal = $(this).attr('href');
-
+        var clickedVal = jQuery("#company" ,this).text();
+        clickedVal = encodeURIComponent(clickedVal);
         console.log(clickedVal);
         //console.log(data);
-        var title = clickedVal.substr(clickedVal.indexOf("=") + 1);
-        title = unescape(title)
+        //var title = clickedVal.substr(clickedVal.indexOf("=") + 1);
+        //title = unescape(title)
 
-        $("#title").text(title);
-        getWorkstations(clickedVal);
-        getServers(clickedVal);
-        getMrr(clickedVal);
-        getAvgTickets(clickedVal);
-        getOpenTickets(clickedVal);
-        getServiceByType(clickedVal);
-        getOSType(clickedVal);
-
-        getLocationCount(clickedVal);
-        drawTimeline1(clickedVal);
-        drawTimeline2(clickedVal);
+        //$("#title").text(clickedVal);
+        //getOSType(clickedVal);
+        //getWorkstations(clickedVal);
+        //getServers(clickedVal);
+        //getMrr(clickedVal);
+        //getAvgTickets(clickedVal);
+        //getOpenTickets(clickedVal);
+        //getServiceByType(clickedVal);
 
 
-        $("#timelineSection1").removeClass("hidden");
-        $("#timelineSection2").removeClass("hidden");
+        //getLocationCount(clickedVal);
+        //serviceHistory(clickedVal);
+        oppHistory(clickedVal);
+        activityHistory(clickedVal);
+        address(clickedVal);
+        agreementHistory(clickedVal);
 
 
-    });*/
+        //$('#basicModal').modal('toggle');
+        $('#basicModal1').modal('show');
+        $('#myModalLabel').text(decodeURIComponent(clickedVal));
+        //$('#basicModal').modal('hide');
+
+
+        //$("#timelineSection1").removeClass("hidden");
+        //$("#timelineSection2").removeClass("hidden");
+
+
+    });
     //$("#clientTable").off('click','a.client');
 
 });

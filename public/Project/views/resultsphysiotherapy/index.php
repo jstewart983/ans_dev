@@ -2,11 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-
         <title>Results Physiotherapy Intelligence</title>
         <link rel="stylesheet" type="text/css" href="../../css/demo.css">
         <link rel="stylesheet" type="text/css" href="../../css/razorflow.min.css">
@@ -31,7 +27,7 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
         <script src="../../libraries/timeline-2.9.1/timeline.js"></script>
         <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/1/daterangepicker.js"></script>
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/1/daterangepicker-bs3.css" />
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/1/daterangepicker-bs3.css" />
         <script>$('.navmenu').offcanvas()</script>
         <script>
             function myFunction() {
@@ -76,13 +72,11 @@
         <li class="active"><a href="../resultsphysiotherapy/">Results Physiotherapy</a></li>
         <li><a href="../sales/">Sales</a></li>
         <li><a href="../finance/">Finance</a></li>
-
       </ul>
       <ul class="nav navmenu-nav">
         <li><a href="../admin/">Admin</a></li>
       </ul>
     </div>
-
     <div class="navbar navbar-default navbar-fixed-top">
       <button style="display: block;float: left; margin-left: 15px;" type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body">
         <span class="icon-bar"></span>
@@ -90,19 +84,15 @@
         <span class="icon-bar"></span>
       </button>
       <div class="col-md-3">
-
       </div>
       <div class="col-md-5">
         <h2 style="margin-top:12px;text-align:center;font-size:20px;display: block;"id="title"></h2>
-
       </div>
       <div id="issue_button" style="margin-right:15px;margin-top:10px;margin-bottom:auto;text-align:center;float: right; margin-left: 15px;height:53px;">
         <a  id="issue" class="btn btn-sm btn-primary">Submit Issue/Request</a>
       </div>
-
       <div id="logout_button" style="margin-right:15px;margin-top:10px;margin-bottom:auto;text-align:center;float: right; margin-left: 15px;height:53px;">
         <a href="index.php?logout" class="btn btn-sm btn-inverse">Logout</a>
-
       </div>
     </div>
     <div style="margin-top:82px;"class="container">
@@ -230,7 +220,6 @@
                 </div>
               </div>
           </div>
-
         <div id="title" class="col-md-6">
                 <div class="panel panel-default">
                   <div class="panel-heading">
@@ -248,24 +237,32 @@
         </div>
         <div class="row">
             <div id="title" class="col-md-6">
-              <div id="urgentTicketsTable">
-                <div style='width:100%;padding:0px;'class=' panel panel-default'>
+                 <div id="locationsTable">
+                   <div class='panel panel-default'>
                 <div class='panel-heading'style='text-align:center;'>
-                  <p id="urgentTicketsTitle" style="text-align:center;">Open + Urgent Tickets <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
+                  <p id="lcoationsTitle" style="text-align:center;">Chronic Site Identification - This Month <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
                 </div>
                 <div style='width:100%;width:100%;overflow-y: scroll !important;height:278px;'class=panel-body>
-                  <table id='clientTable' style='width:100%;' class='table table-hover'>
-                  <thead>
-                  <th>Ticket #</th>
-                  <th>Urgency</th>
-                  <th>Status</th>
-                  <th>Summary</th>
-                  <th>Days Open</th>
-                  </thead>
-                  <tbody  class='rowlink'>
-
+                  <div class="col-md-6">
+                  <table class="table">
+                    <thead>
+                       <th>Site</th>
+                       <th>Actual Hours</th>
+                    </thead>
+                    <tbody>
                     </tbody>
                     </table>
+                    </div>
+                    <div class="col-md-6">
+                     <table class="table">
+                    <thead>
+                       <th>Site</th>
+                       <th>Tickets Opened</th>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                    </table>
+                    </div>
               </div>
             </div>
           </div>
@@ -287,7 +284,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <!--<div class="row">
           <div id="title" class="panel panel-default">
             <div class="panel-heading">
               <p id="ticketChartTitle" style="text-align:center;">Tickets Open vs Tickets Closed - Last Year to Last Month <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
@@ -300,7 +297,7 @@
 
           </canvas>
         </div>
-        </div>
+        </div>-->
         <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -537,7 +534,7 @@
     </div>
   </div>
 </div>
-<div  class="modal fade" id="issueModal2" tabindex="-1" role="dialog" aria-labelledby="issueModal2" aria-hidden="true">
+<div style="width:auto;" class="modal fade" id="issueModal2" tabindex="-1" role="dialog" aria-labelledby="issueModal2" aria-hidden="true">
     <div  class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -580,6 +577,23 @@
                                 </div>
                                 </div>
                               </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+        </div>
+    </div>
+  </div>
+</div>
+<div  class="modal fade" id="siteChart" tabindex="-1" role="dialog" aria-labelledby="siteChart" aria-hidden="true">
+    <div  class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button"  class="close fui-cross" data-dismiss="modal" aria-hidden="true"></button>
+            <h4 class="modal-title" id="myModalLabel1">Issues, Requests and Ideas Are Welcome</h4>
+            </div>
+            <div id="body" class="modal-body">
+                  
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

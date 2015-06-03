@@ -12,7 +12,7 @@ where datediff(m,dbo.SO_Opportunity.Date_Closed,getdate())=0 and
 // fetch all rows from the query
 $all_rows = array();
 while($row = mssql_fetch_assoc($projectHours)) {
-    //$all_rows []= $row;
+  //$all_rows []= $row;
   echo $row["Tot_NonMRR_Revenue"];
 }
 
