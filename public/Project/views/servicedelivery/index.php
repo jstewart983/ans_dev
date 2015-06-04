@@ -131,18 +131,18 @@
     <div style="margin-top:52px;"class="container">
         <!--nav pill row -->
         <div class="row">
-            <div style="border-top:1px solid #ddd;border-left:1px solid #ddd;border-right:1px solid #ddd;border-bottom:1px solid #ddd;border-radius: 4px;background-color:#fff;"class="col-md-4">
+            <div style="border-top:1px solid #ddd;border-left:1px solid #ddd;border-right:1px solid #ddd;border-bottom:1px solid #ddd;border-radius: 4px;background-color:#fff;"class="col-md-2">
                 <div style="padding:5px;">
                     <ul class="nav nav-pills">
                         <li role="presentation" class="active"><a style="background-color:#F78E1E;"href="#">Overview</a></li>
-                        <li role="presentation"><a style="color:#414141;"target="_blank"href="leaderboard/">Help Desk Leaderboard</a></li>
+                        <!--<li role="presentation"><a style="color:#414141;"target="_blank"href="leaderboard/">Help Desk Leaderboard</a></li>-->
                     </ul>
                 </div>
             </div>
             <div class="col-md-1">
 
             </div>
-            <div class="col-md-7">
+            <div class="col-md-9">
               <div id="boards" style="padding:5px;">
                   <ul id="boardTable" class="nav nav-pills">
 
@@ -162,7 +162,12 @@
                         <p id="closedTicketsTitle" style="text-align:center;">Tickets Closed - This Wk <span>      <a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
                   </div>
                   <div class="panel-body">
+                    <div id="dateSwitchTickets">
+                      <a style="float:right;"  id="lastWkTickets" class="btn btn-xs btn-info">Last Wk</a>
+
+                    </div>
                     <h1 id="ticketsClosed"style="text-align:center;">0</h1>
+                    <p id="vsTickets"></p>
                   </div>
                 </div>
             </div>
@@ -195,7 +200,6 @@
                   <div id="title"class="panel-body">
                     <div id="dateSwitch">
                       <a style="float:right;"  id="lastWk" class="btn btn-xs btn-info">Last Wk</a>
-
                     </div>
                     <h1 id="totalBillable"style="text-align:center;">0 hrs</h1>
                     <p id="vs"></p>
@@ -205,10 +209,14 @@
             <div id="title" class="col-md-4">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                        <p id="avgResponseTitle" style="text-align:center;">Avg Initial Response Time - This Wk <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
+                      <p id="avgResponseTitle" style="text-align:center;">Avg Initial Response Time - This Wk <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
                   </div>
                   <div id="title"class="panel-body">
+                    <div id="dateSwitchResponse">
+                      <a style="float:right;"  id="lastWkResponse" class="btn btn-xs btn-info">Last Wk</a>
+                    </div>
                     <h1 id="avgResponse"style="text-align:center;">0 minutes</h1>
+                    <p id="vsAvgResponse"></p>
                   </div>
                 </div>
             </div>
@@ -269,7 +277,17 @@
                           <div style="padding:5px;" id="newOldLegend">
                           </div>
                         </div>
-                    <canvas id ="newOld"style="margin-left:-2px;padding:15px;width:90%;height:200px;"></canvas>
+                        <div class="col-md-6">
+
+                        </div>
+                        <div  id="dateSwitchTrailing">
+                          <a style="float:right;"  id="lastWkTrailing" class="btn btn-xs btn-info">Last Wk</a>
+
+                        </div>
+                        <div id="newOldChart">
+                          <canvas id ="newOld"style="margin-left:-2px;padding:15px;width:90%;height:200px;"></canvas>
+
+                        </div>
                   </div>
                 </div>
             </div>

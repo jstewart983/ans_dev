@@ -1,4 +1,5 @@
 <?php
+//ini_set('memory_limit', '778M');
 error_reporting(-1);
 ini_set('display_errors', 'On');
 require('../../config/config.php');
@@ -12,12 +13,13 @@ require('../../config/config.php');
 
 
 
-	$query = 'select DATEDIFF(DAY, sr_service.date_entered, getdate()) as daysOpen,sr_service.sr_service_recid,sr_status.description as status, sr_service.date_entered,sr_urgency.description as urgency,sr_service.summary
+	$query = 'select sr_service_calculated.resourcelist, DATEDIFF(DAY, sr_service.date_entered, getdate()) as daysOpen,sr_service.sr_service_recid,sr_status.description as status, sr_service.date_entered,sr_urgency.description as urgency,sr_service.summary
   from sr_service
 	left outer join sr_type on sr_type.sr_type_recid = sr_service.sr_type_recid
 	left outer join sr_urgency on sr_urgency.sr_urgency_recid = sr_service.sr_urgency_recid
 	left outer join sr_board on sr_board.sr_board_recid = sr_service.sr_board_recid
 	left outer join sr_status on sr_status.sr_status_recid  = sr_service.sr_status_recid
+  left outer join sr_service_calculated on sr_service.sr_service_recid = sr_service_calculated.sr_service_recid
   left outer join company on sr_service.company_recid = company.company_recid
   where sr_board.board_name = "Pre-Sales Engineering" and (sr_status.description <> "Closed" and sr_status.description <> "Cancelled" and sr_status.description <> "Closed - First Call") and sr_service.date_closed is null
   order by sr_service.date_entered desc';
@@ -33,6 +35,7 @@ echo "<thead>";
 echo "<th>Ticket #</th>";
 echo "<th>Urgency</th>";
 echo "<th>Status</th>";
+echo "<th>Engineer(s)</th>";
 echo "<th>Summary</th>";
 echo "<th>Days Open</th>";
 echo "</thead>";
@@ -52,6 +55,7 @@ while($row = mssql_fetch_array($openTickets)) {
     echo "<td>".$row['sr_service_recid']."</td>";
      echo "<td>".$row['urgency']."</td>";
      echo "<td>".$row['status']."</td>";
+     echo "<td>".$row['resourcelist']."</td>";
      echo "<td>".$row['summary']."</td>";
      echo "<td>".$row['daysOpen']."</td>";
     echo "</tr>";

@@ -17,15 +17,29 @@ where company.company_name = "Results Physiotherapy" and DATEDIFF( ww, dbo.SR_Se
 
 group by convert(date,dbo.sr_service.Date_Entered)';
 }else{
+  if(isset($_GET['lastwk'])){
+    $title = "New Tickets vs Tickets Closed - Last Wk";
+    $datasource = "Connectwise";
+    $description = "This represents the count of tickets opened and closed by day (by Service Delivery), last week";
+    $query = 'select
+    datename(DW,CONVERT(date,dbo.sr_service.date_entered)) as Week_Day, COUNT(distinct(dbo.sr_service.date_entered))as Opened_Tickets
+    from dbo.SR_Service left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
+    where datename(dw,convert(date,dbo.sr_service.Date_Entered)) <> "Saturday"
+    and datename(dw,convert(date,dbo.sr_service.Date_Entered)) <> "Sunday" and (board_name = "My Company/Service" or board_name = "Alerts - Service Delivery" or board_name = "Results Physiotherapy") and DATEDIFF( ww, dbo.SR_Service.Date_Entered, GETDATE() ) = 1
 
-  $query = 'select
-  datename(DW,CONVERT(date,dbo.sr_service.date_entered)) as Week_Day, COUNT(distinct(dbo.sr_service.date_entered))as Opened_Tickets
-  from dbo.SR_Service left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
-  where datename(dw,convert(date,dbo.sr_service.Date_Entered)) <> "Saturday"
-  and datename(dw,convert(date,dbo.sr_service.Date_Entered)) <> "Sunday" and (board_name = "My Company/Service" or board_name = "Alerts - Service Delivery" or board_name = "Results Physiotherapy") and DATEDIFF( ww, dbo.SR_Service.Date_Entered, GETDATE() ) = 0
+    group by convert(date,dbo.sr_service.Date_Entered)
+    order by convert(date,dbo.sr_service.Date_Entered)';
+  }else{
+    $query = 'select
+    datename(DW,CONVERT(date,dbo.sr_service.date_entered)) as Week_Day, COUNT(distinct(dbo.sr_service.date_entered))as Opened_Tickets
+    from dbo.SR_Service left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
+    where datename(dw,convert(date,dbo.sr_service.Date_Entered)) <> "Saturday"
+    and datename(dw,convert(date,dbo.sr_service.Date_Entered)) <> "Sunday" and (board_name = "My Company/Service" or board_name = "Alerts - Service Delivery" or board_name = "Results Physiotherapy") and DATEDIFF( ww, dbo.SR_Service.Date_Entered, GETDATE() ) = 0
 
-  group by convert(date,dbo.sr_service.Date_Entered)
-  order by convert(date,dbo.sr_service.Date_Entered)';
+    group by convert(date,dbo.sr_service.Date_Entered)
+    order by convert(date,dbo.sr_service.Date_Entered)';
+  }
+
 
 }
 

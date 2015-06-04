@@ -16,6 +16,12 @@ if (strpos($path,'servicedelivery') !== false) {
   left outer join time_entry on SR_Service.sr_service_recid = time_entry.sr_service_recid
   where time_entry.Hours_Actual > 0 and (dbo.member.Title like "%IT Support%") and
   DATEDIFF( ww, sr_service.Date_Closed, GETDATE() ) = 0';
+  $query2 = 'select COUNT(distinct(sr_service.Date_Closed)) as ticketsLastWeek
+  from dbo.SR_Service left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
+  left outer join member on member.member_id = sr_service.closed_by
+  left outer join time_entry on SR_Service.sr_service_recid = time_entry.sr_service_recid
+  where time_entry.Hours_Actual > 0 and (dbo.member.Title like "%IT Support%") and
+  DATEDIFF( ww, sr_service.Date_Closed, GETDATE() ) = 1';
 
 }elseif(strpos($path,'CIM') !== false){
 
@@ -69,6 +75,14 @@ else{
   (dbo.member.Title like "%IT Support%" or dbo.member.Title like "%Client IT%" or dbo.member.Member_ID = "zhoover") and year(sr_service.Date_Closed) - year(getdate()) = 0  and datepart(wk,sr_service.Date_Closed) = datepart(wk,getdate())';
 
 }
+if($query2){
+  $projectHours2 = mssql_query($query2);
+  $last_week = '';
+  while($row = mssql_fetch_assoc($projectHours2)) {
+  $last_week = $row['ticketsLastWeek'];
+
+  }
+}
 
 $ticketsClosed = mssql_query($query);
 $query1 = str_replace('"',"",$query);
@@ -80,6 +94,7 @@ while($row = mssql_fetch_assoc($ticketsClosed)) {
     $row["Query"] = $query1;
     $row["Datasource"] = $datasource;
     $row["Description"] = $description;
+    $row["Difference"] = $row['closedTickets'] - $last_week;
     $all_rows []= $row;
 }
 

@@ -13,6 +13,14 @@ function ticketsClosedThisWeek(){
           closed_tickets.push(json[$i]["closedTickets"]);
 
         }
+
+        if(parseInt(json[0]["Difference"])>1){
+          color = "#2ECC71;";
+          json[0]["Difference"] = "+"+json[0]["Difference"];
+        }else{
+          color = "#E74C3C;";
+        }
+
         var getTicketsClosedText = parseInt($('#ticketsClosed').text());
         if(getTicketsClosedText !== parseInt(closed_tickets)){
 
@@ -36,14 +44,25 @@ function ticketsClosedThisWeek(){
           }else{
             var $span1 = $('<h1 style="text-align:center;" id="ticketsClosed">'+closed_tickets+'</h1>');
           }
-
+          var $span2 = $('<p id="vsTickets" style="text-align:center;"><span style="text-align:center;color:'+color+'">'+json[0]['Difference']+'</span> vs last week</p>')
           //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
           $("#ticketsClosed").replaceWith($span1);
           //$("#openProjects").replaceWith($span2);
+          $("#vsTickets").replaceWith($span2);
+          //$("#openProjects").replaceWith($span2);
           $span1.fadeIn(1200);
+          $span2.fadeIn(1200);
 
         });
       }
+      $("#dateSwitchTickets #thisWkTickets").fadeOut(500,function(){
+
+        var $button = $('<a style="float:right;"  id="lastWkTickets" class="btn btn-xs btn-info">Last Wk</a>');
+
+        $('#thisWkTickets').replaceWith($button);
+
+        $button.fadeIn(1200);
+      });
 
     }
 
@@ -238,6 +257,12 @@ function avgInitialResponse(){
           avg_response.push(json[$i]["Average_IRT"]);
 
         }
+        if(parseInt(json[0]["Difference"])>1){
+          color = "#E74C3C;";
+          json[0]["Difference"] = "+"+json[0]["Difference"];
+        }else{
+          color = "#2ECC71;";
+        }
 
         var avg_responseText = parseInt($('#avgResponse').text());
         if(avg_responseText !== Math.round(avg_response)){
@@ -258,12 +283,105 @@ function avgInitialResponse(){
             var $span1 = $('<h1 style="text-align:center;" id="avgResponse">'+Math.round(avg_response)+' minutes</h1>');
           }
 
+          $('#title #vsAvgResponse').fadeOut(500,function(){
+            var $span2 = $('<p id="vsAvgResponse" style="text-align:center;"><span style="text-align:center;color:'+color+'">'+json[0]['Difference']+'</span> vs previous week</p>')
+            $("#vsAvgResponse").replaceWith($span2);
+            $span2.fadeIn(1200);
+
+
+
+          });
+
 
           //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
           $("#avgResponse").replaceWith($span1);
           //$("#openProjects").replaceWith($span2);
           $span1.fadeIn(1200);
 
+        });
+        $("#dateSwitchResponse #thisWkResponse").fadeOut(500,function(){
+
+          var $button = $('<a style="float:right;"  id="lastWkResponse" class="btn btn-xs btn-info">Last Wk</a>');
+
+          $('#thisWkResponse').replaceWith($button);
+
+          $button.fadeIn(1200);
+        });
+
+      }
+      }
+    });
+
+
+
+}
+
+
+
+function avgInitialResponseLastWeek(){
+
+    $.ajax({
+
+      type:"GET",
+      url:"../../ajax/servicedelivery/avgInitialResponseLastWeek.php",
+      success:function(json){
+
+        var avg_response = [];
+
+        for($i=0;$i<json.length;$i++){
+
+          avg_response.push(json[$i]["Average_IRT"]);
+
+        }
+        if(parseInt(json[0]["Difference"])>1){
+          color = "#E74C3C;";
+          json[0]["Difference"] = "+"+json[0]["Difference"];
+        }else{
+          color = "#2ECC71;";
+        }
+
+        var avg_responseText = parseInt($('#avgResponse').text());
+        if(avg_responseText !== Math.round(avg_response)){
+
+        $("#title #avgResponseTitle").fadeOut(500,function(){
+          $title = $('#avgResponseTitle').text();
+          $p = $('<p id="avgResponseTitle"  style="text-align:center;">'+json[0]["Title"]+' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+          $("#avgResponseTitle").replaceWith($p);
+          $p.fadeIn(1200);
+
+        });
+
+        $("#title #avgResponse").fadeOut(500,function(){
+
+          if(avg_response==0){
+            var $span1 = $('<h1 style="text-align:center;" id="avgResponse">0 minutes</h1>');
+          }else{
+            var $span1 = $('<h1 style="text-align:center;" id="avgResponse">'+Math.round(avg_response)+' minutes</h1>');
+          }
+
+          $('#title #vsAvgResponse').fadeOut(500,function(){
+            var $span2 = $('<p id="vsAvgResponse" style="text-align:center;"><span style="text-align:center;color:'+color+'">'+json[0]['Difference']+'</span> vs previous week</p>')
+            $("#vsAvgResponse").replaceWith($span2);
+            $span2.fadeIn(1200);
+
+
+
+          });
+
+
+          //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
+          $("#avgResponse").replaceWith($span1);
+          //$("#openProjects").replaceWith($span2);
+          $span1.fadeIn(1200);
+
+        });
+        $("#dateSwitchResponse #lastWkResponse").fadeOut(500,function(){
+
+          var $button = $('<a style="float:right;"  id="thisWkResponse" class="btn btn-xs btn-inverse">This Wk</a>');
+
+          $('#lastWkResponse').replaceWith($button);
+
+          $button.fadeIn(1200);
         });
       }
       }
@@ -450,12 +568,12 @@ $('#sup').replaceWith('<div id="sup"><canvas style="padding:10px;width:auto;heig
 }
 
 
-function newVsOld(){
+function newVsOld(value){
 
   $.ajax({
 
     type:"GET",
-    url:"../../ajax/servicedelivery/closedTicketsTrailingSeven.php",
+    url:"../../ajax/servicedelivery/closedTicketsTrailingSeven.php"+value,
     success:function(json1){
       var tickets_created = [];
       var tickets_closed = [];
@@ -464,7 +582,7 @@ function newVsOld(){
       $.ajax({
 
         type:"GET",
-        url:"../../ajax/servicedelivery/openTicketsTrailingSeven.php",
+        url:"../../ajax/servicedelivery/openTicketsTrailingSeven.php"+value,
         success:function(json2){
 
           for($i=0;$i<json2.length;$i++){
@@ -520,6 +638,32 @@ function newVsOld(){
 
           });
 
+          if(value == '?lastwk=true'){
+            $("#dateSwitchTrailing #lastWkTrailing").fadeOut(500,function(){
+
+              var $button = $('<a style="float:right;"  id="thisWkTrailing" class="btn btn-xs btn-inverse">This Wk</a>');
+
+              $('#lastWkTrailing').replaceWith($button);
+
+              $button.fadeIn(1200);
+            });
+
+          }else{
+
+            $("#dateSwitchTrailing #thisWkTrailing").fadeOut(500,function(){
+
+              var $button = $('<a style="float:right;"  id="lastWkTrailing" class="btn btn-xs btn-info">Last Wk</a>');
+
+              $('#thisWkTrailing').replaceWith($button);
+
+              $button.fadeIn(1200);
+            });
+          }
+
+
+
+          $('#newOldChart').empty();
+          $('#newOldChart').append('<canvas style="margin-left:-2px;padding:15px;width:90%;height:200px;" id="newOld"></canvas>');
           var ctx = document.getElementById("newOld").getContext("2d");
           var myNewChart = new Chart(ctx).Bar(data);
           legend(document.getElementById("newOldLegend"), data);
@@ -912,6 +1056,82 @@ function getBillableLastWeek(){
 }
 
 
+
+function getTicketsClosedLastWeek(){
+
+  $.ajax({
+    type:"GET",
+    url:"../../ajax/servicedelivery/getTicketsClosedLastWeek.php",
+    success:function(json){
+
+      var total_hours = [];
+
+      for($i=0;$i<json.length;$i++){
+
+        total_hours.push(json[$i]["closedTickets"]);
+
+
+      }
+
+      var color = "";
+
+      if(parseInt(json[0]["Difference"])>1){
+        color = "#2ECC71;";
+        json[0]["Difference"] = "+"+json[0]["Difference"];
+      }else{
+        color = "#E74C3C;";
+      }
+
+      //var totalHoursText = parseInt($('#ticketsClosed').text());
+      //if(totalHoursText !== Math.round(total_hours)){
+
+      $("#title #closedTicketsTitle").fadeOut(500,function(){
+        $title = $('#closedTicketsTitle').text();
+        $p = $('<p id="closedTicketsTitle"  style="text-align:center;">'+json[0]["Title"]+' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+        $("#closedTicketsTitle").replaceWith($p);
+        $p.fadeIn(1200);
+
+      });
+
+
+      $("#title #ticketsClosed").fadeOut(500,function(){
+
+
+          var $span1 = $('<h1 style="text-align:center;" id="ticketsClosed">'+Math.round(total_hours)+'</h1>');
+
+
+        //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
+        $("#ticketsClosed").replaceWith($span1);
+        //$("#openProjects").replaceWith($span2);
+        $span1.fadeIn(1200);
+
+      });
+
+      $('#title #vsTickets').fadeOut(500,function(){
+        var $span2 = $('<p id="vsTickets" style="text-align:center;"><span style="text-align:center;color:'+color+'">'+json[0]['Difference']+'</span> vs previous week</p>')
+        $("#vsTickets").replaceWith($span2);
+        $span2.fadeIn(1200);
+
+
+
+      });
+
+      $("#dateSwitchTickets #lastWkTickets").fadeOut(500,function(){
+
+        var $button = $('<a style="float:right;"  id="thisWkTickets" class="btn btn-xs btn-inverse">This Wk</a>');
+
+        $('#lastWkTickets').replaceWith($button);
+
+        $button.fadeIn(1200);
+      });
+    //}
+    }
+
+  });
+}
+
+
+
 function legendHours(parent, data) {
     parent.className = 'legend';
     var datas = data.hasOwnProperty('datasets') ? data.datasets : data;
@@ -1134,7 +1354,7 @@ $(document).ready(function(){
 
 //closed by service desk and client IT managers
 ticketsClosedThisWeek();
-setInterval(function(){ ticketsClosedThisWeek(); }, 10000);
+var totalTicketsID = setInterval(function(){ ticketsClosedThisWeek(); }, 10000);
 
 
 ticketsOpen();
@@ -1157,7 +1377,7 @@ setInterval(function(){ closedFirstCall(); }, 10000);
 
 //last 7 business days
 avgInitialResponse();
-setInterval(function(){ avgInitialResponse(); }, 10000);
+var responseID = setInterval(function(){ avgInitialResponse(); }, 10000);
 
 
 //billable by day - last 7 days
@@ -1166,7 +1386,7 @@ billableByDay('','');
 
 
 //new tickets vs tickets closed by day - last 7 days
-newVsOld();
+newVsOld('');
 //setInterval(function(){ newVsOld(); }, 60000);
 
 //urgent tickets that are open
@@ -1245,6 +1465,64 @@ $('#dateSwitch').on('click','#thisWk',function(e){
 
 e.preventDefault();
 getBillableHoursTotal();
+//var totalID = setInterval(function(){ getBillableHoursTotal(); }, 3000);
+
+
+
+});
+
+$('#dateSwitchTickets').on('click','#lastWkTickets',function(e){
+clearInterval(totalTicketsID);
+e.preventDefault();
+getTicketsClosedLastWeek();
+
+
+
+});
+
+$('#dateSwitchTickets').on('click','#thisWkTickets',function(e){
+
+e.preventDefault();
+ticketsClosedThisWeek();
+//var totalID = setInterval(function(){ getBillableHoursTotal(); }, 3000);
+
+
+
+});
+
+$('#dateSwitchResponse').on('click','#lastWkResponse',function(e){
+clearInterval(responseID);
+e.preventDefault();
+avgInitialResponseLastWeek();
+
+
+
+});
+
+$('#dateSwitchResponse').on('click','#thisWkResponse',function(e){
+
+e.preventDefault();
+avgInitialResponse();
+//var totalID = setInterval(function(){ getBillableHoursTotal(); }, 3000);
+
+
+
+});
+
+
+$('#dateSwitchTrailing').on('click','#lastWkTrailing',function(e){
+clearInterval(responseID);
+e.preventDefault();
+newVsOld('?lastwk=true');
+
+
+
+});
+
+$('#dateSwitchTrailing').on('click','#thisWkTrailing',function(e){
+
+e.preventDefault();
+newVsOld('');
 //var totalID = setInterval(function(){ getBillableHoursTotal(); }, 3000);
 
 

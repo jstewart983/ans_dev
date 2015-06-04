@@ -1,6 +1,6 @@
 <?php
 $admins = array('nkimes','nkimes@ansolutions.com','cwhite','bflippo','jstewart','rpinson','gsummey','gsummey@ansolutions.com','aholst','plane@ansolutions.com','plane','Jclauer','jclauer@ansolutions.com');
-$user_group = array('cbernard','cbernard@ansolutions.com','jcufr','jlaudin','ckelly','sthorsen','jmiser','fmonroe','pcrocker');
+$user_group = array('ehilburn','ehilburn@ansolutions.com','kmcwhirk','kmcwhirk@ansolutions.com','cbernard','cbernard@ansolutions.com','jcufr','jlaudin','ckelly','sthorsen','jmiser','fmonroe','pcrocker');
 /**
  * A simple, clean and secure PHP Login Script / MINIMAL VERSION
  * For more versions (one-file, advanced, framework-like) visit http://www.php-login.net

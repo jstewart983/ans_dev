@@ -20,16 +20,37 @@ and CONVERT(date,dbo.sr_service.Date_Closed) <> CONVERT(date,getdate())
 group by convert(date,dbo.sr_service.Date_Closed)';
 }else{
 
-  $query = 'select
-  datename(DW,CONVERT(date,dbo.sr_service.Date_Closed)) as Week_Day, COUNT(distinct(sr_service.Date_Closed)) as Closed_Tickets
-  from dbo.SR_Service
-  left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
-  left outer join member on member.member_id = sr_service.closed_by
-  where datename(dw,convert(date,dbo.sr_service.Date_Closed)) <> "Saturday"
-  and datename(dw,convert(date,dbo.sr_service.Date_Closed)) <> "Sunday" and  (dbo.member.Title like "%IT Support%") and DATEDIFF( ww, dbo.sr_service.Date_Closed, GETDATE() ) = 0
+  if(isset($_GET['lastwk'])){
+    $title = "New Tickets vs Tickets Closed - Last Wk";
+    $datasource = "Connectwise";
+    $description = "This represents the count of tickets opened and closed by day (by Service Delivery), last week";
+    $query = 'select
+    datename(DW,CONVERT(date,dbo.sr_service.Date_Closed)) as Week_Day, COUNT(distinct(sr_service.Date_Closed)) as Closed_Tickets
+    from dbo.SR_Service
+    left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
+    left outer join member on member.member_id = sr_service.closed_by
+    left outer join time_entry on sr_service.sr_service_recid = time_entry.sr_service_recid
+    where datename(dw,convert(date,dbo.sr_service.Date_Closed)) <> "Saturday"
+    and datename(dw,convert(date,dbo.sr_service.Date_Closed)) <> "Sunday"  and time_entry.Hours_Actual > 0 and (dbo.member.Title like "%IT Support%") and
+      DATEDIFF( ww, sr_service.Date_Closed, GETDATE() ) = 1
 
-  group by convert(date,dbo.sr_service.Date_Closed)
-  order by convert(date,dbo.sr_service.Date_Closed)';
+    group by convert(date,dbo.sr_service.Date_Closed)
+    order by convert(date,dbo.sr_service.Date_Closed)';
+  }else{
+
+    $query = 'select
+    datename(DW,CONVERT(date,dbo.sr_service.Date_Closed)) as Week_Day, COUNT(distinct(sr_service.Date_Closed)) as Closed_Tickets
+    from dbo.SR_Service
+    left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
+    left outer join member on member.member_id = sr_service.closed_by
+    left outer join time_entry on sr_service.sr_service_recid = time_entry.sr_service_recid
+    where datename(dw,convert(date,dbo.sr_service.Date_Closed)) <> "Saturday"
+    and datename(dw,convert(date,dbo.sr_service.Date_Closed)) <> "Sunday" and time_entry.Hours_Actual > 0 and (dbo.member.Title like "%IT Support%") and
+    DATEDIFF( ww, sr_service.Date_Closed, GETDATE() ) = 0
+    group by convert(date,dbo.sr_service.Date_Closed)
+    order by convert(date,dbo.sr_service.Date_Closed)';
+  }
+
 
 }
 
