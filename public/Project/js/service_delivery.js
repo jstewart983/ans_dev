@@ -1387,7 +1387,7 @@ billableByDay('','');
 
 //new tickets vs tickets closed by day - last 7 days
 newVsOld('');
-//setInterval(function(){ newVsOld(); }, 60000);
+var trailingID = setInterval(function(){ newVsOld(''); }, 60000);
 
 //urgent tickets that are open
 urgentTickets();
@@ -1511,7 +1511,7 @@ avgInitialResponse();
 
 
 $('#dateSwitchTrailing').on('click','#lastWkTrailing',function(e){
-clearInterval(responseID);
+clearInterval(trailingID);
 e.preventDefault();
 newVsOld('?lastwk=true');
 
