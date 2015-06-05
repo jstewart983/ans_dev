@@ -10,13 +10,13 @@ $path = parse_url($actual_link,PHP_URL_PATH);
 //echo $path;
 if (strpos($path,'servicedelivery') !== false) {
 
-  $query = 'select COUNT(distinct(sr_service.Date_Closed)) as closedTickets
+  $query = 'select count(distinct(sr_service.sr_service_recid)) as closedTickets
   from dbo.SR_Service left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
   left outer join member on member.member_id = sr_service.closed_by
   left outer join time_entry on SR_Service.sr_service_recid = time_entry.sr_service_recid
   where time_entry.Hours_Actual > 0 and (dbo.member.Title like "%IT Support%") and
   DATEDIFF( ww, sr_service.Date_Closed, GETDATE() ) = 0';
-  $query2 = 'select COUNT(distinct(sr_service.Date_Closed)) as ticketsLastWeek
+  $query2 = 'select count(distinct(sr_service.sr_service_recid)) as ticketsLastWeek
   from dbo.SR_Service left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
   left outer join member on member.member_id = sr_service.closed_by
   left outer join time_entry on SR_Service.sr_service_recid = time_entry.sr_service_recid
@@ -25,7 +25,7 @@ if (strpos($path,'servicedelivery') !== false) {
 
 }elseif(strpos($path,'CIM') !== false){
 
-  $query = 'select COUNT(distinct(sr_service.Date_Closed)) as closedTickets
+  $query = 'select count(distinct(sr_service.sr_service_recid)) as closedTickets
   from dbo.SR_Service left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
   left outer join member on member.member_id = sr_service.closed_by
   where (dbo.member.Title like "%Client IT%" or dbo.member.Member_ID = "zhoover") and
@@ -34,7 +34,7 @@ if (strpos($path,'servicedelivery') !== false) {
 
 }elseif(strpos($path,'fieldservices') !== false){
 
-  $query = 'select COUNT(distinct(sr_service.Date_Closed)) as closedTickets
+  $query = 'select count(distinct(sr_service.sr_service_recid)) as closedTickets
   from dbo.SR_Service left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
   left outer join member on member.member_id = sr_service.closed_by
   where (dbo.member.Title like "%Client IT%" or dbo.member.Member_ID = "zhoover") and
@@ -43,7 +43,7 @@ if (strpos($path,'servicedelivery') !== false) {
 
 }elseif(strpos($path,'results') !== false){
 
-  $query = 'select COUNT(distinct(sr_service.Date_Closed)) as closedTickets
+  $query = 'select count(distinct(sr_service.sr_service_recid)) as closedTickets
   from dbo.SR_Service left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
   left outer join member on member.member_id = sr_service.closed_by
   left outer join company on company.company_recid = sr_service.company_recid
@@ -56,7 +56,7 @@ if (strpos($path,'servicedelivery') !== false) {
 
   $description = "This represents a count of tickets closed by all members of the Managed Services Team for the current week starting on Sunday.";
 
-  $query = 'select COUNT(distinct(sr_service.Date_Closed)) as closedTickets
+  $query = 'select count(distinct(sr_service.sr_service_recid)) as closedTickets
   from dbo.SR_Service left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
   left outer join member on member.member_id = sr_service.closed_by
   left outer join company on company.company_recid = sr_service.company_recid
@@ -68,7 +68,7 @@ if (strpos($path,'servicedelivery') !== false) {
 }
 else{
 
-  $query = 'select COUNT(distinct(sr_service.Date_Closed)) as closedTickets
+  $query = 'select count(distinct(sr_service.sr_service_recid)) as closedTickets
   from dbo.SR_Service left outer join dbo.sr_board on dbo.sr_service.sr_board_recid = dbo.sr_board.sr_board_recid
   left outer join member on member.member_id = sr_service.closed_by
   where

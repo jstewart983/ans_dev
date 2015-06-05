@@ -2,9 +2,9 @@
 
 
 
-var data1 = "";
-var labels = '';
-var myNewBar1 = null;
+//var chartData = "";
+//var labels = '';
+//var myNewBar1 = null;
 
 
 
@@ -17,6 +17,7 @@ var myNewBar1 = null;
 
 /////FIRST NEXT BUTTON WITH "THINKING" animation////
 $('#slide1').click(function() {
+
   var timeout = null;
   $('#slide').fadeOut(500,function(){
 
@@ -52,7 +53,7 @@ $('#slide1').click(function() {
                     employee.start();
 
 
-           data1 = {
+           REMODELPROPOSAL.chartData = {
         labels:["1","2","3","4","5","6"],
         datasets: [
           {
@@ -78,61 +79,48 @@ $('#slide1').click(function() {
 
         $('#reviewChart').empty();
         $('#reviewChart').append('<canvas id="reportReviewChart"></canvas>');
-        var ctx = document.getElementById("reportReviewChart").getContext("2d");
-         myNewBar1 = new Chart(ctx).Bar(data1,{scaleShowGridLines:false,scaleShowVerticalLines: false,scaleShowHorizontalLines:false});
+        REMODELPROPOSAL.commonMethod.generateBarChart("reportReviewChart",REMODELPROPOSAL.chartData);
+
+        //var ctx = document.getElementById("reportReviewChart").getContext("2d");
+         //myNewBar1 = new Chart(ctx).Bar(chartData,{scaleShowGridLines:false,scaleShowVerticalLines: false,scaleShowHorizontalLines:false});
 
 
 
         },2000)
+        //console.log(REMODELPROPOSAL.chartData);
 
       }
   });
 
 });
 
-//////BACK BUTTONS////////////
-$('#meat').on('click','#back1',function() {
-  $.ajax({
-      url: "views/slide1.html",
-      success: function(html){
-        loadSlide1();
-      }
-  });
-});
+//**START BACK BUTTONS**//
 
-$('#meat').on('click','#back2',function() {
-  $.ajax({
-      url: "views/slide2.html",
-      success: function(html){
-        $('#meat').hide().html(html).fadeIn({ duration: 500 });
+REMODELPROPOSAL.commonMethod.addButtonAction('#meat','click','#back1',"views/slide1.html");
+REMODELPROPOSAL.commonMethod.addButtonAction('#meat','click','#back2',"views/slide2.html");
 
-      }
-  });
-});
-/////////END BACK BUTTONS////////
+//**END BACK BUTTONS**//
 
 
+//**START NEXT BUTTONS**//
 
-////////NEXT BUTTONS///////////
-$('#meat').on('click','#slide2',function() {
-  $.ajax({
-      url: "views/slide2.html",
-      success: function(html){
-          $('#meat').hide().html(html).fadeIn({ duration: 500 });
+//Lets Remodel! button
+REMODELPROPOSAL.commonMethod.addButtonAction('#meat','click','#slide2',"views/slide2.html");
 
-      }
-  });
-});
+//**END NEXT BUTTONS**//
+
 
 
 
 $('#meat').on('click','#slide3',function() {
-        
+
 
   $.ajax({
       url: "views/slide3.html",
       success: function(html){
+
           $('#meat').hide().html(html).fadeIn({ duration: 500 });
+
           var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
           var employerSavings = $('employerSavings').text();
           var actual = parseInt(employerSavings) * 2;
@@ -143,8 +131,8 @@ $('#meat').on('click','#slide3',function() {
 
           var employee = new countUp("employeeSavings",70000,94039,0,2,options);
           employee.start();
-          
-                     data1 = {
+
+    REMODELPROPOSAL.chartData = {
         labels:["1","2","3","4","5","6"],
         datasets: [
           {
@@ -169,9 +157,11 @@ $('#meat').on('click','#slide3',function() {
         };
         $('#reviewChart').empty();
         $('#reviewChart').append('<canvas id="reportReviewChart"></canvas>');
-        var ctx = document.getElementById("reportReviewChart").getContext("2d");
-         myNewBar1 = new Chart(ctx).Bar(data1,{scaleShowGridLines:false,scaleShowVerticalLines: false,scaleShowHorizontalLines:false});
 
+        REMODELPROPOSAL.commonMethod.generateBarChart("reportReviewChart",REMODELPROPOSAL.chartData);
+        //var ctx = document.getElementById("reportReviewChart").getContext("2d");
+         //myNewBar1 = new Chart(ctx).Bar(chartData,{scaleShowGridLines:false,scaleShowVerticalLines: false,scaleShowHorizontalLines:false});
+         console.log(REMODELPROPOSAL.chartData);
       }
   });
 });
@@ -186,14 +176,14 @@ $('#meat').on('change','#checkbox1',function() {
 
   if ($(this).is(':checked')) {
 
-    var indexToUpdate = Math.floor(Math.random() * data1.labels.length-1)+1;
+    var indexToUpdate = Math.floor(Math.random() * REMODELPROPOSAL.chartData.labels.length-1)+1;
 
 
-myNewBar1.datasets[1].bars[indexToUpdate].value = Math.floor(Math.random()*20)+1;
-myNewBar1.datasets[0].bars[indexToUpdate].value = Math.floor(Math.random()*20)+1;
+REMODELPROPOSAL.bar1.datasets[1].bars[indexToUpdate].value = Math.floor(Math.random()*20)+1;
+REMODELPROPOSAL.bar1.datasets[0].bars[indexToUpdate].value = Math.floor(Math.random()*20)+1;
 
 
-myNewBar1.update();
+REMODELPROPOSAL.bar1.update();
 
 
     $('#salary').removeClass('hidden');
@@ -215,17 +205,17 @@ myNewBar1.update();
 
 
   if ($(this).is(':checked')) {
-    
+
     $('#percentSlider').removeClass('hidden');
-    
-    var indexToUpdate = Math.floor(Math.random() * data1.labels.length-1)+1;
+
+    var indexToUpdate = Math.floor(Math.random() * REMODELPROPOSAL.chartData.labels.length-1)+1;
 
 
-  myNewBar1.datasets[1].bars[indexToUpdate].value = Math.floor(Math.random()/10)+1;
-  myNewBar1.datasets[0].bars[indexToUpdate].value = Math.floor(Math.random()/10)+1;
+    REMODELPROPOSAL.bar1.datasets[1].bars[indexToUpdate].value = Math.floor(Math.random()/10)+1;
+    REMODELPROPOSAL.bar1.datasets[0].bars[indexToUpdate].value = Math.floor(Math.random()/10)+1;
 
 
-  myNewBar1.update();
+    REMODELPROPOSAL.bar1.update();
 
     var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
     var employerSavings = $('employerSavings').text();
@@ -239,17 +229,17 @@ myNewBar1.update();
     employee.start();
 
   } else {
-    
+
     $('#percentSlider').addClass('hidden');
 
-    var indexToUpdate = Math.floor(Math.random() * data1.labels.length-1)+1;
+    var indexToUpdate = Math.floor(Math.random() * REMODELPROPOSAL.chartData.labels.length-1)+1;
 
 
-  myNewBar1.datasets[1].bars[indexToUpdate].value = Math.floor(Math.random()*5)+1;
-  myNewBar1.datasets[0].bars[indexToUpdate].value = Math.floor(Math.random()*5)+1;
+    REMODELPROPOSAL.bar1.datasets[1].bars[indexToUpdate].value = Math.floor(Math.random()*5)+1;
+    REMODELPROPOSAL.bar1.datasets[0].bars[indexToUpdate].value = Math.floor(Math.random()*5)+1;
 
 
-  myNewBar1.update();
+    REMODELPROPOSAL.bar1.update();
 
     var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
     var employerSavings = $('employerSavings').text();
@@ -263,23 +253,23 @@ myNewBar1.update();
     employee.start();
 
   }
-  
+
   });
         $('#salary').on('change','#byFamily',function() {
 
 
   if ($(this).is(':checked')) {
-    
+
     $('#byFamilyDetail').removeClass('hidden');
-    
-    var indexToUpdate = Math.floor(Math.random() * data1.labels.length-1)+1;
+
+    var indexToUpdate = Math.floor(Math.random() * REMODELPROPOSAL.chartData.labels.length-1)+1;
 
 
-  myNewBar1.datasets[1].bars[indexToUpdate].value = Math.floor(Math.random()*10)+1;
-  myNewBar1.datasets[0].bars[indexToUpdate].value = Math.floor(Math.random()*10)+1;
+    REMODELPROPOSAL.bar1.datasets[1].bars[indexToUpdate].value = Math.floor(Math.random()*10)+1;
+    REMODELPROPOSAL.bar1.datasets[0].bars[indexToUpdate].value = Math.floor(Math.random()*10)+1;
 
 
-  myNewBar1.update();
+    REMODELPROPOSAL.bar1.update();
 
     var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
     var employerSavings = $('employerSavings').text();
@@ -293,17 +283,17 @@ myNewBar1.update();
     employee.start();
 
   } else {
-    
+
     $('#byFamilyDetail').addClass('hidden');
 
-    var indexToUpdate = Math.floor(Math.random() * data1.labels.length-1)+1;
+    var indexToUpdate = Math.floor(Math.random() * REMODELPROPOSAL.chartData.labels.length-1)+1;
 
 
-  myNewBar1.datasets[1].bars[indexToUpdate].value = Math.floor(Math.random()*5)+1;
-  myNewBar1.datasets[0].bars[indexToUpdate].value = Math.floor(Math.random()*5)+1;
+    REMODELPROPOSAL.bar1.datasets[1].bars[indexToUpdate].value = Math.floor(Math.random()*5)+1;
+    REMODELPROPOSAL.bar1.datasets[0].bars[indexToUpdate].value = Math.floor(Math.random()*5)+1;
 
 
-  myNewBar1.update();
+    REMODELPROPOSAL.bar1.update();
 
     var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
     var employerSavings = $('employerSavings').text();
@@ -322,14 +312,14 @@ myNewBar1.update();
   } else {
     $('#salary').addClass('hidden');
 
-    var indexToUpdate = Math.floor(Math.random() * data1.labels.length-1)+1;
+    var indexToUpdate = Math.floor(Math.random() * REMODELPROPOSAL.chartData.labels.length-1)+1;
 
 
-myNewBar1.datasets[1].bars[indexToUpdate].value = Math.floor(Math.random()*10)+1;
-myNewBar1.datasets[0].bars[indexToUpdate].value = Math.floor(Math.random()*10)+1;
+    REMODELPROPOSAL.bar1.datasets[1].bars[indexToUpdate].value = Math.floor(Math.random()*10)+1;
+    REMODELPROPOSAL.bar1.datasets[0].bars[indexToUpdate].value = Math.floor(Math.random()*10)+1;
 
 
-myNewBar1.update();
+    REMODELPROPOSAL.bar1.update();
     //employer.reset();
     //employee.reset();
     var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
@@ -350,14 +340,14 @@ $('#meat').on('change','#checkbox2',function() {
   if ($(this).is(':checked')) {
 
 
-    var indexToUpdate = Math.floor(Math.random() * data1.labels.length-1)+1;
+    var indexToUpdate = Math.floor(Math.random() * REMODELPROPOSAL.chartData.labels.length-1)+1;
 
 
-  myNewBar1.datasets[1].bars[indexToUpdate].value = Math.floor(Math.random()*20)+1;
-  myNewBar1.datasets[0].bars[indexToUpdate].value = Math.floor(Math.random()*20)+1;
+    REMODELPROPOSAL.bar1.datasets[1].bars[indexToUpdate].value = Math.floor(Math.random()*20)+1;
+    REMODELPROPOSAL.bar1.datasets[0].bars[indexToUpdate].value = Math.floor(Math.random()*20)+1;
 
 
-  myNewBar1.update();
+    REMODELPROPOSAL.bar1.update();
     //$('#hsa').append('<table style="width:100%;" class="table table-list-search remodelGray"><thead><p class="remodelGreen" style="text-align:left;">HSA</p></thead><tbody><tr><td><b>Single</b></td><td id="reportPremium"><div class="form-group"><input type="text" class="form-control" name="Name" autocomplete="off" id="name" placeholder="$150"></div></td></tr><tr><td><b>Subsidy</b></td><td id="reportSubsidy"></td></tr><tr><td><b>Consulting Fee</b></td><td id="reportConsulting"></td></tr></tr></tbody></table>');
     $('#hsa').removeClass('hidden');
     var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
@@ -370,23 +360,23 @@ $('#meat').on('change','#checkbox2',function() {
 
     var employee = new countUp("employeeSavings",94039,80100,0,2,options);
     employee.start();
-    
+
     //if HSA Single field is updated - do the calculations below
     //in order to do this correctly, I need to check the previous value to see
     //if there was a change to have live updating values that are correct
     $( "#meat").on('change', "#single",function() {
- 
+
   	var num = $(this).val();
   	num = parseInt(num);
-    
-    var indexToUpdate = Math.floor(Math.random() * data1.labels.length-1)+1;
+
+    var indexToUpdate = Math.floor(Math.random() * REMODELPROPOSAL.chartData.labels.length-1)+1;
 
 
-  myNewBar1.datasets[1].bars[indexToUpdate].value = Math.floor(Math.random()*num)+1;
-  myNewBar1.datasets[0].bars[indexToUpdate].value = Math.floor(Math.random()*num)+1;
+    REMODELPROPOSAL.bar1.datasets[1].bars[indexToUpdate].value = Math.floor(Math.random()*num)+1;
+    REMODELPROPOSAL.bar1.datasets[0].bars[indexToUpdate].value = Math.floor(Math.random()*num)+1;
 
 
-  myNewBar1.update();
+    REMODELPROPOSAL.bar1.update();
 
     var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
     var employerSavings = $('employerSavings').text();
@@ -398,24 +388,24 @@ $('#meat').on('change','#checkbox2',function() {
 
     var employee = new countUp("employeeSavings",94039,80100,0,2,options);
     employee.start();
- 
- 
+
+
 });
 
     //if HSA couple field is updated - do the calculations below
     $( "#meat").on('change', "#couple",function() {
- 
+
   	var num = $(this).val();
   	num = parseInt(num);
-    
-    var indexToUpdate = Math.floor(Math.random() * data1.labels.length-1)+1;
+
+    var indexToUpdate = Math.floor(Math.random() * REMODELPROPOSAL.chartData.labels.length-1)+1;
 
 
-  myNewBar1.datasets[1].bars[indexToUpdate].value = Math.floor(Math.random()*num)+1;
-  myNewBar1.datasets[0].bars[indexToUpdate].value = Math.floor(Math.random()*num)+1;
+    REMODELPROPOSAL.bar1.datasets[1].bars[indexToUpdate].value = Math.floor(Math.random()*num)+1;
+    REMODELPROPOSAL.bar1.datasets[0].bars[indexToUpdate].value = Math.floor(Math.random()*num)+1;
 
 
-  myNewBar1.update();
+    REMODELPROPOSAL.bar1.update();
 
     var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
     var employerSavings = $('employerSavings').text();
@@ -427,24 +417,24 @@ $('#meat').on('change','#checkbox2',function() {
 
     var employee = new countUp("employeeSavings",94039,80100,0,2,options);
     employee.start();
- 
- 
+
+
 });
 
     //if HSA single parent field is updated - do the calculations below
    $( "#meat").on('change', "#singleParent",function() {
- 
+
   	var num = $(this).val();
   	num = parseInt(num);
-    
-    var indexToUpdate = Math.floor(Math.random() * data1.labels.length-1)+1;
+
+    var indexToUpdate = Math.floor(Math.random() * REMODELPROPOSAL.chartData.labels.length-1)+1;
 
 
-  myNewBar1.datasets[1].bars[indexToUpdate].value = Math.floor(Math.random()*num)+1;
-  myNewBar1.datasets[0].bars[indexToUpdate].value = Math.floor(Math.random()*num)+1;
+    REMODELPROPOSAL.bar1.datasets[1].bars[indexToUpdate].value = Math.floor(Math.random()*num)+1;
+    REMODELPROPOSAL.bar1.datasets[0].bars[indexToUpdate].value = Math.floor(Math.random()*num)+1;
 
 
-  myNewBar1.update();
+    REMODELPROPOSAL.bar1.update();
 
     var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
     var employerSavings = $('employerSavings').text();
@@ -456,25 +446,25 @@ $('#meat').on('change','#checkbox2',function() {
 
     var employee = new countUp("employeeSavings",94039,80100,0,2,options);
     employee.start();
- 
- 
+
+
 });
 
 
     //if HSA family field is updated - do the calculations below
     $( "#meat").on('change', "#family",function() {
- 
+
   	var num = $(this).val();
   	num = parseInt(num);
-    
-    var indexToUpdate = Math.floor(Math.random() * data1.labels.length-1)+1;
+
+    var indexToUpdate = Math.floor(Math.random() * REMODELPROPOSAL.chartData.labels.length-1)+1;
 
 
-  myNewBar1.datasets[1].bars[indexToUpdate].value = Math.floor(Math.random()*num)+1;
-  myNewBar1.datasets[0].bars[indexToUpdate].value = Math.floor(Math.random()*num)+1;
+    REMODELPROPOSAL.bar1.datasets[1].bars[indexToUpdate].value = Math.floor(Math.random()*num)+1;
+    REMODELPROPOSAL.bar1.datasets[0].bars[indexToUpdate].value = Math.floor(Math.random()*num)+1;
 
 
-  myNewBar1.update();
+    REMODELPROPOSAL.bar1.update();
 
     var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
     var employerSavings = $('employerSavings').text();
@@ -486,8 +476,8 @@ $('#meat').on('change','#checkbox2',function() {
 
     var employee = new countUp("employeeSavings",94039,80100,0,2,options);
     employee.start();
- 
- 
+
+
 });
 
 
@@ -496,14 +486,14 @@ $('#meat').on('change','#checkbox2',function() {
     $('#hsa').addClass('hidden');
     //$('#hsa').empty();
 
-    var indexToUpdate = Math.floor(Math.random() * data1.labels.length-1)+1;
+    var indexToUpdate = Math.floor(Math.random() * REMODELPROPOSAL.chartData.labels.length-1)+1;
 
 
-myNewBar1.datasets[1].bars[indexToUpdate].value = Math.floor(Math.random()*10)+1;
-myNewBar1.datasets[0].bars[indexToUpdate].value = Math.floor(Math.random()*10)+1;
+    REMODELPROPOSAL.bar1.datasets[1].bars[indexToUpdate].value = Math.floor(Math.random()*10)+1;
+    REMODELPROPOSAL.bar1.datasets[0].bars[indexToUpdate].value = Math.floor(Math.random()*10)+1;
 
 
-myNewBar1.update();
+    REMODELPROPOSAL.bar1.update();
 
     var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
     var employerSavings = $('employerSavings').text();
@@ -518,6 +508,3 @@ myNewBar1.update();
 
   }
 });
-
-
-  

@@ -251,7 +251,7 @@
                         </div>
                         <div class="col-md-3">
                         </div>
-                        <div class="col-md-3">
+                        <div  id="messageHours" class="col-md-3">
                         </div>
                         <div class="col-md-1">
                         </div>
@@ -266,31 +266,42 @@
                   </div>
                 </div>
             </div>
-
-        <div id="title" class="col-md-6">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                        <p id="newOldTitle" style="text-align:center;">New Tickets vs Tickets Closed - This Wk <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
-                  </div>
-                  <div id="title"class="panel-body">
-                    <div style="text-align:center"class="col-md-2">
-                          <div style="padding:5px;" id="newOldLegend">
+            <div id="title" class="col-md-6">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                            <p id="memberTicketsTitle" style="text-align:center;">Tickets Closed By Member - This Wk <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
+                      </div>
+                      <div id="title"class="panel-body">
+                        <div style="margin-top:10px;margin-bottom:5px;" class="row">
+                          <div class="col-md-2">
                           </div>
-                        </div>
-                        <div class="col-md-6">
+                            <div class="col-md-4">
+                              <input id="daterange5" class="form-control" type="text" name="daterange5"placeholder="Select a Date Range"  />
+
+                              <script type="text/javascript">
+                              </script>
+                            </div>
+                            <div class="col-md-3">
+
+                            </div>
+                            <div id="messageTickets" class="col-md-3">
+                            </div>
+                            <div class="col-md-1">
+                            </div>
 
                         </div>
-                        <div  id="dateSwitchTrailing">
-                          <a style="float:right;"  id="lastWkTrailing" class="btn btn-xs btn-info">Last Wk</a>
+                        <div style="text-align:center"class="col-md-2">
 
-                        </div>
-                        <div id="newOldChart">
-                          <canvas id ="newOld"style="margin-left:-2px;padding:15px;width:90%;height:200px;"></canvas>
+                            </div>
 
-                        </div>
-                  </div>
+                            <div id="memberTicketsChart">
+                              <canvas id ="memberTickets"style="margin-left:-2px;padding:15px;width:90%;height:200px;"></canvas>
+
+                            </div>
+                      </div>
+                    </div>
                 </div>
-            </div>
+
         </div>
         <div class="row">
           <div id="title" class="col-md-12">
@@ -435,7 +446,32 @@
             </div>
         </div>-->
     </div>
+        <div class="row" style="margin-top:5px;">
+          <div id="title" class="col-md-12">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                          <p id="newOldTitle" style="text-align:center;">New Tickets vs Tickets Closed - This Wk <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
+                    </div>
+                    <div id="title"class="panel-body">
+                      <div style="text-align:center"class="col-md-2">
+                            <div style="padding:5px;" id="newOldLegend">
+                            </div>
+                          </div>
+                          <div class="col-md-6">
 
+                          </div>
+                          <div  id="dateSwitchTrailing">
+                            <a style="float:right;"  id="lastWkTrailing" class="btn btn-xs btn-info">Last Wk</a>
+
+                          </div>
+                          <div id="newOldChart">
+                            <canvas id ="newOld"style="margin-left:-2px;padding:15px;width:90%;height:200px;"></canvas>
+
+                          </div>
+                    </div>
+                  </div>
+              </div>
+        </div>
 
 
         <div id="title" style="margin-top:5px;" class="row">

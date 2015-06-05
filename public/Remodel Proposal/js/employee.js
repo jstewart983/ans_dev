@@ -1,5 +1,6 @@
-var employee = function(empID,EmpEnrollLvl,EmpIncome,empState,empAge,spouseAge,depCountUnder,depCountOver,spouseIncome){
+var employee = function(empID,EmpEnrollLvl,EmpIncome,empState,empAge,spouseAge,depCountUnder,depCountOver,spouseIncome,salaryUp,enrolledFlag,IndSubEmp){
   this.empID = empID;
+  this.IndSubEmp = IndSubEmp;
   this.EmpEnrollLvl = EmpEnrollLvl;
   this.EmpIncome = EmpIncome;
   this.empState = empState;
@@ -8,6 +9,8 @@ var employee = function(empID,EmpEnrollLvl,EmpIncome,empState,empAge,spouseAge,d
   this.depCountUnder = depCountUnder;
   this.depCountOver = depCountOver;
   this.spouseIncome = spouseIncome;
+  this.salaryUp = salaryUp;
+  this.enrolledFlag = enrolledFlag;
 }
 
 employee.prototype.calcIndSubEmp = function(){

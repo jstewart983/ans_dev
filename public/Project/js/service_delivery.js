@@ -1,4 +1,5 @@
-
+var ticketsClosedByMemberID = null;
+var billableByDayID = null;
 function ticketsClosedThisWeek(){
 
   $.ajax({
@@ -462,6 +463,7 @@ $('#sup').replaceWith('<div id="sup"><canvas style="padding:10px;width:auto;heig
       var myNewChart = new Chart(ctx).Bar(data);
 
       $("#billableDay").click(function(e) {
+        clearInterval(billableByDayID);
          var activeBars = myNewChart.getBarsAtEvent(e);
     	    //$('#basicModal2').modal('show');
          //$('#basicModal2').find(".modal-title").text(activeBars[0].label);
@@ -556,6 +558,7 @@ $('#sup').replaceWith('<div id="sup"><canvas style="padding:10px;width:auto;heig
         e.preventDefault();
         //$('.sup').append('<canvas style="padding:10px;width:720px;height:231px;" id="billableDay">');
         billableByDay('','');
+        billableByDayID = setInterval(function(){billableByDay('','');},20000);
 
       });
 
@@ -1347,6 +1350,192 @@ function tickets(board){
 }
 
 
+
+
+
+function ticketsClosedByMember(ranges,datetype){
+  //$('#billableDay').remove();
+
+  $.ajax({
+
+    type:"GET",
+    url:"../../ajax/servicedelivery/closedTicketsByMember.php"+ranges+datetype,
+    success:function(json){
+
+      function getRandomColor() {
+          var letters = '0123456789ABCDEF'.split('');
+          var color = '#';
+          for (var i = 0; i < 6; i++ ) {
+              color += letters[Math.floor(Math.random() * 16)];
+          }
+          return color;
+      }
+
+      var day_labels = ["Mon","Tues","Weds","Thurs","Fri"];
+      var members = [];
+      var fillColor = [];
+      var hours = [];
+      var highlightFill = [];
+      var highlightStroke = [];
+
+
+
+      for($i=0;$i<json.length;$i++){
+
+
+        members.push(json[$i]["member_id"]);
+        hours.push(json[$i]["ticketsMember"]);
+        fillColor.push("rgba(227, 75, 0, .5)");
+        highlightFill.push("rgba(227, 75, 0, .8)");
+        highlightStroke.push("rgba(227, 75, 0, .7)");
+
+    }
+
+
+
+
+var data = {
+    labels: members,
+    datasets: [
+        {
+
+          fillColor: "rgba(134, 205, 130, .5)",
+          strokeColor: "rgba(134, 205, 130, .8)",
+          highlightFill: "rgba(134, 205, 130, .75)",
+          highlightStroke: "rgba(134, 205, 130, .1)",
+            data:hours,
+            label: "Tickets Closed"
+        }
+    ]
+};
+
+$("#title #memberTicketsTitle").fadeOut(500,function(){
+  $title = $('#memberTicketsTitle').text();
+  $p = $('<p id="memberTicketsTitle"  style="text-align:center;">'+json[0]["Title"]+ ' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+  $("#memberTicketsTitle").replaceWith($p);
+  $p.fadeIn(1200);
+
+});
+$('#memberTicketsChart').empty();
+$('#memberTicketsChart').replaceWith('<div id="memberTicketsChart"><canvas style="padding:10px;width:auto;height:100px;" id="memberTickets"></div>');
+
+      var ctx = document.getElementById("memberTickets").getContext("2d");
+      var myNewChart1 = new Chart(ctx).Bar(data);
+
+      $("#memberTicketsChart").on('click','#memberTickets',function(e) {
+        clearInterval(ticketsClosedByMemberID);
+         var activeBars = myNewChart1.getBarsAtEvent(e);
+    	    //$('#basicModal2').modal('show');
+         //$('#basicModal2').find(".modal-title").text(activeBars[0].label);
+
+         if(ranges && datetype !== ''){
+           var memberurl = "../../ajax/servicedelivery/closedTicketsByMember.php"+ranges+datetype+"&member="+activeBars[0].label;
+         }else{
+           var memberurl = "../../ajax/servicedelivery/closedTicketsByMember.php?member="+activeBars[0].label+"&datetype=day";
+         }
+
+         $.ajax({
+           type:"GET",
+           url:memberurl,
+           success:function(json){
+             //$('#memberTicketsChart').empty();
+             function getRandomColor() {
+                 var letters = '0123456789ABCDEF'.split('');
+                 var color = '#';
+                 for (var i = 0; i < 6; i++ ) {
+                     color += letters[Math.floor(Math.random() * 16)];
+                 }
+                 return color;
+             }
+
+
+             var days = [];
+             var fillColor = [];
+             var hours = [];
+             var highlightFill = [];
+             var highlightStroke = [];
+
+
+
+               for($i=0;$i<json.length;$i++){
+
+
+                 days.push(json[$i]["day"]);
+                 hours.push(json[$i]["ticketsMember"]);
+                 fillColor.push("rgba(227, 75, 0, .5)");
+                 highlightFill.push("rgba(227, 75, 0, .8)");
+                 highlightStroke.push("rgba(227, 75, 0, .7)");
+
+               }
+
+
+
+
+
+
+
+       var data = {
+           labels: days,
+           datasets: [
+               {
+
+                   fillColor: "rgba(134, 205, 130, .5)",
+                   strokeColor: "rgba(134, 205, 130, .8)",
+                   highlightFill: "rgba(134, 205, 130, .75)",
+                   highlightStroke: "rgba(134, 205, 130, .1)",
+                   data:hours,
+                   label: "Tickets Closed"
+               }
+           ]
+       };
+              console.log(data);
+
+
+              $('#memberTicketsChart').empty();
+              $('#memberTicketsChart').append('<a href="#" id="memberTicketsBack"><span class="fui-arrow-left"></span>back </a> <span> '+activeBars[0].label+': <span id="memberTicketsCount"></span></span><canvas style="padding:10px;width:auto;height:100px;" id="memberTickets"></canvas>');
+                 var ctx3 = document.getElementById("memberTickets").getContext("2d");
+                 var modalChart1 = new Chart(ctx3).Bar(data);
+                //console.log(ctx2);
+                //console.log(modalChart);
+                var total_hours = parseInt(activeBars[0].value);
+                var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '',suffix : ' tickets'}
+
+                var tickets = new countUp("memberTicketsCount", 0, total_hours, 0, 2,options);
+                tickets.start();
+
+
+           }
+         });
+
+
+      });
+      $("#memberTicketsChart").on('click','#memberTicketsBack',function(e) {
+        e.preventDefault();
+        $('#daterange5').val('');
+        $('#memberTicketsChart').empty();
+        //$('#billableDay').remove();
+        //$('#dude').empty();
+
+        //$('.sup').append('<canvas style="padding:10px;width:720px;height:231px;" id="billableDay">');
+        ticketsClosedByMember('','');
+        ticketsClosedByMemberID = setInterval(function(){ ticketsClosedByMember('',''); },20000);
+
+      });
+
+
+    }
+
+
+  });
+
+}
+
+
+
+
+
+
+
 $(document).ready(function(){
 
 
@@ -1383,8 +1572,10 @@ var responseID = setInterval(function(){ avgInitialResponse(); }, 10000);
 //billable by day - last 7 days
 billableByDay('','');
 //setInterval(function(){ billableByDay('',''); }, 60000);
+billableByDayID = setInterval(function(){billableByDay('','');},20000);
 
-
+ticketsClosedByMember('','');
+ticketsClosedByMemberID = setInterval(function(){ ticketsClosedByMember('',''); },20000);
 //new tickets vs tickets closed by day - last 7 days
 newVsOld('');
 var trailingID = setInterval(function(){ newVsOld(''); }, 60000);
@@ -1637,12 +1828,14 @@ $('#daterange4').on('apply.daterangepicker', function(ev, picker) {
 
   if (days_between(parseDate(start),parseDate(end)) > 30){
     billableByDay("?range1="+start+"&range2="+end,"&datetype=month");
+    clearInterval(billableByDayID);
   }else{
 
     billableByDay("?range1="+start+"&range2="+end,"&datetype=day");
+    clearInterval(billableByDayID);
   }
 
-
+  $('#messageHours').append('refresh page to reset live reload');
 
 });
 
@@ -1677,6 +1870,48 @@ $('#boardTable').on('click','#board',function(e){
   tickets(clickedVal);
   $('#issueModal4').modal('show');
 
+
+});
+
+
+$('input[name="daterange5"]').daterangepicker();
+
+$('#daterange5').on('apply.daterangepicker', function(ev, picker) {
+  var start = picker.startDate.format('YYYY-MM-DD');
+  var end = picker.endDate.format('YYYY-MM-DD');
+  function days_between(date1, date2) {
+
+      // The number of milliseconds in one day
+      var ONE_DAY = 1000 * 60 * 60 * 24;
+
+      // Convert both dates to milliseconds
+      var date1_ms = date1.getTime();
+      var date2_ms = date2.getTime();
+
+      // Calculate the difference in milliseconds
+      var difference_ms = Math.abs(date1_ms - date2_ms);
+
+      // Convert back to days and return
+      return Math.round(difference_ms/ONE_DAY);
+
+  }
+  function parseDate(input) {
+  var parts = input.match(/(\d+)/g);
+  // new Date(year, month [, date [, hours[, minutes[, seconds[, ms]]]]])
+  return new Date(parts[0], parts[1]-1, parts[2]); // months are 0-based
+}
+
+
+  if (days_between(parseDate(start),parseDate(end)) > 30){
+    ticketsClosedByMember("?range1="+start+"&range2="+end,"&datetype=month");
+    clearInterval(ticketsClosedByMemberID);
+  }else{
+
+    ticketsClosedByMember("?range1="+start+"&range2="+end,"&datetype=day");
+    clearInterval(ticketsClosedByMemberID);
+  }
+
+$('#messageTickets').append('refresh page to reset live reload');
 
 });
 

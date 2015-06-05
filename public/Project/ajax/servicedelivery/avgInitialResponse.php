@@ -102,7 +102,7 @@ x';
   dbo.SR_Board on dbo.SR_Service.SR_Board_RecID = dbo.SR_Board.SR_Board_RecID left outer join
   dbo.Company on dbo.sr_service.Company_RecID = dbo.company.Company_RecID left outer join
   dbo.Member on dbo.time_entry.Member_RecID = dbo.member.Member_RecID
-  where DATEDIFF( ww, dbo.SR_Service.Date_Entered, GETDATE() ) = 0 and (Board_Name = "My Company/Service" or Board_Name = "Alerts - Service Delivery" or Board_Name = "Results ") AND (Company_Name <> "Advanced Network Solutions")
+  where DATEDIFF( ww, dbo.SR_Service.Date_Entered, GETDATE() ) = 0 and (Board_Name = "My Company/Service" or Board_Name = "Alerts - Service Delivery") AND (Company_Name <> "Advanced Network Solutions")
   group by dbo.sr_service.Date_Entered, dbo.sr_service.SR_Service_RecID, Company_Name)
   x';
 
@@ -132,7 +132,7 @@ x';
   dbo.SR_Board on dbo.SR_Service.SR_Board_RecID = dbo.SR_Board.SR_Board_RecID left outer join
   dbo.Company on dbo.sr_service.Company_RecID = dbo.company.Company_RecID left outer join
   dbo.Member on dbo.time_entry.Member_RecID = dbo.member.Member_RecID
-  where DATEDIFF( ww, dbo.SR_Service.Date_Entered, GETDATE() ) = 1 and (Board_Name = "My Company/Service" or Board_Name = "Alerts - Service Delivery" or Board_Name = "Results ") AND (Company_Name <> "Advanced Network Solutions")
+  where DATEDIFF( ww, dbo.SR_Service.Date_Entered, GETDATE() ) = 1 and (Board_Name = "My Company/Service" or Board_Name = "Alerts - Service Delivery") AND (Company_Name <> "Advanced Network Solutions")
   group by dbo.sr_service.Date_Entered, dbo.sr_service.SR_Service_RecID, Company_Name)
   x';
 
