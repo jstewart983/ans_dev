@@ -13,7 +13,7 @@ require('../../config/config.php');
 
 
 
-	$query = 'select sr_service_calculated.resourcelist, DATEDIFF(DAY, sr_service.date_entered, getdate()) as daysOpen,sr_service.sr_service_recid,sr_status.description as status, sr_service.date_entered,sr_urgency.description as urgency,sr_service.summary
+	$query = 'select sr_service.email_address,sr_service_calculated.nextscheduledate,sr_service_calculated.resourcelist, DATEDIFF(DAY, sr_service.date_entered, getdate()) as daysOpen,sr_service.sr_service_recid,sr_status.description as status, sr_service.date_entered,sr_urgency.description as urgency,sr_service.summary
   from sr_service
 	left outer join sr_type on sr_type.sr_type_recid = sr_service.sr_type_recid
 	left outer join sr_urgency on sr_urgency.sr_urgency_recid = sr_service.sr_urgency_recid
@@ -33,10 +33,11 @@ echo "<div style='width:100%;width:100%;overflow-y: scroll !important;height:780
 echo "<table id='clientTable' style='width:100%;' class='table table-hover'>";
 echo "<thead>";
 echo "<th>Ticket #</th>";
-echo "<th>Urgency</th>";
+echo "<th>AE</th>";
 echo "<th>Status</th>";
 echo "<th>Engineer(s)</th>";
 echo "<th>Summary</th>";
+echo "<th>Scheduled</th>";
 echo "<th>Days Open</th>";
 echo "</thead>";
 
@@ -47,16 +48,22 @@ echo "<tbody>";
 while($row = mssql_fetch_array($openTickets)) {
 
 
-
+if($row['nextscheduledate'] !== null){
+	$dates = explode(" ",$row['nextscheduledate']);
+	$output = $dates[0] ." ".$dates[2];
+}else{
+	$output = "";
+}
 
 
 
 	echo "<tr>";
     echo "<td>".$row['sr_service_recid']."</td>";
-     echo "<td>".$row['urgency']."</td>";
+     echo "<td>".strtok($row['email_address'], '@')."</td>";
      echo "<td>".$row['status']."</td>";
      echo "<td>".$row['resourcelist']."</td>";
      echo "<td>".$row['summary']."</td>";
+		 echo "<td>".$output."</td>";
      echo "<td>".$row['daysOpen']."</td>";
     echo "</tr>";
 
