@@ -1,6 +1,6 @@
 <div style="margin-top:5%;" class="row">
   <div class="col-md-12">
-    <h3 style="text-align:center;"><span><img src="../../css/assets/Lightbulb-only-icon-64.png" alt="" /> </span><img src="../../css/assets/ansintelligence.png" alt="" />
+    <h3 style="text-align:center;"><span><img src="../../css/assets/Lightbulb-only-icon-64.png" alt="" /> </span> ANS Intelligence</h3>
 
   </div>
 </div>

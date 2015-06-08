@@ -23,11 +23,11 @@
 
         </div>
         <div class="form-group">
-          <input style="width:100%;background-color:#f78e1e;" class="btn btn-lg btn-success" type="submit"  name="login" value="Log in" />
+          <input style="width:100%;" class="btn btn-lg btn-success" type="submit"  name="login" value="Log in" />
 
         </div>
         <div class="form-group">
-          <a id="register" href="http://intelligence.ansolutions.com/register.php" style="width:100%;background-color:#D0D0D0;" class="btn btn-lg btn-info">Sign Up</a>
+          <a id="register" href="http://intelligence.ansolutions.com/register.php" style="width:100%;" class="btn btn-lg btn-info">Sign Up</a>
 
         </div>
 

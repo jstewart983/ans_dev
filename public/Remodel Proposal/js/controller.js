@@ -22,7 +22,7 @@
                 REMODELPROPOSAL.bar1.datasets[1].bars[indexToUpdate].value = Math.floor(Math.random()*20)+1;
                 REMODELPROPOSAL.bar1.datasets[0].bars[indexToUpdate].value = Math.floor(Math.random()*20)+1;
                 REMODELPROPOSAL.bar1.update();
-                var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
+                var options = {useEasing : true,useGrouping : true,separator : '',decimal : '.',prefix : '$'}
                 var employerSavings = $('#employerSavings').text();
                 employerSavings = REMODELPROPOSAL.commonMethod.getSecondPart(employerSavings,'$');
 
@@ -79,7 +79,7 @@
 
          $("#employees").val($employees);
          $("#employees-label").text($employees+"%");
-         var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
+         var options = {useEasing : true,useGrouping : true,separator : '',decimal : '.',prefix : '$'}
          var employerSavings = $('employerSavings').text();
          var actual = parseInt(employerSavings) * 2;
          actual = parseInt(actual);
@@ -137,7 +137,7 @@ $('#slide1').click(function() {
           $('#loading').fadeOut();
           $('#meat').hide().html(html).fadeIn({ duration: 2000 });
 
-          var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
+          var options = {useEasing : true,useGrouping : true,separator : '',decimal : '.',prefix : '$'}
 
                     var employer = new countUp("employerSavings", 0, 3000, 0, 2,options);
                     employer.start();
@@ -215,7 +215,7 @@ $('#meat').on('click','#slide3',function() {
 
           $('#meat').hide().html(html).fadeIn({ duration: 500 });
 
-          var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
+          var options = {useEasing : true,useGrouping : true,separator : '',decimal : '.',prefix : '$'}
           var employerSavings = $('employerSavings').text();
           var actual = parseInt(employerSavings) * 2;
           actual = parseInt(actual);
@@ -285,7 +285,7 @@ REMODELPROPOSAL.bar1.update();
     $('#salary').removeClass('hidden');
     //employer.reset();
     //employee.reset();
-    var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
+    var options = {useEasing : true,useGrouping : true,separator : '',decimal : '.',prefix : '$'}
     var employerSavings = $(REMODELPROPOSAL.employerSavingsEl).text();
     var actual = parseInt(employerSavings) * 2;
     actual = parseInt(actual);
@@ -315,7 +315,7 @@ REMODELPROPOSAL.bar1.update();
 
     REMODELPROPOSAL.bar1.update();
 
-    var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
+    var options = {useEasing : true,useGrouping : true,separator : '',decimal : '.',prefix : '$'}
     var employerSavings = $('employerSavings').text();
     var actual = parseInt(employerSavings) * 2;
     actual = parseInt(actual);
@@ -341,7 +341,7 @@ REMODELPROPOSAL.bar1.update();
 
     REMODELPROPOSAL.bar1.update();
 
-    var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
+    var options = {useEasing : true,useGrouping : true,separator : '',decimal : '.',prefix : '$'}
     var employerSavings = $('employerSavings').text();
     var actual = parseInt(employerSavings) * 2;
     actual = parseInt(actual);
@@ -373,7 +373,7 @@ REMODELPROPOSAL.bar1.update();
 
     REMODELPROPOSAL.bar1.update();
 
-    var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
+    var options = {useEasing : true,useGrouping : true,separator : '',decimal : '.',prefix : '$'}
     var employerSavings = $('employerSavings').text();
     var actual = parseInt(employerSavings) * 2;
     actual = parseInt(actual);
@@ -399,7 +399,7 @@ REMODELPROPOSAL.bar1.update();
 
     REMODELPROPOSAL.bar1.update();
 
-    var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
+    var options = {useEasing : true,useGrouping : true,separator : '',decimal : '.',prefix : '$'}
     var employerSavings = $('employerSavings').text();
     var actual = parseInt(employerSavings) * 2;
     actual = parseInt(actual);
@@ -428,7 +428,7 @@ REMODELPROPOSAL.bar1.update();
     REMODELPROPOSAL.bar1.update();
     //employer.reset();
     //employee.reset();
-    var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
+    var options = {useEasing : true,useGrouping : true,separator : '',decimal : '.',prefix : '$'}
     var employerSavings = $('employerSavings').text();
     var actual = parseInt(employerSavings) * 2;
     actual = parseInt(actual);
@@ -458,7 +458,7 @@ $('#meat').on('change','#checkbox2',function() {
     REMODELPROPOSAL.bar1.update();
     //$('#hsa').append('<table style="width:100%;" class="table table-list-search remodelGray"><thead><p class="remodelGreen" style="text-align:left;">HSA</p></thead><tbody><tr><td><b>Single</b></td><td id="reportPremium"><div class="form-group"><input type="text" class="form-control" name="Name" autocomplete="off" id="name" placeholder="$150"></div></td></tr><tr><td><b>Subsidy</b></td><td id="reportSubsidy"></td></tr><tr><td><b>Consulting Fee</b></td><td id="reportConsulting"></td></tr></tr></tbody></table>');
     $('#hsa').removeClass('hidden');
-    var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
+    var options = {useEasing : true,useGrouping : true,separator : '',decimal : '.',prefix : '$'}
     var employerSavings = $('employerSavings').text();
     var actual = parseInt(employerSavings) * 2;
     actual = parseInt(actual);
@@ -488,7 +488,7 @@ $('#meat').on('change','#checkbox2',function() {
 
     REMODELPROPOSAL.bar1.update();
 
-    var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
+    var options = {useEasing : true,useGrouping : true,separator : '',decimal : '.',prefix : '$'}
     var employerSavings = $('employerSavings').text();
     var actual = parseInt(employerSavings) * 2;
     actual = parseInt(actual);
@@ -519,7 +519,7 @@ $('#meat').on('change','#checkbox2',function() {
 
     REMODELPROPOSAL.bar1.update();
 
-    var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
+    var options = {useEasing : true,useGrouping : true,separator : '',decimal : '.',prefix : '$'}
     var employerSavings = $('employerSavings').text();
     var actual = parseInt(employerSavings) * 2;
     actual = parseInt(actual);
@@ -550,7 +550,7 @@ $('#meat').on('change','#checkbox2',function() {
 
     REMODELPROPOSAL.bar1.update();
 
-    var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
+    var options = {useEasing : true,useGrouping : true,separator : '',decimal : '.',prefix : '$'}
     var employerSavings = $('employerSavings').text();
     var actual = parseInt(employerSavings) * 2;
     actual = parseInt(actual);
@@ -581,7 +581,7 @@ $('#meat').on('change','#checkbox2',function() {
 
     REMODELPROPOSAL.bar1.update();
 
-    var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
+    var options = {useEasing : true,useGrouping : true,separator : '',decimal : '.',prefix : '$'}
     var employerSavings = $('employerSavings').text();
     var actual = parseInt(employerSavings) * 2;
     actual = parseInt(actual);
@@ -612,7 +612,7 @@ $('#meat').on('change','#checkbox2',function() {
 
     REMODELPROPOSAL.bar1.update();
 
-    var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
+    var options = {useEasing : true,useGrouping : true,separator : '',decimal : '.',prefix : '$'}
     var employerSavings = $('employerSavings').text();
     var actual = parseInt(employerSavings) * 2;
     actual = parseInt(actual);
