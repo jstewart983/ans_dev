@@ -6,7 +6,99 @@
 //var labels = '';
 //var myNewBar1 = null;
 
+      //slider
+      $(document).ready(function() {
+          $("#slider").slider({
 
+              range: "min",
+              animate: true,
+
+              min: 1,
+              max: 100,
+              step: 1,
+              slide: function(event, ui) {
+                REMODELPROPOSAL.commonMethod.update(1,ui.value);
+                var indexToUpdate = Math.floor(Math.random() * REMODELPROPOSAL.chartData.labels.length-1)+1;
+                REMODELPROPOSAL.bar1.datasets[1].bars[indexToUpdate].value = Math.floor(Math.random()*20)+1;
+                REMODELPROPOSAL.bar1.datasets[0].bars[indexToUpdate].value = Math.floor(Math.random()*20)+1;
+                REMODELPROPOSAL.bar1.update();
+                var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
+                var employerSavings = $('#employerSavings').text();
+                employerSavings = REMODELPROPOSAL.commonMethod.getSecondPart(employerSavings,'$');
+
+
+                var employeeSavings = $('#employeeSavings').text();
+                employeeSavings = REMODELPROPOSAL.commonMethod.getSecondPart(employeeSavings,'$');
+
+
+                var totalSavings = $('#totalSavings').text();
+                totalSavings = REMODELPROPOSAL.commonMethod.getSecondPart(totalSavings,'$');
+
+
+
+                var employer = new countUp("employerSavings",employerSavings,employerSavings*2, 0, 2,options);
+                employer.start();
+                var employeeSavings = $('#employeeSavings').text();
+
+                var employee = new countUp("employeeSavings",employeeSavings,employeeSavings*2,0,2,options);
+                employee.start(); //changed
+
+                var total = new countUp("totalSavings",totalSavings,employeeSavings+employerSavings,0,2,options);
+                total.start(); //changed
+              }
+          });
+
+
+          //Added, set initial value.
+          $("#employees").val(20);
+          //$("#avgsalary").val(16);
+          //$("#tlpremium").val(25);
+          //$("#contribution").val(1);
+
+
+
+          $("#employees-label").text(20);
+
+
+          REMODELPROPOSAL.commonMethod.update();
+          console.log("slider.js is here!");
+      });
+
+
+
+
+
+
+      //changed. now with parameter
+      /*function update(slider,val) {
+
+
+        var $employees = slider == 1?val:$("#employees").val();
+
+
+
+         $("#employees").val($employees);
+         $("#employees-label").text($employees+"%");
+         var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
+         var employerSavings = $('employerSavings').text();
+         var actual = parseInt(employerSavings) * 2;
+         actual = parseInt(actual);
+         var employer = new countUp("employerSavings",7000,6578, 0, 2,options);
+         employer.start();
+         var employeeSavings = $('employeeSavings').text();
+
+         var employee = new countUp("employeeSavings",80100,94039,0,2,options);
+         employee.start();
+         var indexToUpdate = Math.floor(Math.random() * REMODELPROPOSAL.chartData.labels.length-1)+1;
+
+
+         REMODELPROPOSAL.bar1.datasets[1].bars[indexToUpdate].value = Math.floor(Math.random()*10)+1;
+         REMODELPROPOSAL.bar1.datasets[0].bars[indexToUpdate].value = Math.floor(Math.random()*10)+1;
+
+
+         REMODELPROPOSAL.bar1.update();
+
+      }*/
 
 
 
@@ -51,6 +143,8 @@ $('#slide1').click(function() {
                     employer.start();
                     var employee = new countUp("employeeSavings",0,70000,0,2,options);
                     employee.start();
+                    var total = new countUp("totalSavings",40100,194039,0,2,options);
+                    total.start(); //changed
 
 
            REMODELPROPOSAL.chartData = {
@@ -131,6 +225,8 @@ $('#meat').on('click','#slide3',function() {
 
           var employee = new countUp("employeeSavings",70000,94039,0,2,options);
           employee.start();
+          var total = new countUp("totalSavings",40100,194039,0,2,options);
+          total.start(); //changed
 
     REMODELPROPOSAL.chartData = {
         labels:["1","2","3","4","5","6"],
@@ -190,7 +286,7 @@ REMODELPROPOSAL.bar1.update();
     //employer.reset();
     //employee.reset();
     var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '$'}
-    var employerSavings = $('employerSavings').text();
+    var employerSavings = $(REMODELPROPOSAL.employerSavingsEl).text();
     var actual = parseInt(employerSavings) * 2;
     actual = parseInt(actual);
     var employer = new countUp("employerSavings",3000,6578, 0, 2,options);
@@ -199,6 +295,8 @@ REMODELPROPOSAL.bar1.update();
 
     var employee = new countUp("employeeSavings",70000,94039,0,2,options);
     employee.start();
+    var total = new countUp("totalSavings",40100,194039,0,2,options);
+    total.start(); //changed
 
 
   $('#salary').on('change','#percentCheckbox',function() {
@@ -227,6 +325,8 @@ REMODELPROPOSAL.bar1.update();
 
     var employee = new countUp("employeeSavings",80100,94039,0,2,options);
     employee.start();
+    var total = new countUp("totalSavings",40100,194039,0,2,options);
+    total.start(); //changed
 
   } else {
 
@@ -251,6 +351,8 @@ REMODELPROPOSAL.bar1.update();
 
     var employee = new countUp("employeeSavings",80100,94039,0,2,options);
     employee.start();
+    var total = new countUp("totalSavings",40100,194039,0,2,options);
+    total.start(); //changed
 
   }
 
@@ -281,6 +383,8 @@ REMODELPROPOSAL.bar1.update();
 
     var employee = new countUp("employeeSavings",80100,94039,0,2,options);
     employee.start();
+    var total = new countUp("totalSavings",40100,194039,0,2,options);
+    total.start(); //changed
 
   } else {
 
@@ -305,6 +409,8 @@ REMODELPROPOSAL.bar1.update();
 
     var employee = new countUp("employeeSavings",80100,94039,0,2,options);
     employee.start();
+    var total = new countUp("totalSavings",40100,194039,0,2,options);
+    total.start(); //changed
 
   }
       });
@@ -332,6 +438,8 @@ REMODELPROPOSAL.bar1.update();
 
     var employee = new countUp("employeeSavings",94039,70000,0,2,options);
     employee.start();
+    var total = new countUp("totalSavings",40100,194039,0,2,options);
+    total.start(); //changed
   }
 });
 $('#meat').on('change','#checkbox2',function() {
@@ -360,6 +468,8 @@ $('#meat').on('change','#checkbox2',function() {
 
     var employee = new countUp("employeeSavings",94039,80100,0,2,options);
     employee.start();
+    var total = new countUp("totalSavings",40100,194039,0,2,options);
+    total.start(); //changed
 
     //if HSA Single field is updated - do the calculations below
     //in order to do this correctly, I need to check the previous value to see
@@ -388,6 +498,8 @@ $('#meat').on('change','#checkbox2',function() {
 
     var employee = new countUp("employeeSavings",94039,80100,0,2,options);
     employee.start();
+    var total = new countUp("totalSavings",40100,194039,0,2,options);
+    total.start(); //changed
 
 
 });
@@ -417,6 +529,8 @@ $('#meat').on('change','#checkbox2',function() {
 
     var employee = new countUp("employeeSavings",94039,80100,0,2,options);
     employee.start();
+    var total = new countUp("totalSavings",40100,194039,0,2,options);
+    total.start(); //changed
 
 
 });
@@ -446,7 +560,8 @@ $('#meat').on('change','#checkbox2',function() {
 
     var employee = new countUp("employeeSavings",94039,80100,0,2,options);
     employee.start();
-
+    var total = new countUp("totalSavings",40100,194039,0,2,options);
+    total.start(); //changed
 
 });
 
@@ -476,6 +591,8 @@ $('#meat').on('change','#checkbox2',function() {
 
     var employee = new countUp("employeeSavings",94039,80100,0,2,options);
     employee.start();
+    var total = new countUp("totalSavings",40100,194039,0,2,options);
+    total.start(); //changed
 
 
 });
@@ -505,6 +622,23 @@ $('#meat').on('change','#checkbox2',function() {
 
     var employee = new countUp("employeeSavings",80100,94039,0,2,options);
     employee.start();
+    var total = new countUp("totalSavings",40100,194039,0,2,options);
+    total.start(); //changed
 
   }
+});
+
+$( "#meat").on('REMODELPROPOSAL.commonMethod.update', "#employees",function() {
+
+  var indexToUpdate = Math.floor(Math.random() * REMODELPROPOSAL.chartData.labels.length-1)+1;
+
+
+  REMODELPROPOSAL.bar1.datasets[1].bars[indexToUpdate].value = Math.floor(Math.random()*10)+1;
+  REMODELPROPOSAL.bar1.datasets[0].bars[indexToUpdate].value = Math.floor(Math.random()*10)+1;
+
+
+  REMODELPROPOSAL.bar1.update();
+
+
+
 });
