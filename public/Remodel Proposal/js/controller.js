@@ -13,9 +13,9 @@
               range: "min",
               animate: true,
 
-              min: 1,
-              max: 100,
-              step: 1,
+              min: -100,
+              max: 50,
+              step: 10,
               slide: function(event, ui) {
                 REMODELPROPOSAL.commonMethod.update(1,ui.value);
                 var indexToUpdate = Math.floor(Math.random() * REMODELPROPOSAL.chartData.labels.length-1)+1;

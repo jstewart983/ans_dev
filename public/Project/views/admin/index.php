@@ -208,10 +208,12 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
                 </div>
             </div>
           </a>
+
           </div>
           <div class="col-md-1">
 
           </div>
+
         </div>
       </div>
 

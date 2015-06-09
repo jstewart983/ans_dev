@@ -132,7 +132,7 @@
         </div>
         <div style="position:relative;z-index:999;"class="row">
           <div class="col-md-12">
-            <h1 style="font-size:50px;text-align:center;"><span id="hello">Hello <?php echo $_SESSION['fName']; ?>.</span> <span id="welcome" >Welcome to </span><span id="intel">ANS Intelligence.</span></h1>
+            <h1 style="font-size:50px;text-align:center;"><span id="hello">Hello <?php echo $_SESSION['fName']?>.</span> <span id="welcome" >Welcome to </span><span id="intel">ANS Intelligence.</span></h1>
           </div>
           <div class="col-md-12">
             <p id="choose"style="text-align:center;">
@@ -226,6 +226,11 @@
                   <canvas id="barChart" style="margin-left:-10px;width:100%;" height="100"></canvas>
                 </div>
               </div>
+              <p>
+                <?php
+                  print_r($_SESSION['fox']);
+                ?>
+              </p>
               <div  class="modal fade" id="issueModal2" tabindex="-1" role="dialog" aria-labelledby="issueModal2" aria-hidden="true">
                   <div  class="modal-dialog">
                       <div class="modal-content">

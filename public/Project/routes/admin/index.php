@@ -1,6 +1,6 @@
 <?php
-$admins = array('cwhite','bflippo','jstewart','rpinson','gsummey');
-$user_group= array('charlow');
+//$admins = array('cwhite','bflippo','jstewart','rpinson','gsummey');
+//$user_group= array('charlow');
 /**
  * A simple, clean and secure PHP Login Script / MINIMAL VERSION
  * For more versions (one-file, advanced, framework-like) visit http://www.php-login.net
@@ -45,14 +45,14 @@ if ($login->isUserLoggedIn() == true) {
     $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
       // the user is logged in. redirect to the intended view
       // for demonstration purposes, we simply show the "you are logged in" view.
-      if (in_array($_SESSION['user_name'],$admins) || in_array($_SESSION['user_name'],$user_group)){
+      if (in_array('admin',$_SESSION['fox'][0]) || in_array('super admin',$_SESSION['fox'][0])){
 
         include("../../views/admin/index.php");
 
       }else{
 
         include("../../views/admin/access.php");
-
+        //print_r($_SESSION['fox']);
       }
 
     }
