@@ -12,8 +12,7 @@ from Time_Entry
 left outer join sr_service on Time_Entry.sr_service_recid = sr_service.sr_service_recid
 left outer join sr_board on sr_service.sr_board_recid = sr_board.sr_board_recid
 left outer join member on time_entry.Member_RecID = Member.Member_RecID
-where member.title like "%IT Support%" and Time_Entry.te_charge_code_recid is null and
-(dbo.Time_Entry.date_start >="'.$range1.'" and dbo.Time_Entry.date_start <= "'.$range2.'")
+where (dbo.Member.Role_ID = "Technology Consultant") and Time_Entry.te_charge_code_recid is null and (dbo.Time_Entry.date_start >="'.$range1.'" and dbo.Time_Entry.date_start <= "'.$range2.'")
 group by sr_board.board_name';
 
 $projectHours = mssql_query($query);

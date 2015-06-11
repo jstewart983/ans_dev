@@ -61,7 +61,7 @@
 
 
           REMODELPROPOSAL.commonMethod.update();
-          console.log("slider.js is here!");
+
       });
 
 
@@ -199,7 +199,7 @@ REMODELPROPOSAL.commonMethod.addButtonAction('#meat','click','#back2',"views/sli
 //**START NEXT BUTTONS**//
 
 //Lets Remodel! button
-REMODELPROPOSAL.commonMethod.addButtonAction('#meat','click','#slide2',"views/slide2.html");
+//REMODELPROPOSAL.commonMethod.addButtonAction('#meat','click','#slide2',"views/slide2.html");
 
 //**END NEXT BUTTONS**//
 
@@ -225,8 +225,8 @@ $('#meat').on('click','#slide3',function() {
 
           var employee = new countUp("employeeSavings",70000,94039,0,2,options);
           employee.start();
-          var total = new countUp("totalSavings",40100,194039,0,2,options);
-          total.start(); //changed
+          //var total = new countUp("totalSavings",40100,194039,0,2,options);
+          //total.start(); //changed
 
     REMODELPROPOSAL.chartData = {
         labels:["1","2","3","4","5","6"],
@@ -257,9 +257,25 @@ $('#meat').on('click','#slide3',function() {
         REMODELPROPOSAL.commonMethod.generateBarChart("reportReviewChart",REMODELPROPOSAL.chartData);
         //var ctx = document.getElementById("reportReviewChart").getContext("2d");
          //myNewBar1 = new Chart(ctx).Bar(chartData,{scaleShowGridLines:false,scaleShowVerticalLines: false,scaleShowHorizontalLines:false});
-         console.log(REMODELPROPOSAL.chartData);
+         $.ajax({
+           url:"ajax/getEmployees.php",
+           success:function(json){
+
+             $('#employees #empBody').empty();
+             for(i=0;i<json.length;i++){
+
+               $('#employees #empBody').html('<tr><td><b>'+json[i]['empID']+'</b></td><td id="reportCouple">'+json[i]['EmpEnrollLvl']+'</td><td id="reportSingle">'+json[i]['EmpIncome']+'</td><td id="reportSingle">'+json[i]['IndPremEmp']+'</td><td id="reportSingle">'+json[i]['IndSubEmp']+'</td><td id="reportSingle">'+json[i]['SalaryUp']+'</td></tr>')
+
+             }
+
+           }
+
+         });
       }
   });
+
+
+
 });
 //////END NEXT BUTTONS
 

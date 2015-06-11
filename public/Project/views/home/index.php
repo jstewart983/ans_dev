@@ -218,7 +218,11 @@
             </div>
           </a>
           </div>
-
+          <p>
+            <?php
+            print_r($_SESSION['fox']);
+             ?>
+          </p>
         </div>
 
               <div style="position:relative;z-index:-1;opacity:.9;margin-top:-100px;" class="row">
@@ -226,11 +230,7 @@
                   <canvas id="barChart" style="margin-left:-10px;width:100%;" height="100"></canvas>
                 </div>
               </div>
-              <p>
-                <?php
-                  print_r($_SESSION['fox']);
-                ?>
-              </p>
+
               <div  class="modal fade" id="issueModal2" tabindex="-1" role="dialog" aria-labelledby="issueModal2" aria-hidden="true">
                   <div  class="modal-dialog">
                       <div class="modal-content">

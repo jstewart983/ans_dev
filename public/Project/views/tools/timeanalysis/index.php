@@ -14,27 +14,30 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
 </script>-->
     <title>Time Analysis</title>
     <link rel="stylesheet" type="text/css" href="../../../css/demo.css">
+    <!--<link rel="stylesheet" type="text/css" href="../../css/razorflow.min.css">-->
     <link rel="stylesheet" type="text/css" href="../../../css/navbar.css">
-    <link href="../../../libraries/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../libraries/Flat-UI-master/dist/css/flat-ui.min.css">
     <link rel="stylesheet" href="../../../libraries/Flat-UI-master/fonts/glyphicons/flat-ui-icons-regular.svg">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
-    <!-- Bootstrap Core CSS -->
+    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/2.9.0/moment.min.js"></script>
-    <!--timeline css-->
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
     <link rel="stylesheet" href="../../../libraries/timeline-2.9.1/timeline.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/1/daterangepicker-bs3.css" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <script type="text/javascript" src="../../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/2.9.0/moment.min.js"></script>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
+    <script type="text/javascript" src="../../../js/Chart.js"></script>
+    <script type="text/javascript" src="../../../js/legend.js"></script>
+    <script type="text/javascript" src="../../../js/oneUp.js"></script>
+    <script src="../../../libraries/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+    <script src="../../../libraries/timeline-2.9.1/timeline.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/1/daterangepicker.js"></script>
 
         <script>
             function myFunction() {
@@ -180,7 +183,26 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
               </select>
             </div>
           </div>
-          <div class="col-md-12">
+
+            <div style="margin-top:10px;" class="col-md-12">
+
+                <input id="daterange" class="form-control" type="text" name="daterange"placeholder="Select a Date Range"/>
+                <script type="text/javascript">
+
+                  </script>
+            <div class="col-md-12">
+              <p>
+
+              </p>
+            </div>
+            </div>
+            <div class="col-md-12">
+              <div id="runQueryButton">
+                <a id="runQuery" class="btn btn-info"href="#">Analyze!</a>
+            </div>
+            </div>
+
+          <!--<div class="col-md-12">
 
 
             <h7 style="text-align:center;"><span class="fui-time"></span> Time Entry Type(s)</h7>
@@ -389,30 +411,34 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
               </div>
             </div>
           </div>
-          </div>
+        </div>-->
+      </div>
           <div class="col-md-2">
+
+          </div>
+          <div class="col-md-7">
+            <div class="row">
+              <div class="col-md-6">
+                <div id="hoursByChargeCode">
+                  <canvas id="hoursByChargeCodeChart" width="50" height="50"></canvas>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div id="hoursByServiceType">
+                  <canvas id="hoursByServiceTypeChart" width="50" height="50"></canvas>
+                </div>
+              </div>
+            </div>
             <div class="row">
               <div class="col-md-12">
-                <div id="dateRangeSelector">
-                  <input id="daterange" class="form-control" type="text" name="daterange"placeholder="Select a Date Range"  />
+                <div id="hoursByBoard">
+                  <canvas id="hoursByBoardChart" width="200" height="50"></canvas>
+                </div>
               </div>
-              <div class="col-md-12">
-                <p>
+            </div>
 
-                </p>
-              </div>
-              </div>
-              <div class="col-md-12">
-                <div id="runQueryButton">
-                  <a id="runQuery" class="btn btn-info"href="#">Analyze!</a>
-              </div>
-              </div>
-            </div>
           </div>
-          <div class="col-md-5">
-            <div id="hoursByBoard">
-              <canvas id="hoursByBoardChart" width="300" height="300"></canvas>
-            </div>
           </div>
         </div>
         </div>
@@ -536,14 +562,14 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
                                                           <input type="text" class="form-control" name="Name" autocomplete="off" id="name" placeholder="Name">
                                                 		</div>
                                                 	</div>
-<div class="col-md-6">
-<div class="form-group">
-<select id="type" class="form-control">
-<option value="one">Select request type</option>
-<option value="Issue">Issue</option>
-<option value="Request">Request</option>
-<option value="Idea">Idea</option>
-</select>
+                                              <div class="col-md-6">
+                                              <div class="form-group">
+                                              <select id="type" class="form-control">
+                                              <option value="one">Select request type</option>
+                                              <option value="Issue">Issue</option>
+                                              <option value="Request">Request</option>
+                                              <option value="Idea">Idea</option>
+                                              </select>
                                                 		</div>
                                                 	</div>
                                                 	</div>
@@ -609,23 +635,11 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
         </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
        <script src="../js/oneUp.js"></script>-->
-       <script type="text/javascript" src="../../../js/jquery.min.js"></script>
-       <script src="../../../js/jquery.searchable.js"></script>
 
 
-       <!--<script type="text/javascript" src="../js/razorflow.min.js"></script>
-       <script type="text/javascript" src="../js/razorflow.devtools.min.js"></script>-->
-       <script src="../../../libraries/timeline-2.9.1/timeline.js"></script>
-       <script src="../../../js/Chart.js"></script>
-       <script src="../../../js/legend.js"></script>
-       <!-- Latest compiled and minified JavaScript -->
-       <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/1/daterangepicker.js"></script>
-
-    <script type="text/javascript" src="../../../js/admin.js"></script>
     <script type="text/javascript" src="../../../js/asana.js"></script>
     <script type="text/javascript" src="../../../js/timeanalysis.js"></script>
+
 
     </body>
 
