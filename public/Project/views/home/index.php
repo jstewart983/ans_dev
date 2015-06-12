@@ -218,11 +218,7 @@
             </div>
           </a>
           </div>
-          <p>
-            <?php
-            print_r($_SESSION['fox']);
-             ?>
-          </p>
+
         </div>
 
               <div style="position:relative;z-index:-1;opacity:.9;margin-top:-100px;" class="row">

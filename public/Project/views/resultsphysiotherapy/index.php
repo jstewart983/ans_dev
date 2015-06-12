@@ -369,7 +369,7 @@
 
                 </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-4">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                         <p id="avgTickets"style="text-align:center;">Locations Managed</p>
@@ -387,7 +387,7 @@
 
                 </div>
             </div>
-            <div class="col-md-4">
+            <!--<div style="displayclass="col-md-4">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                         <p id="mrrTitle"style="text-align:center;">Last Month's MRR</p>
@@ -404,7 +404,7 @@
                   </div>
 
                 </div>
-            </div>
+            </div>-->
 
 
         </div>
@@ -593,7 +593,7 @@
             <h4 class="modal-title" id="myModalLabel1">Issues, Requests and Ideas Are Welcome</h4>
             </div>
             <div id="body" class="modal-body">
-                  
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

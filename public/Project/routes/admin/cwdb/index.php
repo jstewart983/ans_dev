@@ -40,7 +40,7 @@ if ($login->isUserLoggedIn() == true) {
 
     include("../../../login/views/home_header.php");
     include("../../../login/views/not_logged_in.php");
-  }else if (in_array('admin',$_SESSION['fox'][0]) || in_array('super admin',$_SESSION['fox'][0])){
+  }else if (in_array('admin',$_SESSION['fox']) || in_array('super admin',$_SESSION['fox'])){
 
           $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
           // the user is logged in. redirect to the intended view

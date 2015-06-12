@@ -17,7 +17,7 @@ SR_Type.SR_Type_RecID = SR_Service.SR_Type_RecID AND
 SR_Board.SR_Board_RecID = SR_Service.SR_Board_RecID AND
 SR_Board.SR_Board_RecID = SR_Type.SR_Board_RecID AND
 company.company_name = "Results Physiotherapy"
-and DATEDIFF( ww, dbo.Time_Entry.Date_Entered_UTC, GETDATE() ) = 0
+and DATEDIFF( ww, dbo.time_entry.date_start, GETDATE() ) = 0
 group by Description
 order by typeCount desc
 ';
@@ -42,11 +42,11 @@ else if(strpos($path,'servicedelivery') !== false){
     SR_Board.SR_Board_RecID = SR_Type.SR_Board_RecID AND SR_Service.Closed_By = Member.Member_ID AND
 
     company.company_name = "'.$company.'" AND
-    (dbo.Time_Entry.Date_Entered_UTC >="'.$range1.'" and dbo.Time_Entry.Date_Entered_UTC <= "'.$range2.'") AND
+    (dbo.time_entry.date_start >="'.$range1.'" and dbo.time_entry.date_start <= "'.$range2.'") AND
     member.member_id = "'.$type.'"
 
 
-    and DATEDIFF( ww, dbo.Time_Entry.Date_Entered_UTC, GETDATE() ) = 0
+    and DATEDIFF( ww, dbo.time_entry.date_start, GETDATE() ) = 0
     group by Description
     order by typeCount desc';
 
@@ -66,7 +66,7 @@ else if(strpos($path,'servicedelivery') !== false){
     SR_Board.SR_Board_RecID = SR_Service.SR_Board_RecID AND
     SR_Board.SR_Board_RecID = SR_Type.SR_Board_RecID AND SR_Service.Closed_By = Member.Member_ID AND
 
-    (dbo.Time_Entry.Date_Entered_UTC >="'.$range1.'" and dbo.Time_Entry.Date_Entered_UTC <= "'.$range2.'") AND
+    (dbo.time_entry.date_start >="'.$range1.'" and dbo.time_entry.date_start <= "'.$range2.'") AND
     member.member_id = "'.$type.'"
 
 
@@ -92,7 +92,7 @@ else if(strpos($path,'servicedelivery') !== false){
     SR_Board.SR_Board_RecID = SR_Type.SR_Board_RecID AND SR_Service.Closed_By = Member.Member_ID AND
 
     company.company_name = "'.$company.'" AND (member.title like "%IT Support%") AND
-    (dbo.Time_Entry.Date_Entered_UTC >="'.$range1.'" and dbo.Time_Entry.Date_Entered_UTC <= "'.$range2.'")
+    (dbo.time_entry.date_start >="'.$range1.'" and dbo.time_entry.date_start <= "'.$range2.'")
 
 
     group by Description
@@ -112,7 +112,7 @@ else if(strpos($path,'servicedelivery') !== false){
     SR_Board.SR_Board_RecID = SR_Type.SR_Board_RecID AND SR_Service.Closed_By = Member.Member_ID AND
 
 
-    (dbo.Time_Entry.Date_Entered_UTC >="'.$range1.'" and dbo.Time_Entry.Date_Entered_UTC <= "'.$range2.'") and
+    (dbo.time_entry.date_start >="'.$range1.'" and dbo.time_entry.date_start <= "'.$range2.'") and
     (member.title like "%IT Support%")
 
 
@@ -131,7 +131,7 @@ else if(strpos($path,'servicedelivery') !== false){
   SR_Board.SR_Board_RecID = SR_Service.SR_Board_RecID AND
   SR_Board.SR_Board_RecID = SR_Type.SR_Board_RecID AND SR_Service.Closed_By = Member.Member_ID and
 
- DATEDIFF( ww, dbo.Time_Entry.Date_Entered_UTC, GETDATE() ) = 0 and (member.title like "%IT Support%")
+ DATEDIFF( ww, dbo.time_entry.date_start, GETDATE() ) = 0 and (member.title like "%IT Support%")
   group by Description
   order by typeCount desc';
 }
@@ -157,7 +157,7 @@ else if(strpos($path,'fieldservices') !== false){
     SR_Board.SR_Board_RecID = SR_Type.SR_Board_RecID AND SR_Service.Closed_By = Member.Member_ID AND
 
     company.company_name = "'.$company.'" AND
-    (dbo.Time_Entry.Date_Entered_UTC >="'.$range1.'" and dbo.Time_Entry.Date_Entered_UTC <= "'.$range2.'") AND
+    (dbo.time_entry.date_start >="'.$range1.'" and dbo.time_entry.date_start <= "'.$range2.'") AND
     member.member_id = "'.$type.'"
     group by Description
     order by typeCount desc';
@@ -178,7 +178,7 @@ else if(strpos($path,'fieldservices') !== false){
     SR_Board.SR_Board_RecID = SR_Service.SR_Board_RecID AND
     SR_Board.SR_Board_RecID = SR_Type.SR_Board_RecID AND SR_Service.Closed_By = Member.Member_ID AND
 
-    (dbo.Time_Entry.Date_Entered_UTC >="'.$range1.'" and dbo.Time_Entry.Date_Entered_UTC <= "'.$range2.'") AND
+    (dbo.time_entry.date_start >="'.$range1.'" and dbo.time_entry.date_start <= "'.$range2.'") AND
     member.member_id = "'.$type.'"
 
 
@@ -204,7 +204,7 @@ else if(strpos($path,'fieldservices') !== false){
     SR_Board.SR_Board_RecID = SR_Type.SR_Board_RecID AND SR_Service.Closed_By = Member.Member_ID AND
 
     company.company_name = "'.$company.'" AND
-    (dbo.Time_Entry.Date_Entered_UTC >="'.$range1.'" and dbo.Time_Entry.Date_Entered_UTC <= "'.$range2.'")
+    (dbo.time_entry.date_start >="'.$range1.'" and dbo.time_entry.date_start <= "'.$range2.'")
     and (member.title like "%Client IT%" or member.member_id = "zhoover")
 
     group by Description
@@ -224,7 +224,7 @@ else if(strpos($path,'fieldservices') !== false){
     SR_Board.SR_Board_RecID = SR_Type.SR_Board_RecID AND SR_Service.Closed_By = Member.Member_ID AND
 
 
-    (dbo.Time_Entry.Date_Entered_UTC >="'.$range1.'" and dbo.Time_Entry.Date_Entered_UTC <= "'.$range2.'") and (member.title like "%Client IT%" or member.member_id = "zhoover")
+    (dbo.time_entry.date_start >="'.$range1.'" and dbo.time_entry.date_start <= "'.$range2.'") and (member.title like "%Client IT%" or member.member_id = "zhoover")
 
 
 
@@ -242,7 +242,7 @@ else if(strpos($path,'fieldservices') !== false){
   SR_Board.SR_Board_RecID = SR_Service.SR_Board_RecID AND
   SR_Board.SR_Board_RecID = SR_Type.SR_Board_RecID AND SR_Service.Closed_By = Member.Member_ID and
 
- DATEDIFF( ww, dbo.Time_Entry.Date_Entered_UTC, GETDATE() ) = 0 and (member.title like "%Client IT%" or member.member_id = "zhoover")
+ DATEDIFF( ww, dbo.time_entry.date_start, GETDATE() ) = 0 and (member.title like "%Client IT%" or member.member_id = "zhoover")
   group by Description
   order by typeCount desc';
 }
@@ -262,7 +262,7 @@ else if(strpos($path,'fieldservices') !== false){
   member.member_id = sr_service.closed_by AND
 
   (member.title like "%IT Support%" or member.title like "%Client IT%" or member.member_id="zhoover")
-  and DATEDIFF( ww, dbo.Time_Entry.Date_Entered_UTC, GETDATE() ) = 0
+  and DATEDIFF( ww, dbo.time_entry.date_start, GETDATE() ) = 0
   group by Description
   order by typeCount desc
   ';

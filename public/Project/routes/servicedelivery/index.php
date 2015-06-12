@@ -40,7 +40,7 @@ if ($login->isUserLoggedIn() == true) {
 
     include("../../login/views/home_header.php");
     include("../../login/views/not_logged_in.php");
-  }else if (in_array($_SESSION['user_name'], $user_group) || in_array($_SESSION['user_name'], $admins)) {
+  }else if (in_array('servicedelivery',$_SESSION['fox']) || in_array('admin',$_SESSION['fox']) || in_array('super admin',$_SESSION['fox'])){
 
           $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
           // the user is logged in. redirect to the intended view
@@ -48,7 +48,9 @@ if ($login->isUserLoggedIn() == true) {
           include("../../views/servicedelivery/index.php");
             }
       else{
+
         include("../../views/admin/access.php");
+        print_r($_SESSION['fox']);
         $_SESSION['LAST_ACTIVITY'] = time();
         }
 
