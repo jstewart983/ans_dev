@@ -142,10 +142,10 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
 
       <div id="options">
         <div style="margin-top:22px;" class="row">
-          <div class="col-md-3">
+          <!--<div class="col-md-3">-->
 
 
-          <div class="col-md-6">
+          <div class="col-md-4">
             <h7 style="text-align:center;"><span class="fui-user"></span><span class="fui-user"></span> Team</h7>
             <div style="text-align:center;" class="input">
 
@@ -172,7 +172,7 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
             </div>
           </div>
 
-          <div id="member"class="hidden col-md-6">
+          <div id="member"class="hidden col-md-4">
             <h7 style="text-align:center;"><span class="fui-user"></span> Member</h7>
             <div style="text-align:center;" class="input">
               <select id="memberOptions" class="form-control" type="dropdown" name="name" placeholder="">
@@ -184,24 +184,22 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
             </div>
           </div>
 
-            <div style="margin-top:10px;" class="col-md-12">
+            <div class="col-md-2">
+              <h7 style="text-align:center;"><span class="fui-calendar"></span> Select Dates</h7>
 
                 <input id="daterange" class="form-control" type="text" name="daterange"placeholder="Select a Date Range"/>
                 <script type="text/javascript">
 
                   </script>
-            <div class="col-md-12">
-              <p>
+              </div>
+            <div class="col-md-2">
+              <h7 style="text-align:center;">Press button</h7>
 
-              </p>
-            </div>
-            </div>
-            <div class="col-md-12">
               <div id="runQueryButton">
-                <a id="runQuery" class="btn btn-info"href="#">Analyze!</a>
+                <a id="runQuery" class="btn btn-info"href="#">Analyze <span class="fui-gear"></span></a>
             </div>
             </div>
-
+          </div>
           <!--<div class="col-md-12">
 
 
@@ -412,12 +410,15 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
             </div>
           </div>
         </div>-->
-      </div>
-          <div class="col-md-2">
+      <!--</div>-->
+          <!--<div class="col-md-2">
 
-          </div>
-          <div class="col-md-7">
-            <div class="row">
+          </div>-->
+          <div style="margin-top:10px;" class="row">
+
+
+
+
               <div class="col-md-6">
                 <div id="hoursByChargeCode">
                   <canvas id="hoursByChargeCodeChart" width="50" height="50"></canvas>

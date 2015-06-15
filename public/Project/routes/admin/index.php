@@ -45,7 +45,7 @@ if ($login->isUserLoggedIn() == true) {
     $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
       // the user is logged in. redirect to the intended view
       // for demonstration purposes, we simply show the "you are logged in" view.
-      if (in_array('admin',$_SESSION['fox'][0]) || in_array('super admin',$_SESSION['fox'][0])){
+    }else if (in_array('admin',$_SESSION['fox']) || in_array('super admin',$_SESSION['fox'])){
 
         include("../../views/admin/index.php");
 
