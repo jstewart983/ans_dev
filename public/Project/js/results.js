@@ -619,7 +619,7 @@ $(document).ready(function(){
 
                   });*/
   	                 getLocations();
-                     setInterval(function(){ getLocations(); }, 10000);
+                     //setInterval(function(){ getLocations(); }, 10000);
                     getMrr('?company=Results Physiotherapy');
                     getAvgTickets('?company=Results Physiotherapy');
                     getOpenTickets('?company=Results Physiotherapy');

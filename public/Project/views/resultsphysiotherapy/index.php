@@ -95,7 +95,25 @@
         <a href="index.php?logout" class="btn btn-sm btn-inverse">Logout</a>
       </div>
     </div>
-    <div style="margin-top:82px;"class="container">
+    <div style="margin-top:52px;"class="container">
+               <div class="row">
+            <div style="border-top:1px solid #ddd;border-left:1px solid #ddd;border-right:1px solid #ddd;border-bottom:1px solid #ddd;border-radius: 4px;background-color:#fff;"class="col-md-4">
+                <div style="padding:5px;">
+                    <ul class="nav nav-pills">
+                        <li role="presentation" class="active"><a style="background-color:#F78E1E;"href="#">Dashboard</a></li>
+                        <li role="presentation"><a style="color:#414141;"href="http://intelligence.ansolutions.com/routes/siteanalysis/">Site Analysis</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-7">
+              <div id="boards" style="padding:5px;">
+                  <ul id="boardTable" class="nav nav-pills">
+                  </ul>
+              </div>
+            </div>
+        </div>
         <!--nav pill row -->
         <!--<div class="row">
           <div class="col-md-3">
