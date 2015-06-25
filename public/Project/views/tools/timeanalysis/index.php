@@ -91,7 +91,11 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
                 font-family: inherit;
                 font-size: inherit;
             }
+            canvas{
+      width: 100% !important;
 
+      height: 600px !important;
+  }
             </style>
     </head>
 
@@ -145,7 +149,7 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
           <!--<div class="col-md-3">-->
 
 
-          <div class="col-md-4">
+          <div class="col-md-2">
             <h7 style="text-align:center;"><span class="fui-user"></span><span class="fui-user"></span> Team</h7>
             <div style="text-align:center;" class="input">
 
@@ -172,7 +176,7 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
             </div>
           </div>
 
-          <div id="member"class="hidden col-md-4">
+          <div id="member"class="hidden col-md-2">
             <h7 style="text-align:center;"><span class="fui-user"></span> Member</h7>
             <div style="text-align:center;" class="input">
               <select id="memberOptions" class="form-control" type="dropdown" name="name" placeholder="">
@@ -193,313 +197,50 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
                   </script>
               </div>
             <div class="col-md-2">
-              <h7 style="text-align:center;">Press button</h7>
+              <h7 style="text-align:center;color:#fff;">Press button</h7>
 
               <div id="runQueryButton">
                 <a id="runQuery" class="btn btn-info"href="#">Analyze <span class="fui-gear"></span></a>
             </div>
             </div>
           </div>
-          <!--<div class="col-md-12">
-
-
-            <h7 style="text-align:center;"><span class="fui-time"></span> Time Entry Type(s)</h7>
-            <div class="row">
-              <div class="col-md-6">
-
-                  <label class="checkbox" for="servicecheckbox">
-                    <input type="checkbox"  value="" id="servicecheckbox" data-toggle="checkbox" class="custom-checkbox">
-                      <span class="icons">
-                        <span class="icon-unchecked">
-                        </span>
-                        <span class="icon-checked">
-                        </span>
-                      </span>
-                      <p  class="remodelGray">Service</p>
-                    </label>
-
-              </div>
-              <div class="col-md-6">
-
-                  <label class="checkbox" for="codecheckbox">
-                    <input type="checkbox"  value="" id="codecheckbox" data-toggle="checkbox" class="custom-checkbox">
-                      <span class="icons">
-                        <span class="icon-unchecked">
-                        </span>
-                        <span class="icon-checked">
-                        </span>
-                      </span>
-                      <p  class="remodelGray">Charge Code</p>
-                    </label>
-
-              </div>
-            </div>
-          </div>
-          <div class="col-md-12">
-
-
-            <h7 style="text-align:center;"><span class="fui-home"></span> Business Unit</h7>
-            <div id="busUnits" class="row">
-              <div class="col-md-6">
-
-                  <label class="checkbox" for="professionalcheckbox">
-                    <input type="checkbox"  value="" id="professionalcheckbox" data-toggle="checkbox" class="custom-checkbox">
-                      <span class="icons">
-                        <span class="icon-unchecked">
-                        </span>
-                        <span class="icon-checked">
-                        </span>
-                      </span>
-                      <p  class="remodelGray">Professional Services</p>
-                    </label>
-
-              </div>
-              <div class="col-md-6">
-
-                  <label class="checkbox" for="salescheckbox">
-                    <input type="checkbox"  value="" id="salescheckbox" data-toggle="checkbox" class="custom-checkbox">
-                      <span class="icons">
-                        <span class="icon-unchecked">
-                        </span>
-                        <span class="icon-checked">
-                        </span>
-                      </span>
-                      <p  class="remodelGray">Sales</p>
-                    </label>
-
-              </div>
-            </div>
-          </div>
-          <div class="col-md-12">
-
-
-            <h7 style="text-align:center;"><span class="fui-list-large-thumbnails"></span> Service Board</h7>
-            <div class="row">
-              <div id="proServices" class="hidden">
-
-
-              <div class="col-md-6">
-
-                  <label class="checkbox" for="mycompanycheckbox">
-                    <input type="checkbox"  value="" id="mycompanycheckbox" data-toggle="checkbox" class="custom-checkbox">
-                      <span class="icons">
-                        <span class="icon-unchecked">
-                        </span>
-                        <span class="icon-checked">
-                        </span>
-                      </span>
-                      <p  class="remodelGray">My Company/Service</p>
-                    </label>
-
-              </div>
-              <div class="col-md-6">
-
-                  <label class="checkbox" for="alertsservicecheckbox">
-                    <input type="checkbox"  value="" id="alertsservicecheckbox" data-toggle="checkbox" class="custom-checkbox">
-                      <span class="icons">
-                        <span class="icon-unchecked">
-                        </span>
-                        <span class="icon-checked">
-                        </span>
-                      </span>
-                      <p  class="remodelGray">Alerts - Service Delivery</p>
-                    </label>
-
-              </div>
-              <div class="col-md-6">
-                  <label class="checkbox" for="resultscheckbox">
-                    <input type="checkbox"  value="" id="resultscheckbox" data-toggle="checkbox" class="custom-checkbox">
-                      <span class="icons">
-                        <span class="icon-unchecked">
-                        </span>
-                        <span class="icon-checked">
-                        </span>
-                      </span>
-                      <p  class="remodelGray">Results Physiotherapy</p>
-                    </label>
-              </div>
-              <div class="col-md-6">
-                <label class="checkbox" for="resultsinitiativescheckbox">
-                  <input type="checkbox"  value="" id="resultsinitiativescheckbox" data-toggle="checkbox" class="custom-checkbox">
-                    <span class="icons">
-                      <span class="icon-unchecked">
-                      </span>
-                      <span class="icon-checked">
-                      </span>
-                    </span>
-                    <p  class="remodelGray">Results Initiatives</p>
-                  </label>
-              </div>
-              <div class="col-md-6">
-                <label class="checkbox" for="backofficecheckbox">
-                  <input type="checkbox"  value="" id="backofficecheckbox" data-toggle="checkbox" class="custom-checkbox">
-                    <span class="icons">
-                      <span class="icon-unchecked">
-                      </span>
-                      <span class="icon-checked">
-                      </span>
-                    </span>
-                    <p  class="remodelGray">BackOffice</p>
-                  </label>
-              </div>
-              <div class="col-md-6">
-                <label class="checkbox" for="logiccheckbox">
-                  <input type="checkbox"  value="" id="logiccheckbox" data-toggle="checkbox" class="custom-checkbox">
-                    <span class="icons">
-                      <span class="icon-unchecked">
-                      </span>
-                      <span class="icon-checked">
-                      </span>
-                    </span>
-                    <p  class="remodelGray">LogicMonitor</p>
-                  </label>
-              </div>
-              <div class="col-md-6">
-                <label class="checkbox" for="msrequestscheckbox">
-                  <input type="checkbox"  value="" id="msrequestscheckbox" data-toggle="checkbox" class="custom-checkbox">
-                    <span class="icons">
-                      <span class="icon-unchecked">
-                      </span>
-                      <span class="icon-checked">
-                      </span>
-                    </span>
-                    <p  class="remodelGray">Managed Services - Requests</p>
-                  </label>
-              </div>
-              <div class="col-md-6">
-                <label class="checkbox" for="longcheckbox">
-                  <input type="checkbox"  value="" id="longcheckbox" data-toggle="checkbox" class="custom-checkbox">
-                    <span class="icons">
-                      <span class="icon-unchecked">
-                      </span>
-                      <span class="icon-checked">
-                      </span>
-                    </span>
-                    <p  class="remodelGray">Long Term</p>
-                  </label>
-              </div>
-            </div>
-              <div id="sales" class="hidden">
-
-
-                <div class="col-md-6">
-                  <label class="checkbox" for="presalescheckbox">
-                    <input type="checkbox"  value="" id="presalescheckbox" data-toggle="checkbox" class="custom-checkbox">
-                      <span class="icons">
-                        <span class="icon-unchecked">
-                        </span>
-                        <span class="icon-checked">
-                        </span>
-                      </span>
-                      <p  class="remodelGray">Pre-Sales Engineering</p>
-                    </label>
-                </div>
-                <div class="col-md-6">
-                  <label class="checkbox" for="clientservicescheckbox">
-                    <input type="checkbox"  value="" id="clientservicescheckbox" data-toggle="checkbox" class="custom-checkbox">
-                      <span class="icons">
-                        <span class="icon-unchecked">
-                        </span>
-                        <span class="icon-checked">
-                        </span>
-                      </span>
-                      <p  class="remodelGray">Client Services</p>
-                    </label>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>-->
-      <!--</div>-->
-          <!--<div class="col-md-2">
-
-          </div>-->
+        </div>
           <div style="margin-top:10px;" class="row">
-
-
-
-
               <div class="col-md-6">
+                <div>
                 <div id="hoursByChargeCode">
-                  <canvas id="hoursByChargeCodeChart" width="50" height="50"></canvas>
+                    <h3 style="text-align:center;" id="chargeCodeTitle"></h3>
+                  <span id="chargeCodeBack" style="color:#fff;" class="fui-arrow-left">back</span>
+
+                    <canvas id="hoursByChargeCodeChart"></canvas>
+                  </div>
                 </div>
               </div>
-
               <div class="col-md-6">
+                <div>
                 <div id="hoursByServiceType">
-                  <canvas id="hoursByServiceTypeChart" width="50" height="50"></canvas>
+                  <h3 style="text-align:center;" id="serviceTypeTitle"></h3>
+                  <canvas id="hoursByServiceTypeChart"></canvas>
+                </div>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-md-12">
+                <div>
                 <div id="hoursByBoard">
-                  <canvas id="hoursByBoardChart" width="200" height="50"></canvas>
+                  <h3 style="text-align:center;" id="boardTitle"></h3>
+                  <canvas id="hoursByBoardChart"></canvas>
                 </div>
+              </div>
               </div>
             </div>
 
           </div>
-          </div>
-        </div>
-        </div>
-
-
-
-        </div>
-      </div>
-
-        <!--<div style="margin-bottom:-5px;z-index:-1;" id="timelineSection"class="btn-group" role="group" aria-label="...">
-          <button id="service" type="button" class="btn btn-default service active">Service</button>
-          <button id="opps"  type="button" class="btn btn-default opps">Opportunities</button>
-        </div>-->
-        <!--<div id="timelineSection"class="row hidden">
-          <div class="col-md-4">
-
-          </div>
-          <div class="col-md-4">
-            <div id="toggleHistory" style="width:100%;text-align:center;" class="btn-group" role="group" aria-label="...">
-              <button style="text-align:center;" id="service" type="button" class="btn btn-default service active">Service</button>
-              <button style="text-align:center;" id="opps"  type="button" class="btn btn-default opps">Opportunities</button>
-            </div>
-          </div>
-          <div class="col-md-4">
-
-          </div>
-        </div>-->
 
 
 
 
-
-            <!--<div id="timelineSection2" style="margin-top:11px;"class="row">
-                <div class="panel panel-default">
-                  <div style="text-align:center;"class="panel-heading">
-                   <p>Opportunity Timeline</p>
-                  </div>
-                  <div  class="panel-body">
-                    <div  id="timeline2" class="col-md-12">
-                    </div>
-                  </div>
-                </div>
-            </div>
-            <div id="timelineSection1" style="margin-top:11px;"class="row">
-
-
-                <div class="panel panel-default">
-                  <div style="text-align:center;"class="panel-heading">
-                   <p>Service Timeline</p>
-
-                  </div>
-                  <div  class="panel-body">
-
-                    <div  id="timeline1" class="col-md-12">
-
-                    </div>
-
-                  </div>
-                </div>
-              </div>-->
                 <div  class="modal fade" id="basicModal1" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
                     <div  class="modal-dialog">
                         <div class="modal-content">
@@ -606,36 +347,6 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
 
 
 
-
-            <!--End Projects Initiated Last Year-->
-
-
-
-
-
-
-
-
-
-               <!--<div style="margin-top:60px;text-align:center;" class="co-md-4"id="clientData"></div>-->
-             <!-- Don't delete this div. This is where RazorFlow will get rendered. -->
-            <!--<div id="dbTarget" style="position:relative;" class="rf"></div> -->
-
-
-           <!--<div id="wherethestuffis" class="col-md-2">
-
-               <canvas style=" margin-left:10px;background-color:#fff;" id="openTickets" height="600" width="200"></canvas>
-           </div>-->
-
-
-
-
-         <!--<script type="text/javascript">
-         var numAnim = new countUp("#avgTickets", 24.02, 99.99);
-            numAnim.start();
-        </script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-       <script src="../js/oneUp.js"></script>-->
 
 
     <script type="text/javascript" src="../../../js/asana.js"></script>

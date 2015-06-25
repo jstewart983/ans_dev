@@ -6,8 +6,41 @@ require('../../config/config.php');
 
 $range1 = $_GET['range1'];
 $range2 = $_GET['range2'];
+if(isset($_GET['member']) && isset($_GET['type'])){
+  $member = $_GET['member'];
+  $type = $_GET['type'];
+  $query = 'SELECT SR_Subtype.description as type,sum(time_entry.hours_actual) as typeCount
+  from Time_Entry
+  left outer join sr_service on Time_Entry.sr_service_recid = sr_service.sr_service_recid
+  left outer join sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
+  left outer join sr_subtype on sr_service.sr_subtype_recid = sr_subtype.sr_subtype_recid
+  left outer join sr_board on sr_service.sr_board_recid = sr_board.sr_board_recid
+  left outer join member on time_entry.Member_RecID = Member.Member_RecID
+  where sr_type.description = "'.$type.'"  and Time_Entry.te_charge_code_recid is null and  member.member_id =  "'.$member.'" and
+  (dbo.Time_Entry.date_start >="'.$range1.'" and dbo.Time_Entry.Date_start <= "'.$range2.'")
 
-if(isset($_GET['member'])){
+  group by SR_Subtype.description
+  order by typeCount desc';
+
+}
+else if(isset($_GET['type'])){
+  $type = $_GET['type'];
+  $query = 'SELECT SR_Subtype.description as type,sum(time_entry.hours_actual) as typeCount
+  from Time_Entry
+  left outer join sr_service on Time_Entry.sr_service_recid = sr_service.sr_service_recid
+  left outer join sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
+  left outer join sr_subtype on sr_service.sr_subtype_recid = sr_subtype.sr_subtype_recid
+  left outer join sr_board on sr_service.sr_board_recid = sr_board.sr_board_recid
+  left outer join member on time_entry.Member_RecID = Member.Member_RecID
+  where sr_type.description = "'.$type.'"  and Time_Entry.te_charge_code_recid is null and  member.title like "%IT Support%" and
+  (dbo.Time_Entry.date_start >="'.$range1.'" and dbo.Time_Entry.Date_start <= "'.$range2.'")
+
+  group by SR_Subtype.description
+  order by typeCount desc';
+
+}
+
+else if(isset($_GET['member'])){
 
   $member = $_GET['member'];
 

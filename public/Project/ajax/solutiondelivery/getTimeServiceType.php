@@ -1,5 +1,3 @@
-
-
 <?php
 
 error_reporting(-1);
@@ -34,7 +32,7 @@ else if(isset($_GET['type'])){
   left outer join sr_subtype on sr_service.sr_subtype_recid = sr_subtype.sr_subtype_recid
   left outer join sr_board on sr_service.sr_board_recid = sr_board.sr_board_recid
   left outer join member on time_entry.Member_RecID = Member.Member_RecID
-  where sr_type.description = "'.$type.'"  and Time_Entry.te_charge_code_recid is null and  (member.member_id = "wblakeburn" or member.member_id = "plane" or member.member_id = "jmorgan" or member.member_id = "bfizer" or member.member_id = "rmillen") and
+  where sr_type.description = "'.$type.'"  and Time_Entry.te_charge_code_recid is null and member.Role_ID = "Technology Consultant" and
   (dbo.Time_Entry.date_start >="'.$range1.'" and dbo.Time_Entry.Date_start <= "'.$range2.'")
 
   group by SR_Subtype.description
@@ -65,7 +63,7 @@ order by typeCount desc';
   left outer join sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
   left outer join sr_board on sr_service.sr_board_recid = sr_board.sr_board_recid
   left outer join member on time_entry.Member_RecID = Member.Member_RecID
-  where Time_Entry.te_charge_code_recid is null and (member.member_id = "wblakeburn" or member.member_id = "plane" or member.member_id = "jmorgan" or member.member_id = "bfizer" or member.member_id = "rmillen") and
+  where Time_Entry.te_charge_code_recid is null and member.Role_ID = "Technology Consultant" and
   (dbo.Time_Entry.date_start >="'.$range1.'" and dbo.Time_Entry.Date_start <= "'.$range2.'")
 
   group by sr_type.Description

@@ -33,7 +33,7 @@ else if(isset($_GET['code'])){
   left outer join sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
   left outer join sr_board on sr_service.sr_board_recid = sr_board.sr_board_recid
   left outer join member on time_entry.Member_RecID = Member.Member_RecID
-  where te_charge_code.te_charge_code_recid is not null and  te_charge_code.description = "'.$code.'" and member.title like "%IT Support%" and
+  where te_charge_code.te_charge_code_recid is not null and  te_charge_code.description = "'.$code.'" and member.Role_ID = "Technology Consultant" and
   (dbo.Time_Entry.date_start >="'.$range1.'" and dbo.Time_Entry.Date_start <= "'.$range2.'")
   group by member.member_id';
 }
@@ -62,7 +62,7 @@ else if(isset($_GET['member'])){
   left outer join sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
   left outer join sr_board on sr_service.sr_board_recid = sr_board.sr_board_recid
   left outer join member on time_entry.Member_RecID = Member.Member_RecID
-  where te_charge_code.te_charge_code_recid is not null and member.title like "%IT Support%" and
+  where te_charge_code.te_charge_code_recid is not null and member.Role_ID = "Technology Consultant" and
   (dbo.Time_Entry.date_start >="'.$range1.'" and dbo.Time_Entry.Date_start <= "'.$range2.'")
 
   group by te_charge_code.description

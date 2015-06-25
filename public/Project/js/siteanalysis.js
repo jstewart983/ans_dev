@@ -47,6 +47,12 @@ function getTicketsSite(dates,site){
 
   });
 }
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
+}
 
 function getCookie(cname) {
     var name = cname + "=";
@@ -60,10 +66,11 @@ function getCookie(cname) {
 }
 
   function checkCookie() {
-      var tour=getCookie("tour");
-      if (tour ="tour") {
+      //var tour=getCookie("tour");
+      var x = document.cookie;
+      if (x == "tour=true") {
 
-
+        document.cookie = "tour=false";
         var tour1 = {
              id: "hello-hopscotch",
              steps: [
@@ -106,15 +113,13 @@ function getCookie(cname) {
            };
 
            hopscotch.startTour(tour1);
-      }else{
-          document.cookie="tour";
       }
   }
 
 $(document).ready(function(){
 
 
-
+    checkCookie();
 
   var grid;
   var dates = "";
@@ -126,7 +131,9 @@ $(document).ready(function(){
         dates = 'range1='+start+'&range2='+end;
         getLocations(dates);
       });
-      checkCookie();
+
+
+
       $('#locationsTable').on('click','tr.co',function(){
 
          $('html, body').animate({

@@ -1,3 +1,4 @@
+
 <?php
 
 error_reporting(-1);
@@ -6,7 +7,39 @@ require('../../config/config.php');
 
 $range1 = $_GET['range1'];
 $range2 = $_GET['range2'];
-if(isset($_GET['member'])){
+if(isset($_GET['member']) && isset($_GET['code'])){
+
+    $member = $_GET['member'];
+    $code = $_GET['code'];
+    $query = 'SELECT  member.member_id ,sum(time_entry.hours_actual) as typeCount
+    from Time_Entry
+    left outer join sr_service on Time_Entry.sr_service_recid = sr_service.sr_service_recid
+    left outer join te_charge_code on Time_Entry.te_charge_code_recid = te_charge_code.te_charge_code_recid
+    left outer join sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
+    left outer join sr_board on sr_service.sr_board_recid = sr_board.sr_board_recid
+    left outer join member on time_entry.Member_RecID = Member.Member_RecID
+    where te_charge_code.te_charge_code_recid is not null and  te_charge_code.description = "'.$code.'" and member.member_id = "'.$member.'" and
+    (dbo.Time_Entry.date_start >="'.$range1.'" and dbo.Time_Entry.Date_start <= "'.$range2.'")
+    group by member.member_id';
+
+}
+else if(isset($_GET['code'])){
+
+
+  $code = $_GET['code'];
+  $query = 'SELECT  member.member_id ,sum(time_entry.hours_actual) as typeCount
+  from Time_Entry
+  left outer join sr_service on Time_Entry.sr_service_recid = sr_service.sr_service_recid
+  left outer join te_charge_code on Time_Entry.te_charge_code_recid = te_charge_code.te_charge_code_recid
+  left outer join sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
+  left outer join sr_board on sr_service.sr_board_recid = sr_board.sr_board_recid
+  left outer join member on time_entry.Member_RecID = Member.Member_RecID
+  where te_charge_code.te_charge_code_recid is not null and  te_charge_code.description = "'.$code.'" and  (member.member_id = "wblakeburn" or member.member_id = "plane" or member.member_id = "jmorgan" or member.member_id = "bfizer" or member.member_id = "rmillen")  and
+  (dbo.Time_Entry.date_start >="'.$range1.'" and dbo.Time_Entry.Date_start <= "'.$range2.'")
+  group by member.member_id';
+}
+
+else if(isset($_GET['member'])){
 
   $member = $_GET['member'];
 
@@ -30,7 +63,7 @@ if(isset($_GET['member'])){
   left outer join sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
   left outer join sr_board on sr_service.sr_board_recid = sr_board.sr_board_recid
   left outer join member on time_entry.Member_RecID = Member.Member_RecID
-  where te_charge_code.te_charge_code_recid is not null and (member.member_id = "wblakeburn" or member.member_id = "plane" or member.member_id = "jmorgan" or member.member_id = "bfizer" or member.member_id = "rmillen") and
+  where te_charge_code.te_charge_code_recid is not null and  (member.member_id = "wblakeburn" or member.member_id = "plane" or member.member_id = "jmorgan" or member.member_id = "bfizer" or member.member_id = "rmillen")  and
   (dbo.Time_Entry.date_start >="'.$range1.'" and dbo.Time_Entry.Date_start <= "'.$range2.'")
 
   group by te_charge_code.description
