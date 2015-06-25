@@ -16,10 +16,10 @@
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
         <link rel="stylesheet" href="../../libraries/timeline-2.9.1/timeline.css" media="screen" title="no title" charset="utf-8">
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.css" media="screen" title="no title" charset="utf-8">
+          <link rel="stylesheet" href="../../libraries/hopscotch/dist/css/hopscotch.min.css" />
         <script type="text/javascript" src="../../js/jquery.min.js"></script>
         <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/2.9.0/moment.min.js"></script>
-        
-        
         <script type="text/javascript" src="../../js/Chart.js"></script>
         <script type="text/javascript" src="../../js/legend.js"></script>
         <script src="../../libraries/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -28,6 +28,10 @@
         <script src="../../libraries/timeline-2.9.1/timeline.js"></script>
         <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/1/daterangepicker.js"></script>
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/1/daterangepicker-bs3.css" />
+        <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+
+        <script src="../../libraries/hopscotch/dist/js/hopscotch.min.js"></script>
+
         <script>$('.navmenu').offcanvas()</script>
         <script>
             function myFunction() {
@@ -122,18 +126,18 @@
             </div>
         </div>
     	<div style="margin-top:12px;"class="row">
-            <div class="col-md-4 col-md-offset-4">                
+            <div class="col-md-4 col-md-offset-4">
                 <input id="daterange4" class="form-control" type="text" name="daterange4"placeholder="Select a Date Range"  />
                   <script type="text/javascript">
-                  </script>  
+                  </script>
             </div>
         </div>
         <div style="margin-top:32px;" class="row">
             <div id="title" class="col-md-12">
                  <div id="locationsTable">
-                   
 
-                
+
+
                   <!--<div id="locationsTable1" class="col-md-6">
                   <table class="table">
                     <thead>
@@ -155,15 +159,11 @@
                     </table>
                     </div>-->
               </div>
-            
+
           </div>
         </div>
         </div>
-        <div style="margin-top:32px;" id="ticketResults" class="row">
-            <div id="results" class="col-md-12">
-                
-            </div>
-        </div>
+
         <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -215,6 +215,53 @@
             </div>
           </div>
         </div>
+        <div style="width:auto;" class="modal fade" id="basicModal3" tabindex="-1" role="dialog" aria-labelledby="basicModal3" aria-hidden="true">
+    <div class="modal-dialog4">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button"  class="close fui-cross" data-dismiss="modal" aria-hidden="true"></button>
+            <h4 class="modal-title" id="myModalLabel3"></h4>
+            </div>
+            <div id="ticketsBody" class="modal-body">
+
+              <div style="margin-top:32px;" id="ticketResults" class="row">
+                  <div class="col-md-12">
+                <table id="results" style='width:100%;' class='display' cellspacing="0"width="100%">
+                  <thead>
+                    <tr>
+                    <th>Ticket #</th>
+                    <th>Type</th>
+                    <th>Contact</th>
+                    <th>Status</th>
+                    <th>Engineer(s)</th>
+                    <th>Summary</th>
+                    <th>Scheduled</th>
+                    <th>Days Open</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                    <th>Ticket #</th>
+                    <th>Type</th>
+                    <th>Contact</th>
+                    <th>Status</th>
+                    <th>Engineer(s)</th>
+                    <th>Summary</th>
+                    <th>Scheduled</th>
+                    <th>Days Open</th>
+                  </tr>
+                  </tfoot>
+                </table>
+                  </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+        </div>
+    </div>
+  </div>
+</div>
 
 
 

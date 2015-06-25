@@ -254,38 +254,7 @@
             </div>
         </div>
         <div class="row">
-            <div id="title" class="col-md-6">
-                 <div id="locationsTable">
-                   <div class='panel panel-default'>
-                <div class='panel-heading'style='text-align:center;'>
-                  <p id="lcoationsTitle" style="text-align:center;">Chronic Site Identification - This Month <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
-                </div>
-                <div style='width:100%;width:100%;overflow-y: scroll !important;height:278px;'class=panel-body>
-                  <div class="col-md-6">
-                  <table class="table">
-                    <thead>
-                       <th>Site</th>
-                       <th>Actual Hours</th>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                    </table>
-                    </div>
-                    <div class="col-md-6">
-                     <table class="table">
-                    <thead>
-                       <th>Site</th>
-                       <th>Tickets Opened</th>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                    </table>
-                    </div>
-              </div>
-            </div>
-          </div>
-        </div>
-            <div id="title" class="col-md-6">
+            <div id="title" class="col-md-12">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                         <p id="ticketsByTypeTitle" style="text-align:center;">Hours by Service Type (top 10) - This Week  <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>

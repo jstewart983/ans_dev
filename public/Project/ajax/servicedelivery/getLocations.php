@@ -35,7 +35,7 @@ group by site_name
 order by count(sr_service.site_name) desc';
 
 }else{
-  
+
   $query = 'SELECT sum(time_entry.hours_actual), site_name from sr_service
 left outer join company on sr_service.company_recid = company.company_recid
 left outer join time_entry on sr_service.sr_service_recid = time_entry.sr_service_recid
@@ -64,7 +64,7 @@ $queries = str_replace('"',"",$queries);
 echo "<div class='panel panel-default'>";
 echo "<div style='width:100%;'class=panel-body>";
 $openTickets = mssql_query($query);
- echo "<div class='col-md-6'>";
+ echo "<div id='hours' class='col-md-6'>";
 echo "<table id='locationsTable' class='table table-hover'>";
 echo "<thead>";
 echo "<th>Site</th>";
@@ -86,7 +86,7 @@ echo "</div>";
 
 
 $openTickets1 = mssql_query($query1);
-echo "<div class='col-md-6'>";
+echo "<div id='tickets' class='col-md-6'>";
 echo "<table id='locationsTable' class='table table-hover'>";
 echo "<thead>";
 echo "<th>Site</th>";
