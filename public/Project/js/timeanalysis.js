@@ -1,7 +1,22 @@
 $(document).ready(function(){
 
+  function getRandomColor1() {
+      var letters = '0123456789ABCDEF'.split('');
+      var color = '#FF7';
+      for (var i = 0; i < 3; i++ ) {
+          color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+  }
+  function getRandomColor() {
+      var letters = '0123456789ABCDEF'.split('');
+      var color = '#90E';
+      for (var i = 0; i < 3; i++ ) {
+          color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+  }
   var chartData = null;
-  //var barChart = new Chart;
   var pieChart = null;
   var doughnutChart = null;
   var lineChart = null;
@@ -97,7 +112,11 @@ $(document).ready(function(){
           for(i=0;i<json.length;i++){
 
             hours.push (json[i]['hours']);
-            boards.push (json[i]['board_name']);
+            if(json[i]['board_name'] == null){
+              boards.push("Charge Code");
+            }else{
+                boards.push (json[i]['board_name']);
+            }
 
           }
 
@@ -142,14 +161,7 @@ $(document).ready(function(){
 
                   }
 
-            function getRandomColor() {
-                var letters = '0123456789ABCDEF'.split('');
-                var color = '#';
-                for (var i = 0; i < 6; i++ ) {
-                    color += letters[Math.floor(Math.random() * 16)];
-                }
-                return color;
-            }
+
 
             doughnutData = [];
 
@@ -157,8 +169,8 @@ $(document).ready(function(){
             if(xlabels[i] != "undefined"){
               doughnutData.push({
                 value:type_count[i],
-                color:getRandomColor(),
-                highlight:getRandomColor(),
+                color:getRandomColor1(),
+                highlight:getRandomColor1(),
                 label:xlabels[i]
               });
             }
@@ -191,14 +203,7 @@ $(document).ready(function(){
 
                  //$('#hoursByChargeCode').empty();
 
-                 function getRandomColor() {
-                     var letters = '0123456789ABCDEF'.split('');
-                     var color = '#';
-                     for (var i = 0; i < 6; i++ ) {
-                         color += letters[Math.floor(Math.random() * 16)];
-                     }
-                     return color;
-                 }
+
 
 
                  var members = [];
@@ -281,14 +286,7 @@ $(document).ready(function(){
 
                         }
 
-                  function getRandomColor() {
-                      var letters = '0123456789ABCDEF'.split('');
-                      var color = '#';
-                      for (var i = 0; i < 6; i++ ) {
-                          color += letters[Math.floor(Math.random() * 16)];
-                      }
-                      return color;
-                  }
+
 
                   doughnutData = [];
 
@@ -296,8 +294,8 @@ $(document).ready(function(){
                   if(xlabels[i] != "undefined"){
                     doughnutData.push({
                       value:type_count[i],
-                      color:getRandomColor(),
-                      highlight:getRandomColor(),
+                      color:getRandomColor1(),
+                      highlight:getRandomColor1(),
                       label:xlabels[i]
                     });
                   }
@@ -333,14 +331,7 @@ $(document).ready(function(){
 
                        //$('#hoursByChargeCode').empty();
 
-                       function getRandomColor() {
-                           var letters = '0123456789ABCDEF'.split('');
-                           var color = '#';
-                           for (var i = 0; i < 6; i++ ) {
-                               color += letters[Math.floor(Math.random() * 16)];
-                           }
-                           return color;
-                       }
+
 
 
                        var members = [];
@@ -440,14 +431,7 @@ $(document).ready(function(){
 
 
 
-            function getRandomColor() {
-                var letters = '0123456789ABCDEF'.split('');
-                var color = '#';
-                for (var i = 0; i < 6; i++ ) {
-                    color += letters[Math.floor(Math.random() * 16)];
-                }
-                return color;
-            }
+
 
 
 
@@ -488,14 +472,7 @@ $(document).ready(function(){
 
                  //$('#hoursByChargeCode').empty();
 
-                 function getRandomColor() {
-                     var letters = '0123456789ABCDEF'.split('');
-                     var color = '#';
-                     for (var i = 0; i < 6; i++ ) {
-                         color += letters[Math.floor(Math.random() * 16)];
-                     }
-                     return color;
-                 }
+
 
 
                  var type = [];
@@ -579,14 +556,7 @@ $(document).ready(function(){
 
 
 
-                   function getRandomColor() {
-                       var letters = '0123456789ABCDEF'.split('');
-                       var color = '#';
-                       for (var i = 0; i < 6; i++ ) {
-                           color += letters[Math.floor(Math.random() * 16)];
-                       }
-                       return color;
-                   }
+
 
 
 
@@ -628,14 +598,7 @@ $(document).ready(function(){
 
                         //$('#hoursByChargeCode').empty();
 
-                        function getRandomColor() {
-                            var letters = '0123456789ABCDEF'.split('');
-                            var color = '#';
-                            for (var i = 0; i < 6; i++ ) {
-                                color += letters[Math.floor(Math.random() * 16)];
-                            }
-                            return color;
-                        }
+
 
 
                         var type = [];
@@ -740,7 +703,12 @@ $(document).ready(function(){
           for(i=0;i<json.length;i++){
 
             hours.push (json[i]['hours']);
-            boards.push (json[i]['board_name']);
+            if(json[i]['board_name'] == null){
+              boards.push("Charge Code");
+            }else{
+                boards.push (json[i]['board_name']);
+            }
+
 
           }
 
@@ -785,14 +753,7 @@ $(document).ready(function(){
 
                   }
 
-            function getRandomColor() {
-                var letters = '0123456789ABCDEF'.split('');
-                var color = '#';
-                for (var i = 0; i < 6; i++ ) {
-                    color += letters[Math.floor(Math.random() * 16)];
-                }
-                return color;
-            }
+
 
             doughnutData = [];
 
@@ -800,8 +761,8 @@ $(document).ready(function(){
             if(xlabels[i] != "undefined"){
               doughnutData.push({
                 value:type_count[i],
-                color:getRandomColor(),
-                highlight:getRandomColor(),
+                color:getRandomColor1(),
+                highlight:getRandomColor1(),
                 label:xlabels[i]
               });
             }
@@ -834,14 +795,7 @@ $(document).ready(function(){
 
                  //$('#hoursByChargeCode').empty();
 
-                 function getRandomColor() {
-                     var letters = '0123456789ABCDEF'.split('');
-                     var color = '#';
-                     for (var i = 0; i < 6; i++ ) {
-                         color += letters[Math.floor(Math.random() * 16)];
-                     }
-                     return color;
-                 }
+
 
 
                  var members = [];
@@ -915,7 +869,11 @@ $(document).ready(function(){
                 for(i=0;i<json.length;i++){
 
                   hours.push (json[i]['hours']);
-                  boards.push (json[i]['board_name']);
+                  if(json[i]['board_name'] == null){
+                    boards.push("Charge Code");
+                  }else{
+                      boards.push (json[i]['board_name']);
+                  }
 
                 }
 
@@ -961,14 +919,7 @@ $(document).ready(function(){
 
                         }
 
-                  function getRandomColor() {
-                      var letters = '0123456789ABCDEF'.split('');
-                      var color = '#';
-                      for (var i = 0; i < 6; i++ ) {
-                          color += letters[Math.floor(Math.random() * 16)];
-                      }
-                      return color;
-                  }
+
 
                   doughnutData = [];
 
@@ -976,8 +927,8 @@ $(document).ready(function(){
                   if(xlabels[i] != "undefined"){
                     doughnutData.push({
                       value:type_count[i],
-                      color:getRandomColor(),
-                      highlight:getRandomColor(),
+                      color:getRandomColor1(),
+                      highlight:getRandomColor1(),
                       label:xlabels[i]
                     });
                   }
@@ -1013,14 +964,7 @@ $(document).ready(function(){
 
                        //$('#hoursByChargeCode').empty();
 
-                       function getRandomColor() {
-                           var letters = '0123456789ABCDEF'.split('');
-                           var color = '#';
-                           for (var i = 0; i < 6; i++ ) {
-                               color += letters[Math.floor(Math.random() * 16)];
-                           }
-                           return color;
-                       }
+
 
 
                        var members = [];
@@ -1120,14 +1064,7 @@ $(document).ready(function(){
 
 
 
-            function getRandomColor() {
-                var letters = '0123456789ABCDEF'.split('');
-                var color = '#';
-                for (var i = 0; i < 6; i++ ) {
-                    color += letters[Math.floor(Math.random() * 16)];
-                }
-                return color;
-            }
+
 
 
 
@@ -1168,14 +1105,7 @@ $(document).ready(function(){
 
                  //$('#hoursByChargeCode').empty();
 
-                 function getRandomColor() {
-                     var letters = '0123456789ABCDEF'.split('');
-                     var color = '#';
-                     for (var i = 0; i < 6; i++ ) {
-                         color += letters[Math.floor(Math.random() * 16)];
-                     }
-                     return color;
-                 }
+
 
 
                  var type = [];
@@ -1258,14 +1188,7 @@ $(document).ready(function(){
 
 
 
-                   function getRandomColor() {
-                       var letters = '0123456789ABCDEF'.split('');
-                       var color = '#';
-                       for (var i = 0; i < 6; i++ ) {
-                           color += letters[Math.floor(Math.random() * 16)];
-                       }
-                       return color;
-                   }
+
 
 
 
@@ -1307,14 +1230,7 @@ $(document).ready(function(){
 
                         //$('#hoursByChargeCode').empty();
 
-                        function getRandomColor() {
-                            var letters = '0123456789ABCDEF'.split('');
-                            var color = '#';
-                            for (var i = 0; i < 6; i++ ) {
-                                color += letters[Math.floor(Math.random() * 16)];
-                            }
-                            return color;
-                        }
+
 
 
                         var type = [];

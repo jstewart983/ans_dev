@@ -210,7 +210,7 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
                 <div>
                 <div id="hoursByChargeCode">
                     <h3 style="text-align:center;" id="chargeCodeTitle"></h3>
-                  <span id="chargeCodeBack" style="color:#fff;" class="fui-arrow-left">back</span>
+                
 
                     <canvas id="hoursByChargeCodeChart"></canvas>
                   </div>

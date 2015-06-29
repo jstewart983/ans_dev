@@ -24,6 +24,7 @@ if(isset($_GET['member']) && isset($_GET['type'])){
 
 }
 else if(isset($_GET['type'])){
+  
   $type = $_GET['type'];
   $query = 'SELECT SR_Subtype.description as type,sum(time_entry.hours_actual) as typeCount
   from Time_Entry

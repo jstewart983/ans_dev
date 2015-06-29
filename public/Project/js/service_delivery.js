@@ -1314,17 +1314,17 @@ function ticketsByBoardService(){
       for(var $i = 0; $i < json.length;$i++){
 
         board_name = json[$i]['board_name'];
-        html = html + $('<a class="btn" id="board" href="?board='+board_name.replace(' ','%20')+'" style="margin-right:5px;background-color:'+colors[$i]+'" href="#">'+json[$i]['board_name']+' '+json[$i]['openTickets']+'</a>').hide().appendTo("#boardTable").fadeIn(500);
+        html = html + '<a class="btn" id="board" href="?board='+board_name.replace(' ','%20')+'" style="margin-right:5px;background-color:'+colors[$i]+'" href="#">'+json[$i]['board_name']+' '+json[$i]['openTickets']+'</a>';
 
 
       }
 
 
 
-      $p = $(html);
+      //$p = $(html);
 
       $('#boardTable').empty();
-      $('#boardTable').replaceWith('<ul id="boardTable" class="nav nav-pills">'+$p+'</ul>');
+      $('#boardTable').replaceWith('<ul id="boardTable" class="nav nav-pills">'+html+'</ul>');
 
 
 
@@ -1488,7 +1488,7 @@ $('#memberTicketsChart').replaceWith('<div id="memberTicketsChart"><canvas style
                }
            ]
        };
-              console.log(data);
+              //console.log(data);
 
 
               $('#memberTicketsChart').empty();
