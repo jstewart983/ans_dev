@@ -18,7 +18,7 @@ if (strpos($path,'servicedelivery') !== false) {
   $query2 ='select SUM(time_entry.Hours_Actual) as hoursLastWeek
     from Time_Entry left outer join dbo.member      on dbo.time_entry.Member_RecID = member.Member_RecID
     where time_entry.billable_flag = 1 and (dbo.member.Title like "%IT Support%")
-    and DATEDIFF(ww, dbo.time_entry.Date_Start, getdate())=1 and time_entry.Company_RecID <> 2';
+    and (DATEDIFF( ww,  dbo.time_entry.Date_Start, GETDATE() ) = 1 and (datepart(weekday,GETDATE()) >= datepart(weekday, dbo.time_entry.Date_Start))) and time_entry.Company_RecID <> 2';
 
 }elseif(strpos($path,'CIM') !== false){
 

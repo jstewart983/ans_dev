@@ -1,10 +1,12 @@
 var ticketsClosedByMemberID = null;
 var billableByDayID = null;
+var billableChart = null;
+var ticketsClosedChart = null;
 function ticketsClosedThisWeek(){
 
   $.ajax({
     type:"GET",
-    url:"../../ajax/servicedelivery/ticketsClosed.php",
+    url:"../../../ajax/servicedelivery/ticketsClosed.php",
     success:function(json){
 
         var closed_tickets = [];
@@ -33,7 +35,7 @@ function ticketsClosedThisWeek(){
 
           $modal = $title;
 
-          $p = $('<p id="closedTicketsTitle"  style="text-align:center;">'+json[0]["Title"]+' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+          $p = $('<h5 id="closedTicketsTitle"  style="text-align:center;">'+json[0]["Title"]+'</h5>');
           $("#closedTicketsTitle").replaceWith($p);
           $p.fadeIn(1200);
 
@@ -45,7 +47,7 @@ function ticketsClosedThisWeek(){
           }else{
             var $span1 = $('<h1 style="text-align:center;" id="ticketsClosed">'+closed_tickets+'</h1>');
           }
-          var $span2 = $('<p id="vsTickets" style="text-align:center;"><span style="text-align:center;color:'+color+'">'+json[0]['Difference']+'</span> vs last week</p>')
+          var $span2 = $('<h5 id="vsTickets" style="text-align:center;"><span style="text-align:center;color:'+color+'">'+json[0]['Difference']+'</span> this time last week</h5>')
           //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
           $("#ticketsClosed").replaceWith($span1);
           //$("#openProjects").replaceWith($span2);
@@ -76,7 +78,7 @@ function ticketsOpen(){
 
 $.ajax({
   type:"GET",
-  url:"../../ajax/servicedelivery/getOpenTicketsService.php",
+  url:"../../../ajax/servicedelivery/getOpenTicketsService.php",
 success:function(json){
 
   var open_tickets = [];
@@ -92,12 +94,31 @@ success:function(json){
       if(getTicketsOpenText !== parseInt(open_tickets)){
       $("#title #openTicketsTitle").fadeOut(500,function(){
         $title = $('#openTicketsTitle').text();
-        $p = $('<p id="openTicketsTitle"  style="text-align:center;">'+json[0]["Title"]+' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+        $p = $('<h5 id="openTicketsTitle"  style="text-align:center;">'+json[0]["Title"]+'</h5>');
         $("#openTicketsTitle").replaceWith($p);
         $p.fadeIn(1200);
 
       });
+      var existing = parseInt($('#openTickets').text());
+      var color = "";
+      if(parseInt(open_tickets) > existing ){
+        color = parseInt(open_tickets) - parseInt(existing);
+        colorhtml = '<span style="color:#E74C3C;" class="fa fa-arrow-up"></span><span style="color:#E74C3C;"> '+color+'</span>';
+      }else{
+          color = parseInt(open_tickets) - parseInt(existing);
+          colorhtml = '<span style="color:#2ECC71;" class="fa fa-arrow-down"></span><span style="color:#2ECC71;"> '+color+'</span>';
+      }
+//" <span class='fa fa-arrow-down'></span>"+
+//" <span class='fa fa-arrow-up'></span> "+
+      console.log(color);
 
+      $('#title #vsOpen').fadeOut(500, function() {
+
+        var $replace = $('<h5 id="vsOpen" style="text-align:center;">'+colorhtml+'</h5>');
+        $("#vsOpen").replaceWith($replace);
+        //$("#openProjects").replaceWith($span2);
+        $replace.fadeIn(1200);
+      });
 
       $('#title #openTickets').fadeOut(500, function() {
 
@@ -114,6 +135,10 @@ success:function(json){
      $span1.fadeIn(1200);
 
       });
+
+
+
+
     }
     }
   });
@@ -123,7 +148,7 @@ function closedFirstCall(){
 
   $.ajax({
     type:"GET",
-    url:"../../ajax/servicedelivery/closedFirstCall.php",
+    url:"../../../ajax/servicedelivery/closedFirstCall.php",
     success: function(json){
 
       var first_call = [];
@@ -141,7 +166,7 @@ function closedFirstCall(){
 
       $("#title #closedFirstTitle").fadeOut(500,function(){
         $title = $('#closedFirstTitle').text();
-        $p = $('<p id="closedFirstTitle"  style="text-align:center;">'+json[0]["Title"]+' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+        $p = $('<h5 id="closedFirstTitle"  style="text-align:center;">'+json[0]["Title"]+'</h5>');
         $("#closedFirstTitle").replaceWith($p);
         $p.fadeIn(1200);
 
@@ -175,7 +200,7 @@ function getBillableHoursTotal(){
 
   $.ajax({
     type:"GET",
-    url:"../../../ajax/servicedelivery/getServiceBillableHours.php",
+    url:"../../../../ajax/servicedelivery/getServiceBillableHours.php",
     success:function(json){
 
       var total_hours = [];
@@ -199,7 +224,7 @@ function getBillableHoursTotal(){
       //$("#totalBillableTitle").empty();
       $("#title #totalBillableTitle").fadeOut(500,function(){
         $title = $('#totalBillableTitle').text();
-        $p = $('<p id="totalBillableTitle"  style="text-align:center;">'+json[0]["Title"]+' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+        $p = $('<h5 id="totalBillableTitle"  style="text-align:center;">'+json[0]["Title"]+'</h5>');
         $("#totalBillableTitle").replaceWith($p);
         $p.fadeIn(1200);
 
@@ -210,7 +235,7 @@ function getBillableHoursTotal(){
 
 
           var $span1 = $('<h1 style="text-align:center;" id="totalBillable">'+Math.round(total_hours)+' hrs</h1>');
-          var $span2 = $('<p id="vs" style="text-align:center;"><span style="text-align:center;color:'+color+'">'+json[0]['Difference']+'</span> vs last week</p>')
+          var $span2 = $('<h5 id="vs" style="text-align:center;"><span style="text-align:center;color:'+color+'">'+json[0]['Difference']+'</span> this time last week</h5>')
 
 
         //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
@@ -248,7 +273,7 @@ function avgInitialResponse(){
     $.ajax({
 
       type:"GET",
-      url:"../../ajax/servicedelivery/avgInitialResponse.php",
+      url:"../../../ajax/servicedelivery/avgInitialResponse.php",
       success:function(json){
 
         var avg_response = [];
@@ -270,7 +295,7 @@ function avgInitialResponse(){
 
         $("#title #avgResponseTitle").fadeOut(500,function(){
           $title = $('#avgResponseTitle').text();
-          $p = $('<p id="avgResponseTitle"  style="text-align:center;">'+json[0]["Title"]+' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+          $p = $('<h5 id="avgResponseTitle"  style="text-align:center;">'+json[0]["Title"]+'</h5>');
           $("#avgResponseTitle").replaceWith($p);
           $p.fadeIn(1200);
 
@@ -285,7 +310,7 @@ function avgInitialResponse(){
           }
 
           $('#title #vsAvgResponse').fadeOut(500,function(){
-            var $span2 = $('<p id="vsAvgResponse" style="text-align:center;"><span style="text-align:center;color:'+color+'">'+json[0]['Difference']+'</span> vs last week</p>')
+            var $span2 = $('<h5 id="vsAvgResponse" style="text-align:center;"><span style="text-align:center;color:'+color+'">'+json[0]['Difference']+'</span> vs last week</h5>')
             $("#vsAvgResponse").replaceWith($span2);
             $span2.fadeIn(1200);
 
@@ -324,7 +349,7 @@ function avgInitialResponseLastWeek(){
     $.ajax({
 
       type:"GET",
-      url:"../../ajax/servicedelivery/avgInitialResponseLastWeek.php",
+      url:"../../../ajax/servicedelivery/avgInitialResponseLastWeek.php",
       success:function(json){
 
         var avg_response = [];
@@ -346,7 +371,7 @@ function avgInitialResponseLastWeek(){
 
         $("#title #avgResponseTitle").fadeOut(500,function(){
           $title = $('#avgResponseTitle').text();
-          $p = $('<p id="avgResponseTitle"  style="text-align:center;">'+json[0]["Title"]+' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+          $p = $('<h5 id="avgResponseTitle"  style="text-align:center;">'+json[0]["Title"]+' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></h5>');
           $("#avgResponseTitle").replaceWith($p);
           $p.fadeIn(1200);
 
@@ -361,7 +386,7 @@ function avgInitialResponseLastWeek(){
           }
 
           $('#title #vsAvgResponse').fadeOut(500,function(){
-            var $span2 = $('<p id="vsAvgResponse" style="text-align:center;"><span style="text-align:center;color:'+color+'">'+json[0]['Difference']+'</span> vs previous week</p>')
+            var $span2 = $('<h5 id="vsAvgResponse" style="text-align:center;"><span style="text-align:center;color:'+color+'">'+json[0]['Difference']+'</span> vs previous week</h5>')
             $("#vsAvgResponse").replaceWith($span2);
             $span2.fadeIn(1200);
 
@@ -399,7 +424,7 @@ function billableByDay(ranges,datetype){
   $.ajax({
 
     type:"GET",
-    url:"../../ajax/servicedelivery/billableByMember.php"+ranges+datetype,
+    url:"../../../ajax/servicedelivery/billableByMember.php"+ranges+datetype,
     success:function(json){
 
       function getRandomColor() {
@@ -433,6 +458,8 @@ function billableByDay(ranges,datetype){
 
 
 
+if(billableChart == null){
+
 
 var data = {
     labels: members,
@@ -451,7 +478,7 @@ var data = {
 
 $("#title #billableDayTitle").fadeOut(500,function(){
   $title = $('#billableDayTitle').text();
-  $p = $('<p id="billableDayTitle"  style="text-align:center;">'+json[0]["Title"]+ ' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+  $p = $('<h5 id="billableDayTitle"  style="text-align:center;">'+json[0]["Title"]+ '</h5>');
   $("#billableDayTitle").replaceWith($p);
   $p.fadeIn(1200);
 
@@ -460,18 +487,44 @@ $('#sup').empty();
 $('#sup').replaceWith('<div id="sup"><canvas style="padding:10px;width:auto;height:100px;" id="billableDay"></div>');
 
       var ctx = document.getElementById("billableDay").getContext("2d");
-      var myNewChart = new Chart(ctx).Bar(data);
+       billableChart = new Chart(ctx).Bar(data);
 
+}else{
+  var chartLabels = [];
+for(i=0;i<billableChart.datasets[0].bars.length;i++){
+chartLabels.push(billableChart.datasets[0].bars[i].label);
+}
+  for(var i= 0; i < json.length;i++ ){
+
+    for(var j = 0; j<billableChart.datasets[0].bars.length;j++){
+        if(billableChart.datasets[0].bars[j].label == json[i]['member_id']){
+          billableChart.datasets[0].bars[j].value = json[i]['billable_hours'];
+        }/*else if(jQuery.inArray( json[i]['member_id'], billableChart.datasets[0].labels) == -1){
+
+          billableChart.addData(json[i]['billable_hours'], json[i]['member_id']);
+
+        }*/
+      }
+      if(jQuery.inArray(json[i]['member_id'], chartLabels) == -1){
+
+        billableChart.addData(json[i]['billable_hours'], json[i]['member_id']);
+
+      }
+  }
+      billableChart.update();
+
+
+}
       $("#billableDay").click(function(e) {
         clearInterval(billableByDayID);
-         var activeBars = myNewChart.getBarsAtEvent(e);
+         var activeBars = billableChart.getBarsAtEvent(e);
     	    //$('#basicModal2').modal('show');
          //$('#basicModal2').find(".modal-title").text(activeBars[0].label);
 
          if(ranges && datetype !== ''){
-           var memberurl = "../../ajax/servicedelivery/billableByMember.php"+ranges+datetype+"&member="+activeBars[0].label;
+           var memberurl = "../../../ajax/servicedelivery/billableByMember.php"+ranges+datetype+"&member="+activeBars[0].label;
          }else{
-           var memberurl = "../../ajax/servicedelivery/billableByMember.php?member="+activeBars[0].label+"&datetype=day";
+           var memberurl = "../../../ajax/servicedelivery/billableByMember.php?member="+activeBars[0].label+"&datetype=day";
          }
 
          $.ajax({
@@ -576,7 +629,7 @@ function newVsOld(value){
   $.ajax({
 
     type:"GET",
-    url:"../../ajax/servicedelivery/closedTicketsTrailingSeven.php"+value,
+    url:"../../../ajax/servicedelivery/closedTicketsTrailingSeven.php"+value,
     success:function(json1){
       var tickets_created = [];
       var tickets_closed = [];
@@ -585,7 +638,7 @@ function newVsOld(value){
       $.ajax({
 
         type:"GET",
-        url:"../../ajax/servicedelivery/openTicketsTrailingSeven.php"+value,
+        url:"../../../ajax/servicedelivery/openTicketsTrailingSeven.php"+value,
         success:function(json2){
 
           for($i=0;$i<json2.length;$i++){
@@ -633,7 +686,7 @@ function newVsOld(value){
 
           $("#title #newOldTitle").fadeOut(500,function(){
             //$title = $('#newOldTitle').text();
-            $p = $('<p id="newOldTitle"  style="text-align:center;">'+json2[0]["Title"]+' <span><a id="info" data-description="'+json2[0]["Description"]+'"  data-datasource="'+json2[0]["Datasource"]+'" data-title="'+json2[0]["Title"]+'" data-query="'+json2[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+            $p = $('<h5 id="newOldTitle"  style="text-align:center;">'+json2[0]["Title"]+' <span><a id="info" data-description="'+json2[0]["Description"]+'"  data-datasource="'+json2[0]["Datasource"]+'" data-title="'+json2[0]["Title"]+'" data-query="'+json2[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></h5>');
             $("#newOldTitle").replaceWith($p);
             $p.fadeIn(1200);
 
@@ -715,7 +768,7 @@ function getTicketHistory(value,value2,value3){
   $.ajax({
 
     type:"GET",
-    url:"../../ajax/servicedelivery/ticketCountHistory.php"+value+value2+value3,
+    url:"../../../ajax/servicedelivery/ticketCountHistory.php"+value+value2+value3,
     success:function(json){
 
       var ticket_day_labels = [];
@@ -727,7 +780,7 @@ function getTicketHistory(value,value2,value3){
 
       $.ajax({
         type:"GET",
-        url:"../../ajax/servicedelivery/hoursByMonthResults.php"+value+value2+value3,
+        url:"../../../ajax/servicedelivery/hoursByMonthResults.php"+value+value2+value3,
         success:function(json1){
 
           for($i=0;$i<json.length;$i++){
@@ -812,7 +865,7 @@ function getTicketHistory(value,value2,value3){
 
             $("#title #ticketChartTitle").fadeOut(500,function(){
               //$title = $('#newOldTitle').text();
-              $p = $('<p id="ticketChartTitle"  style="text-align:center;">'+json[0]["Title"]+' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+"<br />******************<br />"+json1[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+              $p = $('<h5 id="ticketChartTitle"  style="text-align:center;">'+json[0]["Title"]+' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+"<br />******************<br />"+json1[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></h5>');
               $("#ticketChartTitle").replaceWith($p);
               $p.fadeIn(1200);
 
@@ -822,8 +875,8 @@ function getTicketHistory(value,value2,value3){
 
 
           $('#chart').empty();
-          $('#chart').append('<p style="text-align:center;">Tickets Opened</p><canvas style="padding:10px;width:90%;height:200px;" id="ticketChart">');
-          $('#chart').append('<p style="text-align:center;">Hours Worked</p><canvas style="padding:10px;width:90%;height:200px;" id="hoursChart">');
+          $('#chart').append('<h5 style="text-align:center;">Tickets Opened</h5><canvas style="padding:10px;width:90%;height:200px;" id="ticketChart">');
+          $('#chart').append('<h5 style="text-align:center;">Hours Worked</h5><canvas style="padding:10px;width:90%;height:200px;" id="hoursChart">');
             var ctx = document.getElementById("ticketChart").getContext("2d");
             var ctx2 = document.getElementById("hoursChart").getContext("2d");
             var ticketChart = new Chart(ctx).Line(data);
@@ -854,7 +907,7 @@ function urgentTickets(){
 
   $.ajax({
     type:"GET",
-    url:"../../ajax/servicedelivery/openUrgentTickets.php",
+    url:"../../../ajax/servicedelivery/openUrgentTickets.php",
     success:function(table){
 
 
@@ -884,7 +937,7 @@ function topTypes(value,value2,value3){
   $.ajax({
 
     type:"GET",
-    url:"../../ajax/servicedelivery/topTypes.php"+value+value2+value3,
+    url:"../../../ajax/servicedelivery/topTypes.php"+value+value2+value3,
     success:function(json){
 
       //console.log(json);
@@ -945,7 +998,7 @@ if(xlabels[i] != "undefined"){
 
             $("#title #ticketsByTypeTitle").fadeOut(500,function(){
               //$title = $('#newOldTitle').text();
-              $p = $('<p id="ticketsByTypeTitle"  style="text-align:center;">'+json[0]["Title"]+' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+              $p = $('<h5 id="ticketsByTypeTitle"  style="text-align:center;">'+json[0]["Title"]+' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></h5>');
               $("#ticketsByTypeTitle").replaceWith($p);
               $p.fadeIn(1200);
 
@@ -987,7 +1040,7 @@ function getBillableLastWeek(){
 
   $.ajax({
     type:"GET",
-    url:"../../ajax/fieldservices/getHoursLastWeek.php",
+    url:"../../../ajax/fieldservices/getHoursLastWeek.php",
     success:function(json){
 
       var total_hours = [];
@@ -1013,7 +1066,7 @@ function getBillableLastWeek(){
 
       $("#title #totalBillableTitle").fadeOut(500,function(){
         $title = $('#totalBillableTitle').text();
-        $p = $('<p id="totalBillableTitle"  style="text-align:center;">'+json[0]["Title"]+' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+        $p = $('<h5 id="totalBillableTitle"  style="text-align:center;">'+json[0]["Title"]+'</h5>');
         $("#totalBillableTitle").replaceWith($p);
         $p.fadeIn(1200);
 
@@ -1034,7 +1087,7 @@ function getBillableLastWeek(){
       });
 
       $('#title #vs').fadeOut(500,function(){
-        var $span2 = $('<p id="vs" style="text-align:center;"><span style="text-align:center;color:'+color+'">'+json[0]['Difference']+'</span> vs previous week</p>')
+        var $span2 = $('<h5 id="vs" style="text-align:center;"><span style="text-align:center;color:'+color+'">'+json[0]['Difference']+'</span> vs previous week</h5>')
         $("#vs").replaceWith($span2);
         $span2.fadeIn(1200);
 
@@ -1062,7 +1115,7 @@ function getTicketsClosedLastWeek(){
 
   $.ajax({
     type:"GET",
-    url:"../../ajax/servicedelivery/getTicketsClosedLastWeek.php",
+    url:"../../../ajax/servicedelivery/getTicketsClosedLastWeek.php",
     success:function(json){
 
       var total_hours = [];
@@ -1088,7 +1141,7 @@ function getTicketsClosedLastWeek(){
 
       $("#title #closedTicketsTitle").fadeOut(500,function(){
         $title = $('#closedTicketsTitle').text();
-        $p = $('<p id="closedTicketsTitle"  style="text-align:center;">'+json[0]["Title"]+' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+        $p = $('<h5 id="closedTicketsTitle"  style="text-align:center;">'+json[0]["Title"]+'</h5>');
         $("#closedTicketsTitle").replaceWith($p);
         $p.fadeIn(1200);
 
@@ -1109,7 +1162,7 @@ function getTicketsClosedLastWeek(){
       });
 
       $('#title #vsTickets').fadeOut(500,function(){
-        var $span2 = $('<p id="vsTickets" style="text-align:center;"><span style="text-align:center;color:'+color+'">'+json[0]['Difference']+'</span> vs previous week</p>')
+        var $span2 = $('<h5 id="vsTickets" style="text-align:center;"><span style="text-align:center;color:'+color+'">'+json[0]['Difference']+'</span> vs previous week</h5>')
         $("#vsTickets").replaceWith($span2);
         $span2.fadeIn(1200);
 
@@ -1170,7 +1223,7 @@ function topClients(value){
   $.ajax({
 
     type:"GET",
-    url:"../../ajax/servicedelivery/hoursByClient.php"+value,
+    url:"../../../ajax/servicedelivery/hoursByClient.php"+value,
     success:function(json){
 
       //console.log(json);
@@ -1228,7 +1281,7 @@ if(companies[i] != "undefined"){
 
             $("#title #clientsByHoursTitle").fadeOut(500,function(){
               //$title = $('#newOldTitle').text();
-              $p = $('<p id="clientsByHoursTitle"  style="text-align:center;">'+json[0]["Title"]+' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+              $p = $('<h5 id="clientsByHoursTitle"  style="text-align:center;">'+json[0]["Title"]+' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></h5>');
               $("#clientsByHoursTitle").replaceWith($p);
               $p.fadeIn(1200);
 
@@ -1279,7 +1332,7 @@ function ticketsByBoard(){
   var colors = ['#A0EEC0','#50C5B7','#9CEC5B','#8AE9C1'];
   $.ajax({
     type:'GET',
-    url:"../../ajax/managedservices/openTicketsByBoard.php",
+    url:"../../../ajax/managedservices/openTicketsByBoard.php",
     success:function(json){
       var board_name = '';
       for(var $i = 0; $i < json.length;$i++){
@@ -1305,7 +1358,7 @@ function ticketsByBoardService(){
   var colors = ['#A0EEC0','#50C5B7','#9CEC5B','#8AE9C1'];
   $.ajax({
     type:'GET',
-    url:"../../ajax/managedservices/openTicketsByBoard.php",
+    url:"../../../ajax/managedservices/openTicketsByBoard.php",
     success:function(json){
       var board_name = '';
       var html = '';
@@ -1337,7 +1390,7 @@ function tickets(board){
   $("#allTickets").empty();
   $.ajax({
     type:'GET',
-    url:"../../ajax/getTickets.php"+board,
+    url:"../../../ajax/getTickets.php"+board,
     success:function(json){
 
       $(json).hide().appendTo("#allTickets").fadeIn(500);
@@ -1357,7 +1410,7 @@ function ticketsClosedByMember(ranges,datetype){
   $.ajax({
 
     type:"GET",
-    url:"../../ajax/servicedelivery/closedTicketsByMember.php"+ranges+datetype,
+    url:"../../../ajax/servicedelivery/closedTicketsByMember.php"+ranges+datetype,
     success:function(json){
 
       function getRandomColor() {
@@ -1388,6 +1441,9 @@ function ticketsClosedByMember(ranges,datetype){
         highlightStroke.push("rgba(227, 75, 0, .7)");
 
     }
+if(ticketsClosedChart == null){
+
+
 
 
 
@@ -1409,7 +1465,7 @@ var data = {
 
 $("#title #memberTicketsTitle").fadeOut(500,function(){
   $title = $('#memberTicketsTitle').text();
-  $p = $('<p id="memberTicketsTitle"  style="text-align:center;">'+json[0]["Title"]+ ' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>');
+  $p = $('<h5 id="memberTicketsTitle"  style="text-align:center;">'+json[0]["Title"]+ '</h5>');
   $("#memberTicketsTitle").replaceWith($p);
   $p.fadeIn(1200);
 
@@ -1418,8 +1474,36 @@ $('#memberTicketsChart').empty();
 $('#memberTicketsChart').replaceWith('<div id="memberTicketsChart"><canvas style="padding:10px;width:auto;height:100px;" id="memberTickets"></div>');
 
       var ctx = document.getElementById("memberTickets").getContext("2d");
-      var myNewChart1 = new Chart(ctx).Bar(data);
+      ticketsClosedChart = new Chart(ctx).Bar(data);
 
+}else{
+  var chartLabels = [];
+  for(i=0;i<billableChart.datasets[0].bars.length;i++){
+    chartLabels.push(billableChart.datasets[0].bars[i].label);
+  }
+  for(var i= 0; i < json.length;i++ ){
+
+    for(var j = 0; j < ticketsClosedChart.datasets[0].bars.length;j++){
+
+        if(ticketsClosedChart.datasets[0].bars[j].label == json[i]['member_id']){
+          ticketsClosedChart.datasets[0].bars[j].value = json[i]['ticketsMember'];
+        }/*else{
+
+          ticketsClosedChart.addData(json[i]['ticketsMember'], json[i]['member_id']);
+
+        }*/
+      }
+      if(jQuery.inArray(json[i]['member_id'], chartLabels) == -1){
+
+              billableChart.addData(json[i]['ticketsMember'], json[i]['member_id']);
+
+            }
+  }
+      ticketsClosedChart.update();
+
+
+
+}
       $("#memberTicketsChart").on('click','#memberTickets',function(e) {
         clearInterval(ticketsClosedByMemberID);
          var activeBars = myNewChart1.getBarsAtEvent(e);
@@ -1427,9 +1511,9 @@ $('#memberTicketsChart').replaceWith('<div id="memberTicketsChart"><canvas style
          //$('#basicModal2').find(".modal-title").text(activeBars[0].label);
 
          if(ranges && datetype !== ''){
-           var memberurl = "../../ajax/servicedelivery/closedTicketsByMember.php"+ranges+datetype+"&member="+activeBars[0].label;
+           var memberurl = "../../../ajax/servicedelivery/closedTicketsByMember.php"+ranges+datetype+"&member="+activeBars[0].label;
          }else{
-           var memberurl = "../../ajax/servicedelivery/closedTicketsByMember.php?member="+activeBars[0].label+"&datetype=day";
+           var memberurl = "../../../ajax/servicedelivery/closedTicketsByMember.php?member="+activeBars[0].label+"&datetype=day";
          }
 
          $.ajax({
@@ -1548,8 +1632,8 @@ ticketsOpen();
 setInterval(function(){ ticketsOpen(); }, 10000);
 
 
-ticketsByBoardService();
-setInterval(function(){ ticketsByBoardService(); }, 60000);
+//ticketsByBoardService();
+//setInterval(function(){ ticketsByBoardService(); }, 60000);
 
 
 //billable hours this week
@@ -1575,22 +1659,22 @@ billableByDayID = setInterval(function(){billableByDay('','');},20000);
 ticketsClosedByMember('','');
 ticketsClosedByMemberID = setInterval(function(){ ticketsClosedByMember('',''); },20000);
 //new tickets vs tickets closed by day - last 7 days
-newVsOld('');
-var trailingID = setInterval(function(){ newVsOld(''); }, 60000);
+//newVsOld('');
+//var trailingID = setInterval(function(){ newVsOld(''); }, 60000);
 
 //urgent tickets that are open
-urgentTickets();
-setInterval(function(){ urgentTickets(); }, 100000);
+//urgentTickets();
+//setInterval(function(){ urgentTickets(); }, 100000);
 
 
 
 //top tickets by service type this week
-topTypes('','','');
-topClients('');
+//topTypes('','','');
+//topClients('');
 //setInterval(function(){ topTypes(); }, 60000);
 
-$.ajax({
-  url: "../../ajax/clientservices/getClientList2.php",
+/*$.ajax({
+  url: "../../../ajax/clientservices/getClientList2.php",
                 context: document.body,
 
                 success: function(html){
@@ -1602,7 +1686,7 @@ $.ajax({
 
 
 $.ajax({
-url: "../../ajax/servicedelivery/getMembers.php",
+url: "../../../ajax/servicedelivery/getMembers.php",
 context: document.body,
 success: function(html){
 $("#member").append(html);
@@ -1614,7 +1698,7 @@ $("#member").append(html);
 
 
 $.ajax({
-  url: "../../ajax/clientservices/getClientList2.php",
+  url: "../../../ajax/clientservices/getClientList2.php",
                 context: document.body,
 
                 success: function(html){
@@ -1625,7 +1709,7 @@ $.ajax({
                 });
 
                 $.ajax({
-                  url: "../../ajax/getServiceTypes.php",
+                  url: "../../../ajax/getServiceTypes.php",
                                 context: document.body,
 
                                 success: function(html){
@@ -1633,10 +1717,10 @@ $.ajax({
 
                                 }
 
-                                });
+                              });*/
 
 //Ticket count since the beginning of time(for ANS)
-getTicketHistory('','','');
+//getTicketHistory('','','');
 
 //Ticket count since the beginning of time(for ANS)
 //getTicketHistory();

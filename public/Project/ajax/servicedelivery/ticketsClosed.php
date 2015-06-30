@@ -21,7 +21,7 @@ if (strpos($path,'servicedelivery') !== false) {
   left outer join member on member.member_id = sr_service.closed_by
   left outer join time_entry on SR_Service.sr_service_recid = time_entry.sr_service_recid
   where time_entry.Hours_Actual > 0 and (dbo.member.Title like "%IT Support%") and
-  DATEDIFF( ww, sr_service.Date_Closed, GETDATE() ) = 1';
+  (DATEDIFF( ww, sr_service.Date_Closed, GETDATE() ) = 1 and (datepart(weekday,GETDATE()) >= datepart(weekday,sr_service.Date_Closed)))';
 
 }elseif(strpos($path,'CIM') !== false){
 
