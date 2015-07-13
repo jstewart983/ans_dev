@@ -4,7 +4,108 @@
 // However, once you're ready to go into deployment consult our documentation on tips for how to
 // maintain the most stable and secure
 
+
+function getOpenProjectCount(){
+  $.ajax({
+    type:"GET",
+    url:"../../ajax/solutiondelivery/getOpenProjectCount.php",
+    success:function(json){
+      //set projectCount equal to first position of json array
+      var projectCount = parseInt(json[0]['openProjects']);
+      //get text from element
+      var $projectEl = parseInt($('#clientProjectCount').text());
+      //check to see if we need to use the counter or not
+      if(projectCount !== $projectEl){
+        //counter options
+        var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '',suffix : ''};
+        //set counter variable
+        var projects = new countUp("clientProjectCount", $projectEl, projectCount, 0,options);
+            //start counter
+            projects.start();
+        }//end check to see if there is a need to increase or decrease the open project count
+    }//end success
+  });//end ajax call
+}//end getOpenProjectCount
+
+function getHoursLeft(){
+  $.ajax({
+    type:"GET",
+    url:"../../ajax/solutiondelivery/hoursLeft.php",
+    success:function(hours){
+      //set projectCount equal to first position of json array
+      var remaining = hours['queue'];
+      //get text from element
+      var $remainingEl = $('#hoursRemaining').text();
+      $remainingEl = parseInt($remainingEl.replace(/\$|,/g, ''));
+      //check to see if we need to use the counter or not
+      if(remaining !== $remainingEl){
+        //counter options
+        var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '',suffix : 'hrs'};        //set counter variable
+        var remainingHours = new countUp("hoursRemaining", $remainingEl, remaining, 0,2.5,options);
+            //start counter
+            remainingHours.start();
+
+
+        var variance  = hours['totalBudget'];
+            variance  = hours['overage']/variance;
+            console.log("Variance: "+variance);
+        //get text element
+        var $goalEl = $('#percentHoursGoal').text();
+            $goalEl = parseInt($goalEl.replace(/\$|,/g, ''));
+        //calculate the percent to goal
+        var percent = (remaining/1920)*100;
+            console.log(percent);
+
+        if(percent > 90){
+            color = "#2ECC71";
+            //json[0]["Difference"] = "+"+json[0]["Difference"];
+          }else if(percent > 80 && percent < 90){
+            color = "#F1C40F";
+          }else if(percent > 70 && percent < 80){
+            color = "#E67E22";
+          }else{
+            color = "#E74C3C";
+          }
+
+        //set options for percentGoal counter
+        var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '',suffix : '%'};
+        //set counter variable
+        var percentGoal = new countUp("percentHoursGoal", $goalEl, percent, 0,2.5,options);
+            $('#percentHoursGoal').animate({color: color}, 1000);
+            percentGoal.start();
+
+        var $weeksEl = $('#hoursInWeeks').text();
+            $weeksEl = parseFloat($weeksEl.replace(/\$|,/g, ''));
+        var weeksCalc = remaining/192;
+        var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '',suffix : ' weeks'};
+        var weeks = new countUp("hoursInWeeks", $weeksEl, weeksCalc, 0,2.5,options);
+            weeks.start();
+
+
+        var $overEl = $('#hoursOver').text();
+            $overEl = parseFloat($overEl.replace(/\$|,/g, ''));
+        var overCalc = parseInt(hours['overage']);
+        var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '',suffix : 'hrs'};
+        var over = new countUp("hoursOver", $overEl, overCalc, 0,2.5,options);
+            over.start();
+        }//end check to see if there is a need to increase or decrease the open project count
+    }//end success
+  });//end ajax call
+}
+
+
+
+
+
 $(document).ready(function(){
+//get open client projects on page load
+getOpenProjectCount();
+//check for changes to the open client project count every minute
+setInterval(function(){ getOpenProjectCount(); }, 60000);
+//get hours left in queue on page load
+getHoursLeft();
+//check for changes to hours left in queue every 5 seconds
+setInterval(function(){ getHoursLeft(); },5000);
 
 var data = {
     labels: ["Mon", "Tues","Weds","Thurs","Fri"],
@@ -25,42 +126,6 @@ var data = {
 
 var ctx = document.getElementById("hrsDay").getContext("2d");
 var myNewChart = new Chart(ctx).Bar(data);
-
-
-
-
-
-
-
-/*var data = {
-    labels: ["Mon", "Tues","Weds","Thurs","Fri"],
-    datasets: [
-        {
-
-            fillColor: "rgba(220,220,220,0.5)",
-            strokeColor: "rgba(220,220,220,0.8)",
-            highlightFill: "rgba(220,220,220,0.75)",
-            highlightStroke: "rgba(220,220,220,1)",
-            data: [54, 30,111,98,33],
-            label: "New Tickets"
-        },
-        {
-
-            fillColor: "rgba(120,220,220,0.5)",
-            strokeColor: "rgba(120,220,220,0.8)",
-            highlightFill: "rgba(120,220,220,0.75)",
-            highlightStroke: "rgba(120,220,220,1)",
-            data: [120, 60,78,45,25],
-            label: "Tickets Closed"
-        }
-    ]
-};
-
-
-
-var ctx = document.getElementById("newOld").getContext("2d");
-var myNewChart = new Chart(ctx).Bar(data);
-legend(document.getElementById("newOldLegend"), data);*/
 
 
 var data2 = [
@@ -165,8 +230,6 @@ var data = {
 var ctx = document.getElementById("queue").getContext("2d");
 var myNewChart = new Chart(ctx).Line(data);
 
-$(function() {
- $("#basicModal").modal();
-});
+
 
 });

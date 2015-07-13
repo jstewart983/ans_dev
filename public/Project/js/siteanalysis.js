@@ -22,7 +22,7 @@ function getTicketsSite(dates,site){
       var data= [];
 
       //data.push(table[0]['sr_service_recid'].toString(),table[0]['sr_service_recid'].toString(),table[0]['sr_service_recid'].toString(),table[0]['sr_service_recid'].toString(),table[0]['sr_service_recid'].toString(),table[0]['sr_service_recid'].toString(),table[0]['sr_service_recid'].toString(),table[0]['sr_service_recid'].toString());
-
+        $('[data-toggle="tooltip2"]').tooltip();
 
       var realdata = [data];
         console.log(table);
@@ -117,8 +117,8 @@ function getCookie(cname) {
   }
 
 $(document).ready(function(){
-
-
+  $('[data-toggle="tooltip"]').tooltip();
+  $('[data-toggle="tooltip2"]').tooltip();
     checkCookie();
 
   var grid;
@@ -156,7 +156,16 @@ $(document).ready(function(){
 
 
       });
+      $('.co').hover(function(){
 
+          $('[data-toggle="tooltip"]').tooltip();
+
+      });
+      $('.co2').hover(function(){
+
+          $('[data-toggle="tooltip"]').tooltip();
+
+      });
    $('#locationsTable').on('click','tr.co2',function(){
 
          $('html, body').animate({

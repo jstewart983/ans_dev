@@ -23,7 +23,7 @@
         <script type="text/javascript" src="../../js/jquery.min.js"></script>
         <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/2.9.0/moment.min.js"></script>
         <script type="text/javascript" src="../../js/service_delivery.js"></script>
-
+         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <script type="text/javascript" src="../../js/Chart.js"></script>
         <script type="text/javascript" src="../../js/legend.js"></script>
         <script type="text/javascript" src="../../js/oneUp.js"></script>
@@ -81,6 +81,17 @@
               margin: 30px auto;
             }
           }
+          .line1 {
+    width: 112px;
+    height: 47px;
+    border-bottom: 1px solid #282828;
+    -webkit-transform:
+        translateY(20px)
+        translateX(5px)
+        rotate(-26deg);
+    position: absolute;
+    /* top: -20px; */
+}
             </style>
     </head>
 
@@ -167,18 +178,34 @@
 
                     </div>
                     <h1 id="ticketsClosed"style="text-align:center;">0</h1>
-                    <p id="vsTickets"></p>
+                    <p style="text-align:center;" id="vsTickets">0</p>
                   </div>
                 </div>
             </div>
-            <div id="title" class="col-md-2">
+            <div id="title" class="col-md-3">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                        <p id="openTicketsTitle"  style="text-align:center;">Open Tickets <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
+                        <p id="openTicketsTitle"  style="text-align:center;">Tickets Opened - This Wk <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
                   </div>
                   <div class="panel-body">
-                    <h1 id="openTickets" style="text-align:center;">0</h1>
-
+                    <div class="row">
+                      <div class="col-md-6">
+                          <h1 id="openTickets" style="text-align:center;">0</h1>
+                      </div>
+                      <div class="col-md-6">
+                        <h2 id="percentClosed" style="margin-top:30px;text-align:center;">0%</h2>
+                        <p style="text-align:center;">
+                          Closed by Service Desk
+                        </p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-3 col-md-offset-4">
+                        <a id="percentAvg"type="button" style="background-color:#FF6347;" class="btn btn-xs btn-default" data-container="body" data-toggle="popover" data-placement="bottom" data-content="">
+  <i class="fa fa-exclamation"></i> Message
+</a>
+                      </div>
+                    </div>
                   </div>
                 </div>
             </div>
@@ -192,7 +219,7 @@
                   </div>
                 </div>
             </div>
-            <div id="title" class="col-md-4">
+            <div id="title" class="col-md-3">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                         <p id="totalBillableTitle" style="text-align:center;">Billable Hrs - This Wk <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
@@ -202,7 +229,7 @@
                       <a style="float:right;"  id="lastWk" class="btn btn-xs btn-info">Last Wk</a>
                     </div>
                     <h1 id="totalBillable"style="text-align:center;">0 hrs</h1>
-                    <p id="vs"></p>
+                    <p style="text-align:center;" id="vs">0</p>
                   </div>
                 </div>
             </div>
@@ -216,7 +243,7 @@
                       <a style="float:right;"  id="lastWkResponse" class="btn btn-xs btn-info">Last Wk</a>
                     </div>
                     <h1 id="avgResponse"style="text-align:center;">0 minutes</h1>
-                    <p id="vsAvgResponse"></p>
+                    <p style="text-align:center;" id="vsAvgResponse">0</p>
                   </div>
                 </div>
             </div>

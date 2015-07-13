@@ -127,13 +127,21 @@
         </div>
     	<div style="margin-top:12px;"class="row">
             <div class="col-md-4 col-md-offset-4">
-                <input id="daterange4" class="form-control" type="text" name="daterange4"placeholder="Select a Date Range"  />
+                <input id="daterange4" class="form-control" type="text" name="daterange4"placeholder="Default date range is trailing 4 weeks"  />
                   <script type="text/javascript">
                   </script>
             </div>
+
+
         </div>
         <div style="margin-top:32px;" class="row">
+          <div class="col-md-12">
+            <a href="#" style="text-align:center;" data-toggle="tooltip" title="Hardware, Internet, Monitoring Alerts, Network, Phone/Fax, Printer,
+              Wireless, Workstation">Included Service Types</a>
+
+          </div>
             <div id="title" class="col-md-12">
+
                  <div id="locationsTable">
 
 

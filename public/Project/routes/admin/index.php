@@ -1,4 +1,6 @@
 <?php
+error_reporting(-1);
+ini_set('display_errors', 'On');
 //$admins = array('cwhite','bflippo','jstewart','rpinson','gsummey');
 //$user_group= array('charlow');
 /**
@@ -33,6 +35,7 @@ $login = new Login();
 
 // ... ask if we are logged in here:
 if ($login->isUserLoggedIn() == true) {
+
   if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
     // last request was more than 30 minutes ago
 
@@ -40,13 +43,14 @@ if ($login->isUserLoggedIn() == true) {
 
     include("../../login/views/home_header.php");
     include("../../login/views/not_logged_in.php");
-  }else{
+  }
 
-    $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
+     // update last activity time stamp
       // the user is logged in. redirect to the intended view
       // for demonstration purposes, we simply show the "you are logged in" view.
-    }else if (in_array('admin',$_SESSION['fox']) || in_array('super admin',$_SESSION['fox'])){
+    else if (in_array('admin',$_SESSION['fox']) || in_array('super admin',$_SESSION['fox'])){
 
+        $_SESSION['LAST_ACTIVITY'] = time();
         include("../../views/admin/index.php");
 
       }else{
@@ -55,10 +59,10 @@ if ($login->isUserLoggedIn() == true) {
         //print_r($_SESSION['fox']);
       }
 
-    }
 
 
-} else {
+
+}else {
     // the user is not logged in. you can do whatever you want here.
     // for demonstration purposes, we simply show the "you are not logged in" view.
 

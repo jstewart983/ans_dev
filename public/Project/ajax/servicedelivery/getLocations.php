@@ -28,7 +28,7 @@ left outer join company on sr_service.company_recid = company.company_recid
 left outer join sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
 where company.company_name = "Results Physiotherapy" and (dbo.SR_Service.Date_Entered >="'.$range1.'" and dbo.SR_Service.Date_Entered <= "'.$range2.'")
 and
-(sr_type.description = "Foto" or sr_type.description = "Hardware" or sr_type.description = "Internet" or sr_type.description = "Monitoring Alerts" or
+(sr_type.description = "Hardware" or sr_type.description = "Internet" or sr_type.description = "Monitoring Alerts" or
   sr_type.description = "Network" or sr_type.description = "Phone/Fax" or sr_type.description = "Printer"
   or sr_type.description = "Wireless" or sr_type.description = "Workstation")
 group by site_name
@@ -40,8 +40,8 @@ order by count(sr_service.site_name) desc';
 left outer join company on sr_service.company_recid = company.company_recid
 left outer join time_entry on sr_service.sr_service_recid = time_entry.sr_service_recid
 left outer join sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
-where company.company_name = "Results Physiotherapy" and DATEDIFF( mm, dbo.SR_Service.Date_Entered, GETDATE() ) = 0 and
-(sr_type.description = "Foto" or sr_type.description = "Hardware" or sr_type.description = "Internet" or sr_type.description = "Monitoring Alerts" or
+where company.company_name = "Results Physiotherapy" and DATEDIFF( ww, dbo.SR_Service.Date_Entered, GETDATE() ) = 4  and
+(sr_type.description = "Hardware" or sr_type.description = "Internet" or sr_type.description = "Monitoring Alerts" or
   sr_type.description = "Network" or sr_type.description = "Phone/Fax" or sr_type.description = "Printer"
   or sr_type.description = "Wireless" or sr_type.description = "Workstation")
 group by site_name
@@ -49,9 +49,9 @@ order by count(sr_service.site_name) desc';
 $query1 = 'SELECT count(sr_service.site_name), site_name from sr_service
 left outer join company on sr_service.company_recid = company.company_recid
 left outer join sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
-where company.company_name = "Results Physiotherapy" and DATEDIFF( mm, dbo.SR_Service.Date_Entered, GETDATE() ) = 0
+where company.company_name = "Results Physiotherapy" and DATEDIFF( ww, dbo.SR_Service.Date_Entered, GETDATE() ) = 4
 and
-(sr_type.description = "Foto" or sr_type.description = "Hardware" or sr_type.description = "Internet" or sr_type.description = "Monitoring Alerts" or
+(sr_type.description = "Hardware" or sr_type.description = "Internet" or sr_type.description = "Monitoring Alerts" or
   sr_type.description = "Network" or sr_type.description = "Phone/Fax" or sr_type.description = "Printer"
   or sr_type.description = "Wireless" or sr_type.description = "Workstation")
 group by site_name
@@ -64,7 +64,7 @@ $queries = str_replace('"',"",$queries);
 echo "<div class='panel panel-default'>";
 echo "<div style='width:100%;'class=panel-body>";
 $openTickets = mssql_query($query);
- echo "<div id='hours' class='col-md-6'>";
+ echo "<div style='border-right:solid;border-style:thick double #282828;' id='hours' class='col-md-6'>";
 echo "<table id='locationsTable' class='table table-hover'>";
 echo "<thead>";
 echo "<th>Site</th>";
@@ -74,7 +74,7 @@ echo "<tbody  class='rowlink'>";
 
 while($row = mssql_fetch_assoc($openTickets)) {
 
-    echo "<tr class='co' site='".$row['site_name']."'>";
+    echo "<tr data-toggle='tooltip' title='Click to drilldown' class='co' site='".$row['site_name']."'>";
       echo "<td>".$row['site_name']."</td><td>".$row['computed']."</td>";
     echo "</tr>";
 }
@@ -82,7 +82,7 @@ echo "</tbody>";
 echo "</table>";
 echo "</div>";
 
-
+//echo "<div class='col-md-2' style='height:100%;width:5px;background-color:#282828;'></div>";
 
 
 $openTickets1 = mssql_query($query1);
@@ -97,7 +97,7 @@ echo "<tbody  class='rowlink'>";
 while($row = mssql_fetch_assoc($openTickets1)) {
 
 
-    echo "<tr class='co2' site='".$row['site_name']."'>";
+    echo "<tr data-toggle='tooltip' title='Click to drilldown' class='co2' site='".$row['site_name']."'>";
       	echo "<td>".$row['site_name']."</td><td>".$row['computed']."</td>";
     echo "</tr>";
 }

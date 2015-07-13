@@ -20,7 +20,7 @@ $query = 'select SR_Type.Description as type,sr_service.email_address,sr_service
   left outer join company on sr_service.company_recid = company.company_recid
   where sr_service.site_name = "'.$sitename.'" and company.company_name = "Results Physiotherapy" and (dbo.SR_Service.Date_Entered >="'.$range1.'" and dbo.SR_Service.Date_Entered <= "'.$range2.'")
 and
-(sr_type.description = "Foto" or sr_type.description = "Hardware" or sr_type.description = "Internet" or sr_type.description = "Monitoring Alerts" or
+(sr_type.description = "Hardware" or sr_type.description = "Internet" or sr_type.description = "Monitoring Alerts" or
   sr_type.description = "Network" or sr_type.description = "Phone/Fax" or sr_type.description = "Printer"
   or sr_type.description = "Wireless" or sr_type.description = "Workstation")
   order by sr_service.date_entered desc';
@@ -34,9 +34,9 @@ and
 	left outer join sr_status on sr_status.sr_status_recid  = sr_service.sr_status_recid
   left outer join sr_service_calculated on sr_service.sr_service_recid = sr_service_calculated.sr_service_recid
   left outer join company on sr_service.company_recid = company.company_recid
-  where sr_service.site_name = "'.$sitename.'" and company.company_name = "Results Physiotherapy" and DATEDIFF( mm, dbo.SR_Service.Date_Entered, GETDATE() ) = 0
+  where sr_service.site_name = "'.$sitename.'" and company.company_name = "Results Physiotherapy" and DATEDIFF( ww, dbo.SR_Service.Date_Entered, GETDATE() ) = 4
 and
-(sr_type.description = "Foto" or sr_type.description = "Hardware" or sr_type.description = "Internet" or sr_type.description = "Monitoring Alerts" or
+(sr_type.description = "Hardware" or sr_type.description = "Internet" or sr_type.description = "Monitoring Alerts" or
   sr_type.description = "Network" or sr_type.description = "Phone/Fax" or sr_type.description = "Printer"
   or sr_type.description = "Wireless" or sr_type.description = "Workstation")
   order by sr_service.date_entered desc';
@@ -68,7 +68,7 @@ if($row['resourcelist'] !== null){
 }else{
 	$output2 = "N/A";
 }
-$all_rows [] = [$row['sr_service_recid'],$row['type'],strtok($row['email_address'], '@'),$row['status'],$output2,$row['summary'],$output,$row['daysOpen']];
+$all_rows [] = [$row['sr_service_recid'],$row['type'],strtok($row['email_address'], '@'),$row['status'],$output2,$row['summary'],$output,"<a href='#' data-toggle='tooltip2' title='If the ticket is open then this value is the running total. If the ticket is closed then this value is the amount of days it was open until it closed.'>".$row['daysOpen']."</a>"];
 
 
 

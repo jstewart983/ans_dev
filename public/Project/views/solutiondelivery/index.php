@@ -25,8 +25,8 @@
         <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
         <script src="../../libraries/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
-
-
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <script src="../../js/oneUp.js"></script>
         <script type="text/javascript" src="../../js/solution_delivery.js"></script>
         <script type="text/javascript" src="../../js/Chart.js"></script>
         <script type="text/javascript" src="../../js/legend.js"></script>
@@ -155,43 +155,50 @@
 
                 <!--KPIs-->
         <div style="margin-top:30px;" class="row">
-            <div class="col-md-2">
+            <div class="col-md-4">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                        <p style="text-align:center;">Open B.O.B. Tickets</p>
+                        <p style="text-align:center;">Open Client Projects</p>
                   </div>
                   <div class="panel-body">
-                    <h2 style="text-align:center;">17,000</h2>
+                    <h2 style="text-align:center;" id="clientProjectCount">0</h2>
                   </div>
                 </div>
             </div>
-            <div class="col-md-2">
+
+            <div class="col-md-4">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                        <p style="text-align:center;">Hrs Executed - This Week</p>
+                        <p style="text-align:center;">Hours in Queue</p>
                   </div>
                   <div class="panel-body">
-                    <h2 style="text-align:center;">67 hrs</h2>
-                  </div>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                        <p style="text-align:center;">Utilization %</p>
-                  </div>
-                  <div class="panel-body">
-                    <h2 style="text-align:center;">78%</h2>
-                  </div>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                        <p style="text-align:center;">Hrs Executed- This Year</p>
-                  </div>
-                  <div class="panel-body">
-                    <h2 style="text-align:center;">800 hrs</h2>
+                    <div class="row">
+                      <div style="margin:0 auto;"  class="col-md-6">
+                          <h3 style="text-align:center;" id="hoursRemaining">
+                            0
+                          </h3>
+                            <p style=" text-align:center;font-size:21px;"> in queue</p>
+                            <h3 style="text-align:center;" id="hoursOver">
+                              0
+                            </h3>
+                              <p style=" text-align:center;font-size:15px;"> over budget</p>
+                      </div>
+                      <div class="col-md-6">
+                        <div>
+                          <h3 style="text-align:center;" id="percentHoursGoal">
+                            0
+
+                          </h3>
+                            <p style="text-align:center;font-size:15px;"> to goal of 1920hrs</p>
+                        </div>
+                        <div>
+                          <h3 style="text-align:center;" id="hoursInWeeks">
+                            0
+                          </h3>
+                            <p style="text-align:center;font-size:15px;"> in queue</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
             </div>
