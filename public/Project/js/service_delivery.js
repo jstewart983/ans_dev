@@ -288,7 +288,7 @@ function getBillableHoursTotal(){
 
 
           //var $span1 = $('<h1 style="text-align:center;" id="totalBillable">'+Math.round(total_hours)+' hrs</h1>');
-          var $span2 = $('<p id="vs" style="text-align:center;"><span style="text-align:center;color:'+color+';">'+json[0]['Difference']+'</span> this time last week</p>')
+          var $span2 = $('<p id="vs" style="text-align:center;"><span style="text-align:center;color:'+color+';">'+Math.round(json[0]['Difference'])+'</span> this time last week</p>')
 
 
         //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
@@ -1643,6 +1643,7 @@ $('#memberTicketsChart').replaceWith('<div id="memberTicketsChart"><canvas style
 
 $(document).ready(function(){
 
+$('[data-toggle="tooltip"]').tooltip();
 
 
 
@@ -1748,9 +1749,7 @@ getTicketHistory('','','');
 //Ticket count since the beginning of time(for ANS)
 //getTicketHistory();
 
-$("#vs").tooltip({
-        title : 'hey'
-    });
+
 $('#vs').on('hover',function(){
 
   $('#vs').tooltip('show');

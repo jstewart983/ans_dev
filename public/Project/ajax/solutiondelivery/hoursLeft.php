@@ -65,8 +65,10 @@ for($i = 0;$i<count($actual);$i++){
     $overage = $overage + ($actual[$i]['hours_actual'] - $actual[$i]['hours_budget']);
     $actual[$i]['hours_actual'] = 0;
     $actual[$i]['hours_budget'] = 0;
-    $queue = $queue + ($actual[$i]['hours_budget']-$actual[$i]['hours_actual']);
+    //$queue = $queue + ($actual[$i]['hours_budget']-$actual[$i]['hours_actual']);
   }else{
+      $totalBudget = $totalBudget + $actual[$i]['hours_budget'];
+      $totalActual = $totalActual + $actual[$i]['hours_actual'];
       $queue = $queue + ($actual[$i]['hours_budget']-$actual[$i]['hours_actual']);
   }
 

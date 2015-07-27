@@ -21,7 +21,7 @@ $query = 'select SR_Type.Description as type,sr_service.email_address,sr_service
   where sr_service.site_name = "'.$sitename.'" and company.company_name = "Results Physiotherapy" and (dbo.SR_Service.Date_Entered >="'.$range1.'" and dbo.SR_Service.Date_Entered <= "'.$range2.'")
 and
 (sr_type.description = "Hardware" or sr_type.description = "Internet" or sr_type.description = "Monitoring Alerts" or
-  sr_type.description = "Network" or sr_type.description = "Phone/Fax" or sr_type.description = "Printer"
+  sr_type.description = "Network" or sr_type.description = "Phone/Fax" 
   or sr_type.description = "Wireless" or sr_type.description = "Workstation")
   order by sr_service.date_entered desc';
 }else{
@@ -37,7 +37,7 @@ and
   where sr_service.site_name = "'.$sitename.'" and company.company_name = "Results Physiotherapy" and DATEDIFF( ww, dbo.SR_Service.Date_Entered, GETDATE() ) = 4
 and
 (sr_type.description = "Hardware" or sr_type.description = "Internet" or sr_type.description = "Monitoring Alerts" or
-  sr_type.description = "Network" or sr_type.description = "Phone/Fax" or sr_type.description = "Printer"
+  sr_type.description = "Network" or sr_type.description = "Phone/Fax"
   or sr_type.description = "Wireless" or sr_type.description = "Workstation")
   order by sr_service.date_entered desc';
 }

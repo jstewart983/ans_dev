@@ -17,20 +17,22 @@
         <link rel="stylesheet" href="../../libraries/Flat-UI-master/fonts/glyphicons/flat-ui-icons-regular.svg">
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
-
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/2.9.0/moment.min.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
+
         <script src="../../libraries/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
-        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <script src="../../js/oneUp.js"></script>
-        <script type="text/javascript" src="../../js/solution_delivery.js"></script>
+
         <script type="text/javascript" src="../../js/Chart.js"></script>
         <script type="text/javascript" src="../../js/legend.js"></script>
-        <script>$('.navmenu').offcanvas()</script>
+        <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/1/daterangepicker.js"></script>
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/1/daterangepicker-bs3.css" />
+          <script>$('.navmenu').offcanvas()</script>
         <script>
             function myFunction() {
 
@@ -63,15 +65,17 @@
         }
         </style>
     <style type="text/css">
-    @media screen and (max-width: 999px) {
-  #logout_button {
-    visibility: hidden;
-    clear: both;
-    float: left;
-    margin: 10px auto 5px 20px;
-    width: 28%;
-    display: none;
-  }
+
+@media screen and (max-width: 999px) {
+#logout_button,#issue_button,#dateSwitchHours,#dateSelector,#timeanalysis {
+visibility: hidden;
+clear: both;
+float: left;
+margin: 10px auto 5px 20px;
+width: 28%;
+display: none;
+}
+
 }
     .hidden{
       display:none;
@@ -94,7 +98,11 @@
             font-family: inherit;
             font-size: inherit;
         }
+        canvas{
+  width: 100% !important;
 
+  height: 400px !important;
+}
         </style>
     <body class="canvas">
       <div style="background-color:#fff;" class="navmenu navmenu-default navmenu-fixed-left offcanvas">
@@ -121,14 +129,21 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <div class="col-md-3">
 
-          </div>
-          <div class="col-md-5">
+          <div class="col-md-3">
             <h2 style="margin-top:12px;text-align:center;font-size:20px;display: block;"id="title"></h2>
 
           </div>
+          <div style="margin-top:10px;height:53px;" class="col-md-2"id="dateSwitchHours">
+            <a style="float:right;"  id="lastWkHours" class="btn btn-md btn-info">Last Wk</a>
+          </div>
+          <div id="dateSelector"style="margin-top:10px;height:53px;" class="col-md-2">
+            <input style="" id="daterange" class="form-control" type="text" name="daterange"placeholder="select a date range"  />
 
+          </div>
+          <div id="timeanalysis"style="margin-top:10px;height:53px;" class="col-md-1">
+            <a class="btn btn-md btn-warning" href="http://intelligence.ansolutions.com/routes/tools/timeanalysis/">Time Analysis <span class='fui-time'></span> </a>
+          </div>
           <div id="issue_button" style="margin-right:15px;margin-top:10px;margin-bottom:auto;text-align:center;float: right; margin-left: 15px;height:53px;">
             <a  id="issue" class="btn btn-sm btn-primary">Submit Issue/Request</a>
           </div>
@@ -155,35 +170,61 @@
 
                 <!--KPIs-->
         <div style="margin-top:30px;" class="row">
-            <div class="col-md-4">
+          <div class="col-md-3">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                      <p style="text-align:center;" id="executedTitle">Project Hours Executed - This Wk</p>
+                </div>
+                <div class="panel-body">
+                  <h2 style="text-align:center;" id="executed">0</h2>
+                  <p style="text-align:center;" id="vsExecuted">
+                    <span id="percentToGoal">0%</span><span id="weekToDateGoal">to week to date goal of 0hrs</span>
+                  </p>
+                  <div class="row">
+                    <div class="col-md-7 col-md-offset-4">
+                      <div data-toggle="tooltip" title=">=90%" style="display:inline-block;background-color:#2ECC71;height:10px;width:10px;"></div>
+                      <div  data-toggle="tooltip" title="<90% & >=80%" style="display:inline-block;background-color:#F1C40F;height:10px;width:10px;"></div>
+                      <div data-toggle="tooltip" title="<80% & >=70%" style="display:inline-block;background-color:#E67E22;height:10px;width:10px;"></div>
+                      <div data-toggle="tooltip" title="<70%" style="display:inline-block;background-color:#E74C3C;height:10px;width:10px;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+            <div class="col-md-2">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                         <p style="text-align:center;">Open Client Projects</p>
                   </div>
                   <div class="panel-body">
                     <h2 style="text-align:center;" id="clientProjectCount">0</h2>
+                    <p style="text-align:center;" id="totalBudget">
+                      0 total budgeted hours
+                    </p>
                   </div>
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-7">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                        <p style="text-align:center;">Hours in Queue</p>
+                        <p style="text-align:center;">Queue Data</p>
                   </div>
                   <div class="panel-body">
                     <div class="row">
-                      <div style="margin:0 auto;"  class="col-md-6">
+                      <div style="margin:0 auto;"  class="col-md-3">
                           <h3 style="text-align:center;" id="hoursRemaining">
                             0
                           </h3>
-                            <p style=" text-align:center;font-size:21px;"> in queue</p>
-                            <h3 style="text-align:center;" id="hoursOver">
-                              0
-                            </h3>
-                              <p style=" text-align:center;font-size:15px;"> over budget</p>
-                      </div>
-                      <div class="col-md-6">
+                          <p style=" text-align:center;font-size:21px;"> in queue</p>
+                          </div>
+                            <div style="margin:0 auto;"  class="col-md-3">
+                              <h3 style="text-align:center;" id="hoursOver">
+                                0
+                              </h3>
+                                <p style=" text-align:center;font-size:15px;"> over budget | <span id="overVariance">0%</span></p>
+                          </div>
+                      <div style="margin:0 auto;"  class="col-md-3">
                         <div>
                           <h3 style="text-align:center;" id="percentHoursGoal">
                             0
@@ -191,140 +232,75 @@
                           </h3>
                             <p style="text-align:center;font-size:15px;"> to goal of 1920hrs</p>
                         </div>
+                      </div>
+                    <div style="margin:0 auto;"  class="col-md-3">
+
+
                         <div>
                           <h3 style="text-align:center;" id="hoursInWeeks">
                             0
                           </h3>
                             <p style="text-align:center;font-size:15px;"> in queue</p>
                         </div>
+                          </div>
                       </div>
                     </div>
                   </div>
                 </div>
             </div>
-            <div class="col-md-2">
+            <div class="row">
+              <div class="col-md-7">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                        <p style="text-align:center;">Alerts Today</p>
-                  </div>
-                  <div class="panel-body">
-                    <h2 style="text-align:center;">600</h2>
-                  </div>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                        <p style="text-align:center;">Hours in Queue</p>
-                  </div>
-                  <div class="panel-body">
-                    <h2 style="text-align:center;">160 hrs</h2>
-                  </div>
-                </div>
-            </div>
-        </div>
-        <!--Billable hours and new tickets vs closed tickets this week charts-->
-        <div class="row">
-            <div class="col-md-6">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                        <p style="text-align:center;">Open Projects</p>
-                  </div>
-                  <div class="panel-body">
-                    <table style='width:100%;' class='table table-hover'>
+                    <div class="row">
+                      <div class="col-md-3 col-md-offset-4">
+                        <p style="text-align:center">
+                          Project Hours Executed by PE - This Wk
+                        </p>
+                      </div>
+                      <div class="col-md-3 col-md-offset-2">
 
-                              <tr>
-                              <th>Project ID</th>
-                              <th>Client Name</th>
-                              <th>Est. Close Date</th>
-                              <th>Est. Hours Left</th>
-                              </tr>
-                              <tbody  class='rowlink'>
-                              <tr>
-                                <td>Windstream Cutover</td>
-                                <td>Results</td>
-                                <td>3/15/15</td>
-                                <td>24 hrs</td>
-                              </tr>
-                              <tr>
-                                <td>Exchange Migration</td>
-                                <td>Myers Co.</td>
-                                <td>3/19/15</td>
-                                <td>5 hrs</td>
-                              </tr>
-                              <tr>
-                                <td>Server Virtualization</td>
-                                <td>Athens Federal</td>
-                                <td>4/1/15</td>
-                                <td>40 hrs</td>
-                              </tr>
-                              <tr>
-                                <td>Onboarding</td>
-                                <td>Rainey Kizer</td>
-                                <td>3/10/15</td>
-                                <td>12 hrs</td>
-                              </tr>
-                            </tbody>
-                          </table>
+                      </div>
+                    </div>
                   </div>
-                </div>
-            </div>
+                    <div class="panel-body">
+                      <div class="row">
+                        <div class="col-md-1">
+                          <div id="hoursByPMLegend">
 
-        <div class="col-md-6">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                        <p style="text-align:center;">Hrs/day - This Week</p>
-                  </div>
-                  <div class="panel-body">
-                    <canvas id="hrsDay" width="auto" height="auto"></canvas>
-                  </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                        <p style="text-align:center;">Hrs/member - This Week</p>
-                  </div>
-                  <div class="panel-body">
-                  <div style="text-align:center"class="col-md-2">
-                          <div style="padding:5px;" id="hrsMemberLegend">
                           </div>
                         </div>
-                    <canvas id="hrsMember" width="auto" height="auto"></canvas>
+                        <div class="col-md-11">
+                          <canvas id="hoursByPM" width="300" height="300"></canvas>
+                        </div>
+
+
+                      </div>
+
                   </div>
                 </div>
-            </div>
-            <div class="col-md-6">
+              </div>
+              <div class="col-md-5">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                        <p style="text-align:center;">Hours by Type - This Year</p>
+                    <p style="text-align:center;">
+                      Hours Executed by Project - This Wk
+                    </p>
                   </div>
-                  <div class="panel-body">
-                    <div style="text-align:center"class="col-md-2">
-                          <div style="padding:5px;" id="hrsTypeLegend">
-                          </div>
-                        </div>
-                    <canvas id="hrsType" width="auto" height="auto"></canvas>
-                  </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                        <p style="text-align:center;">Active Project Queue (hrs)</p>
-                  </div>
-                  <div class="panel-body">
-                  <div style="text-align:center"class="col-md-2">
-                          <div style="padding:5px;" id="queueLegend">
-                          </div>
-                        </div>
-                    <canvas id="queue" width="700" height="auto"></canvas>
+                  <div style="max-height:437px;overflow:scroll;" class="panel-body">
+                    <div id="projectTable">
+                      <table class="table table-striped">
+                          <thead>
+                          <th>Client</th>
+                          <th>Project</th>
+                          <th>Hours Executed</th>
+                        </thead>
+                        <tbody></tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
+              </div>
             </div>
         </div>
         <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
@@ -400,6 +376,8 @@
           </div>
         </div>
     </div>
+
+      <script type="text/javascript" src="../../js/solution_delivery.js"></script>
     <script src="../../js/asana.js"></script>
     </body>
 

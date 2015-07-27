@@ -18,16 +18,18 @@ function ticketsClosedThisWeek(){
         }
 
         if(parseInt(json[0]["Difference"])>1){
-          color = "#2ECC71;";
+          color = "#2ECC71";
           json[0]["Difference"] = "+"+json[0]["Difference"];
+        }else if(parseInt(json[0]["Difference"])> -50 && parseInt(json[0]["Difference"]) < 0){
+          color = "#F1C40F";
         }else{
-          color = "#E74C3C;";
+          color = "#E74C3C";
         }
 
         var getTicketsClosedText = parseInt($('#ticketsClosed').text());
-        if(getTicketsClosedText !== parseInt(closed_tickets)){
+        //if(getTicketsClosedText !== parseInt(closed_tickets)){
 
-        $("#title #closedTicketsTitle").fadeOut(500,function(){
+        //$("#title #closedTicketsTitle").fadeOut(500,function(){
 
           $modal = $('#modal-title').text();
 
@@ -35,37 +37,56 @@ function ticketsClosedThisWeek(){
 
           $modal = $title;
 
-          $p = $('<h5 id="closedTicketsTitle"  style="text-align:center;">'+json[0]["Title"]+'</h5>');
+          $p = $('<h5 id="closedTicketsTitle"  style="text-align:center;">'+json[0]["Title"]+' <span></span></h5>');
           $("#closedTicketsTitle").replaceWith($p);
-          $p.fadeIn(1200);
+          //$p.fadeIn(1200);
 
-        });
-        $("#title #ticketsClosed").fadeOut(500,function(){
+        //});
+
+
+        var $closedEl = $('#ticketsClosed').text();
+
+            $closedEl = parseInt($closedEl.replace(/\$|,/g, ''));
+        //check to see if we need to use the counter or not
+        if(parseInt(json[0]['closedTickets']) !== $closedEl){
+          //counter options
+          var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '',suffix : ''};
+          //set counter variable
+          var closed = new countUp("ticketsClosed",$closedEl, parseInt(json[0]['closedTickets']), 0,2.5,options);
+              //start counter
+              $('#ticketsClosed').animate({color: color}, 1000);
+              closed.start();
+
+
+            }
+
+
+        //$("#title #ticketsClosed").fadeOut(500,function(){
 
           if(closed_tickets==0){
             var $span1 = $('<h1 style="text-align:center;" id="ticketsClosed">0</h1>');
           }else{
             var $span1 = $('<h1 style="text-align:center;" id="ticketsClosed">'+closed_tickets+'</h1>');
           }
-          var $span2 = $('<h5 id="vsTickets" style="text-align:center;"><span style="text-align:center;color:'+color+'">'+json[0]['Difference']+'</span> this time last week</h5>')
+          var $span2 = $('<h5 data-toggle="tooltip" title="Green: tickets > 0; Yellow: tickets > -50 & tickets <0; Red:tickets<-50" id="vsTickets" style="text-align:center;"><span style="text-align:center;color:'+color+';">'+json[0]['Difference']+'</span> this time last week</h5>')
           //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
-          $("#ticketsClosed").replaceWith($span1);
+          //$("#ticketsClosed").replaceWith($span1);
           //$("#openProjects").replaceWith($span2);
           $("#vsTickets").replaceWith($span2);
           //$("#openProjects").replaceWith($span2);
-          $span1.fadeIn(1200);
-          $span2.fadeIn(1200);
+          //$span1.fadeIn(1200);
+          //$span2.fadeIn(1200);
 
-        });
-      }
-      $("#dateSwitchTickets #thisWkTickets").fadeOut(500,function(){
+      //  });
+      //}
+      //$("#dateSwitchTickets #thisWkTickets").fadeOut(500,function(){
 
         var $button = $('<a style="float:right;"  id="lastWkTickets" class="btn btn-xs btn-info">Last Wk</a>');
 
         $('#thisWkTickets').replaceWith($button);
 
-        $button.fadeIn(1200);
-      });
+        // $button.fadeIn(1200);
+      //});
 
     }
 
@@ -92,51 +113,53 @@ success:function(json){
 
       var getTicketsOpenText = parseInt($('#openTickets').text());
       if(getTicketsOpenText !== parseInt(open_tickets)){
-      $("#title #openTicketsTitle").fadeOut(500,function(){
+      //$("#title #openTicketsTitle").fadeOut(500,function(){
         $title = $('#openTicketsTitle').text();
-        $p = $('<h5 id="openTicketsTitle"  style="text-align:center;">'+json[0]["Title"]+'</h5>');
+        $p = $('<h5 id="openTicketsTitle"  style="text-align:center;">'+json[0]["Title"]+' <span></span></h5>');
         $("#openTicketsTitle").replaceWith($p);
-        $p.fadeIn(1200);
+        //$p.fadeIn(1200);
 
-      });
-      var existing = parseInt($('#openTickets').text());
-      var color = "";
-      if(parseInt(open_tickets) > existing ){
-        color = parseInt(open_tickets) - parseInt(existing);
-        colorhtml = '<span style="color:#E74C3C;" class="fa fa-arrow-up"></span><span style="color:#E74C3C;"> '+color+'</span>';
-      }else{
-          color = parseInt(open_tickets) - parseInt(existing);
-          colorhtml = '<span style="color:#2ECC71;" class="fa fa-arrow-down"></span><span style="color:#2ECC71;"> '+color+'</span>';
-      }
-//" <span class='fa fa-arrow-down'></span>"+
-//" <span class='fa fa-arrow-up'></span> "+
-      console.log(color);
+      //});
 
-      $('#title #vsOpen').fadeOut(500, function() {
-
-        var $replace = $('<h5 id="vsOpen" style="text-align:center;">'+colorhtml+'</h5>');
-        $("#vsOpen").replaceWith($replace);
-        //$("#openProjects").replaceWith($span2);
-        $replace.fadeIn(1200);
-      });
-
-      $('#title #openTickets').fadeOut(500, function() {
-
-     if(open_tickets==0){
-       var $span1 = $('<h1 style="text-align:center;" id="openTickets">0</h1>');
-     }else{
-       var $span1 = $('<h1 style="text-align:center;" id="openTickets">'+open_tickets+'</h1>');
-     }
+        var $openTicketsEl = $('#openTickets').text();
+            $openTicketsEl = parseInt($openTicketsEl.replace(/\$|,/g, ''));
+            if(json[0]['openTickets']!== $openTicketsEl){
+              //counter options
+              var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '',suffix : ''};
+              //set counter variable
+              var open = new countUp("openTickets", $openTicketsEl, parseInt(json[0]['openTickets']), 0,2.5,options);
+                  //start counter
+                  open.start();
+                }
 
 
-     //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
-     $("#openTickets").replaceWith($span1);
-     //$("#openProjects").replaceWith($span2);
-     $span1.fadeIn(1200);
+      $percent = (parseInt(json[0]['percent']) / parseInt(json[0]['openTickets']))*100;
+      //console.log($percent);
+      $percent = $percent.toFixed();
 
-      });
+      var $percentEl = $('#percentClosed').text();
+      console.log($percentEl);
+          $percentEl = parseInt($percentEl.replace(/\$|,/g, ''));
+      //check to see if we need to use the counter or not
+      if($percent !== $percentEl){
+        //counter options
+        var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '',suffix : '%'};
+        //set counter variable
+        var percentage = new countUp("percentClosed", $percentEl, $percent, 0,2.5,options);
+            //start counter
+            percentage.start();
+          }
+          var difference =  parseInt(json[0]['openTickets']) -  parseInt(json[0]['avg']);
 
+          var percentDiff = (difference / parseInt(json[0]['avg'])) * 100;
+          if(percentDiff > 0){
+            $('#percentAvg').attr('data-content', json[0]['openTickets']+' tickets is '+percentDiff.toFixed()+'% more than the average tickets closed per week, this year, by the Service Delivery Team.');
+              //$('#percentAvg').replaceWith('<p style="text-align:center;">'+percentDiff.toFixed()+'% more than the average of tickets closed per week, this year</p>');
+          }else{
+            $('#percentAvg').attr('data-content', json[0]['openTickets']+' tickets is '+percentDiff.toFixed()+'% less than the average tickets closed per week, this year, by the Service Delivery Team.');
 
+              //$('#percentAvg').replaceWith('<p style="text-align:center;">'+percentDiff.toFixed()+'% less than the average of tickets closed per week, this year</p>');
+          }
 
 
     }
@@ -200,7 +223,7 @@ function getBillableHoursTotal(){
 
   $.ajax({
     type:"GET",
-    url:"../../../../ajax/servicedelivery/getServiceBillableHours.php",
+    url:"../../../ajax/servicedelivery/getServiceBillableHours.php",
     success:function(json){
 
       var total_hours = [];
@@ -215,46 +238,78 @@ function getBillableHoursTotal(){
       var color = "";
 
       if(parseInt(json[0]["Difference"])>1){
-        color = "#2ECC71;";
+        color = "#2ECC71";
         json[0]["Difference"] = "+"+json[0]["Difference"];
+      }else if(parseInt(json[0]["Difference"])> -50 && parseInt(json[0]["Difference"]) < 0){
+        color = "#F1C40F";
       }else{
-        color = "#E74C3C;";
+        color = "#E74C3C";
       }
 
       //$("#totalBillableTitle").empty();
-      $("#title #totalBillableTitle").fadeOut(500,function(){
+      //$("#title #totalBillableTitle").fadeOut(500,function(){
         $title = $('#totalBillableTitle').text();
-        $p = $('<h5 id="totalBillableTitle"  style="text-align:center;">'+json[0]["Title"]+'</h5>');
+        $p = $('<h5 id="totalBillableTitle"  style="text-align:center;">'+json[0]["Title"]+' <span></span></h5>');
         $("#totalBillableTitle").replaceWith($p);
-        $p.fadeIn(1200);
+        //$p.fadeIn(1200);
 
-      });
+      //});
 
+      var $billableEl = $('#totalBillable').text();
+
+          $billableEl = parseInt($billableEl.replace(/\$|,/g, ''));
+      //check to see if we need to use the counter or not
+      if(parseInt(json[0]['computed']) !== $billableEl){
+        //counter options
+        var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '',suffix : ' hrs'};
+        //set counter variable
+        var billable = new countUp("totalBillable",$billableEl, parseInt(json[0]['computed']), 0,2.5,options);
+            //start counter
+            $('#totalBillable').animate({color: color}, 1000);
+            billable.start();
+
+
+          }
+
+
+          /*var $vsEl = $('#vs').text();
+
+              $vsEl = parseInt($billableEl.replace(/\$|,/g, ''));
+          //check to see if we need to use the counter or not
+          if(parseInt(json[0]['computed']) !== $billableEl){
+            //counter options
+            var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '',suffix : ''};
+            //set counter variable
+            var billable = new countUp("vs",$billableEl, parseInt(json[0]['computed']), 0,2.5,options);
+                //start counter
+                billable.start();
+              }*/
       //$("#totalBillable").empty();
-      $("#title #totalBillable").fadeOut(500,function(){
+      //$("#title #vs").fadeOut(500,function(){
+          var diff = 0;
+          if(json[0]['Difference'] > 0){diff="+"+Math.round(json[0]['Difference']);}else{diff=Math.round(json[0]['Difference']);}
 
-
-          var $span1 = $('<h1 style="text-align:center;" id="totalBillable">'+Math.round(total_hours)+' hrs</h1>');
-          var $span2 = $('<h5 id="vs" style="text-align:center;"><span style="text-align:center;color:'+color+'">'+json[0]['Difference']+'</span> this time last week</h5>')
+          //var $span1 = $('<h1 style="text-align:center;" id="totalBillable">'+Math.round(total_hours)+' hrs</h1>');
+          var $span2 = $('<h5 id="vs" style="text-align:center;"><span style="text-align:center;color:'+color+';">'+diff+'</span> this time last week</h5>')
 
 
         //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
-        $("#totalBillable").replaceWith($span1);
+        //$("#totalBillable").replaceWith($span1);
         $("#vs").replaceWith($span2);
         //$("#openProjects").replaceWith($span2);
-        $span1.fadeIn(1200);
-        $span2.fadeIn(1200);
+        //$span1.fadeIn(1200);
+        //$span2.fadeIn(1200);
 
-      });
+      //});
 
-      $("#dateSwitch #thisWk").fadeOut(500,function(){
+      //$("#dateSwitch #thisWk").fadeOut(500,function(){
 
         var $button = $('<a style="float:right;"  id="lastWk" class="btn btn-xs btn-info">Last Wk</a>');
 
         $('#thisWk').replaceWith($button);
 
-        $button.fadeIn(1200);
-      });
+        //$button.fadeIn(1200);
+      //});
 
 
 
@@ -293,15 +348,15 @@ function avgInitialResponse(){
         var avg_responseText = parseInt($('#avgResponse').text());
         if(avg_responseText !== Math.round(avg_response)){
 
-        $("#title #avgResponseTitle").fadeOut(500,function(){
+        //$("#title #avgResponseTitle").fadeOut(500,function(){
           $title = $('#avgResponseTitle').text();
           $p = $('<h5 id="avgResponseTitle"  style="text-align:center;">'+json[0]["Title"]+'</h5>');
           $("#avgResponseTitle").replaceWith($p);
-          $p.fadeIn(1200);
+          //$p.fadeIn(1200);
 
-        });
+        //});
 
-        $("#title #avgResponse").fadeOut(500,function(){
+        //$("#title #avgResponse").fadeOut(500,function(){
 
           if(avg_response==0){
             var $span1 = $('<h1 style="text-align:center;" id="avgResponse">0 minutes</h1>');
@@ -309,30 +364,30 @@ function avgInitialResponse(){
             var $span1 = $('<h1 style="text-align:center;" id="avgResponse">'+Math.round(avg_response)+' minutes</h1>');
           }
 
-          $('#title #vsAvgResponse').fadeOut(500,function(){
+          //$('#title #vsAvgResponse').fadeOut(500,function(){
             var $span2 = $('<h5 id="vsAvgResponse" style="text-align:center;"><span style="text-align:center;color:'+color+'">'+json[0]['Difference']+'</span> vs last week</h5>')
             $("#vsAvgResponse").replaceWith($span2);
-            $span2.fadeIn(1200);
+            //$span2.fadeIn(1200);
 
 
 
-          });
+          //});
 
 
           //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
           $("#avgResponse").replaceWith($span1);
           //$("#openProjects").replaceWith($span2);
-          $span1.fadeIn(1200);
+          //$span1.fadeIn(1200);
 
-        });
-        $("#dateSwitchResponse #thisWkResponse").fadeOut(500,function(){
+        //});
+        //$("#dateSwitchResponse #thisWkResponse").fadeOut(500,function(){
 
           var $button = $('<a style="float:right;"  id="lastWkResponse" class="btn btn-xs btn-info">Last Wk</a>');
 
           $('#thisWkResponse').replaceWith($button);
 
-          $button.fadeIn(1200);
-        });
+          //$button.fadeIn(1200);
+        //});
 
       }
       }
@@ -369,15 +424,15 @@ function avgInitialResponseLastWeek(){
         var avg_responseText = parseInt($('#avgResponse').text());
         if(avg_responseText !== Math.round(avg_response)){
 
-        $("#title #avgResponseTitle").fadeOut(500,function(){
+        //$("#title #avgResponseTitle").fadeOut(500,function(){
           $title = $('#avgResponseTitle').text();
           $p = $('<h5 id="avgResponseTitle"  style="text-align:center;">'+json[0]["Title"]+' <span><a id="info" data-description="'+json[0]["Description"]+'"  data-datasource="'+json[0]["Datasource"]+'" data-title="'+json[0]["Title"]+'" data-query="'+json[0]["Query"]+'" href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></h5>');
           $("#avgResponseTitle").replaceWith($p);
-          $p.fadeIn(1200);
+          //$p.fadeIn(1200);
 
-        });
+        //});
 
-        $("#title #avgResponse").fadeOut(500,function(){
+        //$("#title #avgResponse").fadeOut(500,function(){
 
           if(avg_response==0){
             var $span1 = $('<h1 style="text-align:center;" id="avgResponse">0 minutes</h1>');
@@ -385,30 +440,30 @@ function avgInitialResponseLastWeek(){
             var $span1 = $('<h1 style="text-align:center;" id="avgResponse">'+Math.round(avg_response)+' minutes</h1>');
           }
 
-          $('#title #vsAvgResponse').fadeOut(500,function(){
+          //$('#title #vsAvgResponse').fadeOut(500,function(){
             var $span2 = $('<h5 id="vsAvgResponse" style="text-align:center;"><span style="text-align:center;color:'+color+'">'+json[0]['Difference']+'</span> vs previous week</h5>')
             $("#vsAvgResponse").replaceWith($span2);
-            $span2.fadeIn(1200);
+            //$span2.fadeIn(1200);
 
 
 
-          });
+          //});
 
 
           //var $span2 = $('<canvas style="background-color:#F7E109;"  class="col-md-3" id="projectsCreated" height="auto" width="200"></canvas>');
           $("#avgResponse").replaceWith($span1);
           //$("#openProjects").replaceWith($span2);
-          $span1.fadeIn(1200);
+          //$span1.fadeIn(1200);
 
-        });
-        $("#dateSwitchResponse #lastWkResponse").fadeOut(500,function(){
+        //});
+        //$("#dateSwitchResponse #lastWkResponse").fadeOut(500,function(){
 
           var $button = $('<a style="float:right;"  id="thisWkResponse" class="btn btn-xs btn-inverse">This Wk</a>');
 
           $('#lastWkResponse').replaceWith($button);
 
-          $button.fadeIn(1200);
-        });
+          //$button.fadeIn(1200);
+        //});
       }
       }
     });
@@ -458,7 +513,7 @@ function billableByDay(ranges,datetype){
 
 
 
-if(billableChart == null){
+//if(billableChart == null){
 
 
 var data = {
@@ -489,11 +544,22 @@ $('#sup').replaceWith('<div id="sup"><canvas style="padding:10px;width:auto;heig
       var ctx = document.getElementById("billableDay").getContext("2d");
        billableChart = new Chart(ctx).Bar(data);
 
-}else{
-  var chartLabels = [];
+//}else{
+  /*var chartLabels = [];
 for(i=0;i<billableChart.datasets[0].bars.length;i++){
 chartLabels.push(billableChart.datasets[0].bars[i].label);
-}
+}*/
+  //if(json.length !== chartLabels.length){
+
+    //$('#sup').empty();
+    //$('#sup').replaceWith('<div id="sup"><canvas style="padding:10px;width:auto;height:100px;" id="billableDay"></div>');
+
+      //    var ctx = document.getElementById("billableDay").getContext("2d");
+        //  billableChart = new Chart(ctx).Bar(data);
+
+  /*}else{
+
+
   for(var i= 0; i < json.length;i++ ){
 
     for(var j = 0; j<billableChart.datasets[0].bars.length;j++){
@@ -504,17 +570,18 @@ chartLabels.push(billableChart.datasets[0].bars[i].label);
           billableChart.addData(json[i]['billable_hours'], json[i]['member_id']);
 
         }*/
-      }
-      if(jQuery.inArray(json[i]['member_id'], chartLabels) == -1){
+      //}
+      //if(jQuery.inArray(json[i]['member_id'], chartLabels) == -1){
 
-        billableChart.addData(json[i]['billable_hours'], json[i]['member_id']);
+        //billableChart.addData(json[i]['billable_hours'], json[i]['member_id']);
 
-      }
-  }
-      billableChart.update();
+      //}
+    //}
+  //}
+      //billableChart.update();
 
 
-}
+//}
       $("#billableDay").click(function(e) {
         clearInterval(billableByDayID);
          var activeBars = billableChart.getBarsAtEvent(e);
@@ -1441,7 +1508,7 @@ function ticketsClosedByMember(ranges,datetype){
         highlightStroke.push("rgba(227, 75, 0, .7)");
 
     }
-if(ticketsClosedChart == null){
+//if(ticketsClosedChart == null){
 
 
 
@@ -1476,8 +1543,15 @@ $('#memberTicketsChart').replaceWith('<div id="memberTicketsChart"><canvas style
       var ctx = document.getElementById("memberTickets").getContext("2d");
       ticketsClosedChart = new Chart(ctx).Bar(data);
 
-}else{
-  var chartLabels = [];
+//}else{
+
+  //$('#memberTicketsChart').empty();
+  //$('#memberTicketsChart').replaceWith('<div id="memberTicketsChart"><canvas style="padding:10px;width:auto;height:100px;" id="memberTickets"></div>');
+
+    //    var ctx = document.getElementById("memberTickets").getContext("2d");
+      //  ticketsClosedChart = new Chart(ctx).Bar(data);
+
+  /*var chartLabels = [];
   for(i=0;i<billableChart.datasets[0].bars.length;i++){
     chartLabels.push(billableChart.datasets[0].bars[i].label);
   }
@@ -1492,18 +1566,18 @@ $('#memberTicketsChart').replaceWith('<div id="memberTicketsChart"><canvas style
           ticketsClosedChart.addData(json[i]['ticketsMember'], json[i]['member_id']);
 
         }*/
-      }
-      if(jQuery.inArray(json[i]['member_id'], chartLabels) == -1){
+      //}
+      //if(jQuery.inArray(json[i]['member_id'], chartLabels) == -1){
 
-              billableChart.addData(json[i]['ticketsMember'], json[i]['member_id']);
+        //      billableChart.addData(json[i]['ticketsMember'], json[i]['member_id']);
 
-            }
-  }
-      ticketsClosedChart.update();
+          //  }
+  //}
+    //  ticketsClosedChart.update();
 
 
 
-}
+//}
       $("#memberTicketsChart").on('click','#memberTickets',function(e) {
         clearInterval(ticketsClosedByMemberID);
          var activeBars = myNewChart1.getBarsAtEvent(e);

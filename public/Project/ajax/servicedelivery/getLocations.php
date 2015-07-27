@@ -19,7 +19,7 @@ left outer join time_entry on sr_service.sr_service_recid = time_entry.sr_servic
 left outer join sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
 where company.company_name = "Results Physiotherapy" and (dbo.SR_Service.Date_Entered >="'.$range1.'" and dbo.SR_Service.Date_Entered <= "'.$range2.'") and
 (sr_type.description = "Foto" or sr_type.description = "Hardware" or sr_type.description = "Internet" or sr_type.description = "Monitoring Alerts" or
-  sr_type.description = "Network" or sr_type.description = "Phone/Fax" or sr_type.description = "Printer"
+  sr_type.description = "Network" or sr_type.description = "Phone/Fax"
   or sr_type.description = "Wireless" or sr_type.description = "Workstation")
 group by site_name
 order by count(sr_service.site_name) desc';
@@ -29,7 +29,7 @@ left outer join sr_type on sr_service.sr_type_recid = sr_type.sr_type_recid
 where company.company_name = "Results Physiotherapy" and (dbo.SR_Service.Date_Entered >="'.$range1.'" and dbo.SR_Service.Date_Entered <= "'.$range2.'")
 and
 (sr_type.description = "Hardware" or sr_type.description = "Internet" or sr_type.description = "Monitoring Alerts" or
-  sr_type.description = "Network" or sr_type.description = "Phone/Fax" or sr_type.description = "Printer"
+  sr_type.description = "Network" or sr_type.description = "Phone/Fax" 
   or sr_type.description = "Wireless" or sr_type.description = "Workstation")
 group by site_name
 order by count(sr_service.site_name) desc';

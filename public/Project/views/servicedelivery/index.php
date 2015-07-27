@@ -22,7 +22,6 @@
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
         <script type="text/javascript" src="../../js/jquery.min.js"></script>
         <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/2.9.0/moment.min.js"></script>
-        <script type="text/javascript" src="../../js/service_delivery.js"></script>
          <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <script type="text/javascript" src="../../js/Chart.js"></script>
         <script type="text/javascript" src="../../js/legend.js"></script>
@@ -688,6 +687,7 @@
 
 
 </div>
+    <script type="text/javascript" src="../../js/service_delivery.js"></script>
   <script src="../../js/asana.js"></script>
     </body>
 

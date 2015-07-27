@@ -22,6 +22,7 @@
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
         <script type="text/javascript" src="../../../js/jquery.min.js"></script>
         <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/2.9.0/moment.min.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <script type="text/javascript" src="../../../js/service_delivery_fullscreen.js"></script>
 
         <script type="text/javascript" src="../../../js/Chart.js"></script>
@@ -107,14 +108,23 @@
                   </div>
                 </div>
             </div>
-            <div id="title" class="col-md-2">
+            <div id="title" class="col-md-3">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                         <h5 id="openTicketsTitle"  style="text-align:center;">Open Tickets</h5>
                   </div>
                   <div class="panel-body">
-                    <h1 id="openTickets" style="text-align:center;">0</h1>
-                      <h7 id="vsOpen"></h7>
+                    <div class="row">
+                      <div class="col-md-6">
+                          <h1 id="openTickets" style="text-align:center;">0</h1>
+                      </div>
+                      <div class="col-md-6">
+                        <h2 id="percentClosed" style="margin-top:30px;text-align:center;">0%</h2>
+                        <p style="text-align:center;">
+                          Closed by Service Desk
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
             </div>
@@ -128,7 +138,7 @@
                   </div>
                 </div>
             </div>
-            <div id="title" class="col-md-4">
+            <div id="title" class="col-md-3">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                         <h5 id="totalBillableTitle" style="text-align:center;">Billable Hrs - This Wk</h5>

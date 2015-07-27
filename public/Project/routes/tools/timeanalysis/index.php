@@ -1,6 +1,7 @@
 <?php
-$admins = array('nkimes','nkimes@ansolutions.com','cwhite','bflippo','jstewart','rpinson','gsummey','gsummey@ansolutions.com','aholst','plane@ansolutions.com','plane','Jclauer','jclauer@ansolutions.com');
-$user_group = array('jprouse','jprouse@ansolutions.com','charlow','bcrawford','zhoover','sfrench','jhaltom','nwhitaker','breynolds','jdumouchel','jfitzwater','tfitzpatrick','pfenech','tbrown','badams','pfotineas','dmitchell','cvarga','bdyer','mmcburnett','jsimpler','jfelts');
+$admins = array('nkimes','nkimes@ansolutions.com','jcufr','cwhite','bflippo','jstewart','rpinson','gsummey','gsummey@ansolutions.com','aholst','plane@ansolutions.com','plane','Jclauer','jclauer@ansolutions.com');
+$user_group = array('jclauer','aholst','jkindt','cleggett','nkimes','kcraftjenkins','fgroenert');
+/**
 /**
  * A simple, clean and secure PHP Login Script / MINIMAL VERSION
  * For more versions (one-file, advanced, framework-like) visit http://www.php-login.net
@@ -22,10 +23,10 @@ if (version_compare(PHP_VERSION, '5.3.7', '<')) {
 }
 
 // include the configs / constants for the database connection
-require_once("../../login/config/db.php");
+require_once("../../../login/config/db.php");
 
 // load the login class
-require_once("../../login/classes/Login.php");
+require_once("../../../login/classes/Login.php");
 
 // create a login object. when this object is created, it will do all login/logout stuff automatically
 // so this single line handles the entire login process. in consequence, you can simply ...
@@ -38,18 +39,19 @@ if ($login->isUserLoggedIn() == true) {
 
     $login->doLogout();
 
-    include("../../login/views/home_header.php");
-    include("../../login/views/not_logged_in.php");
-  }else if (in_array('fieldservices',$_SESSION['fox']) || in_array('admin',$_SESSION['fox']) || in_array('super admin',$_SESSION['fox'])){
+    include("../../../login/views/home_header.php");
+    include("../../../login/views/not_logged_in.php");
+  }else if (in_array('timeanalysis',$_SESSION['fox']) || in_array('admin',$_SESSION['fox']) || in_array('super admin',$_SESSION['fox'])){
 
           $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
           // the user is logged in. redirect to the intended view
           // for demonstration purposes, we simply show the "you are logged in" view.
-          include("../../views/fieldservices/index.php");
+          include("../../../views/tools/timeanalysis/index.php");
             }
       else{
-        include("../../views/admin/access.php");
+
         $_SESSION['LAST_ACTIVITY'] = time();
+        header('location:../');
         }
 
 
@@ -58,8 +60,8 @@ if ($login->isUserLoggedIn() == true) {
     // the user is not logged in. you can do whatever you want here.
     // for demonstration purposes, we simply show the "you are not logged in" view.
 
-    include("../../login/views/home_header.php");
-    include("../../login/views/not_logged_in.php");
+    include("../../../login/views/home_header.php");
+    include("../../../login/views/not_logged_in.php");
 }
 
 ?>

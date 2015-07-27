@@ -53,9 +53,7 @@
           font-size:12px !important;
         }
         .container{
-
           width:95% !important;
-
         }
         .navmenu .navmenu-default{
             background-color: #fff;
@@ -136,7 +134,7 @@
         </div>
         <div style="margin-top:32px;" class="row">
           <div class="col-md-12">
-            <a href="#" style="text-align:center;" data-toggle="tooltip" title="Hardware, Internet, Monitoring Alerts, Network, Phone/Fax, Printer,
+            <a href="#" style="text-align:center;" data-toggle="tooltip" title="Hardware, Internet, Monitoring Alerts, Network, Phone/Fax,
               Wireless, Workstation">Included Service Types</a>
 
           </div>

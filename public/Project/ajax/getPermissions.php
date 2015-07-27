@@ -3,9 +3,7 @@ include('../config/userconfig.php');
 
 
 //echo $company;
-$query = 'SELECT * from user_groups
-left outer join user_permissions on user_groups.user_group_id != user_permissions.user_group_id
-where user_id';
+$query = 'SELECT * from user_groups';
 
 
  //echo $query;
