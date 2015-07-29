@@ -1,4 +1,5 @@
 <?php
+#!/usr/bin/php
 error_reporting(-1);
 ini_set('display_errors', 'On');
 require('../../config/config.php');
@@ -28,6 +29,63 @@ $description="This displays a table of tickets that are both open and urgent on 
 
 $openTickets = mssql_query($query);
 
+$to = 'jstewart@ansolutions.com';
+$subject = 'RPT Chronic Site Tickets - '.date("m/d/y");
+
+$headers= "From: jstewart@ansolutions.com\r\n";
+$headers.="Reply-To: jstewart@ansolutions.com\r\n";
+$headers.="CC: nkimes@ansolutions.com\r\n";
+$headers.="MIME-Version: 1.0\r\n";
+$headers.="Content-Type: text/html; charset=ISO-8859-1\r\n";
+
+$message='<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width"/>
+
+
+
+    <style type="text/css">
+
+		/**********************************************
+		* Ink v1.0.5 - Copyright 2013 ZURB Inc        *
+		**********************************************/
+		table{
+			border-collapse:collapse;
+		}
+		table,th,td{
+			border:1px solid #282828;
+		}
+
+		tr{
+			backgroud-color:#c2c2c2;
+		}
+		tr:nth-child(even){
+			backgroud-color:#fff;
+		}
+
+
+
+    </style>
+    <style type="text/css">
+
+      /* Your custom styles go here */
+
+    </style>
+  </head><body>';
+$message.= '<table rules="all" style="border-color:#282828; width:100%;" cellpadding="10" class="table table-hover">';
+$message.= '<thead>';
+$message.= '<th>Ticket #</th>';
+$message.= '<th>Site</th>';
+$message.= '<th>Status</th>';
+$message.= '<th>Engineer(s)</th>';
+$message.= '<th>Summary</th>';
+$message.= '<th>Days Open</th>';
+$message.= '</thead>';
+
+$message.= '<tbody>';
+
+
+
 echo "<div style='width:100%;padding:0px;'class=' panel panel-default'>";
 echo "<div style='width:100%;'class=panel-body>";
 echo "<table style='width:100%;' class='table table-hover'>";
@@ -56,7 +114,14 @@ if($row['nextscheduledate'] !== null){
 }else{
 	$output = "";
 }
-
+$message.= '<tr>';
+$message.=  '<td>'.$row['sr_service_recid'].'</td>';
+$message.=  '<td>'.$row['site_name'].'</td>';
+	 $message.=  '<td>'.$row['status'].'</td>';
+	 $message.=  '<td>'.$row['resourcelist'].'</td>';
+	 $message.=  '<td>'.$row['summary'].'</td>';
+	$message.=  '<td>'.$row['daysOpen'].'</td>';
+	$message.=  '</tr>';
 
 
 	echo "<tr>";
@@ -73,9 +138,20 @@ if($row['nextscheduledate'] !== null){
 
 
 }
-echo "</tbody>";
-echo "</table>";
+
+$message.= '</tbody>';
+$message.=  '</table>';
+$message.= '</body></html>';
+echo '</tbody>';
+echo '</table>';
 //header("Content-Type: application/json");
 
 echo "</div>";
+
+if(mail($to,$subject,$message,$headers)){
+	echo "success!";
+}else{
+	echo "fail";
+}
+
 ?>

@@ -997,7 +997,7 @@ fieldset[disabled] .btn-inverse:active,
 .btn-inverse[disabled].active,
 fieldset[disabled] .btn-inverse.active {
   background: #808080;
-    
+
   border-color: #696969
 ;
   }
