@@ -1,15 +1,8 @@
 <?php
-#!/usr/bin/php
+
 error_reporting(-1);
 ini_set('display_errors', 'On');
 require('../../config/config.php');
-$title = "Open + Urgent Tickets";
-$datasource = "Connectwise";
-$description="This displays a table of tickets that are both open and urgent on the My Company/Service board or the Alerts - Service Delivery board";
-//$actual_link = $_SERVER['HTTP_REFERER'];
-//$path = parse_url($actual_link,PHP_URL_PATH);
-//$path = strstr($path,"/service_delivery");
-//echo $path;
 
 
 
@@ -34,7 +27,7 @@ $subject = 'RPT Chronic Site Tickets - '.date("m/d/y");
 
 $headers= "From: jstewart@ansolutions.com\r\n";
 $headers.="Reply-To: jstewart@ansolutions.com\r\n";
-$headers.="CC: nkimes@ansolutions.com\r\n";
+//$headers.="CC: nkimes@ansolutions.com\r\n";
 $headers.="MIME-Version: 1.0\r\n";
 $headers.="Content-Type: text/html; charset=ISO-8859-1\r\n";
 
@@ -76,6 +69,7 @@ $message.= '<table rules="all" style="border-color:#282828; width:100%;" cellpad
 $message.= '<thead>';
 $message.= '<th>Ticket #</th>';
 $message.= '<th>Site</th>';
+$message.='<th>Priority</th>';
 $message.= '<th>Status</th>';
 $message.= '<th>Engineer(s)</th>';
 $message.= '<th>Summary</th>';
@@ -117,6 +111,7 @@ if($row['nextscheduledate'] !== null){
 $message.= '<tr>';
 $message.=  '<td>'.$row['sr_service_recid'].'</td>';
 $message.=  '<td>'.$row['site_name'].'</td>';
+ $message.='<td>'.$row['urgency'].'</td>';
 	 $message.=  '<td>'.$row['status'].'</td>';
 	 $message.=  '<td>'.$row['resourcelist'].'</td>';
 	 $message.=  '<td>'.$row['summary'].'</td>';

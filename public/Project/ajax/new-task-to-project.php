@@ -5,7 +5,7 @@ ini_set('display_errors', 'On');
 
 
 
-require_once('asana.php');
+//require_once('asana.php');
 if(isset($_GET['type'])){
 $type = urldecode($_GET['type']);
 $name = urldecode($_GET['name']);
@@ -13,13 +13,29 @@ $description = urldecode($_GET['body']);
 $sessionName = $_SESSION['user_name'];
 // See class comments and Asana API for full info
 
-$asana = new Asana(array('apiKey' => '9xNOS9Az.LG5ihg0y5grGZyKzdxuqNjC')); // Your API Key, you can get it in Asana
 
-$workspaceId = '15245076155873'; // The workspace where we want to create our task
-$projectId = '33538467149515'; // The project where we want to save our task
+$to = 'Inbox <project.122759860.1880573@todoist.net>';
+$subject = 'ANS Intelligence - '.$name.' @'.$type;
+
+$headers= "From: jstewart@ansolutions.com\r\n";
+$headers.="Reply-To: jstewart@ansolutions.com\r\n";
+//$headers.="CC: nkimes@ansolutions.com\r\n";
+//$headers.="MIME-Version: 1.0\r\n";
+//$headers.="Content-Type: text; charset=ISO-8859-1\r\n";
+
+$message = $_GET['body'];
+
+mail($to,$subject,$message,$headers);
+echo $description;
+
+}
+//$asana = new Asana(array('apiKey' => '9xNOS9Az.LG5ihg0y5grGZyKzdxuqNjC')); // Your API Key, you can get it in Asana
+
+//$workspaceId = '15245076155873'; // The workspace where we want to create our task
+//$projectId = '33538467149515'; // The project where we want to save our task
 
 // First we create the task
-$result = $asana->createTask(array(
+/*$result = $asana->createTask(array(
     'workspace' => $workspaceId, // Workspace ID
     'name' => $type." - ".$name, // Name of task
     'assignee' => 'nj.jstewart@gmail.com',
@@ -43,5 +59,5 @@ $result = $asana->addProjectToTask($taskId, $projectId);
 if ($asana->responseCode != '200') {
     echo 'Error while assigning project to task: ' . $asana->responseCode;
 }
-}
+}*/
 ?>

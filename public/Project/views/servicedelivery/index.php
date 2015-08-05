@@ -129,6 +129,8 @@
 
       </div>
 
+    
+
       <div id="issue_button" style="margin-right:15px;margin-top:10px;margin-bottom:auto;text-align:center;float: right; margin-left: 15px;height:53px;">
         <a  id="issue" class="btn btn-sm btn-primary">Submit Issue/Request</a>
       </div>
@@ -604,6 +606,24 @@
 
 
 
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+          </div>
+        </div>
+          <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="messageModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <button type="button"  class="close fui-cross" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title" id="messageModalLabel"></h4>
+                    </div>
+                    <div class="modal-body" id="messageBody">
+                   
 
                     </div>
                     <div class="modal-footer">

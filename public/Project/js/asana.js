@@ -24,7 +24,7 @@ $('#issueModal2').on('click','#submit_issue',function(e){
         $('#name, #description').val('');
         $('#type').val('Select request type');
       }, 3000 );
-      console.log("task added son!");
+      console.log("task added son!" +table);
     }
   });
 

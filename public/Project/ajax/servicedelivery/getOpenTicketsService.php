@@ -106,7 +106,7 @@ else{
   from dbo.SR_Service
   LEFT OUTER JOIN dbo.SR_Board on dbo.SR_Service.SR_Board_RecID = dbo.SR_Board.SR_Board_RecID
   left outer join sr_status on sr_service.sr_status_recid = sr_status.sr_status_recid
-  where (board_name = "My Company/Service" or board_name = "Alerts - Service Delivery" or board_name = "Results Physiotherapy") and DATEDIFF( ww, dbo.SR_Service.Date_Entered, GETDATE() ) = 0';
+  where sr_service.updated_by <> "LabTechInt" and (board_name = "My Company/Service" or board_name = "Alerts - Service Delivery" or board_name = "Results Physiotherapy") and DATEDIFF( ww, dbo.SR_Service.Date_Entered, GETDATE() ) = 0';
 
   $percentQuery = 'select  count(distinct(sr_service.sr_service_recid)) as ticketsClosed
   from dbo.SR_Service
@@ -114,7 +114,7 @@ else{
   left outer join sr_status on sr_service.sr_status_recid = sr_status.sr_status_recid
   left outer join member on member.member_id = sr_service.closed_by
   left outer join time_entry on SR_Service.sr_service_recid = time_entry.sr_service_recid
-  where time_entry.Hours_Actual > 0 and dbo.member.Title like "%IT Support%" and (board_name = "My Company/Service" or board_name = "Alerts - Service Delivery" or board_name = "Results Physiotherapy") and DATEDIFF( ww, dbo.SR_Service.Date_Entered, GETDATE() ) = 0 and DATEDIFF( ww, dbo.SR_Service.Date_Closed, GETDATE() ) = 0';
+  where sr_service.updated_by <> "LabTechInt" and time_entry.Hours_Actual > 0 and dbo.member.Title like "%IT Support%" and (board_name = "My Company/Service" or board_name = "Alerts - Service Delivery" or board_name = "Results Physiotherapy") and DATEDIFF( ww, dbo.SR_Service.Date_Entered, GETDATE() ) = 0 and DATEDIFF( ww, dbo.SR_Service.Date_Closed, GETDATE() ) = 0';
 
   $aquery = 'SELECT datepart(wk,sr_service.date_closed) as weekNo,year(sr_service.date_closed) as year,COUNT(distinct(sr_service.sr_service_recid)) AS Count
     FROM SR_Service
