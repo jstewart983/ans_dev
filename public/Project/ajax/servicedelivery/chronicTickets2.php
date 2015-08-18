@@ -143,10 +143,5 @@ echo '</table>';
 
 echo "</div>";
 
-if(mail($to,$subject,$message,$headers)){
-	echo "success!";
-}else{
-	echo "fail";
-}
 
 ?>

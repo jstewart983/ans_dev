@@ -204,7 +204,7 @@ $(document).ready(function(){
           $("#ticketsBody").empty();
           $.ajax({
             type:'GET',
-            url:"../../ajax/servicedelivery/chronicTickets.php",
+            url:"../../ajax/servicedelivery/chronicTickets2.php",
             success:function(table){
             $('#ticketsBody').append(table);
             }

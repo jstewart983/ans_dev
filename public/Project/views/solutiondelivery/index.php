@@ -18,7 +18,10 @@
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
+        <script type="text/javascript">
+  window.heap=window.heap||[],heap.load=function(t,e){window.heap.appid=t,window.heap.config=e;var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=("https:"===document.location.protocol?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+t+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(t){return function(){heap.push([t].concat(Array.prototype.slice.call(arguments,0)))}},p=["clearEventProperties","identify","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+  heap.load("3593988708");
+</script>
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/2.9.0/moment.min.js"></script>
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -181,11 +184,11 @@ display: none;
                     <span id="percentToGoal">0%</span><span id="weekToDateGoal">to week to date goal of 0hrs</span>
                   </p>
                   <div class="row">
-                    <div class="col-md-7 col-md-offset-4">
-                      <div data-toggle="tooltip" title=">=90%" style="display:inline-block;background-color:#2ECC71;height:10px;width:10px;"></div>
-                      <div  data-toggle="tooltip" title="<90% & >=80%" style="display:inline-block;background-color:#F1C40F;height:10px;width:10px;"></div>
-                      <div data-toggle="tooltip" title="<80% & >=70%" style="display:inline-block;background-color:#E67E22;height:10px;width:10px;"></div>
-                      <div data-toggle="tooltip" title="<70%" style="display:inline-block;background-color:#E74C3C;height:10px;width:10px;"></div>
+                    <div class="col-md-7 col-md-offset-5">
+                      <div data-toggle="tooltip" title=">100%" style="display:inline-block;background-color:#2ECC71;height:10px;width:10px;"></div>
+                      <div  data-toggle="tooltip" title="<=100% & >=80%" style="display:inline-block;background-color:#F1C40F;height:10px;width:10px;"></div>
+                      <div data-toggle="tooltip" title="<80%" style="display:inline-block;background-color:#E74C3C;height:10px;width:10px;"></div>
+
                     </div>
                   </div>
                 </div>

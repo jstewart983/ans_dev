@@ -18,6 +18,10 @@
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
         <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.css" media="screen" title="no title" charset="utf-8">
           <link rel="stylesheet" href="../../libraries/hopscotch/dist/css/hopscotch.min.css" />
+          <script type="text/javascript">
+  window.heap=window.heap||[],heap.load=function(t,e){window.heap.appid=t,window.heap.config=e;var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=("https:"===document.location.protocol?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+t+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(t){return function(){heap.push([t].concat(Array.prototype.slice.call(arguments,0)))}},p=["clearEventProperties","identify","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+  heap.load("3593988708");
+</script>
         <script type="text/javascript" src="../../js/jquery.min.js"></script>
         <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/2.9.0/moment.min.js"></script>
         <script type="text/javascript" src="../../js/Chart.js"></script>

@@ -104,10 +104,11 @@ function getHoursExecuted(start,end){
           hoursExecuted = 0;
       }else{
         //set project hours equal to first position of json array
-            hoursExecuted = parseInt(json[0]['thisWeek']);
+            hoursExecuted = parseFloat(json[0]['thisWeek']);
+            //hoursExecuted = hoursExecuted.toFixed(2);
       }
       //get text from element
-      var $executedEl = parseInt($('#executed').text());
+      var $executedEl = parseFloat($('#executed').text());
       //get text from percent to goal element
       var $percentToGoalEl = $('#percentToGoal').text();
           //strip everything but the numerical characters and convert that to an integer
@@ -138,28 +139,23 @@ function getHoursExecuted(start,end){
         var weeklyGoalSoFar = parseInt(weeklyGoal * dayCount);
         //Calculate the percentage to the goal so far
         var percentToGoal = parseInt((hoursExecuted / weeklyGoalSoFar) * 100);
-        if(percentToGoal >= 90 ){
-            //set the color to green
+        if(percentToGoal > 100 ){
             color = "#2ECC71";
-          //if greater than or equal to 80% and less than 90%
-          }else if(percentToGoal >= 80 && percentToGoal < 90){
-            //set color to yellow
+            //json[0]["Difference"] = "+"+json[0]["Difference"];
+          }else if(percentToGoal > 80 && percentToGoal < 101){
             color = "#F1C40F";
-          //if greater than or equal to 70% and less than 80%
-          }else if(percentToGoal >= 70 && percentToGoal < 80){
-            //set color to orange
-            color = "#E67E22";
-          //otherwise the percentage must be below 70
+          }else if(percentToGoal > 70 && percentToGoal < 80){
+            color = "#E74C3C";
           }else{
-            //set color to red
             color = "#E74C3C";
           }
+          console.log( hoursExecuted);
             //check to see if there was a change in hours executed
             if(hoursExecuted !== $executedEl){
               //counter options
               var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '',suffix : 'hrs'};
               //counter for total hours executed
-              var hoursEx = new countUp("executed", $executedEl, hoursExecuted, 0,2.5,options);
+              var hoursEx = new countUp("executed", $executedEl, hoursExecuted, 2,2.5,options);
                   //animate to color specified above
                   $('#executed').animate({color: color}, 1000);
                   //start counter animation
@@ -194,20 +190,14 @@ function getHoursExecuted(start,end){
         dayCount = 5;
         var weeklyGoalSoFar = parseInt(weeklyGoal * dayCount);
         var percentToGoal = parseInt((hoursExecuted / weeklyGoalSoFar) * 100);
-        if(percentToGoal >= 90 ){
-            //set the color to green
+        if(percentToGoal > 100 ){
             color = "#2ECC71";
-          //if greater than or equal to 80% and less than 90%
-          }else if(percentToGoal >= 80 && percentToGoal < 90){
-            //set color to yellow
+            //json[0]["Difference"] = "+"+json[0]["Difference"];
+          }else if(percentToGoal > 80 && percentToGoal < 101){
             color = "#F1C40F";
-          //if greater than or equal to 70% and less than 80%
-          }else if(percentToGoal >= 70 && percentToGoal < 80){
-            //set color to orange
-            color = "#E67E22";
-          //otherwise the percentage must be below 70
+          }else if(percentToGoal > 70 && percentToGoal < 80){
+            color = "#E74C3C";
           }else{
-            //set color to red
             color = "#E74C3C";
           }
         var options1 = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : ' to a week to date goal of ',suffix : 'hrs'};
@@ -226,20 +216,14 @@ function getHoursExecuted(start,end){
         dayCount = days_between(Dates[0],today);
         var weeklyGoalSoFar = parseInt(weeklyGoal * dayCount);
         var percentToGoal = parseInt((hoursExecuted / weeklyGoalSoFar) * 100);
-        if(percentToGoal >= 90 ){
-            //set the color to green
+        if(percentToGoal > 100 ){
             color = "#2ECC71";
-          //if greater than or equal to 80% and less than 90%
-          }else if(percentToGoal >= 80 && percentToGoal < 90){
-            //set color to yellow
+            //json[0]["Difference"] = "+"+json[0]["Difference"];
+          }else if(percentToGoal > 80 && percentToGoal < 101){
             color = "#F1C40F";
-          //if greater than or equal to 70% and less than 80%
-          }else if(percentToGoal >= 70 && percentToGoal < 80){
-            //set color to orange
-            color = "#E67E22";
-          //otherwise the percentage must be below 70
+          }else if(percentToGoal > 70 && percentToGoal < 80){
+            color = "#E74C3C";
           }else{
-            //set color to red
             color = "#E74C3C";
           }
         var options1 = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : ' to a week to date goal of ',suffix : 'hrs'};
@@ -257,11 +241,11 @@ function getHoursExecuted(start,end){
       }
 
     //check to see if the element is equal to the data from the ajax request
-    if(hoursExecuted !== $executedEl){
+    if(parseFloat(hoursExecuted) !== parseFloat($executedEl)){
       //counter options
       var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '',suffix : 'hrs'};
       //set counter variable
-      var hoursEx = new countUp("executed", $executedEl, hoursExecuted, 0,2.5,options);
+      var hoursEx = new countUp("executed", $executedEl, hoursExecuted, 2,2.5,options);
           $('#executed').animate({color: color}, 1000);
           hoursEx.start();
             getHoursByPE('');
@@ -286,7 +270,8 @@ function getHoursExecutedLastWeek(){
     success:function(json){
       var weeklyGoal = 192/5;
       //set project hours equal to first position of json array
-      var hoursExecuted = parseInt(json[0]['thisWeek']);
+      var hoursExecuted = parseFloat(json[0]['thisWeek']);
+          hoursExecuted = hoursExecuted.toFixed(2);
       //get text from element
       var $executedEl = parseInt($('#executed').text());
       //set hours week equal to variable
@@ -312,13 +297,13 @@ function getHoursExecutedLastWeek(){
       var weeklyGoalSoFar = parseFloat(weeklyGoal * 5);
       var percentToGoal = parseInt((hoursExecuted / weeklyGoalSoFar) * 100);
 
-      if(percentToGoal > 90 ){
+      if(percentToGoal > 100 ){
           color = "#2ECC71";
           //json[0]["Difference"] = "+"+json[0]["Difference"];
-        }else if(percentToGoal > 80 && percentToGoal < 90){
+        }else if(percentToGoal > 80 && percentToGoal < 101){
           color = "#F1C40F";
         }else if(percentToGoal > 70 && percentToGoal < 80){
-          color = "#E67E22";
+          color = "#E74C3C";
         }else{
           color = "#E74C3C";
         }
@@ -328,7 +313,7 @@ function getHoursExecutedLastWeek(){
         //counter options
         var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '',suffix : 'hrs'};
         //set counter variable
-        var hoursEx = new countUp("executed", $executedEl, hoursExecuted, 0,2.5,options);
+        var hoursEx = new countUp("executed", $executedEl, hoursExecuted, 2,2.5,options);
             $('#executed').animate({color: color}, 1000);
             hoursEx.start();
         //counter options
@@ -437,16 +422,16 @@ function getHoursLeft(){
         var percent = (remaining/1920)*100;
             console.log(percent);
 
-        if(percent > 90){
-            color = "#2ECC71";
-            //json[0]["Difference"] = "+"+json[0]["Difference"];
-          }else if(percent > 80 && percent < 90){
-            color = "#F1C40F";
-          }else if(percent > 70 && percent < 80){
-            color = "#E67E22";
-          }else{
-            color = "#E74C3C";
-          }
+            if(percent > 100 ){
+                color = "#2ECC71";
+                //json[0]["Difference"] = "+"+json[0]["Difference"];
+              }else if(percentToGoal > 80 && percent < 101){
+                color = "#F1C40F";
+              }else if(percent > 70 && percent < 80){
+                color = "#E74C3C";
+              }else{
+                color = "#E74C3C";
+              }
 
         //set options for percentGoal counter
         var options = {useEasing : true,useGrouping : true,separator : ',',decimal : '.',prefix : '',suffix : '%'};
@@ -482,7 +467,7 @@ function getHoursByPE(value){
       hoursByGuy = json;
       var total = 0;
       for(var i = 0;i < json.length;i++){
-        total = total + parseInt(json[i]["thisWeek"]);
+        total = total + parseFloat(json[i]["thisWeek"]);
       }
       var xlabels = [], type_count = [],colors = [],percent = [];
           for(var i = 0; i < json.length; i++) {
