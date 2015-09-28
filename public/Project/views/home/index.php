@@ -1,3 +1,4 @@
+
 <!doctype html >
 <html lang="en">
     <head>
@@ -150,10 +151,8 @@
             <a href="../solutiondelivery/">
               <div class="panel panel-default">
                 <div class="panel-body">
-                  <h5 style="text-align:center;">Solution Delivery <span class="glyphicon glyphicon-dashboard"></span></h5>
-                  <p style="font-size:10px;text-align:center;">
-                    <b>Build Status</b> = under construction
-                  </p>
+                  <h5 style="text-align:center;">Solution Delivery <span class="fa fa-bar-chart"></span></h5>
+
                 </div>
             </div>
           </a>
@@ -162,10 +161,8 @@
             <a href="../servicedelivery/">
               <div class="panel panel-default">
                 <div class="panel-body">
-                  <h5 class="name" style="text-align:center;">Service Delivery <span class="glyphicon glyphicon-dashboard"></span></h5>
-                  <p class="name" style="font-size:10px;text-align:center;">
-                    <b>Build Status</b> = QA
-                  </p>
+                  <h5 class="name" style="text-align:center;">Service Delivery <span class="fa fa-area-chart"></span></h5>
+
                 </div>
             </div>
           </a>
@@ -174,10 +171,8 @@
             <a href="../clientservices/">
               <div class="panel panel-default">
                 <div class="panel-body">
-                  <h5 style="text-align:center;">Client Services <span class="glyphicon glyphicon-dashboard"></span></h5>
-                  <p style="font-size:10px;text-align:center;">
-                    <b>Build Status</b> = under construction - almost to QA
-                  </p>
+                  <h5 style="text-align:center;">Client Services <span class="fa fa-pie-chart"></span></h5>
+
                 </div>
             </div>
           </a>
@@ -190,10 +185,8 @@
             <a href="../resultsphysiotherapy/">
               <div class="panel panel-default">
                 <div class="panel-body">
-                  <h5 style="text-align:center;">Results Physiotherapy <span class="glyphicon glyphicon-dashboard"></span></h5>
-                  <p style="font-size:10px;text-align:center;">
-                    <b>Build Status</b> = QA
-                  </p>
+                  <h5 style="text-align:center;">Results Physiotherapy <span class="fa fa-line-chart"></span></h5>
+
                 </div>
               </div>
             </a>
@@ -203,9 +196,7 @@
               <div class="panel panel-default">
                 <div class="panel-body">
                   <h5 style="text-align:center;">Managed Services <span class="glyphicon glyphicon-dashboard"></span></h5>
-                  <p style="font-size:10px;text-align:center;">
-                    <b>Build Status</b> = under construction
-                  </p>
+
                 </div>
             </div>
           </a>
@@ -214,10 +205,8 @@
             <a href="../fieldservices/">
               <div class="panel panel-default">
                 <div class="panel-body">
-                  <h5 style="text-align:center;">Field Services <span class="glyphicon glyphicon-dashboard"></span></h5>
-                  <p style="font-size:10px;text-align:center;">
-                    <b>Build Status</b> = under construction
-                  </p>
+                    <h5 style="text-align:center;">Field Services <i class="fa fa-map"></i></h5>
+
                 </div>
             </div>
           </a>

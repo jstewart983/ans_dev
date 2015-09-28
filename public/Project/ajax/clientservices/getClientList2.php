@@ -20,7 +20,7 @@ $company = $row['Company_Name'];
 		$str = substr($str, 0, 17) . '...';
 	}
 
-echo "<option value=".str_replace(' ','%20',$company).">";
+echo "<option value='".$company."' name=".str_replace(' ','%20',$company).">";
 echo $company;
 
 echo "</option>";

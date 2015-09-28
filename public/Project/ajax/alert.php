@@ -11,7 +11,7 @@ function sendMsg($id,$msg){
 }
 
 $serverTime = time();
-$message = "The Opened Tickets - This Wk metric has been changed. This metric now filters out tickets that have been last updated by labtech";
+$message = "Here is my message";
 
 //sendMsg($serverTime,'server time: '.$message);
 

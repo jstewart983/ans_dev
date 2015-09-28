@@ -14,7 +14,7 @@ $sessionName = $_SESSION['user_name'];
 // See class comments and Asana API for full info
 
 
-$to = 'Inbox <project.122759860.1880573@todoist.net>';
+$to = 'Inbox <project.122759860.1880573@todoist.net>,jstewart@ansolutions.com';
 $subject = 'ANS Intelligence - '.$name.' @'.$type;
 
 $headers= "From: jstewart@ansolutions.com\r\n";

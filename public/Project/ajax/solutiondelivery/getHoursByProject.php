@@ -10,7 +10,7 @@ left outer join member on time_entry.member_recid = member.member_recid
 left outer join pm_project on time_entry.pm_project_recid = pm_project.pm_project_recid
 left outer join pm_type on pm_project.pm_type_recid = pm_type.pm_type_recid
 left outer join company on pm_project.company_recid = company.company_recid
-where pm_type.description = "Client Project" and time_entry.pm_project_recid is not null and
+where time_entry.pm_project_recid is not null and
 (time_entry.date_start >= "'.$start.'" and time_entry.date_start <= "'.$end.'")
 group by pm_project.project_id,company.company_name
 order by sum(time_entry.hours_actual) desc');
@@ -26,7 +26,7 @@ left outer join member on time_entry.member_recid = member.member_recid
 left outer join pm_project on time_entry.pm_project_recid = pm_project.pm_project_recid
 left outer join pm_type on pm_project.pm_type_recid = pm_type.pm_type_recid
 left outer join company on pm_project.company_recid = company.company_recid
-where pm_type.description = "Client Project" and time_entry.pm_project_recid is not null and
+where time_entry.pm_project_recid is not null and
 datediff(ww,time_entry.date_start,getdate()) = 1
 group by pm_project.project_id,company.company_name
 order by sum(time_entry.hours_actual) desc');
@@ -40,7 +40,7 @@ left outer join member on time_entry.member_recid = member.member_recid
 left outer join pm_project on time_entry.pm_project_recid = pm_project.pm_project_recid
 left outer join pm_type on pm_project.pm_type_recid = pm_type.pm_type_recid
 left outer join company on pm_project.company_recid = company.company_recid
-where pm_type.description = "Client Project" and time_entry.pm_project_recid is not null and
+where time_entry.pm_project_recid is not null and
 datediff(ww,time_entry.date_start,getdate()) = 0
 group by pm_project.project_id,company.company_name
 order by sum(time_entry.hours_actual) desc');

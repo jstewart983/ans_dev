@@ -924,35 +924,6 @@ function getBillableLastWeek(){
 
 
 
-function orphanedTickets(){
-
-  $.ajax({
-    type:"GET",
-    url:"../../../ajax/servicedelivery/orphanedTickets.php",
-    success:function(table){
-
-
-
-      $('#orphanedTicketsTable').fadeOut(600, function() {
-
-            var $span1 = $('<div id ="orphanedTicketsTable">'+table+'</div>');
-
-
-
-             $("#orphanedTicketsTable").replaceWith($span1);
-
-           $span1.fadeIn(800);
-
-
-
-          });
-
-
-    }
-  });
-
-}
-
 
 
 
@@ -995,8 +966,6 @@ newVsOld();
 urgentTickets();
 setInterval(function(){ urgentTickets(); }, 60000);
 
-orphanedTickets();
-setInterval(function(){ orphanedTickets(); }, 60000);
 
 
 //top tickets by service type this week

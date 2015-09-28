@@ -34,7 +34,7 @@
 </script>
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="../../js/field_services.js"></script>
+
         <script type="text/javascript" src="../../js/service_desk.js"></script>
 
         <script type="text/javascript" src="../../js/Chart.js"></script>
@@ -73,6 +73,15 @@
     .navmenu .navmenu-default{
         background-color: #fff;
         }
+				.legend{
+					display:inline-block !important;
+				}
+				.title{
+					display:inline-block !important;
+				}
+				.hidden{
+					display: none;
+				}
         </style>
     <body class="canvas">
 <div style="background-color:#fff;" class="navmenu navmenu-default navmenu-fixed-left offcanvas">
@@ -213,6 +222,38 @@
               </div>
           </div>
           </div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<p style="text-align:center;" id="ticketCountTitle">Ticket Count by # of Days Open</p>
+						</div>
+						<div class="panel-body">
+					<div id="chart" class="row">
+						<div class="col-md-12">
+							<canvas  id="canvas" width="700" height="200"></canvas>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 col-md-offset-5">
+							<div id="legend">
+							</div>
+						</div>
+					</div>
+					<div  class="row">
+						<div class="col-md-12">
+							<button style="width:100%;text-align:center;" class="hidden btn btn-default" id="tableShow" type="button">Ticket Detail <span class="fa fa-arrow-down"></span></button>
+								<button style="width:100%;text-align:center;" id="tableHide" class="hidden btn btn-default"  type="button">Ticket Detail <span class="fa fa-arrow-up"></span></button>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-12">
+							<div id="table">
+
+							</div>
+						</div>
+					</div>
+					</div>
+					</div>
           <div class="row">
             <div id="title" class="col-md-12">
                 <div class="panel panel-default">
@@ -284,32 +325,6 @@
                 <div style='width:100%;padding:0px;'class=' panel panel-default'>
                 <div class='panel-heading'style='text-align:center;'>
                   <p id="urgentTicketsTitle" style="text-align:center;">Open + Urgent Tickets <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
-                </div>
-                <div style='width:100%;width:100%;overflow-y: scroll !important;height:278px;'class=panel-body>
-                  <table id='clientTable' style='width:100%;' class='table table-hover'>
-                  <thead>
-                  <th>Ticket #</th>
-                  <th>Urgency</th>
-                  <th>Status</th>
-                  <th>Summary</th>
-                  <th>Days Open</th>
-                  </thead>
-                  <tbody  class='rowlink'>
-
-                    </tbody>
-                    </table>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        </div>
-        <div class="row">
-            <div id="title" class="col-md-12">
-              <div id="orphanedTicketsTable">
-                <div style='width:100%;padding:0px;'class=' panel panel-default'>
-                <div class='panel-heading'style='text-align:center;'>
-                  <p id="orphanedTicketsTitle" style="text-align:center;">Orphaned Tickets <span><a href="#" class="fui-info-circle"data-toggle="modal"data-target="#basicModal"></a></span></p>
                 </div>
                 <div style='width:100%;width:100%;overflow-y: scroll !important;height:278px;'class=panel-body>
                   <table id='clientTable' style='width:100%;' class='table table-hover'>

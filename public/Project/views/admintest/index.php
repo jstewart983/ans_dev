@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php header('Location: http://intelligence.ansolutions.com/');?>
 <!DOCTYPE html>
 <html lang="en">
 

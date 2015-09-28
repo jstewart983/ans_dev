@@ -18,10 +18,6 @@
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-        <script type="text/javascript">
-  window.heap=window.heap||[],heap.load=function(t,e){window.heap.appid=t,window.heap.config=e;var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=("https:"===document.location.protocol?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+t+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(t){return function(){heap.push([t].concat(Array.prototype.slice.call(arguments,0)))}},p=["clearEventProperties","identify","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
-  heap.load("3593988708");
-</script>
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/2.9.0/moment.min.js"></script>
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -147,6 +143,7 @@ display: none;
           <div id="timeanalysis"style="margin-top:10px;height:53px;" class="col-md-1">
             <a class="btn btn-md btn-warning" href="http://intelligence.ansolutions.com/routes/tools/timeanalysis/">Time Analysis <span class='fui-time'></span> </a>
           </div>
+
           <div id="issue_button" style="margin-right:15px;margin-top:10px;margin-bottom:auto;text-align:center;float: right; margin-left: 15px;height:53px;">
             <a  id="issue" class="btn btn-sm btn-primary">Submit Issue/Request</a>
           </div>
@@ -258,7 +255,7 @@ display: none;
                     <div class="row">
                       <div class="col-md-3 col-md-offset-4">
                         <p style="text-align:center">
-                          Project Hours Executed by PE - This Wk
+                          Project Hours Executed - This Wk
                         </p>
                       </div>
                       <div class="col-md-3 col-md-offset-2">

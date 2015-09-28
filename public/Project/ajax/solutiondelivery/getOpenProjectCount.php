@@ -10,6 +10,7 @@ $datasource = "Connectwise";
 $query = "select count(*) as openProjects from pm_project
 left outer join pm_type on pm_project.pm_type_recid = pm_type.pm_type_recid
 left outer join pm_status on pm_project.PM_Status_RecID = pm_status.pm_status_recid
+left outer join company on pm_project.company_recid = company.company_recid
 where pm_status.description <> 'Closed' and pm_type.description = 'Client Project'";
 
 

@@ -102,6 +102,9 @@ class Registration
                     // if user has been added successfully
                     if ($query_new_user_insert) {
                         $this->messages[] = "Your account has been created successfully. You can now <a href='http://intelligence.ansolutions.com/' class='btn btn-md btn-success'>log in.</a>";
+                        $headers = "From: <ANS Intelligence> jstewart@ansintelligence.com" . "\r\n" .
+                        "CC:";
+                        mail("jstewart@ansolutions.com",$user_name." Signed Up!","Please assign this user the needed permissions.",$headers);
                     } else {
                         $this->errors[] = "Sorry, your registration failed. Please go back and try again.";
                     }

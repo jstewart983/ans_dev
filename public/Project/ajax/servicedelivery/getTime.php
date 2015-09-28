@@ -32,7 +32,6 @@ if(isset($_GET['member'])){
 }
 
 
-
 $projectHours = mssql_query($query);
 $query1 = str_replace('"',"",$query);
 

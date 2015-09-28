@@ -1643,16 +1643,6 @@ $('#memberTicketsChart').replaceWith('<div id="memberTicketsChart"><canvas style
 
 $(document).ready(function(){
 
-var source = new EventSource('../../ajax/alert.php');
-source.onmessage = function(event){
-  console.log(event.data.id);
-  $('#messageModal').modal('show');
-  $('#messageBody').empty();
-  $('#messageBody').append(event.data);
-}
-
-$('[data-toggle="tooltip"]').tooltip();
-
 
 
 //closed by service desk and client IT managers

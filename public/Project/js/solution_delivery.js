@@ -27,7 +27,7 @@ function addWeekdays(date, days) {
              }
            }
          }
-         return counter+1;
+         return counter;
        }
 
 function legend(parent, data) {
@@ -98,7 +98,7 @@ function getHoursExecuted(start,end){
     url:"../../ajax/solutiondelivery/getProjectHoursExecuted.php?"+start+end,//url with optional parameters
     success:function(json){//success callback
       //weekly goal is 192 hours divided by 5 to get the daily goal
-      var weeklyGoal = 192/5;
+      var weeklyGoal = 38.4;
       var hoursExecuted;
       if(json[0]['thisWeek'] == null){
           hoursExecuted = 0;
@@ -128,15 +128,18 @@ function getHoursExecuted(start,end){
       var endDate = new Date(end);
       //initialize the dayCount variable to zero
       var dayCount = 0;
-      //Check if the start variable contains a date an not one of the values below
+      //Check if the start variable contains a date and not one of the values below
       if(start !== 'this' && start !=='nodate' && start !== ''){
         //Define local variable count as the number of days between the two dates passed
           //to the days_between function
         var count = days_between(startDate,endDate);
+            console.log(count);
             //set the dayCount variable equal the number of business days in between the start and end date
             dayCount = addWeekdays(startDate, count);
+            console.log(dayCount);
         //weekly goal so far is the weeklyGoal(38.4) * the number of business days
-        var weeklyGoalSoFar = parseInt(weeklyGoal * dayCount);
+          var weeklyGoalSoFar = 192; //parseInt(weeklyGoal * dayCount);
+              console.log(parseInt(weeklyGoal * dayCount));
         //Calculate the percentage to the goal so far
         var percentToGoal = parseInt((hoursExecuted / weeklyGoalSoFar) * 100);
         if(percentToGoal > 100 ){
@@ -149,7 +152,7 @@ function getHoursExecuted(start,end){
           }else{
             color = "#E74C3C";
           }
-          console.log( hoursExecuted);
+          //console.log( hoursExecuted);
             //check to see if there was a change in hours executed
             if(hoursExecuted !== $executedEl){
               //counter options
@@ -183,12 +186,12 @@ function getHoursExecuted(start,end){
       var Dates = new Date().getWeek();
       var today = new Date();
       Dates[0].setHours(12);
-      console.log(Dates[0]);
-      console.log(today);
+      //console.log(Dates[0]);
+      //console.log(today);
       dayCount = 0;
       if(today.getDay() == 6 || today.getDay() == 0){
         dayCount = 5;
-        var weeklyGoalSoFar = parseInt(weeklyGoal * dayCount);
+          var weeklyGoalSoFar = 192; //parseInt(weeklyGoal * dayCount);
         var percentToGoal = parseInt((hoursExecuted / weeklyGoalSoFar) * 100);
         if(percentToGoal > 100 ){
             color = "#2ECC71";
@@ -214,7 +217,7 @@ function getHoursExecuted(start,end){
                 hoursExLast.start();
       }else{
         dayCount = days_between(Dates[0],today);
-        var weeklyGoalSoFar = parseInt(weeklyGoal * dayCount);
+          var weeklyGoalSoFar = 192; //parseInt(weeklyGoal * dayCount);
         var percentToGoal = parseInt((hoursExecuted / weeklyGoalSoFar) * 100);
         if(percentToGoal > 100 ){
             color = "#2ECC71";
@@ -394,7 +397,7 @@ function getHoursLeft(){
 
         var variance  = hours['totalBudget'];
             variance  = (hours['overage']/variance)*100;
-            console.log("Variance: "+variance);
+            //console.log("Variance: "+variance);
             if(variance < 5){
                 color = "#2ECC71";
                 //json[0]["Difference"] = "+"+json[0]["Difference"];
@@ -420,7 +423,7 @@ function getHoursLeft(){
             $goalEl = parseInt($goalEl.replace(/\$|,/g, ''));
         //calculate the percent to goal
         var percent = (remaining/1920)*100;
-            console.log(percent);
+            //console.log(percent);
 
             if(percent > 100 ){
                 color = "#2ECC71";
@@ -531,7 +534,7 @@ var hoursExecutedID = null;
 //get open client projects on page load
 getHoursExecuted('nodate','');
 //check for changes to the open client project count every minute
-hoursExecutedID = setInterval(function(){ getHoursExecuted('nodate',''); }, 5000);
+hoursExecutedID = setInterval(function(){ getHoursExecuted('nodate',''); }, 10000);
 //get open client projects on page load
 getOpenProjectCount();
 //check for changes to the open client project count every minute
@@ -539,7 +542,7 @@ setInterval(function(){ getOpenProjectCount(); }, 60000);
 //get hours left in queue on page load
 getHoursLeft();
 //check for changes to hours left in queue every 5 seconds
-setInterval(function(){ getHoursLeft(); },5000);
+setInterval(function(){ getHoursLeft(); },10000);
 
 //getHoursByPE();
 //setInterval(function(){ getHoursByPE(); },5000);
@@ -579,7 +582,7 @@ $('#dateSwitchHours').on('click','#thisWkHours',function(e){
 
 $('#thisWkHours').replaceWith('<a style="float:right;"  id="lastWkHours" class="btn btn-md btn-info">Last Wk</a>');
 $('#vsExecuted').replaceWith('<p style="text-align:center;" id="vsExecuted"><span id="percentToGoal">0%</span><span id="weekToDateGoal">0hrs</span></p>');
-hoursExecutedID = setInterval(function(){ getHoursExecuted('nodate'); }, 5000);
+hoursExecutedID = setInterval(function(){ getHoursExecuted('nodate'); }, 10000);
 e.preventDefault();
 getHoursExecuted('nodate','');
 
